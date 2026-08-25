@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -116,8 +116,8 @@
 
     <div class="footer">
         Jember, {{ date('d F Y') }}<br>
-        Petugas Kasir,<br><br><br><br>
-        <u><b>{{ Auth::user()->name ?? 'Admin' }}</b></u>
+        {{ $shop['cashier_officer_title'] ?? 'Petugas Kasir' }},<br><br><br><br>
+        <u><b>{{ $shop['cashier_officer_name'] ?? Auth::user()->name ?? 'Admin' }}</b></u>
     </div>
 </body>
 </html>

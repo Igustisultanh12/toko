@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Cashier\SaleController;
 use App\Http\Controllers\DokuNotificationController;
 use App\Http\Controllers\DokuInquiryController;
+use App\Http\Controllers\TteVerificationController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -30,6 +31,7 @@ Route::get('/receipt/{sale}/pdf', [ReportController::class, 'exportInvoicePdf'])
 Route::get('/invoice/{transaction_number}/get-link', [ReportController::class, 'getSignedInvoiceLink'])->name('invoice.get-link');
 Route::get('/invoice/{transaction_number}/download', [ReportController::class, 'downloadSignedInvoice'])->name('invoice.public.signed');
 Route::get('/invoice/{transaction_number}/pdf', [ReportController::class, 'downloadSignedInvoice'])->name('invoice.public.number');
+Route::get('/verify/tte/{transaction_number}', [TteVerificationController::class, 'verify'])->name('verify.tte');
 Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::class, 'generateShippingLabel'])->name('shipping.label.pdf');
 
 /**

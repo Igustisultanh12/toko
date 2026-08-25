@@ -15,6 +15,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use App\Services\QRCodeService;
 
 class ReportController extends Controller
 {
@@ -419,14 +420,19 @@ class ReportController extends Controller
     }
 
     /**
-     * Cetak Faktur / Nota Transaksi Spesifik ke PDF (Format Surat Resmi)
+     * Cetak Faktur / Nota Transaksi Spesifik ke PDF (Format Surat Resmi dengan TTE QR)
      */
     public function exportInvoicePdf(Sale $sale)
     {
         $sale->load(['details.product', 'user']);
         $shop = Setting::pluck('value', 'key')->all();
 
-        $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop'))
+        $verifyUrl = route('verify.tte', ['transaction_number' => $sale->transaction_number]);
+        $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
+        $signerTitle = $shop['cashier_officer_title'] ?? 'Petugas Kasir';
+        $signerName = $sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir');
+
+        $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop', 'tteQrBase64', 'signerTitle', 'signerName', 'verifyUrl'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->stream('Faktur_' . $sale->transaction_number . '.pdf');
@@ -461,7 +467,7 @@ class ReportController extends Controller
     }
 
     /**
-     * Unduh / Tampilkan Faktur PDF Pelanggan dengan Validasi Kadaluarsa 24 Jam
+     * Unduh / Tampilkan Faktur PDF Pelanggan dengan Validasi Kadaluarsa 24 Jam & TTE QR
      */
     public function downloadSignedInvoice(Request $request, $transactionNumber)
     {
@@ -479,7 +485,12 @@ class ReportController extends Controller
             }
         }
 
-        $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop'))
+        $verifyUrl = route('verify.tte', ['transaction_number' => $sale->transaction_number]);
+        $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
+        $signerTitle = $shop['cashier_officer_title'] ?? 'Petugas Kasir';
+        $signerName = $sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir');
+
+        $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop', 'tteQrBase64', 'signerTitle', 'signerName', 'verifyUrl'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->stream('Faktur_' . $sale->transaction_number . '.pdf');

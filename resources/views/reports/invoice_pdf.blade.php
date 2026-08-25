@@ -66,12 +66,12 @@
             <td width="30%">{{ strtoupper($sale->payment_method) }} ({{ $sale->payment_status == 'success' ? 'LUNAS' : strtoupper($sale->payment_status) }})</td>
         </tr>
         <tr>
-            <td><b>Petugas Kasir</b></td>
+            <td><b>{{ $signerTitle ?? $shop['cashier_officer_title'] ?? 'Petugas Kasir' }}</b></td>
             <td>:</td>
-            <td>{{ $sale->user->name ?? 'Kasir' }}</td>
+            <td>{{ $signerName ?? $sale->user->name ?? 'Kasir' }}</td>
             <td><b>Waktu Transaksi</b></td>
             <td>:</td>
-            <td>{{ $sale->created_at->format('d F Y, H:i') }} WIB</td>
+            <td>{{ $sale->created_at->translatedFormat('d F Y, H:i') }} WIB</td>
         </tr>
     </table>
 
@@ -131,9 +131,19 @@
     <p>2. &nbsp;&nbsp; Dokumen faktur ini diterbitkan secara otomatis oleh sistem {{ $shop['app_name'] ?? 'SIKANDA' }} sebagai bukti transaksi yang sah.</p>
 
     <div class="footer">
-        Jember, {{ $sale->created_at->format('d F Y') }}<br>
-        Petugas Kasir,<br><br><br><br>
-        <u><b>{{ $sale->user->name ?? Auth::user()->name ?? 'Admin' }}</b></u>
+        Jember, {{ $sale->created_at->translatedFormat('d F Y') }}<br>
+        <b>{{ $signerTitle ?? $shop['cashier_officer_title'] ?? 'Petugas Kasir' }},</b><br>
+        <div style="margin: 3px 0;">
+            @if(!empty($tteQrBase64))
+                <img src="{{ $tteQrBase64 }}" style="width: 75px; height: 75px; margin: 0 auto; display: block;">
+            @else
+                <br><br><br>
+            @endif
+        </div>
+        <div style="font-size: 6.5pt; color: #555; margin-top: -1px; margin-bottom: 2px;">
+            <i>Ditandatangani secara elektronik (TTE)</i>
+        </div>
+        <u><b>{{ $signerName ?? $sale->user->name ?? $shop['cashier_officer_name'] ?? 'Petugas Kasir' }}</b></u>
     </div>
 </body>
 </html>

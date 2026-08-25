@@ -39,6 +39,8 @@ class SettingController extends Controller
             'doku_client_id'        => 'nullable|string',
             'doku_secret_key'       => 'nullable|string',
             'doku_base_url'         => 'nullable|url',
+            'cashier_officer_title' => 'nullable|string|max:100',
+            'cashier_officer_name'  => 'nullable|string|max:100',
             'receipt_footer'        => 'nullable|string|max:200',
         ]);
 
