@@ -32,6 +32,7 @@ Route::get('/invoice/{transaction_number}/get-link', [ReportController::class, '
 Route::get('/invoice/{transaction_number}/download', [ReportController::class, 'downloadSignedInvoice'])->name('invoice.public.signed');
 Route::get('/invoice/{transaction_number}/pdf', [ReportController::class, 'downloadSignedInvoice'])->name('invoice.public.number');
 Route::get('/verify/tte/{transaction_number}', [TteVerificationController::class, 'verify'])->name('verify.tte');
+Route::get('/verify/document', [TteVerificationController::class, 'verifyDocument'])->name('verify.document');
 Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::class, 'generateShippingLabel'])->name('shipping.label.pdf');
 
 /**

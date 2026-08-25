@@ -1,15 +1,16 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TteVerificationController extends Controller
 {
     /**
-     * Halaman Verifikasi Keaslian Dokumen & Tanda Tangan Elektronik (TTE)
+     * Halaman Verifikasi Keaslian Dokumen & Tanda Tangan Elektronik (TTE) untuk Faktur / Invoice
      */
     public function verify($transactionNumber)
     {
@@ -27,5 +28,43 @@ class TteVerificationController extends Controller
         $tteHash = strtoupper(hash('sha256', $rawSignatureData));
 
         return view('reports.verify_tte', compact('sale', 'shop', 'signerTitle', 'signerName', 'tteHash'));
+    }
+
+    /**
+     * Halaman Verifikasi Keaslian Dokumen & Tanda Tangan Elektronik (TTE) untuk Seluruh Laporan PDF
+     */
+    public function verifyDocument(Request $request)
+    {
+        $docType = $request->query('type', 'document');
+        $docNo = $request->query('doc_no', 'DOC-' . date('Ymd'));
+        $signerName = base64_decode($request->query('signer', '')) ?: 'Administrator Toko';
+        $signerTitle = base64_decode($request->query('title', '')) ?: 'Petugas Kasir';
+        $timestamp = (int) $request->query('timestamp', time());
+        $signedAt = Carbon::createFromTimestamp($timestamp)->translatedFormat('d F Y, H:i') . ' WIB';
+
+        $docTitles = [
+            'sales'   => 'Laporan Rekapitulasi Penjualan',
+            'finance' => 'Laporan Keuangan & Arus Kas',
+            'qris'    => 'Laporan Transaksi Digital QRIS (DOKU)',
+            'stock'   => 'Laporan Stok & Inventaris Barang',
+            'invoice' => 'Faktur / Nota Penjualan',
+        ];
+
+        $docTitle = $docTitles[$docType] ?? 'Dokumen Laporan Resmi';
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $rawSignatureData = $docType . '|' . $docNo . '|' . $signerName . '|' . $signerTitle . '|' . $timestamp;
+        $tteHash = strtoupper(hash('sha256', $rawSignatureData . config('app.key')));
+
+        return view('reports.verify_report_tte', compact(
+            'docType',
+            'docNo',
+            'docTitle',
+            'signerName',
+            'signerTitle',
+            'signedAt',
+            'tteHash',
+            'shop'
+        ));
     }
 }

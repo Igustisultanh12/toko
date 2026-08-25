@@ -100,12 +100,22 @@
         </tfoot>
     </table>
 
-    <p>2. &nbsp;&nbsp; Laporan ini dibuat berdasarkan catatan otomatis sistem SIKANDA untuk dipergunakan sebagaimana mestinya.</p>
+    <p>2. &nbsp;&nbsp; Laporan ini dibuat secara otomatis oleh sistem {{ $shop['app_name'] ?? 'SIKANDA' }} untuk dipergunakan sebagaimana mestinya.</p>
 
     <div class="footer">
         Jember, {{ date('d F Y') }}<br>
-        {{ $shop['cashier_officer_title'] ?? 'Petugas Kasir' }},<br><br><br><br>
-        <u><b>{{ $shop['cashier_officer_name'] ?? Auth::user()->name ?? 'Admin' }}</b></u>
+        <b>{{ $signerTitle ?? $shop['cashier_officer_title'] ?? 'Petugas Kasir' }},</b><br>
+        <div style="margin: 3px 0;">
+            @if(!empty($tteQrBase64))
+                <img src="{{ $tteQrBase64 }}" style="width: 70px; height: 70px; margin: 0 auto; display: block;">
+            @else
+                <br><br><br>
+            @endif
+        </div>
+        <div style="font-size: 6.5pt; color: #555; margin-top: -1px; margin-bottom: 2px;">
+            <i>Ditandatangani secara elektronik (TTE)</i>
+        </div>
+        <u><b>{{ $signerName ?? Auth::user()->name ?? 'Administrator' }}</b></u>
     </div>
 </body>
 </html>

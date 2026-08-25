@@ -138,7 +138,29 @@ class ReportController extends Controller
     }
 
     /**
-     * Export Laporan Penjualan ke PDF (Landscape A4)
+     * Helper untuk Generate Data Penandatangan TTE Dinamis Sesuai User yang Mencetak
+     */
+    private function getSignerData(array $shop, string $docType, string $docNo)
+    {
+        $user = Auth::user();
+        $signerName = $user ? $user->name : ($shop['cashier_officer_name'] ?? 'Admin');
+        $signerTitle = $user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
+
+        $verifyUrl = route('verify.document', [
+            'type'      => $docType,
+            'doc_no'    => $docNo,
+            'signer'    => base64_encode($signerName),
+            'title'     => base64_encode($signerTitle),
+            'timestamp' => time(),
+        ]);
+
+        $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
+
+        return [$signerName, $signerTitle, $verifyUrl, $tteQrBase64];
+    }
+
+    /**
+     * Export Laporan Penjualan ke PDF (Landscape A4 dengan TTE QR)
      */
     public function exportPdf(Request $request)
     {
@@ -150,7 +172,10 @@ class ReportController extends Controller
         $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
         $totalQty = $transactions->sum(fn($s) => $s->details->sum('quantity'));
 
-        $pdf = Pdf::loadView('reports.pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalQty'))
+        $docNumber = 'LPK/' . date('m/Y') . '/SIKANDA';
+        [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'sales', $docNumber);
+
+        $pdf = Pdf::loadView('reports.pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalQty', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Penjualan_' . date('Ymd_His') . '.pdf');
@@ -303,7 +328,10 @@ class ReportController extends Controller
         $totalFee = round($totalGross * 0.007, 0);
         $totalNet = $totalGross - $totalFee;
 
-        $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalGross', 'totalFee', 'totalNet', 'shop'))->setPaper('a4', 'landscape');
+        $docNumber = 'LQRS/' . date('m/Y') . '/SIKANDA';
+        [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'qris', $docNumber);
+
+        $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalGross', 'totalFee', 'totalNet', 'shop', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64'))->setPaper('a4', 'landscape');
         return $pdf->download('LPK_QRIS_'.date('Ymd_His').'.pdf');
     }
 
@@ -405,7 +433,7 @@ class ReportController extends Controller
     }
 
     /**
-     * Export PDF Laporan Keuangan (Landscape Surat Resmi dengan Potongan DOKU 0.7%)
+     * Export PDF Laporan Keuangan (Landscape Surat Resmi dengan TTE QR)
      */
     public function exportFinancePdf(Request $request)
     {
@@ -420,7 +448,10 @@ class ReportController extends Controller
         $totalQrisNet = $totalQrisGross - $totalQrisFee;
         $totalNominal = $totalCash + $totalQrisNet;
 
-        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQrisGross', 'totalQrisFee', 'totalQrisNet'))
+        $docNumber = 'LKEU/' . date('m/Y') . '/SIKANDA';
+        [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'finance', $docNumber);
+
+        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQrisGross', 'totalQrisFee', 'totalQrisNet', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Keuangan_'.date('Ymd_His').'.pdf');
@@ -481,10 +512,12 @@ class ReportController extends Controller
         $sale->load(['details.product', 'user']);
         $shop = Setting::pluck('value', 'key')->all();
 
+        $user = Auth::user();
+        $signerName = $user ? $user->name : ($sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir'));
+        $signerTitle = $user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
+
         $verifyUrl = route('verify.tte', ['transaction_number' => $sale->transaction_number]);
         $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
-        $signerTitle = $shop['cashier_officer_title'] ?? 'Petugas Kasir';
-        $signerName = $sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir');
 
         $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop', 'tteQrBase64', 'signerTitle', 'signerName', 'verifyUrl'))
                   ->setPaper('a4', 'landscape');
@@ -539,10 +572,12 @@ class ReportController extends Controller
             }
         }
 
+        $user = Auth::user();
+        $signerName = $user ? $user->name : ($sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir'));
+        $signerTitle = $user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
+
         $verifyUrl = route('verify.tte', ['transaction_number' => $sale->transaction_number]);
         $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
-        $signerTitle = $shop['cashier_officer_title'] ?? 'Petugas Kasir';
-        $signerName = $sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir');
 
         $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop', 'tteQrBase64', 'signerTitle', 'signerName', 'verifyUrl'))
                   ->setPaper('a4', 'landscape');
@@ -652,6 +687,9 @@ class ReportController extends Controller
         $totalStock = $products->sum('stock');
         $totalValuation = $products->sum(fn($p) => $p->stock * $p->price);
 
+        $docNumber = 'LSTK/' . date('m/Y') . '/SIKANDA';
+        [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'stock', $docNumber);
+
         $pdf = Pdf::loadView('reports.stock_pdf', compact(
             'products',
             'statusLabel',
@@ -659,7 +697,11 @@ class ReportController extends Controller
             'shop',
             'totalProducts',
             'totalStock',
-            'totalValuation'
+            'totalValuation',
+            'signerName',
+            'signerTitle',
+            'verifyUrl',
+            'tteQrBase64'
         ))->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Stok_Barang_' . date('Ymd_His') . '.pdf');
