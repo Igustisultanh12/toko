@@ -723,7 +723,10 @@
                     }
                 },
 
-                updateTime() { this.currentTime = new Date().toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' }); },
+                updateTime() { 
+                    const now = new Date();
+                    this.currentTime = now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit', second:'2-digit', timeZone: 'Asia/Jakarta' }) + ' WIB'; 
+                },
                 formatCurrency(n) { return new Intl.NumberFormat('id-ID', {style:'currency', currency:'IDR', maximumFractionDigits:0}).format(n); },
                 formatNumber(n) { return new Intl.NumberFormat('id-ID').format(n); },
                 isMobileApp() { return !!window.bluetoothSerial; },
@@ -773,9 +776,8 @@
 
                     const shopName = this.shop.name || 'TOKO ANANDA';
                     const shopAddress = this.shop.address || '';
-                    const shopPhone = this.shop.phone || '';
                     const now = new Date();
-                    const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                    const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Asia/Jakarta' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta' });
 
                     let itemsList = '';
                     (this.lastItems || []).forEach((item, idx) => {
