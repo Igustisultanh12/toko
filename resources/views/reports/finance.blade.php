@@ -10,7 +10,7 @@
     <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-white p-6 sm:p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
         <div>
             <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight">Laporan Keuangan & Arus Kas Toko</h2>
-            <p class="text-xs text-gray-400 font-medium mt-0.5">Monitoring rekapitulasi penerimaan uang tunai kasir dan transaksi digital QRIS DOKU.</p>
+            <p class="text-xs text-gray-400 font-medium mt-0.5">Monitoring penerimaan kas tunai dan digital QRIS DOKU (otomatis dipotong 0.7% MDR per transaksi).</p>
         </div>
         
         {{-- TOMBOL CETAK SPESIFIK TUNAI & QRIS --}}
@@ -33,7 +33,7 @@
             <a href="{{ route('admin.reports.finance.pdf', array_merge(request()->all(), ['payment_method' => 'all'])) }}" 
                class="flex-1 sm:flex-none inline-flex items-center justify-center px-4 py-3 bg-[#EE2737] text-white hover:bg-rose-700 rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-200 transition-all">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5"/></svg>
-                PDF Semua
+                PDF Rekap
             </a>
 
             {{-- 4. EXPORT EXCEL --}}
@@ -138,14 +138,14 @@
         </form>
     </div>
 
-    {{-- STATISTIK KEUANGAN GOPAY STYLE --}}
+    {{-- STATISTIK KEUANGAN GOPAY STYLE DENGAN PERHITUNGAN BERSIH QRIS (POTONGAN 0.7%) --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {{-- Total Omset --}}
+        {{-- Total Pemasukan Bersih --}}
         <div class="bg-gradient-to-r from-[#004D13] to-[#00880F] p-6 rounded-[2.5rem] shadow-xl text-white flex flex-col justify-between">
             <div>
-                <p class="text-[10px] font-black text-emerald-200 uppercase tracking-widest mb-1">Total Pemasukan Kas (Lunas)</p>
+                <p class="text-[10px] font-black text-emerald-200 uppercase tracking-widest mb-1">Total Pemasukan Bersih (Lunas)</p>
                 <h3 class="text-3xl font-black">Rp {{ number_format($stats['total_income'] ?? 0, 0, ',', '.') }}</h3>
-                <p class="text-[10px] text-emerald-200 mt-1 font-bold">{{ $stats['total_transactions'] ?? 0 }} Transaksi Lunas</p>
+                <p class="text-[10px] text-emerald-200 mt-1 font-bold">{{ $stats['total_transactions'] ?? 0 }} Transaksi (Kas + QRIS Net)</p>
             </div>
             <a href="{{ route('admin.reports.finance.pdf', array_merge(request()->all(), ['payment_method' => 'all'])) }}" class="mt-4 text-[10px] font-black uppercase text-emerald-200 hover:text-white bg-black/20 hover:bg-black/30 px-3 py-1.5 rounded-xl text-center transition">
                 Cetak PDF Rekap &rarr;
@@ -160,22 +160,25 @@
                     <span class="px-2 py-0.5 bg-emerald-50 text-[#00880F] rounded-full text-[9px] font-black uppercase">{{ $stats['cash_count'] ?? 0 }} Struk</span>
                 </div>
                 <h3 class="text-2xl font-black text-[#00880F]">Rp {{ number_format($stats['cash_income'] ?? 0, 0, ',', '.') }}</h3>
-                <p class="text-[10px] text-emerald-600 mt-1 font-bold">● Uang Fisik Kasir</p>
+                <p class="text-[10px] text-emerald-600 mt-1 font-bold">● 100% Uang Fisik Kasir</p>
             </div>
             <a href="{{ route('admin.reports.finance.pdf', array_merge(request()->all(), ['payment_method' => 'cash'])) }}" class="mt-4 text-[10px] font-black uppercase text-[#00880F] hover:bg-[#00AA13] hover:text-white bg-emerald-50 px-3 py-1.5 rounded-xl text-center transition border border-emerald-200/60">
                 📄 Cetak Laporan Tunai PDF &rarr;
             </a>
         </div>
 
-        {{-- Digital QRIS --}}
+        {{-- Digital QRIS (Dipotong 0.7%) --}}
         <div class="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col justify-between hover:border-cyan-300 transition">
             <div>
                 <div class="flex justify-between items-center mb-1">
-                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Penerimaan Digital QRIS</p>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Penerimaan Bersih QRIS</p>
                     <span class="px-2 py-0.5 bg-cyan-50 text-[#00AED6] rounded-full text-[9px] font-black uppercase">{{ $stats['qris_count'] ?? 0 }} Struk</span>
                 </div>
-                <h3 class="text-2xl font-black text-[#00AED6]">Rp {{ number_format($stats['qris_income'] ?? 0, 0, ',', '.') }}</h3>
-                <p class="text-[10px] text-cyan-600 mt-1 font-bold">● Merchant DOKU</p>
+                <h3 class="text-2xl font-black text-[#00AED6]">Rp {{ number_format($stats['qris_net'] ?? $stats['qris_income'] ?? 0, 0, ',', '.') }}</h3>
+                <p class="text-[10px] text-gray-400 mt-1 font-bold">
+                    Bruto: Rp {{ number_format($stats['qris_gross'] ?? 0, 0, ',', '.') }} 
+                    <span class="text-rose-500">(DOKU -0.7%: Rp {{ number_format($stats['qris_fee'] ?? 0, 0, ',', '.') }})</span>
+                </p>
             </div>
             <a href="{{ route('admin.reports.finance.pdf', array_merge(request()->all(), ['payment_method' => 'qris'])) }}" class="mt-4 text-[10px] font-black uppercase text-[#00AED6] hover:bg-[#00AED6] hover:text-white bg-cyan-50 px-3 py-1.5 rounded-xl text-center transition border border-cyan-200/60">
                 📱 Cetak Laporan QRIS PDF &rarr;
@@ -220,7 +223,7 @@
                 <button @click="activeTab = 'qris'" 
                         :class="activeTab === 'qris' ? 'bg-[#00AED6] text-white shadow-md shadow-cyan-500/20' : 'bg-white text-[#00AED6] hover:bg-cyan-50'"
                         class="px-5 py-2.5 rounded-2xl font-black text-xs uppercase tracking-wider transition-all flex items-center border border-cyan-200/60">
-                    <span>📱 Digital QRIS (DOKU)</span>
+                    <span>📱 Digital QRIS (DOKU 0.7%)</span>
                     <span class="ml-2 px-2 py-0.5 rounded-full text-[10px]" :class="activeTab === 'qris' ? 'bg-white/20 text-white' : 'bg-cyan-100 text-cyan-800'">{{ $stats['qris_count'] ?? count($qrisTransactions) }}</span>
                 </button>
             </div>
@@ -240,12 +243,18 @@
                         <th class="p-5">Tanggal & Waktu</th>
                         <th class="p-5">Pelanggan</th>
                         <th class="p-5 text-center">Kanal Kas</th>
-                        <th class="p-5 text-right">Nominal Masuk</th>
+                        <th class="p-5 text-right">Nominal Masuk (Netto)</th>
                         <th class="p-5 text-center">Status Transaksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
                     @forelse($transactions as $index => $trx)
+                    @php
+                        $isQris = strtolower($trx->payment_method) === 'qris';
+                        $gross = $trx->total_amount;
+                        $fee = $isQris ? round($gross * 0.007, 0) : 0;
+                        $net = $gross - $fee;
+                    @endphp
                     <tr class="hover:bg-emerald-50/30 transition-colors">
                         <td class="p-5 text-center font-bold text-gray-400">
                             {{ $transactions->firstItem() ? $transactions->firstItem() + $index : $index + 1 }}
@@ -260,14 +269,19 @@
                             {{ $trx->customer_name ?? 'Pelanggan Umum' }}
                         </td>
                         <td class="p-5 text-center">
-                            @if(strtolower($trx->payment_method) === 'qris')
+                            @if($isQris)
                                 <span class="bg-cyan-50 text-[#00AED6] border border-cyan-200/60 font-black px-3 py-1 rounded-full text-[9px] uppercase tracking-wider">QRIS DOKU</span>
                             @else
                                 <span class="bg-emerald-50 text-[#00880F] border border-emerald-200/60 font-black px-3 py-1 rounded-full text-[9px] uppercase tracking-wider">KAS TUNAI</span>
                             @endif
                         </td>
                         <td class="p-5 text-right font-black text-gray-900 whitespace-nowrap">
-                            Rp {{ number_format($trx->total_amount, 0, ',', '.') }}
+                            @if($isQris)
+                                <span>Rp {{ number_format($net, 0, ',', '.') }}</span>
+                                <span class="block text-[10px] text-gray-400 font-medium">(Bruto: {{ number_format($gross, 0, ',', '.') }} - DOKU: {{ number_format($fee, 0, ',', '.') }})</span>
+                            @else
+                                Rp {{ number_format($net, 0, ',', '.') }}
+                            @endif
                         </td>
                         <td class="p-5 text-center whitespace-nowrap">
                             @if($trx->payment_status == 'success')
@@ -299,7 +313,7 @@
         {{-- KONTEN TAB 2: KAS TUNAI SAJA --}}
         <div x-show="activeTab === 'cash'" class="overflow-x-auto" x-cloak>
             <div class="p-4 bg-emerald-50/60 border-b border-emerald-100 flex justify-between items-center">
-                <p class="text-xs font-black text-[#00880F] uppercase">Daftar Transaksi Pembayaran Kas Tunai</p>
+                <p class="text-xs font-black text-[#00880F] uppercase">Daftar Transaksi Pembayaran Kas Tunai (100% Uang Fisik)</p>
                 <a href="{{ route('admin.reports.finance.pdf', array_merge(request()->all(), ['payment_method' => 'cash'])) }}" 
                    class="px-4 py-2 bg-[#00AA13] hover:bg-[#00880F] text-white rounded-xl font-black text-[11px] uppercase tracking-wider shadow-sm transition">
                     📄 Cetak PDF Laporan Tunai
@@ -339,10 +353,10 @@
             </table>
         </div>
 
-        {{-- KONTEN TAB 3: DIGITAL QRIS SAJA --}}
+        {{-- KONTEN TAB 3: DIGITAL QRIS SAJA (DIPOTONG DOKU 0.7%) --}}
         <div x-show="activeTab === 'qris'" class="overflow-x-auto" x-cloak>
             <div class="p-4 bg-cyan-50/60 border-b border-cyan-100 flex justify-between items-center">
-                <p class="text-xs font-black text-[#00AED6] uppercase">Daftar Transaksi Pembayaran Digital QRIS (DOKU)</p>
+                <p class="text-xs font-black text-[#00AED6] uppercase">Daftar Transaksi Digital QRIS (DOKU Potongan 0.7% MDR)</p>
                 <a href="{{ route('admin.reports.finance.pdf', array_merge(request()->all(), ['payment_method' => 'qris'])) }}" 
                    class="px-4 py-2 bg-[#00AED6] hover:bg-cyan-600 text-white rounded-xl font-black text-[11px] uppercase tracking-wider shadow-sm transition">
                     📱 Cetak PDF Laporan QRIS
@@ -355,18 +369,27 @@
                         <th class="p-5">No. Invoice</th>
                         <th class="p-5">Tanggal & Waktu</th>
                         <th class="p-5">Pelanggan</th>
-                        <th class="p-5 text-right">Nominal QRIS</th>
-                        <th class="p-5 text-center">Status Pembayaran</th>
+                        <th class="p-5 text-right">Nominal Bruto</th>
+                        <th class="p-5 text-right">Biaya DOKU (0.7%)</th>
+                        <th class="p-5 text-right">Bersih Rekening</th>
+                        <th class="p-5 text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
                     @forelse($qrisTransactions as $index => $trx)
+                    @php
+                        $gross = $trx->total_amount;
+                        $fee = round($gross * 0.007, 0);
+                        $net = $gross - $fee;
+                    @endphp
                     <tr class="hover:bg-cyan-50/30 transition-colors">
                         <td class="p-5 text-center font-bold text-gray-400">{{ $index + 1 }}</td>
                         <td class="p-5 font-mono font-bold text-gray-800">{{ $trx->transaction_number }}</td>
                         <td class="p-5 text-gray-500 font-medium whitespace-nowrap">{{ $trx->created_at->format('d M Y, H:i') }} WIB</td>
                         <td class="p-5 font-bold text-gray-700">{{ $trx->customer_name ?? 'Pelanggan Umum' }}</td>
-                        <td class="p-5 text-right font-black text-[#00AED6] whitespace-nowrap">Rp {{ number_format($trx->total_amount, 0, ',', '.') }}</td>
+                        <td class="p-5 text-right font-bold text-gray-700 whitespace-nowrap">Rp {{ number_format($gross, 0, ',', '.') }}</td>
+                        <td class="p-5 text-right font-bold text-rose-600 whitespace-nowrap">- Rp {{ number_format($fee, 0, ',', '.') }}</td>
+                        <td class="p-5 text-right font-black text-[#00880F] whitespace-nowrap">Rp {{ number_format($net, 0, ',', '.') }}</td>
                         <td class="p-5 text-center whitespace-nowrap">
                             @if($trx->payment_status == 'success')
                                 <span class="bg-emerald-50 text-[#00880F] border border-emerald-200/60 text-[9px] font-black px-3 py-1 rounded-full uppercase">Lunas</span>
@@ -379,7 +402,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="p-16 text-center text-gray-300 font-bold uppercase text-xs italic">
+                        <td colspan="8" class="p-16 text-center text-gray-300 font-bold uppercase text-xs italic">
                             Belum ada transaksi pembayaran digital QRIS pada periode ini.
                         </td>
                     </tr>

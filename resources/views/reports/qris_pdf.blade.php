@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <title>Laporan Transaksi QRIS DOKU - {{ $shop['app_name'] ?? 'SIKANDA' }}</title>
     <style>
         @page {
             size: a4 landscape;
@@ -20,7 +21,6 @@
             text-transform: uppercase;
         }
 
-        /* Span khusus untuk memberikan underline hanya pada baris kedua */
         .underline-line {
             text-decoration: underline;
             display: inline-block;
@@ -32,7 +32,6 @@
         table.data th, table.data td { border: 1px solid black; padding: 6px; font-size: 8.5pt; vertical-align: top; }
         table.data th { background-color: #f2f2f2; text-transform: uppercase; }
         
-        /* Gaya untuk baris total */
         .total-row { background-color: #eeeeee; font-weight: bold; }
         
         .footer { float: right; width: 250px; text-align: center; margin-top: 30px; font-size: 9.5pt; }
@@ -41,60 +40,78 @@
 </head>
 <body>
     <div class="kop">
-        TOKO ANANDA<br>
-        <span class="underline-line">ADMINISTRASI KASIR SIKANDA</span>
+        {{ $shop['shop_name'] ?? 'TOKO ANANDA' }}<br>
+        <span class="underline-line">ADMINISTRASI KASIR {{ $shop['app_name'] ?? 'SIKANDA' }}</span>
     </div>
 
-    <p class="judul">LAPORAN TRANSAKSI QRIS</p>
-    <p class="sub-judul">Nomor: LPK / {{ date('m / Y') }} / SIKANDA</p>
+    <p class="judul">LAPORAN REKAPITULASI PENERIMAAN DIGITAL QRIS (DOKU)</p>
+    <p class="sub-judul">Nomor: LQRS / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Tarif MDR DOKU: 0.7% &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
 
-    <p>1. &nbsp;&nbsp; Laporan penerimaan dana digital melalui kanal QRIS DOKU pada periode laporan ini dengan rincian sebagai berikut:</p>
+    <p>1. &nbsp;&nbsp; Rekapitulasi transaksi pembayaran digital via QRIS DOKU dengan rincian pemotongan MDR 0.7% per transaksi adalah sebagai berikut:</p>
 
     <table class="data">
         <thead>
             <tr>
                 <th width="4%">NO</th>
                 <th width="16%">NOMOR INVOICE</th>
-                <th width="15%">NAMA PELANGGAN</th>
-                <th width="33%">RINCIAN BARANG TERJUAL</th>
-                <th width="14%">NOMINAL</th>
-                <th width="18%">TANGGAL & WAKTU</th>
+                <th width="20%">NAMA PELANGGAN</th>
+                <th width="16%">TANGGAL & WAKTU</th>
+                <th width="14%">NOMINAL BRUTO</th>
+                <th width="14%">BIAYA DOKU (0.7%)</th>
+                <th width="16%">PENERIMAAN BERSIH</th>
             </tr>
         </thead>
         <tbody>
-            @php $totalNominal = 0; @endphp
-            @foreach($transactions as $index => $trx)
+            @php 
+                $calcGross = 0; 
+                $calcFee = 0; 
+                $calcNet = 0; 
+            @endphp
+            @forelse($transactions as $index => $trx)
+            @php
+                $gross = $trx->total_amount;
+                $fee = round($gross * 0.007, 0);
+                $net = $gross - $fee;
+            @endphp
             <tr>
                 <td align="center">{{ $index + 1 }}</td>
-                <td align="center">{{ $trx->transaction_number }}</td>
+                <td align="center" style="font-family: monospace;">{{ $trx->transaction_number }}</td>
                 <td>{{ $trx->customer_name ?? 'Pelanggan Umum' }}</td>
-                <td>
-                    @if($trx->details && $trx->details->count() > 0)
-                        @foreach($trx->details as $item)
-                            &bull; {{ $item->product->name ?? 'Produk' }} ({{ $item->quantity }} pcs &times; Rp {{ number_format($item->price_at_transaction, 0, ',', '.') }})<br>
-                        @endforeach
-                    @else
-                        -
-                    @endif
-                </td>
-                <td align="right">Rp {{ number_format($trx->total_amount, 0, ',', '.') }}</td>
                 <td align="center">{{ $trx->created_at->format('d/m/Y - H:i') }} WIB</td>
+                <td align="right">Rp {{ number_format($gross, 0, ',', '.') }}</td>
+                <td align="right" style="color: #c00;">- Rp {{ number_format($fee, 0, ',', '.') }}</td>
+                <td align="right" style="font-weight: bold; color: #007710;">Rp {{ number_format($net, 0, ',', '.') }}</td>
             </tr>
             @if($trx->payment_status == 'success')
-                @php $totalNominal += $trx->total_amount; @endphp
+                @php 
+                    $calcGross += $gross;
+                    $calcFee += $fee;
+                    $calcNet += $net;
+                @endphp
             @endif
-            @endforeach
+            @empty
+            <tr>
+                <td colspan="7" align="center" style="padding: 20px; font-style: italic; color: #777;">
+                    Tidak ada transaksi QRIS pada periode ini.
+                </td>
+            </tr>
+            @endforelse
         </tbody>
         <tfoot>
             <tr class="total-row">
-                <td colspan="4" align="center">TOTAL PEMASUKAN (SUKSES)</td>
-                <td align="right">Rp {{ number_format($totalNominal, 0, ',', '.') }}</td>
-                <td style="background-color: white; border: none;"></td>
+                <td colspan="4" align="right">TOTAL TRANSAKSI BRUTO ({{ $transactions->where('payment_status', 'success')->count() }} TRANSAKSI):</td>
+                <td align="right">Rp {{ number_format($calcGross, 0, ',', '.') }}</td>
+                <td align="right" style="color: #c00;">- Rp {{ number_format($calcFee, 0, ',', '.') }}</td>
+                <td align="right" style="color: #007710;">Rp {{ number_format($calcNet, 0, ',', '.') }}</td>
+            </tr>
+            <tr class="total-row" style="background-color: #dddddd;">
+                <td colspan="6" align="right"><b>TOTAL DANA BERSIH MASUK REKENING TOKO:</b></td>
+                <td align="right" style="font-size: 9pt; font-weight: bold; color: #007710;">Rp {{ number_format($calcNet, 0, ',', '.') }}</td>
             </tr>
         </tfoot>
     </table>
 
-    <p>2. &nbsp;&nbsp; Laporan ini dibuat berdasarkan catatan otomatis sistem SIKANDA untuk dipergunakan sebagaimana mestinya.</p>
+    <p>2. &nbsp;&nbsp; Seluruh transaksi QRIS secara otomatis dipotong biaya MDR gateway sebesar 0.7% sesuai ketentuan DOKU Merchant.</p>
 
     <div class="footer">
         Jember, {{ date('d F Y') }}<br>

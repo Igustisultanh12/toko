@@ -236,16 +236,30 @@ class ReportController extends Controller
     {
         $search = $request->get('search');
 
+        $todaySales = Sale::where('payment_method', 'qris')->where('payment_status', 'success')->whereDate('created_at', Carbon::today())->get();
+        $todayGross = $todaySales->sum('total_amount');
+        $todayFee = round($todayGross * 0.007, 0);
+        $todayNet = $todayGross - $todayFee;
+
+        $totalSales = Sale::where('payment_method', 'qris')->where('payment_status', 'success')->get();
+        $totalGross = $totalSales->sum('total_amount');
+        $totalFee = round($totalGross * 0.007, 0);
+        $totalNet = $totalGross - $totalFee;
+
         $stats = [
-            'total_success' => Sale::where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount'),
-            'today_revenue' => Sale::where('payment_method', 'qris')->where('payment_status', 'success')->whereDate('created_at', Carbon::today())->sum('total_amount'),
+            'today_gross'   => $todayGross,
+            'today_fee'     => $todayFee,
+            'today_revenue' => $todayNet,
+            'total_gross'   => $totalGross,
+            'total_fee'     => $totalFee,
+            'total_success' => $totalNet,
             'pending_count' => Sale::where('payment_method', 'qris')->where('payment_status', 'pending')->count(),
         ];
 
         $chartData = Sale::where('payment_method', 'qris')
             ->where('payment_status', 'success')
             ->where('created_at', '>=', Carbon::now()->subDays(6))
-            ->select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(total_amount) as total'))
+            ->select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(ROUND(total_amount * 0.993)) as total'))
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get();
@@ -266,7 +280,7 @@ class ReportController extends Controller
     }
 
     /**
-     * Export PDF Khusus Kanal QRIS
+     * Export PDF Khusus Kanal QRIS (Dipotong Biaya DOKU 0.7%)
      */
     public function exportQrisPdf(Request $request)
     {
@@ -283,14 +297,18 @@ class ReportController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
+        $shop = Setting::pluck('value', 'key')->all();
 
-        $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalNominal'))->setPaper('a4', 'landscape');
+        $totalGross = $transactions->where('payment_status', 'success')->sum('total_amount');
+        $totalFee = round($totalGross * 0.007, 0);
+        $totalNet = $totalGross - $totalFee;
+
+        $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalGross', 'totalFee', 'totalNet', 'shop'))->setPaper('a4', 'landscape');
         return $pdf->download('LPK_QRIS_'.date('Ymd_His').'.pdf');
     }
 
     /**
-     * Export Excel Khusus Kanal QRIS
+     * Export Excel Khusus Kanal QRIS (Rincian Biaya DOKU 0.7%)
      */
     public function exportQrisExcel(Request $request)
     {
@@ -307,28 +325,36 @@ class ReportController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
+        $totalGross = $transactions->where('payment_status', 'success')->sum('total_amount');
+        $totalFee = round($totalGross * 0.007, 0);
+        $totalNet = $totalGross - $totalFee;
 
-        return Excel::download(new class($transactions, $totalNominal) implements FromView, ShouldAutoSize {
+        return Excel::download(new class($transactions, $totalGross, $totalFee, $totalNet) implements FromView, ShouldAutoSize {
             private $transactions;
-            private $totalNominal;
+            private $totalGross;
+            private $totalFee;
+            private $totalNet;
 
-            public function __construct($transactions, $totalNominal) {
+            public function __construct($transactions, $totalGross, $totalFee, $totalNet) {
                 $this->transactions = $transactions;
-                $this->totalNominal = $totalNominal;
+                $this->totalGross = $totalGross;
+                $this->totalFee = $totalFee;
+                $this->totalNet = $totalNet;
             }
 
             public function view(): \Illuminate\Contracts\View\View {
                 return view('reports.qris_excel', [
                     'transactions' => $this->transactions,
-                    'totalNominal' => $this->totalNominal
+                    'totalGross'   => $this->totalGross,
+                    'totalFee'     => $this->totalFee,
+                    'totalNet'     => $this->totalNet,
                 ]);
             }
         }, 'LPK_QRIS_'.date('Ymd').'.xlsx');
     }
 
     /**
-     * Halaman Laporan Keuangan (Arus Kas, Omset, Pemasukan Tunai & QRIS)
+     * Halaman Laporan Keuangan (Arus Kas, Omset, Pemasukan Tunai & QRIS Bersih)
      */
     public function financialReport(Request $request)
     {
@@ -336,10 +362,19 @@ class ReportController extends Controller
 
         $allMatchingSales = (clone $query)->get();
 
+        $cashIncome = $allMatchingSales->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount');
+        $qrisGross = $allMatchingSales->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+        $qrisFee = round($qrisGross * 0.007, 0);
+        $qrisNet = $qrisGross - $qrisFee;
+        $totalNetIncome = $cashIncome + $qrisNet;
+
         $stats = [
-            'total_income'       => $allMatchingSales->where('payment_status', 'success')->sum('total_amount'),
-            'cash_income'        => $allMatchingSales->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount'),
-            'qris_income'        => $allMatchingSales->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount'),
+            'total_income'       => $totalNetIncome,
+            'cash_income'        => $cashIncome,
+            'qris_gross'         => $qrisGross,
+            'qris_fee'           => $qrisFee,
+            'qris_income'        => $qrisNet,
+            'qris_net'           => $qrisNet,
             'pending_income'     => $allMatchingSales->where('payment_status', 'pending')->sum('total_amount'),
             'total_transactions' => $allMatchingSales->where('payment_status', 'success')->count(),
             'cash_count'         => $allMatchingSales->where('payment_method', 'cash')->where('payment_status', 'success')->count(),
@@ -351,14 +386,14 @@ class ReportController extends Controller
         $cashTransactions = (clone $query)->where('payment_method', 'cash')->orderBy('created_at', 'desc')->get();
         $qrisTransactions = (clone $query)->where('payment_method', 'qris')->orderBy('created_at', 'desc')->get();
 
-        // Chart tren arus kas 7 hari terakhir
+        // Chart tren arus kas 7 hari terakhir (QRIS setelah dipotong 0.7%)
         $chartData = Sale::where('payment_status', 'success')
             ->where('created_at', '>=', Carbon::now()->subDays(6))
             ->select(
                 DB::raw('DATE(created_at) as date'),
                 DB::raw("SUM(CASE WHEN payment_method = 'cash' THEN total_amount ELSE 0 END) as cash_total"),
-                DB::raw("SUM(CASE WHEN payment_method = 'qris' THEN total_amount ELSE 0 END) as qris_total"),
-                DB::raw('SUM(total_amount) as total')
+                DB::raw("SUM(CASE WHEN payment_method = 'qris' THEN ROUND(total_amount * 0.993) ELSE 0 END) as qris_total"),
+                DB::raw("SUM(CASE WHEN payment_method = 'cash' THEN total_amount ELSE ROUND(total_amount * 0.993) END) as total")
             )
             ->groupBy('date')
             ->orderBy('date', 'ASC')
@@ -370,7 +405,7 @@ class ReportController extends Controller
     }
 
     /**
-     * Export PDF Laporan Keuangan (Landscape Surat Resmi)
+     * Export PDF Laporan Keuangan (Landscape Surat Resmi dengan Potongan DOKU 0.7%)
      */
     public function exportFinancePdf(Request $request)
     {
@@ -379,11 +414,13 @@ class ReportController extends Controller
         $transactions = $query->orderBy('created_at', 'desc')->get();
         $shop = Setting::pluck('value', 'key')->all();
 
-        $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
         $totalCash = $transactions->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount');
-        $totalQris = $transactions->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+        $totalQrisGross = $transactions->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+        $totalQrisFee = round($totalQrisGross * 0.007, 0);
+        $totalQrisNet = $totalQrisGross - $totalQrisFee;
+        $totalNominal = $totalCash + $totalQrisNet;
 
-        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQris'))
+        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQrisGross', 'totalQrisFee', 'totalQrisNet'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Keuangan_'.date('Ymd_His').'.pdf');
@@ -397,32 +434,40 @@ class ReportController extends Controller
         [$query, $periodLabel, $filters] = $this->buildSalesReportQuery($request);
 
         $transactions = $query->orderBy('created_at', 'desc')->get();
-        $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
         $totalCash = $transactions->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount');
-        $totalQris = $transactions->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+        $totalQrisGross = $transactions->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+        $totalQrisFee = round($totalQrisGross * 0.007, 0);
+        $totalQrisNet = $totalQrisGross - $totalQrisFee;
+        $totalNominal = $totalCash + $totalQrisNet;
 
-        return Excel::download(new class($transactions, $periodLabel, $totalNominal, $totalCash, $totalQris) implements FromView, ShouldAutoSize {
+        return Excel::download(new class($transactions, $periodLabel, $totalNominal, $totalCash, $totalQrisGross, $totalQrisFee, $totalQrisNet) implements FromView, ShouldAutoSize {
             private $transactions;
             private $periodLabel;
             private $totalNominal;
             private $totalCash;
-            private $totalQris;
+            private $totalQrisGross;
+            private $totalQrisFee;
+            private $totalQrisNet;
 
-            public function __construct($transactions, $periodLabel, $totalNominal, $totalCash, $totalQris) {
+            public function __construct($transactions, $periodLabel, $totalNominal, $totalCash, $totalQrisGross, $totalQrisFee, $totalQrisNet) {
                 $this->transactions = $transactions;
                 $this->periodLabel = $periodLabel;
                 $this->totalNominal = $totalNominal;
                 $this->totalCash = $totalCash;
-                $this->totalQris = $totalQris;
+                $this->totalQrisGross = $totalQrisGross;
+                $this->totalQrisFee = $totalQrisFee;
+                $this->totalQrisNet = $totalQrisNet;
             }
 
             public function view(): \Illuminate\Contracts\View\View {
                 return view('reports.finance_excel', [
-                    'transactions' => $this->transactions,
-                    'periodLabel'  => $this->periodLabel,
-                    'totalNominal' => $this->totalNominal,
-                    'totalCash'    => $this->totalCash,
-                    'totalQris'    => $this->totalQris,
+                    'transactions'   => $this->transactions,
+                    'periodLabel'    => $this->periodLabel,
+                    'totalNominal'   => $this->totalNominal,
+                    'totalCash'      => $this->totalCash,
+                    'totalQrisGross' => $this->totalQrisGross,
+                    'totalQrisFee'   => $this->totalQrisFee,
+                    'totalQrisNet'   => $this->totalQrisNet,
                 ]);
             }
         }, 'Laporan_Keuangan_'.date('Ymd').'.xlsx');
