@@ -477,8 +477,7 @@
 
                                 receipt += "================================\n";
                                 receipt += "\x1b\x61\x01"; // Center
-                                receipt += `${this.shop.footer}\n`;
-                                receipt += "SIKANDA POS - Ananda Tech\n\n\n\n"; 
+                                receipt += `${this.shop.footer}\n\n\n\n`; 
                                 
                                 window.bluetoothSerial.write(receipt, () => {
                                     window.bluetoothSerial.disconnect();

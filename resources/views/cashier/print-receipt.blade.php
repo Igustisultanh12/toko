@@ -107,9 +107,6 @@
         <div class="footer text-center">
             <p class="bold uppercase">Terima Kasih!</p>
             <p>{{ $shop['receipt_footer'] ?? 'Barang yang sudah dibeli tidak dapat ditukar.' }}</p>
-            <p style="font-size: 6pt; margin-top: 5pt; color: #666;">
-                SIKANDA POS - Ananda Tech
-            </p>
         </div>
     </div>
 </body>
