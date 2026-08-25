@@ -14,13 +14,15 @@ class Sale extends Model
      * Harus sinkron dengan migrasi 'Super Clean' kita.
      */
     protected $fillable = [
-        'transaction_number', // Kolom AND-....
+        'transaction_number',
         'user_id',
-        'customer_name',     // Nama Pelanggan
+        'customer_name',
         'total_amount',
         'amount_paid',
         'payment_method',
-        'payment_status',    // Sinkron dengan Controller & Migrasi
+        'payment_status',
+        'status',
+        'reference_number',
     ];
 
     /**

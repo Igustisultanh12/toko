@@ -182,12 +182,22 @@ class SaleController extends Controller
 
     public function checkStatus(Sale $sale)
     {
-        $isPaid = in_array(strtolower($sale->payment_status), ['success', 'paid']);
-        $isStatusOk = in_array(strtolower($sale->status), ['success', 'paid']);
+        $isPaid = in_array(strtolower($sale->payment_status ?? ''), ['success', 'paid']);
+        $isStatusOk = in_array(strtolower($sale->status ?? ''), ['success', 'paid']);
 
         return response()->json([
             'status' => ($isPaid || $isStatusOk) ? 'success' : 'pending'
         ]);
+    }
+
+    public function forceConfirm(Sale $sale)
+    {
+        $sale->update([
+            'status'         => 'success',
+            'payment_status' => 'success',
+        ]);
+
+        return response()->json(['status' => 'success', 'message' => 'Transaksi berhasil dikonfirmasi lunas.']);
     }
 
     public function generateReceipt(Sale $sale)

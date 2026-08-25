@@ -1017,10 +1017,34 @@
                                 if (this.isMobileApp()) setTimeout(() => this.printReceiptBluetooth(), 500);
                             } else {
                                 Swal.fire({
-                                    icon: 'info',
-                                    title: 'Menunggu Notifikasi DOKU',
-                                    text: 'Status pembayaran belum terupdate dari webhook DOKU. Pastikan URL Webhook sudah disetel di Dashboard Merchant DOKU atau tunggu beberapa saat lagi.',
-                                    confirmButtonColor: '#00AA13'
+                                    icon: 'question',
+                                    title: 'Konfirmasi Pembayaran QRIS',
+                                    text: 'Webhook DOKU belum selesai sinkronisasi. Jika pelanggan sudah berhasil scan/transfer, apakah Anda ingin menandai transaksi ini sebagai LUNAS?',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#00AA13',
+                                    cancelButtonColor: '#6B7280',
+                                    confirmButtonText: '✅ Ya, Tandai Lunas Sekarang',
+                                    cancelButtonText: 'Tunggu Webhook'
+                                }).then(async (result) => {
+                                    if (result.isConfirmed) {
+                                        try {
+                                            const confirmRes = await fetch(`/cashier/pos/force-confirm/${saleId}`, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                }
+                                            });
+                                            if (confirmRes.ok) {
+                                                if (this.statusInterval) clearInterval(this.statusInterval);
+                                                this.isQrisModalOpen = false;
+                                                this.paymentStatus = 'success';
+                                                this.isSuccessModalOpen = true;
+                                                announcePaymentSuccess(this.lastTotal, this.shop.payment_sound, this.isMuted);
+                                                if (this.isMobileApp()) setTimeout(() => this.printReceiptBluetooth(), 500);
+                                            }
+                                        } catch (err) {}
+                                    }
                                 });
                             }
                         }).catch(e => {});

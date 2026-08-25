@@ -193,6 +193,7 @@ Route::middleware(['auth'])->group(function () {
         
         // KRUSIAL: Pastikan rute ini bisa menerima sale_id untuk verifikasi otomatis
         Route::get('/pos/check-status/{sale}', [SaleController::class, 'checkStatus'])->name('pos.checkStatus');
+        Route::post('/pos/force-confirm/{sale}', [SaleController::class, 'forceConfirm'])->name('pos.forceConfirm');
         
         Route::get('/receipt/{sale}/print', [SaleController::class, 'generateReceipt'])->name('receipt.print');
 
