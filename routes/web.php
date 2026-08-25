@@ -43,8 +43,8 @@ Route::get('/track/{order_number}', [OnlineOrderController::class, 'track'])->na
  * 2. JALUR WEBHOOK DOKU (WAJIB DI LUAR AUTH)
  * Jalur ini akan ditembak oleh Server DOKU setelah pelanggan bayar.
  */
-Route::post('/doku/notification', [DokuNotificationController::class, 'handle'])->name('doku.notification');
-Route::post('/doku/inquiry', [DokuInquiryController::class, 'handle'])->name('doku.inquiry');
+Route::match(['get', 'post'], '/doku/notification', [DokuNotificationController::class, 'handle'])->name('doku.notification');
+Route::match(['get', 'post'], '/doku/inquiry', [DokuInquiryController::class, 'handle'])->name('doku.inquiry');
 
 /**
  * 3. JALUR CETAK STRUK, FAKTUR & LABEL PENGIRIMAN PAKET (PUBLIK / BISA DIAKSES VIA LINK WA)

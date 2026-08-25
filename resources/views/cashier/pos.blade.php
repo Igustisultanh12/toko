@@ -313,31 +313,23 @@
 
 
         {{-- MODAL QRIS DINAMIS --}}
-
         <div x-show="isQrisModalOpen" class="fixed inset-0 bg-indigo-950/95 backdrop-blur-md flex items-center justify-center z-[150] p-4" x-cloak x-transition>
-
             <div class="bg-white rounded-[3.5rem] p-4 w-full max-w-lg text-center shadow-2xl relative overflow-hidden">
-
                 <div class="absolute top-0 left-0 w-full h-2 bg-indigo-600"></div>
 
                 <div id="qris-placeholder" class="bg-gray-50 rounded-[2.5rem] overflow-hidden border-4 border-gray-100 h-[500px] flex items-center justify-center relative">
-
                     <p class="animate-pulse font-bold text-gray-300">Menyiapkan QRIS...</p>
-
                 </div>
 
-                <div class="p-4">
-
-                    <button @click="confirmCancelTransaction()" class="w-full bg-red-50 text-red-500 py-4 rounded-2xl font-black hover:bg-red-100 transition-all uppercase tracking-widest text-[10px]">
-
-                        BATALKAN PEMBAYARAN INI
-
+                <div class="p-4 flex gap-3">
+                    <button @click="forceCheckStatus(lastSaleId)" class="flex-1 bg-emerald-50 text-[#00880F] py-3.5 rounded-2xl font-black hover:bg-emerald-100 transition-all uppercase tracking-widest text-[11px] flex items-center justify-center border border-emerald-200 shadow-sm active:scale-95">
+                        <span>🔄 SUDAH BAYAR / CEK</span>
                     </button>
-
+                    <button @click="confirmCancelTransaction()" class="flex-1 bg-red-50 text-red-500 py-3.5 rounded-2xl font-black hover:bg-red-100 transition-all uppercase tracking-widest text-[11px] border border-red-200 active:scale-95">
+                        BATALKAN
+                    </button>
                 </div>
-
             </div>
-
         </div>
 
 
@@ -695,6 +687,15 @@
 
                     // Polling notifikasi pesanan online masuk di layar kasir
                     this.startOnlineOrderPolling();
+
+                    // Tangkap event postMessage dari iframe DOKU
+                    window.addEventListener('message', (event) => {
+                        if (event.data && (event.data.status === 'SUCCESS' || event.data.type === 'DOKU_PAYMENT_SUCCESS' || event.data.event === 'payment_success')) {
+                            if (this.lastSaleId) {
+                                this.forceCheckStatus(this.lastSaleId);
+                            }
+                        }
+                    });
                 },
 
                 startOnlineOrderPolling() {
@@ -1002,6 +1003,29 @@
                     } catch (e) { Swal.fire('Gagal', e.message, 'error'); } finally { this.isLoading = false; }
                 },
 
+                forceCheckStatus(saleId) {
+                    if (!saleId) return;
+                    fetch(`/cashier/pos/check-status/${saleId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                if (this.statusInterval) clearInterval(this.statusInterval);
+                                this.isQrisModalOpen = false;
+                                this.paymentStatus = 'success';
+                                this.isSuccessModalOpen = true;
+                                announcePaymentSuccess(this.lastTotal, this.shop.payment_sound, this.isMuted);
+                                if (this.isMobileApp()) setTimeout(() => this.printReceiptBluetooth(), 500);
+                            } else {
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: 'Menunggu Notifikasi DOKU',
+                                    text: 'Status pembayaran belum terupdate dari webhook DOKU. Pastikan URL Webhook sudah disetel di Dashboard Merchant DOKU atau tunggu beberapa saat lagi.',
+                                    confirmButtonColor: '#00AA13'
+                                });
+                            }
+                        }).catch(e => {});
+                },
+
                 startAutoCheckStatus(saleId) {
                     if (this.statusInterval) clearInterval(this.statusInterval);
                     this.statusInterval = setInterval(async () => {
@@ -1014,13 +1038,13 @@
                                 this.paymentStatus = 'success';
                                 this.isSuccessModalOpen = true;
 
-                                // SUKSES QRIS: Putar Suara MP3 + Suara Nominal (misal: "Pembayaran senilai 2000 rupiah berhasil")
+                                // SUKSES QRIS: Putar Suara MP3 + Suara Nominal
                                 announcePaymentSuccess(this.lastTotal, this.shop.payment_sound, this.isMuted);
 
                                 if (this.isMobileApp()) setTimeout(() => this.printReceiptBluetooth(), 500);
                             }
                         } catch (e) { }
-                    }, 3000); 
+                    }, 2000); 
                 },
 
 

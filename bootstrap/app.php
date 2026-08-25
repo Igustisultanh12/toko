@@ -21,8 +21,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
         $middleware->validateCsrfTokens(except: [
+            'doku/*',
+            '/doku/*',
+            'doku/notification',
             '/doku/notification',
-            '/doku/inquiry', //// Jalur rute notifikasi DOKU
+            'doku/inquiry',
+            '/doku/inquiry',
+            'api/doku/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

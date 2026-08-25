@@ -16,44 +16,61 @@ class DokuNotificationController extends Controller
     public function handle(Request $request)
     {
         $data = $request->all();
-        Log::info('DOKU Webhook Masuk:', $data);
+        if (empty($data)) {
+            $raw = file_get_contents('php://input');
+            $data = json_decode($raw, true) ?: [];
+        }
+        Log::info('DOKU Webhook Masuk (Full Payload):', $data);
 
-        $invoiceNumber = $data['order']['invoice_number'] ?? null;
+        $invoiceNumber = $data['order']['invoice_number'] 
+            ?? $data['order_number'] 
+            ?? $data['invoice_number'] 
+            ?? $data['transaction']['invoice_number'] 
+            ?? $data['order']['id'] 
+            ?? null;
         
-        // Terkadang Doku menggunakan 'status', terkadang 'state'
-        $transactionStatus = strtoupper($data['transaction']['status'] ?? $data['transaction']['state'] ?? '');
+        $rawStatus = $data['transaction']['status'] 
+            ?? $data['transaction']['state'] 
+            ?? $data['order']['status'] 
+            ?? $data['status'] 
+            ?? $data['transaction_status'] 
+            ?? $data['result']['status'] 
+            ?? '';
+
+        $transactionStatus = strtoupper($rawStatus);
 
         if (!$invoiceNumber) {
-            Log::error('Webhook Gagal: Invoice tidak ditemukan.');
-            return response()->json(['message' => 'Invalid Data'], 400);
+            Log::error('Webhook Gagal: Invoice number tidak ditemukan di payload DOKU.', ['data' => $data]);
+            return response()->json(['message' => 'Invalid Data, Invoice Missing'], 400);
         }
 
-        // 1. CARI PESANAN ONLINE (ORDER) ATAU PENJUALAN KASIR (SALE)
+        $isSuccess = in_array($transactionStatus, ['SUCCESS', 'PAID', 'COMPLETED', 'SETTLED', 'OK', 'SUCCESSFUL', 'APPROVED']);
+        $isFailed  = in_array($transactionStatus, ['FAILED', 'EXPIRED', 'CANCEL', 'CANCELLED', 'VOID', 'REJECTED']);
+
+        // 1. CARI PESANAN ONLINE (ORDER)
         if (str_starts_with($invoiceNumber, 'ORD-')) {
             $order = \App\Models\Order::with('items.product')->where('order_number', $invoiceNumber)->first();
             if ($order) {
                 if ($order->payment_status === 'paid') {
-                    return response()->json(['message' => 'Order Already Paid']);
+                    return response()->json(['message' => 'Order Already Paid'], 200);
                 }
 
                 DB::beginTransaction();
                 try {
-                    if ($transactionStatus === 'SUCCESS') {
+                    if ($isSuccess) {
                         $order->update([
                             'payment_status' => 'paid',
-                            'status'         => 'paid', // Status 'paid' = Menunggu Konfirmasi Kasir/Admin
+                            'status'         => 'paid',
                             'paid_at'        => now(),
                         ]);
 
-                        // Kirim Notifikasi Telegram untuk Pesanan Online Masuk
                         $this->sendTelegramOrderNotification($order);
                         Log::info("Pesanan Online {$invoiceNumber} LUNAS via QRIS DOKU.");
-                    } elseif (in_array($transactionStatus, ['FAILED', 'EXPIRED', 'CANCEL', 'VOID'])) {
+                    } elseif ($isFailed) {
                         $order->update([
                             'payment_status' => 'failed',
                             'status'         => 'cancelled',
                         ]);
-                        // Kembalikan stok
                         foreach ($order->items as $item) {
                             if ($item->product) {
                                 $item->product->increment('stock', $item->quantity);
@@ -61,7 +78,7 @@ class DokuNotificationController extends Controller
                         }
                     }
                     DB::commit();
-                    return response()->json(['message' => 'OK'], 200);
+                    return response()->json(['message' => 'SUCCESS'], 200);
                 } catch (\Exception $e) {
                     DB::rollBack();
                     Log::error("Gagal proses webhook online order: " . $e->getMessage());
@@ -73,40 +90,41 @@ class DokuNotificationController extends Controller
         // 2. JIKA BUKAN ONLINE ORDER, CARI TRANSAKSI KASIR POS (SALE)
         $sale = Sale::with('details.product')->where('transaction_number', $invoiceNumber)->first();
 
-        // Cadangan: Ekstrak ID dari format INV-{id}-TIMESTAMP
+        // Cadangan: Ekstrak ID dari format INV-{id}-TIMESTAMP jika format lama
         if (!$sale) {
             $parts = explode('-', $invoiceNumber);
             $saleId = $parts[1] ?? null;
-            $sale = Sale::with('details.product')->find($saleId);
+            if ($saleId && is_numeric($saleId)) {
+                $sale = Sale::with('details.product')->find($saleId);
+            }
         }
 
         if (!$sale) {
-            Log::error("Sale / Order dengan Invoice {$invoiceNumber} tidak ditemukan.");
-            return response()->json(['message' => 'Not Found'], 404);
+            Log::error("Sale / Order dengan Invoice {$invoiceNumber} tidak ditemukan di database.");
+            return response()->json(['message' => 'Invoice Not Found'], 404);
         }
 
-        // Idempotency: Jika sudah sukses, jangan proses lagi
+        // Idempotency: Jika sudah sukses, jangan proses ulang
         if ($sale->status === 'success' || $sale->payment_status === 'success') {
-            return response()->json(['message' => 'Already Processed']);
+            return response()->json(['message' => 'Already Processed as Success'], 200);
         }
 
         // Operasi Update Status & Stok
         DB::beginTransaction();
         try {
-            if ($transactionStatus === 'SUCCESS') {
+            if ($isSuccess) {
                 $sale->update([
                     'status'           => 'success',
                     'payment_status'   => 'success',
-                    'reference_number' => $data['transaction']['id'] ?? null
+                    'reference_number' => $data['transaction']['id'] ?? $data['transaction']['original_request_id'] ?? null
                 ]);
 
                 $this->sendTelegramNotification($sale);
                 Log::info("Misi Sukses: Transaksi Kasir {$invoiceNumber} LUNAS.");
 
-            } elseif (in_array($transactionStatus, ['FAILED', 'EXPIRED', 'CANCEL', 'VOID'])) {
-                // MISI GAGAL: Kembalikan Stok
+            } elseif ($isFailed) {
                 $sale->update([
-                    'status' => 'failed',
+                    'status'         => 'failed',
                     'payment_status' => 'failed'
                 ]);
                 
@@ -119,11 +137,11 @@ class DokuNotificationController extends Controller
             }
 
             DB::commit();
-            return response()->json(['message' => 'OK'], 200);
+            return response()->json(['message' => 'SUCCESS'], 200);
 
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error("Gagal memproses webhook: " . $e->getMessage());
+            Log::error("Gagal memproses webhook POS: " . $e->getMessage());
             return response()->json(['message' => 'Error'], 500);
         }
     }
