@@ -235,10 +235,24 @@ class SaleController extends Controller
                     }
 
                     if ($im) {
-                        imagefilter($im, IMG_FILTER_GRAYSCALE);
+                        $width = imagesx($im);
+                        $height = imagesy($im);
+                        
+                        // Buat canvas baru dengan latar belakang PUTIH MURNI (agar transparansi tidak menjadi hitam)
+                        $canvas = imagecreatetruecolor($width, $height);
+                        $white = imagecolorallocate($canvas, 255, 255, 255);
+                        imagefilledrectangle($canvas, 0, 0, $width, $height, $white);
+                        
+                        // Salin gambar ke atas background putih
+                        imagecopy($canvas, $im, 0, 0, 0, 0, $width, $height);
+                        
+                        // Terapkan grayscale / hitam putih
+                        imagefilter($canvas, IMG_FILTER_GRAYSCALE);
+                        
                         ob_start();
-                        imagepng($im);
+                        imagepng($canvas);
                         $output = ob_get_clean();
+                        imagedestroy($canvas);
                         imagedestroy($im);
                         return 'data:image/png;base64,' . base64_encode($output);
                     }

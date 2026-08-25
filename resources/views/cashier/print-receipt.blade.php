@@ -24,10 +24,11 @@
         .header h3 { margin: 0; font-size: 10pt; line-height: 1.2; }
         .header p { margin: 1pt 0; font-size: 7pt; }
         .logo { 
-            max-width: 50px; 
+            max-width: 55px; 
+            max-height: 55px;
             height: auto; 
-            margin-bottom: 5px; 
-            filter: grayscale(100%); 
+            margin: 0 auto 4px auto; 
+            display: inline-block;
         }
     </style>
 </head>
