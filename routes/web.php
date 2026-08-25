@@ -23,11 +23,12 @@ Route::post('/doku/notification', [DokuNotificationController::class, 'handle'])
 Route::post('/doku/inquiry', [DokuInquiryController::class, 'handle'])->name('doku.inquiry');
 
 /**
- * 2. JALUR CETAK STRUK & FAKTUR PDF (PUBLIK / BISA DIAKSES PELANGGAN DARI LINK WA)
+ * 2. JALUR CETAK STRUK, FAKTUR & LABEL PENGIRIMAN PAKET (PUBLIK / BISA DIAKSES VIA LINK WA)
  */
 Route::get('/receipt/{sale}/print', [SaleController::class, 'generateReceipt'])->name('receipt.print');
 Route::get('/receipt/{sale}/pdf', [ReportController::class, 'exportInvoicePdf'])->name('receipt.pdf');
 Route::get('/invoice/{transaction_number}/pdf', [ReportController::class, 'publicInvoicePdfByNumber'])->name('invoice.public.number');
+Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::class, 'generateShippingLabel'])->name('shipping.label.pdf');
 
 /**
  * 3. RUTE TERPROTEKSI (LOGIN WAJIB)

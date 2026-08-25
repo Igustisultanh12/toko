@@ -362,9 +362,16 @@
                     <div class="flex flex-wrap items-center gap-2">
                         {{-- CETAK FAKTUR PDF LANDSCAPE --}}
                         <a :href="'/admin/reports/invoice/' + selectedTrx.id + '/pdf'" target="_blank"
-                           class="px-5 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-100 transition flex items-center">
+                           class="px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-100 transition flex items-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5"/></svg>
-                            Cetak Faktur PDF
+                            Faktur PDF
+                        </a>
+
+                        {{-- CETAK LABEL PENGIRIMAN PAKET --}}
+                        <a :href="'/shipping-label/' + selectedTrx.id + '/pdf?recipient_name=' + encodeURIComponent(selectedTrx.customer_name || 'Pelanggan Umum') + '&recipient_phone=' + encodeURIComponent(waPhone || '')" target="_blank"
+                           class="px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-100 transition flex items-center">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-width="2.5"/></svg>
+                            Label Paket (Resi)
                         </a>
 
                         {{-- CETAK STRUK THERMAL KASIR --}}

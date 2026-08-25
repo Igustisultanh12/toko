@@ -185,4 +185,29 @@ class SaleController extends Controller
                   ->setPaper([0, 0, 164.41, 600], 'portrait'); 
         return $pdf->stream("Nota-{$sale->transaction_number}.pdf");
     }
+
+    /**
+     * Generate Label Resi Pengiriman Paket (Ukuran Standar A6 Portrait / Sticker)
+     */
+    public function generateShippingLabel(Request $request, Sale $sale)
+    {
+        $sale->load(['details.product', 'user']);
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $recipientName = $request->input('recipient_name', $sale->customer_name ?: 'Pelanggan Umum');
+        $recipientPhone = $request->input('recipient_phone', '');
+        $recipientAddress = $request->input('recipient_address', '');
+        $senderName = $request->input('sender_name', $shop['shop_name'] ?? 'TOKO ANANDA');
+        $senderPhone = $request->input('sender_phone', $shop['shop_phone'] ?? '');
+        $senderAddress = $request->input('sender_address', $shop['shop_address'] ?? '');
+        $courier = $request->input('courier', 'Reguler');
+        $notes = $request->input('notes', 'FRAGILE - JANGAN DIBANTING / DITINDIH');
+
+        $pdf = Pdf::loadView('shipping.label_pdf', compact(
+            'sale', 'shop', 'recipientName', 'recipientPhone', 'recipientAddress',
+            'senderName', 'senderPhone', 'senderAddress', 'courier', 'notes'
+        ))->setPaper('a6', 'portrait');
+
+        return $pdf->stream("Label_Pengiriman_{$sale->transaction_number}.pdf");
+    }
 }

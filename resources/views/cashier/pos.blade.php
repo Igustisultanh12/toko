@@ -482,7 +482,14 @@
                             </div>
                         </div>
 
-                        {{-- PILIHAN 3: TRANSAKSI BARU --}}
+                        {{-- PILIHAN 3: KIRIM PAKET / CETAK LABEL PENGIRIMAN --}}
+                        <button @click="openShippingModal()" 
+                                class="w-full bg-amber-500 hover:bg-amber-600 text-white py-3.5 rounded-2xl font-black uppercase text-xs tracking-wider shadow-lg shadow-amber-100 active:scale-95 transition-all flex items-center justify-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-width="2.5"/></svg>
+                            📦 KIRIM PAKET (CETAK RESI)
+                        </button>
+
+                        {{-- PILIHAN 4: TRANSAKSI BARU --}}
                         <button @click="location.reload()" 
                                 class="w-full bg-gray-900 text-white py-3.5 rounded-2xl font-black uppercase text-xs tracking-wider hover:bg-black transition-all">
                             Transaksi Baru (ESC)
@@ -492,6 +499,120 @@
 
             </div>
 
+        </div>
+
+        {{-- MODAL FORM LABEL PENGIRIMAN PAKET --}}
+        <div x-show="isShippingModalOpen" class="fixed inset-0 bg-indigo-950/90 backdrop-blur-sm flex items-center justify-center z-[140] p-4" x-cloak x-transition>
+            <div class="bg-white rounded-[3rem] p-6 sm:p-8 w-full max-w-2xl text-left shadow-2xl border-t-[8px] border-amber-500 max-h-[92vh] overflow-y-auto space-y-6">
+                
+                {{-- HEADER MODAL --}}
+                <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-[10px] font-black text-amber-600 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-lg">📦 Label Pengiriman Paket</span>
+                        <h3 class="text-xl font-black text-gray-900 uppercase tracking-tight mt-1">Cetak Resi / Tempelan Paket</h3>
+                        <p class="text-xs text-gray-400 font-medium">Invoice: <span class="font-mono font-bold text-gray-700" x-text="lastTransactionNumber"></span></p>
+                    </div>
+                    <button @click="isShippingModalOpen = false" class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5"/></svg>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    {{-- SEKSI 1: DATA PENERIMA (TUJUAN) --}}
+                    <div class="bg-amber-50/50 p-5 rounded-3xl border border-amber-200/80 space-y-4">
+                        <div class="flex items-center space-x-2 border-b border-amber-200/60 pb-2">
+                            <span class="bg-amber-500 text-white font-black text-[10px] px-2 py-0.5 rounded-md uppercase">TO</span>
+                            <h4 class="font-black text-gray-800 text-xs uppercase tracking-wider">Data Penerima (Tujuan)</h4>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">Nama Penerima</label>
+                            <input type="text" x-model="shippingRecipientName" 
+                                   class="w-full bg-white border border-amber-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">Nomor HP / WhatsApp Penerima</label>
+                            <input type="tel" x-model="shippingRecipientPhone" placeholder="08xxxxxxxxxx"
+                                   class="w-full bg-white border border-amber-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">Alamat Lengkap Tujuan Pengiriman</label>
+                            <textarea x-model="shippingRecipientAddress" rows="3" placeholder="Jl. Nama Jalan No. XX, RT/RW, Kelurahan, Kecamatan, Kota/Kabupaten, Kode Pos"
+                                      class="w-full bg-white border border-amber-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">Ekspedisi / Kurir</label>
+                                <select x-model="shippingCourier" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-amber-500 outline-none">
+                                    <option value="J&T Express">J&T Express</option>
+                                    <option value="JNE Express">JNE Express</option>
+                                    <option value="SiCepat">SiCepat</option>
+                                    <option value="Shopee Xpress">SPX (Shopee)</option>
+                                    <option value="GoSend / Grab">GoSend / Grab</option>
+                                    <option value="POS Indonesia">POS Indonesia</option>
+                                    <option value="Anteraja">Anteraja</option>
+                                    <option value="Kurir Toko">Kurir Toko</option>
+                                    <option value="Ambil Sendiri">Ambil Sendiri</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">Catatan Paket</label>
+                                <input type="text" x-model="shippingNotes" 
+                                       class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-amber-500 outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- SEKSI 2: DATA PENGIRIM (DARI / TOKO) --}}
+                    <div class="bg-gray-50 p-5 rounded-3xl border border-gray-200 space-y-4">
+                        <div class="flex items-center space-x-2 border-b border-gray-200 pb-2">
+                            <span class="bg-gray-700 text-white font-black text-[10px] px-2 py-0.5 rounded-md uppercase">FROM</span>
+                            <h4 class="font-black text-gray-800 text-xs uppercase tracking-wider">Data Pengirim (Toko)</h4>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-wider mb-1">Nama Toko / Pengirim</label>
+                            <input type="text" x-model="shippingSenderName" 
+                                   class="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-wider mb-1">Nomor Telepon Toko</label>
+                            <input type="tel" x-model="shippingSenderPhone" 
+                                   class="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-wider mb-1">Alamat Asal Toko</label>
+                            <textarea x-model="shippingSenderAddress" rows="3" 
+                                      class="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                        </div>
+                        
+                        <div class="p-3 bg-indigo-50 rounded-2xl text-[10px] text-indigo-700 font-medium leading-relaxed">
+                            💡 Data pengirim otomatis diambil dari database Pengaturan Toko dan dapat disesuaikan jika perlu.
+                        </div>
+                    </div>
+
+                </div>
+
+                {{-- FOOTER MODAL ACTIONS --}}
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <button @click="isShippingModalOpen = false" class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-2xl uppercase transition">
+                        Kembali
+                    </button>
+
+                    <button @click="printShippingLabel()" 
+                            class="px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-xl shadow-amber-100 transition flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-width="2.5"/></svg>
+                        GENERATE & CETAK LABEL PAKET (PDF)
+                    </button>
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -572,6 +693,17 @@
                 isLoading: false, isPrinting: false, currentTime: '',
                 paymentStatus: 'pending', statusInterval: null,
                 isMuted: !(@json($shop['is_voice_enabled'] ?? true)),
+
+                // --- STATE PENGIRIMAN PAKET ---
+                isShippingModalOpen: false,
+                shippingRecipientName: '',
+                shippingRecipientPhone: '',
+                shippingRecipientAddress: '',
+                shippingCourier: 'J&T Express',
+                shippingNotes: 'FRAGILE - JANGAN DIBANTING / DITINDIH',
+                shippingSenderName: '',
+                shippingSenderPhone: '',
+                shippingSenderAddress: '',
 
                 get total() { return this.cart.reduce((a, b) => a + (b.price * b.quantity), 0); },
                 get change() { return Math.max(0, (this.amountPaid || 0) - this.total); },
@@ -676,7 +808,35 @@
                     window.open(waUrl, '_blank');
                 },
 
+                openShippingModal() {
+                    this.shippingRecipientName = this.lastCustomerName || 'Pelanggan Umum';
+                    this.shippingRecipientPhone = this.customerPhone || '';
+                    this.shippingRecipientAddress = '';
+                    this.shippingCourier = 'J&T Express';
+                    this.shippingNotes = 'FRAGILE - JANGAN DIBANTING / DITINDIH';
+                    this.shippingSenderName = this.shop.name || 'TOKO ANANDA';
+                    this.shippingSenderPhone = this.shop.phone || '';
+                    this.shippingSenderAddress = this.shop.address || '';
+                    this.isShippingModalOpen = true;
+                },
 
+                printShippingLabel() {
+                    if (!this.lastSaleId) {
+                        alert('ID Transaksi tidak valid.');
+                        return;
+                    }
+                    const params = new URLSearchParams({
+                        recipient_name: this.shippingRecipientName,
+                        recipient_phone: this.shippingRecipientPhone,
+                        recipient_address: this.shippingRecipientAddress,
+                        sender_name: this.shippingSenderName,
+                        sender_phone: this.shippingSenderPhone,
+                        sender_address: this.shippingSenderAddress,
+                        courier: this.shippingCourier,
+                        notes: this.shippingNotes
+                    });
+                    window.open(`/shipping-label/${this.lastSaleId}/pdf?${params.toString()}`, '_blank');
+                },
 
                 async searchProducts() {
 
