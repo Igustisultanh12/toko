@@ -65,8 +65,11 @@ class SaleController extends Controller
 
         DB::beginTransaction();
         try {
-            // 1. Generate Nomor Transaksi
-            $transactionNumber = "INV-" . now()->format('Ymd') . "-" . strtoupper(Str::random(5));
+            // 1. Generate Nomor Transaksi Dinamis Sesuai Nama Aplikasi Toko
+            $appName = Setting::where('key', 'app_name')->value('value') ?: 'SIKANDA';
+            $cleanName = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $appName));
+            $prefix = strlen($cleanName) >= 3 ? substr($cleanName, 0, 3) : 'INV';
+            $transactionNumber = "{$prefix}-" . now()->format('Ymd') . "-" . strtoupper(Str::random(5));
 
             // 2. Simpan Data Utama
             $sale = Sale::create([
