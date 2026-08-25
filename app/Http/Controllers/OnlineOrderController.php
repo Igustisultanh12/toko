@@ -360,4 +360,43 @@ class OnlineOrderController extends Controller
 
         return view('online.track', compact('order', 'shop'));
     }
+
+    /**
+     * KONFIRMASI PESANAN DITERIMA OLEH PELANGGAN (MENYELESAIKAN PESANAN)
+     */
+    public function confirmReceived(Request $request, $order_number)
+    {
+        $order = Order::where('order_number', $order_number)->firstOrFail();
+
+        if ($order->status === 'completed') {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['success' => true, 'message' => 'Pesanan sudah diselesaikan sebelumnya.']);
+            }
+            return back()->with('info', 'Pesanan sudah selesai sebelumnya.');
+        }
+
+        if ($order->status === 'cancelled') {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['success' => false, 'message' => 'Pesanan telah dibatalkan.'], 422);
+            }
+            return back()->with('error', 'Pesanan telah dibatalkan.');
+        }
+
+        $order->update([
+            'status'       => 'completed',
+            'completed_at' => now(),
+        ]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success'      => true,
+                'message'      => 'Terima kasih! Pesanan Anda telah berhasil diselesaikan.',
+                'status'       => 'completed',
+                'status_label' => $order->status_label,
+                'level'        => 5,
+            ]);
+        }
+
+        return back()->with('success', 'Terima kasih! Pesanan Anda telah ditandai diterima dan selesai.');
+    }
 }

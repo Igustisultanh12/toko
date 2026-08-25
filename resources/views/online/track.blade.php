@@ -117,6 +117,39 @@
             </div>
         </template>
 
+        {{-- KOTAK KONFIRMASI PESANAN DITERIMA OLEH PELANGGAN --}}
+        <template x-if="currentStatus === 'shipped' || currentStatus === 'processing' || currentStatus === 'paid'">
+            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-3xl p-6 border-2 border-emerald-500/40 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xl">📦</span>
+                        <h4 class="font-black text-gray-900 uppercase text-xs tracking-wider">Paket Sudah Sampai di Tangan Anda?</h4>
+                    </div>
+                    <p class="text-xs text-gray-500 font-medium mt-1">
+                        Jika barang belanjaan sudah Anda terima dengan baik & lengkap, silakan klik tombol di samping untuk menyelesaikan pesanan.
+                    </p>
+                </div>
+                <button type="button" @click="confirmOrderReceived()" :disabled="isSubmitting"
+                        class="w-full sm:w-auto px-6 py-3.5 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg shadow-emerald-500/25 transition shrink-0 flex items-center justify-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Pesanan Diterima</span>
+                </button>
+            </div>
+        </template>
+
+        {{-- JIKA PESANAN SUDAH SELESAI --}}
+        <template x-if="currentStatus === 'completed'">
+            <div class="bg-emerald-600 text-white rounded-3xl p-6 shadow-md flex items-center space-x-4 transition-all">
+                <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl shrink-0">
+                    🎉
+                </div>
+                <div>
+                    <h4 class="font-black uppercase text-sm tracking-wide">Pesanan Telah Diterima & Selesai</h4>
+                    <p class="text-xs text-emerald-100 font-medium">Terima kasih telah berbelanja di toko kami! Paket Anda telah berhasil diselesaikan.</p>
+                </div>
+            </div>
+        </template>
+
         <template x-if="(!trackingNumber || trackingNumber.trim() === '') && currentLevel === 1">
             <div class="p-5 bg-amber-50 rounded-3xl border border-amber-200 text-amber-800 flex justify-between items-center">
                 <div>
@@ -130,7 +163,7 @@
             </div>
         </template>
 
-        <template x-if="(!trackingNumber || trackingNumber.trim() === '') && currentLevel > 1">
+        <template x-if="(!trackingNumber || trackingNumber.trim() === '') && currentLevel > 1 && currentStatus !== 'completed'">
             <div class="p-5 bg-gray-50 rounded-3xl border border-gray-100 text-gray-600 text-xs">
                 <span>⏳ Nomor resi pengiriman akan otomatis muncul di halaman ini secara langsung saat pesanan Anda diserahkan ke pihak ekspedisi oleh toko.</span>
             </div>
@@ -199,6 +232,7 @@ function liveOrderTracker(orderNumber, initialLevel, initialStatus, initialTrack
         courier: initialCourier,
         statusBadge: '{!! addslashes($order->status_badge) !!}',
         pollInterval: null,
+        isSubmitting: false,
 
         init() {
             // Polling realtime perubahan status & nomor resi setiap 3 detik
@@ -235,6 +269,53 @@ function liveOrderTracker(orderNumber, initialLevel, initialStatus, initialTrack
                     console.log('Error polling order track:', e);
                 }
             }, 3000);
+        },
+
+        confirmOrderReceived() {
+            Swal.fire({
+                title: 'Konfirmasi Pesanan Diterima',
+                text: 'Apakah Anda yakin seluruh pesanan barang telah sampai di tangan Anda dengan baik dan lengkap?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#00AA13',
+                cancelButtonColor: '#6B7280',
+                confirmButtonText: '✅ Ya, Pesanan Sudah Diterima',
+                cancelButtonText: 'Belum'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    this.isSubmitting = true;
+                    try {
+                        const res = await fetch(`/lacak/${orderNumber}/received`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        });
+                        const data = await res.json();
+                        if (data.success) {
+                            this.currentLevel = 5;
+                            this.currentStatus = 'completed';
+                            if (typeof window.playNotificationSound === 'function') {
+                                window.playNotificationSound('success');
+                            }
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pesanan Selesai!',
+                                text: 'Terima kasih telah berbelanja di toko kami.',
+                                confirmButtonColor: '#00AA13'
+                            });
+                        } else {
+                            Swal.fire('Perhatian', data.message || 'Gagal konfirmasi pesanan.', 'warning');
+                        }
+                    } catch (err) {
+                        Swal.fire('Error', 'Gagal memproses konfirmasi.', 'error');
+                    } finally {
+                        this.isSubmitting = false;
+                    }
+                }
+            });
         },
 
         copyTrackingNumber() {

@@ -34,9 +34,10 @@ Route::post('/order/simulate-pay/{order_number}', [OnlineOrderController::class,
 Route::get('/order/receipt/{order_number}', [OnlineOrderController::class, 'receipt'])->name('order.receipt');
 Route::get('/order/receipt/{order_number}/pdf', [OnlineOrderController::class, 'printReceiptPdf'])->name('order.receipt.pdf');
 
-// Portal Publik Lacak Pesanan
+// Portal Publik Lacak Pesanan & Konfirmasi Diterima
 Route::get('/lacak', [OnlineOrderController::class, 'trackIndex'])->name('order.track.index');
 Route::get('/lacak/{order_number}', [OnlineOrderController::class, 'track'])->name('order.track');
+Route::post('/lacak/{order_number}/received', [OnlineOrderController::class, 'confirmReceived'])->name('order.confirm-received');
 Route::get('/track', [OnlineOrderController::class, 'trackIndex'])->name('order.track.alias');
 Route::get('/track/{order_number}', [OnlineOrderController::class, 'track'])->name('order.track.direct');
 
