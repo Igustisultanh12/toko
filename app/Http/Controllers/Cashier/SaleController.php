@@ -185,6 +185,21 @@ class SaleController extends Controller
         $isPaid = in_array(strtolower($sale->payment_status ?? ''), ['success', 'paid']);
         $isStatusOk = in_array(strtolower($sale->status ?? ''), ['success', 'paid']);
 
+        // Jika di lokal belum lunas, aktif cek langsung ke DOKU API sebagai fallback realtime
+        if (!$isPaid && !$isStatusOk) {
+            try {
+                $isPaidOnDoku = $this->dokuService->checkPaymentStatus($sale->transaction_number);
+                if ($isPaidOnDoku) {
+                    $sale->update([
+                        'status'         => 'success',
+                        'payment_status' => 'success',
+                    ]);
+                    $isPaid = true;
+                    $isStatusOk = true;
+                }
+            } catch (\Exception $e) {}
+        }
+
         return response()->json([
             'status' => ($isPaid || $isStatusOk) ? 'success' : 'pending'
         ]);

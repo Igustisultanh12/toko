@@ -212,6 +212,19 @@ class OnlineOrderController extends Controller
             return response()->json(['status' => 'not_found'], 404);
         }
 
+        if ($order->payment_status !== 'paid') {
+            try {
+                $isPaidOnDoku = $this->dokuService->checkPaymentStatus($order->order_number);
+                if ($isPaidOnDoku) {
+                    $order->update([
+                        'payment_status' => 'paid',
+                        'status'         => 'paid',
+                        'paid_at'        => now(),
+                    ]);
+                }
+            } catch (\Exception $e) {}
+        }
+
         $level = match($order->status) {
             'pending_payment' => 1,
             'paid'            => 2,

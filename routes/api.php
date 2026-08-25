@@ -17,8 +17,10 @@ use App\Http\Controllers\Admin\ProductController;
 |
 */
 
-// Rute Publik untuk Login
+// Rute Publik untuk Login & Webhook DOKU
 Route::post('/login', [AuthController::class, 'login']);
+Route::match(['get', 'post'], '/doku/notification', [\App\Http\Controllers\DokuNotificationController::class, 'handle']);
+Route::match(['get', 'post'], '/doku/inquiry', [\App\Http\Controllers\DokuInquiryController::class, 'handle']);
 
 // Rute yang Dilindungi (Harus login & mengirim token)
 Route::middleware('auth:sanctum')->group(function () {

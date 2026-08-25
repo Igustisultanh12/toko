@@ -16,12 +16,22 @@ class DokuNotificationController extends Controller
      */
     public function handle(Request $request)
     {
-        $data = $request->all();
+        $data = $request->json()->all();
         if (empty($data)) {
-            $raw = file_get_contents('php://input');
+            $data = $request->all();
+        }
+        if (empty($data)) {
+            $raw = $request->getContent() ?: file_get_contents('php://input');
             $data = json_decode($raw, true) ?: [];
         }
-        Log::info('DOKU Webhook Masuk (Full Payload):', $data);
+        
+        Log::info('DOKU Webhook Masuk (Full Payload):', [
+            'method'  => $request->method(),
+            'path'    => $request->path(),
+            'ip'      => $request->ip(),
+            'headers' => $request->headers->all(),
+            'body'    => $data,
+        ]);
 
         $invoiceNumber = $data['order']['invoice_number'] 
             ?? $data['order_number'] 

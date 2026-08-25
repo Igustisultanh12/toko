@@ -180,4 +180,55 @@ class DokuService
             return null;
         }
     }
+
+    /**
+     * CEK STATUS TRANSAKSI KE DOKU API SECARA LANGSUNG (ACTIVE POLLING / FALLBACK WEBHOOK)
+     */
+    public function checkPaymentStatus($invoiceNumber)
+    {
+        $config = $this->getConfig();
+        if (empty($config['client_id']) || empty($config['secret_key']) || empty($config['base_url'])) {
+            return null;
+        }
+
+        $targetPath = '/orders/v1/status/' . $invoiceNumber;
+        $clientId  = trim($config['client_id']);
+        $secretKey = trim($config['secret_key']);
+
+        $requestId = (string) Str::uuid();
+        $timestamp = gmdate("Y-m-d\TH:i:s\Z");
+
+        // Format signature untuk GET request (tanpa digest body)
+        $signatureString = "Client-Id:" . $clientId . "\n" .
+                           "Request-Id:" . $requestId . "\n" .
+                           "Request-Timestamp:" . $timestamp . "\n" .
+                           "Request-Target:" . $targetPath;
+
+        $signature = base64_encode(hash_hmac('sha256', $signatureString, $secretKey, true));
+
+        try {
+            $fullUrl = $config['base_url'] . $targetPath;
+            $response = Http::timeout(6)->withHeaders([
+                'Client-Id'         => $clientId,
+                'Request-Id'        => $requestId,
+                'Request-Timestamp' => $timestamp,
+                'Signature'         => "HMACSHA256=" . $signature,
+            ])->get($fullUrl);
+
+            $result = $response->json();
+            Log::info("DOKU Direct Status Check for {$invoiceNumber} (HTTP {$response->status()}):", [
+                'body' => $result
+            ]);
+
+            if ($response->successful() && isset($result['transaction']['status'])) {
+                $status = strtoupper($result['transaction']['status']);
+                return in_array($status, ['SUCCESS', 'PAID', 'COMPLETED', 'SETTLED', 'OK', 'SUCCESSFUL', 'APPROVED']);
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            Log::warning("DOKU Status Check Error for {$invoiceNumber}: " . $e->getMessage());
+            return false;
+        }
+    }
 }
