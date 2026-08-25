@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Cashier\SaleController;
 use App\Http\Controllers\DokuNotificationController;
 use App\Http\Controllers\DokuInquiryController;
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/products/import', [ProductController::class, 'showImportForm'])->name('products.import.show');
         Route::post('/products/import', [ProductController::class, 'import'])->name('products.import.store');
         Route::resource('products', ProductController::class);
+        Route::resource('users', UserController::class);
         
         // 1. LAPORAN PENJUALAN (INVOICE, PELANGGAN & BARANG)
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');

@@ -1,0 +1,141 @@
+﻿<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+class UserController extends Controller
+{
+    /**
+     * Tampilkan daftar seluruh akun (Admin & Kasir)
+     */
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $role = $request->input('role');
+
+        $query = User::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        if ($role && in_array($role, ['admin', 'cashier'])) {
+            $query->where('role', $role);
+        }
+
+        $users = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+
+        $stats = [
+            'total'    => User::count(),
+            'cashiers' => User::where('role', 'cashier')->count(),
+            'admins'   => User::where('role', 'admin')->count(),
+        ];
+
+        return view('admin.users.index', compact('users', 'stats', 'search', 'role'));
+    }
+
+    /**
+     * Form tambah akun baru
+     */
+    public function create()
+    {
+        return view('admin.users.create');
+    }
+
+    /**
+     * Simpan akun kasir / admin baru
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'role'     => ['required', 'in:admin,cashier'],
+            'password' => ['required', 'string', 'min:6'],
+        ], [
+            'name.required'     => 'Nama pengguna wajib diisi.',
+            'email.required'    => 'Alamat email wajib diisi.',
+            'email.email'       => 'Format email tidak valid.',
+            'email.unique'      => 'Email ini sudah digunakan oleh akun lain.',
+            'role.required'     => 'Peran akun (Role) wajib dipilih.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min'      => 'Password minimal harus 6 karakter.',
+        ]);
+
+        User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'role'     => $validated['role'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return redirect()->route('admin.users.index')->with('success', 'Akun ' . ($validated['role'] === 'cashier' ? 'Kasir' : 'Admin') . ' baru berhasil ditambahkan!');
+    }
+
+    /**
+     * Form edit akun
+     */
+    public function edit(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    /**
+     * Update data akun
+     */
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'role'     => ['required', 'in:admin,cashier'],
+            'password' => ['nullable', 'string', 'min:6'],
+        ], [
+            'name.required'  => 'Nama pengguna wajib diisi.',
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email'    => 'Format email tidak valid.',
+            'email.unique'   => 'Email ini sudah digunakan oleh akun lain.',
+            'role.required'  => 'Peran akun (Role) wajib dipilih.',
+            'password.min'   => 'Password minimal harus 6 karakter.',
+        ]);
+
+        $userData = [
+            'name'  => $validated['name'],
+            'email' => $validated['email'],
+            'role'  => $validated['role'],
+        ];
+
+        // Jika password diisi, update password baru
+        if (!empty($validated['password'])) {
+            $userData['password'] = Hash::make($validated['password']);
+        }
+
+        $user->update($userData);
+
+        return redirect()->route('admin.users.index')->with('success', 'Data akun ' . $user->name . ' berhasil diperbarui!');
+    }
+
+    /**
+     * Hapus akun pengguna
+     */
+    public function destroy(User $user)
+    {
+        // Cegah menghapus akun diri sendiri yang sedang login
+        if (Auth::id() === $user->id) {
+            return redirect()->route('admin.users.index')->with('error', 'Anda tidak dapat menghapus akun Anda sendiri yang sedang aktif digunakan!');
+        }
+
+        $userName = $user->name;
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'Akun ' . $userName . ' berhasil dihapus dari sistem!');
+    }
+}
