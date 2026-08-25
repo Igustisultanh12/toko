@@ -27,7 +27,7 @@ class OnlineOrderAdminController extends Controller
         $status = $request->get('status', 'all');
         $search = $request->get('search');
 
-        $query = Order::with(['items.product', 'confirmedByUser']);
+        $query = Order::with(['items.product', 'confirmedByUser', 'latestComplaint']);
 
         // ATURAN MUTLAK: Hanya pesanan yang SUDAH LUNAS (payment_status = paid) yang masuk ke daftar operasional
         if ($status === 'all') {
@@ -71,7 +71,7 @@ class OnlineOrderAdminController extends Controller
      */
     public function show($id)
     {
-        $order = Order::with(['items.product', 'confirmedByUser'])->findOrFail($id);
+        $order = Order::with(['items.product', 'confirmedByUser', 'complaints.resolvedByUser'])->findOrFail($id);
         return response()->json($order);
     }
 

@@ -163,6 +163,14 @@
                             <td class="p-4 text-center space-y-1.5 whitespace-nowrap">
                                 <div>{!! $order->status_badge !!}</div>
                                 
+                                @if($order->latestComplaint)
+                                    <div class="pt-0.5">
+                                        <span class="px-2.5 py-1 bg-rose-100 text-rose-700 rounded-lg text-[9px] font-black uppercase border border-rose-300 animate-pulse inline-block">
+                                            ⚠️ Ada Komplain: {{ $order->latestComplaint->status_label }}
+                                        </span>
+                                    </div>
+                                @endif
+
                                 @if($order->tracking_number)
                                     <div class="p-1.5 bg-emerald-50 border border-emerald-200 rounded-xl text-[10px] font-mono font-bold text-[#00661A]">
                                         Resi: <b>{{ $order->tracking_number }}</b><br>
@@ -301,6 +309,81 @@
                             <span class="text-sm text-[#00880F]" x-text="'Rp ' + Number(selectedOrder.total_amount || 0).toLocaleString('id-ID')"></span>
                         </div>
                     </div>
+
+                    {{-- KOTAK FITUR LINK KOMPLAIN PELANGGAN --}}
+                    <div class="p-4 bg-rose-50/70 rounded-2xl border border-rose-200 text-xs space-y-2">
+                        <div class="flex items-center space-x-1.5 text-rose-700 font-black uppercase text-[10px] tracking-wider">
+                            <span>🛡️</span>
+                            <span>Link Pengaduan / Komplain Pelanggan:</span>
+                        </div>
+                        <p class="text-[11px] text-gray-600">Berikan tautan ini jika pembeli mengajukan keluhan barang tidak sesuai/rusak:</p>
+                        
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <button type="button" @click="copyComplaintLink()"
+                                    class="px-3.5 py-2 bg-white hover:bg-rose-100 text-rose-700 border border-rose-300 rounded-xl font-black text-[10px] uppercase tracking-wider transition shadow-sm flex items-center space-x-1">
+                                <span>📋 Salin Link Komplain</span>
+                            </button>
+
+                            <a :href="'https://api.whatsapp.com/send?phone=' + (selectedOrder.customer_phone || '').replace(/[^0-9]/g, '') + '&text=' + encodeURIComponent('Halo ' + selectedOrder.customer_name + ', jika Anda memiliki kendala/keluhan barang pada pesanan ' + selectedOrder.order_number + ', silakan isi form pengaduan resmi kami di tautan berikut: ' + window.location.origin + '/komplain/' + selectedOrder.order_number)" 
+                               target="_blank"
+                               class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-black text-[10px] uppercase tracking-wider transition shadow-sm flex items-center space-x-1">
+                                <span>💬 Kirim Link via WA</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- JIKA PESANAN INI SUDAH ADA KOMPLAIN MASUK DARI PELANGGAN --}}
+                    <template x-if="selectedOrder.latest_complaint">
+                        <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 text-xs space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="font-black text-amber-900 uppercase text-[11px]">⚠️ Komplain Masuk dari Pembeli:</span>
+                                <span class="px-2.5 py-0.5 bg-amber-200 text-amber-900 rounded-full text-[9px] font-black uppercase" x-text="selectedOrder.latest_complaint.status"></span>
+                            </div>
+                            
+                            <div class="text-[11px] space-y-1 text-gray-800 bg-white p-3 rounded-xl border border-amber-200">
+                                <p><b>Alasan:</b> <span x-text="selectedOrder.latest_complaint.reason"></span></p>
+                                <p><b>Solusi:</b> <span x-text="selectedOrder.latest_complaint.expected_solution"></span></p>
+                                <p><b>Keterangan:</b> <span class="italic" x-text="'\"' + selectedOrder.latest_complaint.description + '\"'"></span></p>
+                                
+                                <div class="pt-2 flex flex-wrap gap-2">
+                                    <template x-for="(pic, pidx) in (selectedOrder.latest_complaint.photos || [])" :key="pidx">
+                                        <a :href="'/media-file?path=' + encodeURIComponent(pic)" target="_blank" class="w-12 h-12 rounded-lg overflow-hidden border border-gray-300 block hover:opacity-90">
+                                            <img :src="'/media-file?path=' + encodeURIComponent(pic)" class="w-full h-full object-cover">
+                                        </a>
+                                    </template>
+                                </div>
+                                <template x-if="selectedOrder.latest_complaint.video">
+                                    <div class="pt-1">
+                                        <a :href="'/media-file?path=' + encodeURIComponent(selectedOrder.latest_complaint.video)" target="_blank" class="text-indigo-600 font-bold underline text-[10px]">
+                                            🎥 Tonton Video Unboxing
+                                        </a>
+                                    </div>
+                                </template>
+                            </div>
+
+                            {{-- FORM TANGGAPAN ADMIN --}}
+                            <form :action="'/admin/complaints/' + selectedOrder.latest_complaint.id + '/status'" method="POST" class="space-y-2 pt-1">
+                                @csrf
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-500 uppercase">Perbarui Status Komplain:</label>
+                                    <select name="status" x-model="selectedOrder.latest_complaint.status" class="w-full p-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-gray-800">
+                                        <option value="pending">Menunggu Ditinjau</option>
+                                        <option value="reviewed">Sedang Ditinjau Admin</option>
+                                        <option value="approved">Komplain Disetujui (Ganti Barang / Refund)</option>
+                                        <option value="rejected">Komplain Ditolak</option>
+                                        <option value="resolved">Selesai / Sudah Terselesaikan</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input type="text" name="admin_notes" x-model="selectedOrder.latest_complaint.admin_notes" placeholder="Catatan/balasan untuk pembeli..."
+                                           class="w-full p-2 bg-white border border-gray-200 rounded-xl text-xs font-medium text-gray-800">
+                                </div>
+                                <button type="submit" class="w-full py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-black text-[10px] uppercase">
+                                    Perbarui Status Komplain
+                                </button>
+                            </form>
+                        </div>
+                    </template>
 
                 </div>
 
@@ -444,6 +527,22 @@ function adminOrderManager() {
                 hour: '2-digit', minute: '2-digit'
             }) + ' WIB';
             this.isDetailModalOpen = true;
+        },
+
+        copyComplaintLink() {
+            if (this.selectedOrder && this.selectedOrder.order_number) {
+                const link = window.location.origin + '/komplain/' + this.selectedOrder.order_number;
+                navigator.clipboard.writeText(link);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Link Komplain Tersalin!',
+                    text: 'Tautan form komplain khusus pesanan ' + this.selectedOrder.order_number + ' berhasil disalin ke clipboard.',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
+            }
         }
     }
 }

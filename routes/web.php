@@ -15,6 +15,7 @@ use App\Http\Controllers\TteVerificationController;
 
 use App\Http\Controllers\OnlineOrderController;
 use App\Http\Controllers\Admin\OnlineOrderAdminController;
+use App\Http\Controllers\OrderComplaintController;
 
 Route::get('/', function () {
     return redirect()->route('order.index'); // Default homepage membuka Toko Online Publik
@@ -40,6 +41,12 @@ Route::get('/lacak/{order_number}', [OnlineOrderController::class, 'track'])->na
 Route::post('/lacak/{order_number}/received', [OnlineOrderController::class, 'confirmReceived'])->name('order.confirm-received');
 Route::get('/track', [OnlineOrderController::class, 'trackIndex'])->name('order.track.alias');
 Route::get('/track/{order_number}', [OnlineOrderController::class, 'track'])->name('order.track.direct');
+
+// HALAMAN KHUSUS PUSAT KOMPLAIN PELANGGAN (Link diberikan oleh Kasir/Admin jika ada kendala)
+Route::get('/komplain/{order_number}', [OrderComplaintController::class, 'showForm'])->name('order.complaint.show');
+Route::post('/komplain/{order_number}', [OrderComplaintController::class, 'store'])->name('order.complaint.store');
+Route::get('/complaint/{order_number}', [OrderComplaintController::class, 'showForm'])->name('order.complaint.alias');
+Route::post('/complaint/{order_number}', [OrderComplaintController::class, 'store'])->name('order.complaint.alias.store');
 
 /**
  * 2. JALUR WEBHOOK DOKU (WAJIB DI LUAR AUTH)
@@ -147,6 +154,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/orders/{id}/update-process', [OnlineOrderAdminController::class, 'updateProcess'])->name('orders.update-process');
         Route::get('/orders/{id}/shipping-label', [OnlineOrderAdminController::class, 'printShippingLabel'])->name('orders.shipping-label');
         Route::get('/orders/{id}/receipt-pdf', [OnlineOrderAdminController::class, 'printThermalReceipt'])->name('orders.receipt-pdf');
+        Route::post('/complaints/{id}/status', [OrderComplaintController::class, 'adminUpdateStatus'])->name('complaints.update-status');
 
         // BUKU PANDUAN PENGGUNA (Bisa dibaca oleh Kasir & Admin)
         Route::get('/manual-guide', [ManualGuideController::class, 'index'])->name('manual.index');

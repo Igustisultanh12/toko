@@ -44,6 +44,16 @@ class Order extends Model
         return $this->hasMany(OrderItem::class, 'order_id');
     }
 
+    public function complaints()
+    {
+        return $this->hasMany(OrderComplaint::class, 'order_id');
+    }
+
+    public function latestComplaint()
+    {
+        return $this->hasOne(OrderComplaint::class, 'order_id')->latestOfMany();
+    }
+
     public function confirmedByUser()
     {
         return $this->belongsTo(User::class, 'confirmed_by');
