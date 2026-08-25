@@ -108,9 +108,14 @@
                             </div>
                             <div>
                                 <p class="font-bold text-gray-900">{{ $u->name }}</p>
-                                @if(Auth::id() === $u->id)
-                                    <span class="text-[10px] text-indigo-600 font-bold bg-indigo-50 px-2 py-0.5 rounded-full">Akun Anda (Aktif)</span>
-                                @endif
+                                <div class="flex items-center gap-1.5 mt-0.5">
+                                    @if(Auth::id() === $u->id)
+                                        <span class="text-[9px] text-[#00880F] font-black bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">Akun Anda (Aktif)</span>
+                                    @endif
+                                    @if(!empty($u->alias))
+                                        <span class="text-[9px] text-indigo-700 font-black bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200/60">TTD: {{ $u->alias }}</span>
+                                    @endif
+                                </div>
                             </div>
                         </td>
                         <td class="p-5 font-mono text-gray-600 font-medium">

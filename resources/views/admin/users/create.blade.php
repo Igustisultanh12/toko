@@ -19,14 +19,14 @@
             <p class="text-xs text-gray-400 font-medium mt-1">Daftarkan akun kasir atau administrator baru untuk mengakses sistem SIKANDA POS.</p>
         </div>
 
-        <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-6" x-data="{ selectedRole: '{{ old('role', 'cashier') }}' }">
             @csrf
 
             {{-- NAMA PENGGUNA --}}
             <div>
                 <label class="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap Petugas / Pengguna <span class="text-rose-500">*</span></label>
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="Contoh: Kasir Shift Pagi / Siti Aminah" required
-                       class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all @error('name') border-rose-500 @enderror">
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="Contoh: Sultan / Kasir Shift Pagi" required
+                       class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[#00AA13] focus:bg-white transition-all @error('name') border-rose-500 @enderror">
                 @error('name')
                     <p class="text-rose-500 text-[11px] font-bold mt-1.5">{{ $message }}</p>
                 @enderror
@@ -36,7 +36,7 @@
             <div>
                 <label class="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">Alamat Email (Untuk Login) <span class="text-rose-500">*</span></label>
                 <input type="email" name="email" value="{{ old('email') }}" placeholder="kasir2@ananda.site" required
-                       class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all @error('email') border-rose-500 @enderror">
+                       class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[#00AA13] focus:bg-white transition-all @error('email') border-rose-500 @enderror">
                 @error('email')
                     <p class="text-rose-500 text-[11px] font-bold mt-1.5">{{ $message }}</p>
                 @enderror
@@ -45,13 +45,28 @@
             {{-- PERAN / ROLE --}}
             <div>
                 <label class="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">Peran Akun (Role Hak Akses) <span class="text-rose-500">*</span></label>
-                <select name="role" required
-                        class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all @error('role') border-rose-500 @enderror">
-                    <option value="cashier" {{ old('role') === 'cashier' ? 'selected' : '' }}>🛒 Kasir (POS) - Hanya Transaksi Kasir</option>
-                    <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>👑 Administrator - Akses Penuh Laporan, Produk, & Pengaturan</option>
+                <select name="role" x-model="selectedRole" required
+                        class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[#00AA13] focus:bg-white transition-all @error('role') border-rose-500 @enderror">
+                    <option value="cashier">🛒 Kasir (POS) - Hanya Transaksi Kasir</option>
+                    <option value="admin">👑 Administrator - Akses Penuh Laporan, Produk, Kasir & Pengaturan</option>
                 </select>
                 @error('role')
                     <p class="text-rose-500 text-[11px] font-bold mt-1.5">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- FORM ALIAS / GELAR JABATAN TTE (MUNCUL JIKA MEMILIH ROLE ADMIN) --}}
+            <div x-show="selectedRole === 'admin'" x-transition class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-5 space-y-2">
+                <label class="block text-xs font-black text-[#00880F] uppercase tracking-wider">
+                    Alias / Jabatan TTD (TTE) <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" name="alias" value="{{ old('alias') }}" placeholder="Contoh: Pemilik Toko / Owner / Manager / Kepala Toko"
+                       class="w-full bg-white border border-emerald-300 rounded-xl px-4 py-3 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[#00AA13] transition-all outline-none @error('alias') border-rose-500 @enderror">
+                <p class="text-[10px] text-gray-500 font-medium">
+                    🛡️ Gelar/jabatan alias inilah yang akan tercetak otomatis di atas TTD / TTE pada nota faktur dan seluruh laporan PDF saat akun ini mencetak dokumen (menggantikan tulisan default "Administrator").
+                </p>
+                @error('alias')
+                    <p class="text-rose-500 text-[11px] font-bold mt-1">{{ $message }}</p>
                 @enderror
             </div>
 

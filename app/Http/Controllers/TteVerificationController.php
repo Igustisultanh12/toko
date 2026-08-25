@@ -20,7 +20,10 @@ class TteVerificationController extends Controller
 
         $shop = Setting::pluck('value', 'key')->all();
 
-        $signerTitle = $shop['cashier_officer_title'] ?? 'Petugas Kasir';
+        $user = $sale->user;
+        $signerTitle = ($user && !empty($user->alias))
+            ? $user->alias
+            : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
         $signerName = $sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir');
 
         // Pastikan timezone Asia/Jakarta (WIB)

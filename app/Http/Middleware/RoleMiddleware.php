@@ -16,10 +16,15 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if (!Auth::check() || !in_array(Auth::user()->role, $roles)) {
+        if (!Auth::check()) {
             abort(403, 'UNAUTHORIZED ACTION.');
         }
 
-        return $next($request);
+        // Administrator memiliki akses ke seluruh fitur sistem (termasuk kasir POS)
+        if (Auth::user()->role === 'admin' || in_array(Auth::user()->role, $roles)) {
+            return $next($request);
+        }
+
+        abort(403, 'UNAUTHORIZED ACTION.');
     }
 }

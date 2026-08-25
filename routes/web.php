@@ -81,8 +81,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
     });
 
-    // --- GRUP KASIR ---
-    Route::middleware('role:cashier')->prefix('cashier')->name('cashier.')->group(function () {
+    // --- GRUP KASIR (Bisa diakses oleh Kasir dan Administrator) ---
+    Route::middleware('role:cashier,admin')->prefix('cashier')->name('cashier.')->group(function () {
         Route::get('/pos', [SaleController::class, 'index'])->name('pos.index');
         Route::post('/pos/store', [SaleController::class, 'store'])->name('pos.store');
         Route::get('/pos/check-product', [SaleController::class, 'checkProduct'])->name('pos.checkProduct');

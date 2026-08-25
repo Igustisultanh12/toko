@@ -172,7 +172,9 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         $signerName = $user ? $user->name : ($shop['cashier_officer_name'] ?? 'Admin');
-        $signerTitle = $user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
+        $signerTitle = ($user && !empty($user->alias))
+            ? $user->alias
+            : ($user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir'));
 
         $verifyUrl = route('verify.document', [
             'type'      => $docType,
@@ -544,7 +546,10 @@ class ReportController extends Controller
 
         $user = Auth::user();
         $signerName = $user ? $user->name : ($sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir'));
-        $signerTitle = $user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
+        $targetUser = $user ?: $sale->user;
+        $signerTitle = ($targetUser && !empty($targetUser->alias))
+            ? $targetUser->alias
+            : ($targetUser ? ($targetUser->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir'));
 
         $verifyUrl = route('verify.tte', ['transaction_number' => $sale->transaction_number]);
         $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
@@ -604,7 +609,10 @@ class ReportController extends Controller
 
         $user = Auth::user();
         $signerName = $user ? $user->name : ($sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir'));
-        $signerTitle = $user ? ($user->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir');
+        $targetUser = $user ?: $sale->user;
+        $signerTitle = ($targetUser && !empty($targetUser->alias))
+            ? $targetUser->alias
+            : ($targetUser ? ($targetUser->role === 'admin' ? ($shop['cashier_officer_title'] ?? 'Administrator Toko') : 'Petugas Kasir') : ($shop['cashier_officer_title'] ?? 'Petugas Kasir'));
 
         $verifyUrl = route('verify.tte', ['transaction_number' => $sale->transaction_number]);
         $tteQrBase64 = QRCodeService::generateBase64($verifyUrl, 160);
