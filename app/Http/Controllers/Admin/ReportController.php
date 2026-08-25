@@ -319,6 +319,9 @@ class ReportController extends Controller
                     'totalNominal' => $this->totalNominal
                 ]);
             }
+        }, 'LPK_QRIS_'.date('Ymd').'.xlsx');
+    }
+
     /**
      * Halaman Laporan Keuangan (Arus Kas, Omset, Pemasukan Tunai & QRIS)
      */
