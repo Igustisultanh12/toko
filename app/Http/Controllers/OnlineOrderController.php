@@ -148,6 +148,18 @@ class OnlineOrderController extends Controller
             return redirect()->route('order.receipt', $order->order_number);
         }
 
+        // Pastikan QRIS URL resmi DOKU tersedia sama persis seperti di kasir POS
+        if (empty($order->qris_url)) {
+            try {
+                $qrisUrl = $this->dokuService->generateOrderQris($order);
+                if ($qrisUrl) {
+                    $order->update(['qris_url' => $qrisUrl]);
+                }
+            } catch (\Exception $e) {
+                Log::warning("DOKU Order QRIS Pay Generate Error: " . $e->getMessage());
+            }
+        }
+
         $shop = Setting::pluck('value', 'key')->all();
 
         return view('online.pay', compact('order', 'shop'));

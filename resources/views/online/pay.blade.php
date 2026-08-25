@@ -5,13 +5,13 @@
 @section('content')
 <div x-data="qrisPayment('{{ $order->order_number }}')" class="max-w-xl mx-auto px-4 py-8 space-y-6">
 
-    {{-- KARTU PEMBAYARAN QRIS --}}
+    {{-- KARTU PEMBAYARAN QRIS RESMI (PERSIS KASIR POS) --}}
     <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 border border-gray-100 shadow-xl text-center space-y-6">
         
         {{-- HEADER STATUS --}}
         <div>
-            <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-[10px] font-black uppercase tracking-wider border border-amber-200 inline-block animate-pulse">
-                ⏱️ Menunggu Pembayaran QRIS
+            <span class="px-4 py-1.5 bg-emerald-50 text-[#00880F] rounded-full text-[10px] font-black uppercase tracking-wider border border-emerald-200 inline-block animate-pulse">
+                ⚡ Pembayaran QRIS Resmi
             </span>
             <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight mt-2">Pindai QRIS untuk Membayar</h2>
             <p class="text-xs text-gray-400 font-medium">Buka aplikasi GoPay, OVO, Dana, BCA, ShopeePay, atau Mobile Banking Anda.</p>
@@ -24,16 +24,14 @@
             <span class="text-[10px] font-mono text-gray-500 font-bold block mt-1">No. Pesanan: {{ $order->order_number }}</span>
         </div>
 
-        {{-- KODE QRIS DINAMIS --}}
-        <div class="bg-white p-6 rounded-3xl border-2 border-dashed border-emerald-300 inline-block shadow-sm">
+        {{-- FRAME QRIS DINAMIS DOKU (PERSIS FRAME DI POS KASIR) --}}
+        <div class="bg-gray-50 rounded-[2rem] overflow-hidden border-2 border-gray-100 shadow-inner w-full min-h-[500px] flex items-center justify-center relative">
             @if(!empty($order->qris_url))
-                <iframe src="{{ $order->qris_url }}" class="w-64 h-64 border-0 rounded-2xl mx-auto"></iframe>
+                <iframe src="{{ $order->qris_url }}" class="w-full h-[520px] border-0 rounded-[2rem]"></iframe>
             @else
-                {{-- SIMULASI / QR CODE GENERATOR STANDAR --}}
-                <div class="space-y-3">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data={{ urlencode(route('order.pay', $order->order_number)) }}" 
-                         class="w-56 h-56 mx-auto rounded-2xl shadow-sm border border-gray-100">
-                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-wider">QRIS Dinamis Otomatis</p>
+                <div class="p-8 text-center space-y-3">
+                    <div class="animate-spin h-10 w-10 border-4 border-[#00AA13] border-t-transparent rounded-full mx-auto"></div>
+                    <p class="font-black text-gray-500 text-xs uppercase tracking-wider">Menyiapkan QRIS Resmi DOKU...</p>
                 </div>
             @endif
         </div>
@@ -44,24 +42,13 @@
             <span class="font-mono font-black text-rose-600 bg-rose-50 px-3 py-1 rounded-xl text-sm" x-text="countdownText">15:00</span>
         </div>
 
-        {{-- DETEKSI PEMBAYARAN OTOMATIS --}}
+        {{-- DETEKSI PEMBAYARAN OTOMATIS LIVE REALTIME --}}
         <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-center space-x-2 text-xs font-bold text-gray-600">
             <svg class="animate-spin h-4 w-4 text-[#00AA13]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
             <span>Sistem otomatis mendeteksi ketika Anda selesai membayar...</span>
-        </div>
-
-        {{-- TOMBOL SIMULASI BAYAR (KHUSUS SANDBOX / TESTING) --}}
-        <div class="pt-2 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
-            <form method="POST" action="{{ route('order.simulatePay', $order->order_number) }}" class="w-full">
-                @csrf
-                <button type="submit" 
-                        class="w-full py-3.5 bg-[#00AA13] hover:bg-[#00880F] text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg shadow-emerald-500/20 transition">
-                    ⚡ Simulasi Bayar Sekarang (Testing)
-                </button>
-            </form>
         </div>
 
     </div>
@@ -93,7 +80,7 @@ function qrisPayment(orderNumber) {
         timerInterval: null,
 
         init() {
-            // Jalankan hitung mundur
+            // Jalankan hitung mundur 15 menit
             this.timerInterval = setInterval(() => {
                 this.timeLeft--;
                 if (this.timeLeft <= 0) {
@@ -106,7 +93,7 @@ function qrisPayment(orderNumber) {
                 }
             }, 1000);
 
-            // Polling status pembayaran setiap 3 detik
+            // Polling status pembayaran realtime via Webhook setiap 3 detik
             this.checkInterval = setInterval(async () => {
                 try {
                     const res = await fetch(`/order/check-status/${orderNumber}`);
@@ -132,7 +119,7 @@ function qrisPayment(orderNumber) {
                         }
                     }
                 } catch (e) {
-                    console.log('Polling check error:', e);
+                    console.log('Error checking payment status:', e);
                 }
             }, 3000);
         }
