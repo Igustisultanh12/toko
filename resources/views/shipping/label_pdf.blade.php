@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -8,17 +8,17 @@
             size: a6 portrait;
             margin: 6mm 6mm 6mm 6mm;
         }
-        body {
-            font-family: "Arial", "Helvetica", sans-serif;
-            font-size: 8.5pt;
-            line-height: 1.25;
-            color: #111;
+        body { 
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+            font-size: 8.5pt; 
+            line-height: 1.25; 
+            color: #111; 
             margin: 0;
             padding: 0;
         }
         .container {
             border: 2px solid #000;
-            padding: 6px;
+            padding: 7px;
             box-sizing: border-box;
         }
         .header {
@@ -49,7 +49,7 @@
             padding: 5px 6px;
         }
         .to-box {
-            background-color: #fcfcfc;
+            background-color: #fdfdfd;
             border: 2px solid #000;
             padding: 6px;
             margin-bottom: 5px;
@@ -58,7 +58,7 @@
             font-size: 7.5pt;
             font-weight: 900;
             text-transform: uppercase;
-            color: #555;
+            color: #444;
             margin-bottom: 2px;
             letter-spacing: 0.5px;
         }
@@ -72,7 +72,7 @@
             font-size: 9.5pt;
             font-weight: bold;
             color: #000;
-            margin-top: 1px;
+            margin-top: 2px;
         }
         .recipient-address {
             font-size: 9pt;
@@ -81,18 +81,31 @@
             line-height: 1.25;
             color: #111;
         }
+        .tag-label {
+            display: inline-block;
+            font-size: 7.5pt;
+            font-weight: 900;
+            background-color: #e5e5e5;
+            color: #000;
+            padding: 1px 4px;
+            border-radius: 2px;
+            margin-right: 2px;
+            text-transform: uppercase;
+        }
         .courier-badge {
-            background-color: #f0f0f0;
-            border: 1px solid #333;
-            font-weight: bold;
+            background-color: #000;
+            color: #fff;
+            font-weight: 900;
             font-size: 8.5pt;
-            padding: 2px 5px;
+            padding: 2px 6px;
             display: inline-block;
             margin-top: 4px;
+            text-transform: uppercase;
         }
         .sender-name {
             font-size: 9pt;
             font-weight: bold;
+            text-transform: uppercase;
         }
         table.items-table {
             width: 100%;
@@ -110,11 +123,11 @@
             text-transform: uppercase;
         }
         .notes-box {
-            border: 1px dashed #000;
-            padding: 3px 5px;
+            border: 1.5px dashed #000;
+            padding: 4px 6px;
             font-size: 7.5pt;
             margin-top: 4px;
-            background-color: #fff9e6;
+            background-color: #fffde6;
             font-weight: bold;
         }
         .footer-note {
@@ -135,11 +148,11 @@
                 <tr>
                     <td width="60%" valign="middle">
                         <span class="shop-title">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }}</span><br>
-                        <span style="font-size: 7pt; color: #555;">{{ $shop['shop_phone'] ?? '' }}</span>
+                        <span style="font-size: 7.5pt; color: #333; font-weight: bold;">TELP: {{ $shop['shop_phone'] ?? '-' }}</span>
                     </td>
                     <td width="40%" align="right" valign="middle">
                         <span class="badge-shipping">LABEL PENGIRIMAN</span><br>
-                        <span style="font-family: monospace; font-size: 8pt; font-weight: bold;">{{ $sale->transaction_number }}</span>
+                        <span style="font-family: monospace; font-size: 8.5pt; font-weight: 900;">{{ $sale->transaction_number }}</span>
                     </td>
                 </tr>
             </table>
@@ -149,12 +162,14 @@
         <div class="to-box">
             <div class="section-title">KEPADA / PENERIMA (TO):</div>
             <div class="recipient-name">{{ $recipientName ?: 'Pelanggan Umum' }}</div>
-            <div class="recipient-phone">📞 {{ $recipientPhone ?: ($sale->customer_phone ?? '-') }}</div>
+            <div class="recipient-phone">
+                <span class="tag-label">NO. TELP / WA</span> {{ $recipientPhone ?: ($sale->customer_phone ?? '-') }}
+            </div>
             <div class="recipient-address">
-                📍 {{ $recipientAddress ?: 'Alamat belum diisi / Ambil di Tempat' }}
+                <span class="tag-label">ALAMAT</span> {{ $recipientAddress ?: 'Alamat belum diisi / Ambil di Tempat' }}
             </div>
             <div style="margin-top: 4px;">
-                <span class="courier-badge">📦 EKSPEDISI: <b>{{ strtoupper($courier ?: 'REGULER') }}</b></span>
+                <span class="courier-badge">EKSPEDISI: {{ strtoupper($courier ?: 'REGULER') }}</span>
             </div>
         </div>
 
@@ -162,9 +177,11 @@
         <div class="section-box">
             <div class="section-title">DARI / PENGIRIM (FROM):</div>
             <div class="sender-name">{{ $senderName ?: ($shop['shop_name'] ?? 'TOKO ANANDA') }}</div>
-            <div style="font-size: 8pt; font-weight: bold;">📞 {{ $senderPhone ?: ($shop['shop_phone'] ?? '-') }}</div>
-            <div style="font-size: 7.5pt; color: #333; margin-top: 1px;">
-                📍 {{ $senderAddress ?: ($shop['shop_address'] ?? 'Jember, Jawa Timur') }}
+            <div style="font-size: 8pt; font-weight: bold; margin-top: 1px;">
+                <span class="tag-label">NO. TELP</span> {{ $senderPhone ?: ($shop['shop_phone'] ?? '-') }}
+            </div>
+            <div style="font-size: 7.5pt; color: #222; margin-top: 2px;">
+                <span class="tag-label">ALAMAT</span> {{ $senderAddress ?: ($shop['shop_address'] ?? 'Jember, Jawa Timur') }}
             </div>
         </div>
 
@@ -174,7 +191,7 @@
             <table class="items-table">
                 <thead>
                     <tr>
-                        <th width="8%">NO</th>
+                        <th width="8%" style="text-align: center;">NO</th>
                         <th width="72%">NAMA PRODUK</th>
                         <th width="20%" style="text-align: center;">QTY</th>
                     </tr>
@@ -205,11 +222,11 @@
 
         {{-- CATATAN KHUSUS / INSTRUKSI PENGIRIMAN --}}
         <div class="notes-box">
-            ⚠️ CATATAN: {{ $notes ?: 'FRAGILE - JANGAN DIBANTING / DITINDIH' }}
+            <b>[PERHATIAN]:</b> {{ $notes ?: 'FRAGILE - JANGAN DIBANTING / DITINDIH' }}
         </div>
 
         <div class="footer-note">
-            Tgl: {{ $sale->created_at->format('d/m/Y H:i') }} WIB | Dicetak Otomatis Sistem {{ $shop['app_name'] ?? 'SIKANDA' }}
+            TGL CETAK: {{ $sale->created_at->format('d/m/Y H:i') }} WIB | DICETAK OTOMATIS SISTEM {{ $shop['app_name'] ?? 'SIKANDA' }}
         </div>
 
     </div>
