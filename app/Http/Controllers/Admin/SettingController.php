@@ -43,13 +43,17 @@ class SettingController extends Controller
             'cashier_officer_title' => 'nullable|string|max:100',
             'cashier_officer_name'  => 'nullable|string|max:100',
             'receipt_footer'        => 'nullable|string|max:200',
+            'turnstile_enabled'     => 'nullable|in:0,1',
+            'turnstile_site_key'    => 'nullable|string|max:150',
+            'turnstile_secret_key'  => 'nullable|string|max:150',
         ]);
 
         // Ambil semua data kecuali file dan token
         $data = $request->except(['_token', '_method', 'app_favicon', 'shop_logo', 'payment_success_sound']);
 
-        // 2. LOGIKA TOGGLE SUARA
-        $data['is_voice_enabled'] = $request->has('is_voice_enabled') ? '1' : '0';
+        // 2. LOGIKA TOGGLE SUARA & TURNSTILE
+        $data['is_voice_enabled']  = $request->has('is_voice_enabled') ? '1' : '0';
+        $data['turnstile_enabled'] = $request->has('turnstile_enabled') ? '1' : '0';
 
         // 3. LOGIKA UPLOAD FAVICON
         if ($request->hasFile('app_favicon')) {

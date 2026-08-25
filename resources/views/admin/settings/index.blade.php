@@ -261,6 +261,51 @@
                 </div>
             </div>
 
+            {{-- SEKSI 6: CLOUDFLARE TURNSTILE CAPTCHA (KEAMANAN ANTI-BOT) --}}
+            <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 sm:p-10 space-y-6 lg:col-span-2">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 pb-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-gradient-to-tr from-amber-500 to-orange-500 p-3.5 rounded-2xl text-white shadow-lg shadow-orange-500/25">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2.5"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Cloudflare Turnstile CAPTCHA</h3>
+                            <p class="text-xs text-gray-400 font-medium">Proteksi anti-bot cerdas pada Form Checkout Order, Portal Lacak Pesanan, dan Staff Login.</p>
+                        </div>
+                    </div>
+                    
+                    {{-- TOGGLE ON/OFF --}}
+                    <div class="flex items-center space-x-3 bg-gray-50 px-4 py-2 rounded-2xl border border-gray-100">
+                        <span class="text-xs font-black uppercase text-gray-700">Status Turnstile:</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" name="turnstile_enabled" value="1" class="sr-only peer" {{ ($settings['turnstile_enabled'] ?? '0') == '1' ? 'checked' : '' }}>
+                            <div class="w-14 h-8 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#00AA13] shadow-inner"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Turnstile Site Key (Publik)</label>
+                        <input type="text" name="turnstile_site_key" value="{{ $settings['turnstile_site_key'] ?? '' }}" 
+                               class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all font-mono font-bold text-gray-800 text-xs" placeholder="0x4AAAAAAAXxxxxxxx">
+                        <p class="text-[10px] text-gray-400 mt-1 ml-1">Didapatkan dari dashboard Cloudflare ➔ Turnstile ➔ Site Key.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Turnstile Secret Key (Rahasia)</label>
+                        <input type="password" name="turnstile_secret_key" value="{{ $settings['turnstile_secret_key'] ?? '' }}" 
+                               class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all font-mono font-bold text-gray-800 text-xs" placeholder="0x4AAAAAAAXxxxxxxx_SecretKey">
+                        <p class="text-[10px] text-gray-400 mt-1 ml-1">Kunci rahasia untuk verifikasi backend token dari Cloudflare.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 flex items-center space-x-3 text-xs text-amber-900 font-medium">
+                    <span class="text-xl">🛡️</span>
+                    <span>Ketika diaktifkan, widget <b>Cloudflare Turnstile</b> akan otomatis muncul dan memvalidasi setiap pengunjung saat <b>Checkout Pesanan</b>, <b>Lacak Resi Pesanan</b>, dan <b>Login Staff</b> untuk memblokir bot spam secara instan tanpa mengganggu kenyamanan pembeli.</span>
+                </div>
+            </div>
+
         </div>
 
         {{-- TOMBOL SIMPAN SEMUA PENGATURAN --}}

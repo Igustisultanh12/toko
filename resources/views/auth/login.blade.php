@@ -10,6 +10,9 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    @if(\App\Services\TurnstileService::isEnabled())
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    @endif
     
     <style>
         body {
@@ -81,6 +84,16 @@
                         <span class="ml-2 text-xs font-bold text-gray-500">Ingat saya</span>
                     </label>
                 </div>
+
+                {{-- WIDGET CLOUDFLARE TURNSTILE (JIKA AKTIF DI SETTING ADMIN) --}}
+                @if(\App\Services\TurnstileService::isEnabled())
+                    <div class="pt-2 flex flex-col items-center justify-center">
+                        <div class="cf-turnstile" data-sitekey="{{ \App\Services\TurnstileService::getSiteKey() }}" data-theme="light"></div>
+                        @error('turnstile')
+                            <p class="text-rose-500 text-[10px] font-bold text-center mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                @endif
 
                 <button type="submit" 
                         class="w-full bg-[#00AA13] hover:bg-[#00880F] text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-500/25 active:scale-95 transition-all mt-2">

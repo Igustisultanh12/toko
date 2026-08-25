@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Services\TurnstileService;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -40,6 +41,16 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
+
+        // 1. Verifikasi Cloudflare Turnstile jika diaktifkan di admin
+        if (TurnstileService::isEnabled()) {
+            $turnstileToken = $this->input('cf-turnstile-response');
+            if (!TurnstileService::verify($turnstileToken, $this->ip())) {
+                throw ValidationException::withMessages([
+                    'turnstile' => 'Verifikasi keamanan Cloudflare Turnstile gagal atau kadaluarsa. Silakan refresh dan coba lagi.',
+                ]);
+            }
+        }
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());

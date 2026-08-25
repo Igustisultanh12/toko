@@ -227,6 +227,13 @@
                             <span class="text-lg font-black text-[#00AA13]" x-text="formatRupiah(totalPrice)"></span>
                         </div>
 
+                        {{-- WIDGET CLOUDFLARE TURNSTILE (JIKA AKTIF DI SETTING ADMIN) --}}
+                        @if(\App\Services\TurnstileService::isEnabled())
+                            <div class="pt-1 pb-1 flex justify-center">
+                                <div class="cf-turnstile" data-sitekey="{{ \App\Services\TurnstileService::getSiteKey() }}" data-theme="light"></div>
+                            </div>
+                        @endif
+
                         <button type="submit" 
                                 class="w-full py-4 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/25 transition flex items-center justify-center space-x-2">
                             <span>💳 Buat Pesanan & Bayar QRIS</span>

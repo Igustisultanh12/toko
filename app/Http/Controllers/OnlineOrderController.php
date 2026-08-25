@@ -48,6 +48,14 @@ class OnlineOrderController extends Controller
      */
     public function store(Request $request)
     {
+        // 1. Verifikasi Cloudflare Turnstile jika aktif
+        if (TurnstileService::isEnabled()) {
+            $turnstileToken = $request->input('cf-turnstile-response');
+            if (!TurnstileService::verify($turnstileToken, $request->ip())) {
+                return back()->withInput()->with('error', 'Verifikasi keamanan Cloudflare Turnstile gagal atau kadaluarsa. Silakan refresh dan coba lagi.');
+            }
+        }
+
         $request->validate([
             'customer_name'    => 'required|string|max:100',
             'customer_phone'   => 'required|string|max:20',
@@ -330,6 +338,14 @@ class OnlineOrderController extends Controller
         $shop = Setting::pluck('value', 'key')->all();
 
         if ($search) {
+            // Verifikasi Cloudflare Turnstile jika aktif
+            if (TurnstileService::isEnabled()) {
+                $turnstileToken = $request->get('cf-turnstile-response');
+                if (!TurnstileService::verify($turnstileToken, $request->ip())) {
+                    return back()->withInput()->with('error', 'Verifikasi keamanan Cloudflare Turnstile gagal atau kadaluarsa. Silakan coba lagi.');
+                }
+            }
+
             $orders = Order::with('items')
                 ->where(function($query) use ($search) {
                     $query->where('order_number', 'LIKE', "%{$search}%")
