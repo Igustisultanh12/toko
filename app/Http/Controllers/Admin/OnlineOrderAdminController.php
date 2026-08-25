@@ -23,12 +23,15 @@ class OnlineOrderAdminController extends Controller
 
         $query = Order::with(['items.product', 'confirmedByUser']);
 
-        if ($status !== 'all') {
-            if ($status === 'unconfirmed') {
-                $query->where('status', 'paid');
-            } else {
-                $query->where('status', $status);
-            }
+        // ATURAN MUTLAK: Hanya pesanan yang SUDAH LUNAS (payment_status = paid) yang masuk ke daftar operasional
+        if ($status === 'all') {
+            $query->where('payment_status', 'paid');
+        } elseif ($status === 'unconfirmed') {
+            $query->where('status', 'paid')->where('payment_status', 'paid');
+        } elseif ($status === 'pending') {
+            $query->where('payment_status', '!=', 'paid');
+        } else {
+            $query->where('status', $status)->where('payment_status', 'paid');
         }
 
         if ($search) {
@@ -42,14 +45,14 @@ class OnlineOrderAdminController extends Controller
 
         $orders = $query->orderBy('created_at', 'desc')->paginate(15)->withQueryString();
 
-        // Hitung statistik tab
+        // Hitung statistik tab (Hanya pesanan yang sudah lunas)
         $counts = [
-            'all'         => Order::count(),
-            'unconfirmed' => Order::where('status', 'paid')->count(),
+            'all'         => Order::where('payment_status', 'paid')->count(),
+            'unconfirmed' => Order::where('status', 'paid')->where('payment_status', 'paid')->count(),
             'processing'  => Order::where('status', 'processing')->count(),
             'shipped'     => Order::where('status', 'shipped')->count(),
             'completed'   => Order::where('status', 'completed')->count(),
-            'pending'     => Order::where('status', 'pending_payment')->count(),
+            'pending'     => Order::where('payment_status', '!=', 'paid')->count(),
         ];
 
         $shop = Setting::pluck('value', 'key')->all();
@@ -160,9 +163,10 @@ class OnlineOrderAdminController extends Controller
      */
     public function checkNewOrders()
     {
-        // Ambil pesanan yang berstatus 'paid' (Sudah bayar tapi belum dikonfirmasi)
+        // Ambil pesanan yang berstatus 'paid' & payment_status 'paid' (Sudah bayar tapi belum dikonfirmasi)
         $unconfirmedOrders = Order::with('items')
             ->where('status', 'paid')
+            ->where('payment_status', 'paid')
             ->orderBy('paid_at', 'desc')
             ->get();
 

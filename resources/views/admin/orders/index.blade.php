@@ -25,16 +25,16 @@
     </div>
 
     {{-- STATS CARDS TABS --}}
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         <a href="{{ route('admin.orders.index', ['status' => 'all']) }}" 
            class="p-5 rounded-[2rem] border transition-all text-center {{ $status === 'all' ? 'bg-gradient-to-r from-[#004D13] to-[#00880F] text-white shadow-lg' : 'bg-white text-gray-700 border-gray-100 hover:border-emerald-200' }}">
-            <span class="text-[10px] font-black uppercase tracking-widest block opacity-80">Semua Pesanan</span>
+            <span class="text-[10px] font-black uppercase tracking-widest block opacity-80">Semua Lunas</span>
             <h4 class="text-2xl font-black mt-1">{{ $counts['all'] }}</h4>
         </a>
 
         <a href="{{ route('admin.orders.index', ['status' => 'unconfirmed']) }}" 
            class="p-5 rounded-[2rem] border transition-all text-center {{ $status === 'unconfirmed' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-blue-600 border-blue-100 hover:bg-blue-50/50' }}">
-            <span class="text-[10px] font-black uppercase tracking-widest block opacity-80">Perlu Konfirmasi (Paid)</span>
+            <span class="text-[10px] font-black uppercase tracking-widest block opacity-80">Perlu Konfirmasi</span>
             <h4 class="text-2xl font-black mt-1">{{ $counts['unconfirmed'] }}</h4>
         </a>
 
@@ -54,6 +54,12 @@
            class="p-5 rounded-[2rem] border transition-all text-center {{ $status === 'completed' ? 'bg-gray-800 text-white shadow-lg' : 'bg-white text-gray-700 border-gray-100 hover:bg-gray-50' }}">
             <span class="text-[10px] font-black uppercase tracking-widest block opacity-80">Selesai / Diterima</span>
             <h4 class="text-2xl font-black mt-1">{{ $counts['completed'] }}</h4>
+        </a>
+
+        <a href="{{ route('admin.orders.index', ['status' => 'pending']) }}" 
+           class="p-5 rounded-[2rem] border transition-all text-center {{ $status === 'pending' ? 'bg-amber-600 text-white shadow-lg' : 'bg-white text-amber-600 border-amber-100 hover:bg-amber-50/50' }}">
+            <span class="text-[10px] font-black uppercase tracking-widest block opacity-80">Belum Bayar (Draft)</span>
+            <h4 class="text-2xl font-black mt-1">{{ $counts['pending'] }}</h4>
         </a>
     </div>
 
