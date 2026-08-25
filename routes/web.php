@@ -27,6 +27,9 @@ Route::get('/', function () {
 Route::get('/order', [OnlineOrderController::class, 'index'])->name('order.index');
 Route::get('/toko', [OnlineOrderController::class, 'index'])->name('order.storefront');
 Route::get('/pesan-online', [OnlineOrderController::class, 'index'])->name('order.online');
+Route::get('/order/checkout', function() {
+    return redirect()->route('order.index');
+});
 Route::post('/order/checkout', [OnlineOrderController::class, 'store'])->name('order.checkout');
 Route::get('/order/pay/{order_number}', [OnlineOrderController::class, 'pay'])->name('order.pay');
 Route::get('/order/get-qris/{order_number}', [OnlineOrderController::class, 'getQris'])->name('order.getQris');
