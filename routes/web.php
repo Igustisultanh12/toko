@@ -36,6 +36,17 @@ Route::get('/verify/document', [TteVerificationController::class, 'verifyDocumen
 Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::class, 'generateShippingLabel'])->name('shipping.label.pdf');
 
 /**
+ * Fallback Route untuk Serving File Storage Publik (Anti 404 jika symlink server aaPanel belum aktif)
+ */
+Route::get('/storage/{path}', function ($path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    return response()->file($filePath);
+})->where('path', '.*')->name('storage.fallback');
+
+/**
  * 3. RUTE TERPROTEKSI (LOGIN WAJIB)
  */
 Route::middleware(['auth'])->group(function () {
