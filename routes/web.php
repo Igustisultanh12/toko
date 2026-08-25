@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ManualGuideController;
 use App\Http\Controllers\Cashier\SaleController;
 use App\Http\Controllers\DokuNotificationController;
 use App\Http\Controllers\DokuInquiryController;
@@ -142,6 +143,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+
+        // 4. BUKU PANDUAN PENGGUNA (WEB VIEW & PDF LENGKAP)
+        Route::get('/manual-guide', [ManualGuideController::class, 'index'])->name('manual.index');
+        Route::get('/manual-guide/pdf', [ManualGuideController::class, 'exportPdf'])->name('manual.pdf');
     });
 
     // --- GRUP KASIR (Bisa diakses oleh Kasir dan Administrator) ---

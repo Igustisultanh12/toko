@@ -90,6 +90,32 @@
         </div>
     </div>
 
+    {{-- DOKUMENTASI & BUKU PANDUAN BANNER --}}
+    <div class="bg-white rounded-3xl p-5 sm:p-6 border border-emerald-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00880F] flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <div>
+                <h4 class="font-black text-gray-900 text-sm uppercase tracking-tight">Buku Panduan Lengkap Sistem (Manual Pengguna)</h4>
+                <p class="text-xs text-gray-500 mt-0.5">Panduan menyeluruh 10 Bab mulai dari login, kasir POS, DOKU QRIS, laporan keuangan, hingga TTE digital.</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2 shrink-0 w-full sm:w-auto">
+            <a href="{{ route('admin.manual.index') }}" 
+               class="flex-1 sm:flex-none text-center px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-black text-xs uppercase tracking-wider transition">
+                Baca Online
+            </a>
+            <a href="{{ route('admin.manual.pdf') }}" 
+               class="flex-1 sm:flex-none text-center px-5 py-2.5 bg-[#00AA13] hover:bg-[#00880F] text-white rounded-xl font-black text-xs uppercase tracking-wider shadow-md shadow-emerald-500/20 transition flex items-center justify-center space-x-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Unduh PDF</span>
+            </a>
+        </div>
+    </div>
+
     {{-- 2. KARTU STATISTIK GRID --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {{-- KARTU 1 --}}
