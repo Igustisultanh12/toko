@@ -41,8 +41,14 @@ Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::cla
 Route::get('/storage/{path}', function ($path) {
     $filePath = storage_path('app/public/' . $path);
     if (!file_exists($filePath)) {
-        abort(404);
+        \Illuminate\Support\Facades\Log::warning("Storage file tidak ditemukan di server: {$path}", [
+            'expected_path' => $filePath,
+            'url'           => request()->fullUrl(),
+            'ip'            => request()->ip()
+        ]);
+        abort(404, "File '{$path}' tidak ditemukan di storage server.");
     }
+    \Illuminate\Support\Facades\Log::info("Serving storage asset: {$path}");
     return response()->file($filePath);
 })->where('path', '.*')->name('storage.fallback');
 

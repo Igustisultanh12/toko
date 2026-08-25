@@ -8,6 +8,7 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SettingController extends Controller
 {
@@ -53,19 +54,34 @@ class SettingController extends Controller
         // 3. LOGIKA UPLOAD FAVICON
         if ($request->hasFile('app_favicon')) {
             $this->deleteOldFile('app_favicon');
-            $data['app_favicon'] = $request->file('app_favicon')->store('favicons', 'public');
+            $path = $request->file('app_favicon')->store('favicons', 'public');
+            $data['app_favicon'] = $path;
+            Log::info("Favicon baru berhasil disimpan di storage: " . $path, [
+                'full_path' => storage_path('app/public/' . $path),
+                'exists'    => file_exists(storage_path('app/public/' . $path))
+            ]);
         }
 
         // 4. LOGIKA UPLOAD LOGO TOKO
         if ($request->hasFile('shop_logo')) {
             $this->deleteOldFile('shop_logo');
-            $data['shop_logo'] = $request->file('shop_logo')->store('logos', 'public');
+            $path = $request->file('shop_logo')->store('logos', 'public');
+            $data['shop_logo'] = $path;
+            Log::info("Logo toko baru berhasil disimpan di storage: " . $path, [
+                'full_path' => storage_path('app/public/' . $path),
+                'exists'    => file_exists(storage_path('app/public/' . $path))
+            ]);
         }
 
         // 5. LOGIKA UPLOAD MP3 NOTIFIKASI
         if ($request->hasFile('payment_success_sound')) {
             $this->deleteOldFile('payment_success_sound');
-            $data['payment_success_sound'] = $request->file('payment_success_sound')->store('audio', 'public');
+            $path = $request->file('payment_success_sound')->store('audio', 'public');
+            $data['payment_success_sound'] = $path;
+            Log::info("Audio suara kasir baru berhasil disimpan di storage: " . $path, [
+                'full_path' => storage_path('app/public/' . $path),
+                'exists'    => file_exists(storage_path('app/public/' . $path))
+            ]);
         }
 
         // 6. EKSEKUSI PENYIMPANAN
@@ -80,6 +96,7 @@ class SettingController extends Controller
             }
 
             DB::commit();
+            Log::info('Pengaturan toko berhasil diperbarui oleh user: ' . (auth()->user()->name ?? 'System'));
 
             // Refresh cache sistem agar perubahan langsung aktif di seluruh halaman
             Artisan::call('optimize:clear');
@@ -87,6 +104,9 @@ class SettingController extends Controller
             return back()->with('success', 'Pengaturan Aplikasi & Identitas Toko Berhasil Diperbarui!');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Gagal memperbarui pengaturan toko: ' . $e->getMessage(), [
+                'exception' => $e->getTraceAsString()
+            ]);
             return back()->with('error', 'Gagal Memperbarui: ' . $e->getMessage());
         }
     }
@@ -100,6 +120,7 @@ class SettingController extends Controller
         if ($setting && $setting->value) {
             if (Storage::disk('public')->exists($setting->value)) {
                 Storage::disk('public')->delete($setting->value);
+                Log::info("File lama untuk setting '{$key}' berhasil dihapus: " . $setting->value);
             }
         }
     }
