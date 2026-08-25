@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Pusat Pengaturan Sistem')
 @section('header_title', 'Pengaturan Sistem & Toko')
@@ -131,29 +131,53 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" stroke-width="2.5"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-lg font-black uppercase tracking-tight">Gateway QRIS (DOKU)</h3>
-                        <p class="text-xs text-indigo-300 font-medium">Kredensial pembayaran digital merchant.</p>
+                        <h3 class="text-lg font-black uppercase tracking-tight">Gateway QRIS (DOKU API)</h3>
+                        <p class="text-xs text-indigo-300 font-medium">Kredensial API Merchant DOKU.</p>
                     </div>
                 </div>
 
                 <div class="space-y-5">
                     <div>
-                        <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1.5 ml-1">DOKU Client ID</label>
+                        <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1.5 ml-1">DOKU Client ID (Mall ID / Client ID)</label>
                         <input type="text" name="doku_client_id" value="{{ $settings['doku_client_id'] ?? '' }}" 
-                               class="w-full p-4 bg-indigo-900/50 border-2 border-indigo-800 rounded-2xl outline-none focus:border-indigo-400 transition-all font-mono text-xs text-indigo-100" placeholder="MCH-XXXXX">
+                               class="w-full p-4 bg-indigo-900/50 border-2 border-indigo-800 rounded-2xl outline-none focus:border-indigo-400 transition-all font-mono text-xs text-indigo-100" placeholder="Contoh: MCH-123456789">
                     </div>
+                    
                     <div>
-                        <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1.5 ml-1">DOKU Secret Key</label>
-                        <input type="password" name="doku_secret_key" value="{{ $settings['doku_secret_key'] ?? '' }}" 
-                               class="w-full p-4 bg-indigo-900/50 border-2 border-indigo-800 rounded-2xl outline-none focus:border-indigo-400 transition-all font-mono text-xs text-indigo-100" placeholder="SK-XXXXX">
+                        <div class="flex justify-between items-center mb-1.5 ml-1">
+                            <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-widest">DOKU Secret Key (API Key)</label>
+                            <button type="button" onclick="toggleSecretKeyVisibility()" class="text-[10px] text-indigo-300 hover:text-white font-bold underline">
+                                <span id="toggleText">👁️ Tampilkan Key</span>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <input type="password" id="dokuSecretKeyInput" name="doku_secret_key" value="{{ $settings['doku_secret_key'] ?? '' }}" 
+                                   class="w-full p-4 bg-indigo-900/50 border-2 border-indigo-800 rounded-2xl outline-none focus:border-indigo-400 transition-all font-mono text-xs text-indigo-100 pr-12" placeholder="Contoh: SK-XXXXXXXXXXXXXXXX">
+                        </div>
                     </div>
+
                     <div>
                         <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1.5 ml-1">Environment Server</label>
                         <select name="doku_base_url" class="w-full p-4 bg-indigo-900/50 border-2 border-indigo-800 rounded-2xl outline-none focus:border-indigo-400 transition-all font-bold text-xs text-indigo-100 appearance-none">
-                            <option value="https://api-sandbox.doku.com" {{ ($settings['doku_base_url'] ?? '') == 'https://api-sandbox.doku.com' ? 'selected' : '' }}>SANDBOX (Uji Coba Testing)</option>
-                            <option value="https://api.doku.com" {{ ($settings['doku_base_url'] ?? '') == 'https://api.doku.com' ? 'selected' : '' }}>PRODUCTION (Live / Transaksi Asli)</option>
+                            <option value="https://api-sandbox.doku.com" {{ ($settings['doku_base_url'] ?? '') == 'https://api-sandbox.doku.com' ? 'selected' : '' }}>🟡 SANDBOX (Uji Coba Testing)</option>
+                            <option value="https://api.doku.com" {{ ($settings['doku_base_url'] ?? '') == 'https://api.doku.com' ? 'selected' : '' }}>🟢 PRODUCTION (Live / Transaksi Asli)</option>
                         </select>
                     </div>
+
+                    {{-- KOTAK LINK WEBHOOK UNTUK DISALIN KE DASHBOARD DOKU --}}
+                    <div class="p-4 bg-indigo-900/40 border border-indigo-700/60 rounded-2xl space-y-1.5">
+                        <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-wider">URL Webhook DOKU (Notification URL):</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" readonly value="{{ url('/doku/notification') }}" id="webhookUrlInput"
+                                   class="w-full bg-indigo-950/80 border border-indigo-800 text-indigo-200 text-[11px] font-mono px-3 py-2 rounded-xl outline-none">
+                            <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('webhookUrlInput').value); alert('URL Webhook berhasil disalin!');"
+                                    class="px-3 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-black rounded-xl uppercase shrink-0">
+                                Salin
+                            </button>
+                        </div>
+                        <p class="text-[9px] text-indigo-300">Tempel link di atas pada menu <i>Notification URL</i> di Dashboard DOKU Merchant Anda.</p>
+                    </div>
+
                     <div>
                         <label class="block text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1.5 ml-1">Catatan Kaki Struk (Receipt Footer)</label>
                         <input type="text" name="receipt_footer" value="{{ $settings['receipt_footer'] ?? 'Terima Kasih Telah Berbelanja!' }}" 
@@ -215,4 +239,18 @@
 
     </form>
 </div>
+
+<script>
+function toggleSecretKeyVisibility() {
+    const input = document.getElementById('dokuSecretKeyInput');
+    const toggleText = document.getElementById('toggleText');
+    if (input.type === 'password') {
+        input.type = 'text';
+        toggleText.innerText = '🙈 Sembunyikan Key';
+    } else {
+        input.type = 'password';
+        toggleText.innerText = '👁️ Tampilkan Key';
+    }
+}
+</script>
 @endsection
