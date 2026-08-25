@@ -232,9 +232,9 @@
     {{-- MODAL DETAIL & KELOLA PROSES PESANAN LENGKAP --}}
     {{-- ======================================================== --}}
     <div x-show="isDetailModalOpen" 
-         class="fixed inset-0 z-50 overflow-y-auto bg-indigo-950/80 backdrop-blur-md p-4 sm:p-6" 
+         class="fixed inset-0 z-50 overflow-y-auto bg-indigo-950/80 backdrop-blur-md p-3 sm:p-6" 
          x-cloak x-transition>
-        <div class="min-h-full flex items-start sm:items-center justify-center py-6">
+        <div class="min-h-full flex items-start justify-center py-4 sm:py-8">
             <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 max-w-3xl w-full shadow-2xl space-y-6 border border-gray-100 relative"
                  @click.outside="isDetailModalOpen = false">
             
