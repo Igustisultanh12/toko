@@ -131,7 +131,7 @@ class SaleController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error("Transaksi POS Error: " . $e->getMessage());
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['error' => $e->getMessage(), 'message' => $e->getMessage()], 500);
         }
     }
 

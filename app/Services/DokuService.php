@@ -11,41 +11,57 @@ use Illuminate\Support\Str;
 class DokuService
 {
     /**
-     * AMBIL KONFIGURASI DARI PUSAT KOMANDO
+     * AMBIL KONFIGURASI DARI PUSAT KOMANDO DENGAN MULTI-TIER FALLBACK
      */
     private function getConfig()
     {
         $settings = Setting::pluck('value', 'key')->all();
+
+        $clientId = $settings['doku_client_id'] ?? env('DOKU_CLIENT_ID') ?? config('services.doku.client_id');
+        $secretKey = $settings['doku_secret_key'] ?? env('DOKU_SECRET_KEY') ?? config('services.doku.secret_key');
+
+        // Deteksi mode produksi / sandbox
+        $isProduction = filter_var($settings['doku_is_production'] ?? env('DOKU_IS_PRODUCTION') ?? config('services.doku.is_production', false), FILTER_VALIDATE_BOOLEAN);
+        $defaultBaseUrl = $isProduction ? 'https://api.doku.com' : 'https://api-sandbox.doku.com';
+
+        $baseUrl = $settings['doku_base_url'] ?? env('DOKU_BASE_URL') ?? config('services.doku.base_url') ?? $defaultBaseUrl;
+        if (empty($baseUrl) || !str_starts_with($baseUrl, 'http')) {
+            $baseUrl = $defaultBaseUrl;
+        }
+
         return [
-            'client_id'  => $settings['doku_client_id'] ?? env('DOKU_CLIENT_ID'),
-            'secret_key' => $settings['doku_secret_key'] ?? env('DOKU_SECRET_KEY'),
-            'base_url'   => rtrim($settings['doku_base_url'] ?? env('DOKU_BASE_URL'), '/'),
+            'client_id'  => trim($clientId),
+            'secret_key' => trim($secretKey),
+            'base_url'   => rtrim($baseUrl, '/'),
         ];
     }
 
     /**
-     * GENERATE QRIS (Metode Direct Checkout)
-     * Menggunakan jalur /payment dengan callback khusus untuk pemulihan State
+     * GENERATE QRIS TRANSAKSI KASIR (POS)
      */
     public function generateQris($sale)
     {
         $config = $this->getConfig();
         $targetPath = '/checkout/v1/payment'; 
+
+        $customerName = !empty($sale->customer_name) ? preg_replace('/[^A-Za-z0-9\s]/', '', $sale->customer_name) : 'Pelanggan Umum';
+        if (trim($customerName) === '') {
+            $customerName = 'Pelanggan Umum';
+        }
         
         $body = [
             'order' => [
-                'amount' => (int) $sale->total_amount,
+                'amount' => (int) round($sale->total_amount),
                 'invoice_number' => $sale->transaction_number,
-                // MODIFIKASI: Tambahkan parameter status dan sale_id untuk deteksi di Frontend
                 'callback_url' => route('cashier.pos.index') . '?status=return&sale_id=' . $sale->id,
             ],
             'payment' => [
-                'payment_due_date' => 2,
+                'payment_due_date' => 60,
                 'payment_method_types' => ['QRIS'], 
             ],
             'customer' => [
-                'id'    => 'CUST-' . ($sale->user_id ?? 'GUEST'),
-                'name'  => !empty($sale->customer_name) ? $sale->customer_name : (Auth::user()->name ?? 'Pelanggan Umum'),
+                'id'    => 'CUST-' . ($sale->user_id ?? 'GUEST') . '-' . $sale->id,
+                'name'  => substr($customerName, 0, 50),
                 'email' => 'admin@sultanweb.id',
             ]
         ];
@@ -56,7 +72,7 @@ class DokuService
             return $response['response']['payment']['url'];
         }
 
-        Log::error('DOKU API Error: ' . json_encode($response));
+        Log::error('DOKU POS API Error: ' . json_encode($response));
         return null;
     }
 
@@ -101,14 +117,23 @@ class DokuService
     }
 
     /**
-     * EKSEKUSI REQUEST (Protokol Legacy HMAC)
+     * EKSEKUSI REQUEST (Protokol HMAC-SHA256 DOKU Jokul API)
      */
     private function executeRequest($targetPath, $body, $config)
     {
+        if (empty($config['client_id']) || empty($config['secret_key']) || empty($config['base_url'])) {
+            Log::error('DOKU Config missing: ', [
+                'has_client_id'  => !empty($config['client_id']),
+                'has_secret_key' => !empty($config['secret_key']),
+                'base_url'       => $config['base_url'] ?? 'EMPTY'
+            ]);
+            return null;
+        }
+
         $requestId = (string) Str::uuid();
         $timestamp = gmdate("Y-m-d\TH:i:s\Z");
 
-        $jsonBody = json_encode($body);
+        $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
         $digest = base64_encode(hash('sha256', $jsonBody, true));
 
         $signatureString = "Client-Id:" . $config['client_id'] . "\n" .
@@ -120,18 +145,24 @@ class DokuService
         $signature = base64_encode(hash_hmac('sha256', $signatureString, $config['secret_key'], true));
 
         try {
-            $response = Http::withHeaders([
+            $fullUrl = $config['base_url'] . $targetPath;
+            $response = Http::timeout(20)->withHeaders([
                 'Client-Id'         => $config['client_id'],
                 'Request-Id'        => $requestId,
                 'Request-Timestamp' => $timestamp,
                 'Signature'         => "HMACSHA256=" . $signature,
                 'Content-Type'      => 'application/json'
-            ])->post($config['base_url'] . $targetPath, $body);
+            ])->post($fullUrl, $body);
 
-            return $response->json();
+            $result = $response->json();
+            Log::info("DOKU Request to {$fullUrl} (HTTP {$response->status()}):", [
+                'body' => $result
+            ]);
+
+            return $result;
 
         } catch (\Exception $e) {
-            Log::error('DOKU Connection Error: ' . $e->getMessage());
+            Log::error("DOKU Connection Error ({$targetPath}): " . $e->getMessage());
             return null;
         }
     }
