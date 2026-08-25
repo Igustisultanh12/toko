@@ -25,7 +25,7 @@ class ReportController extends Controller
      */
     private function buildSalesReportQuery(Request $request)
     {
-        $period = $request->input('period', 'daily');
+        $period = $request->input('period', 'all');
         $date = $request->input('date', date('Y-m-d'));
         $month = $request->input('month', date('Y-m'));
         $quarter = (int) $request->input('quarter', ceil(date('n') / 3));
@@ -73,8 +73,10 @@ class ReportController extends Controller
                 $periodLabel = 'Tahunan (' . $year . ')';
                 break;
 
+            case 'all':
             default:
-                $periodLabel = 'Semua Transaksi';
+                $period = 'all';
+                $periodLabel = 'Semua Periode';
                 break;
         }
 
@@ -340,8 +342,14 @@ class ReportController extends Controller
             'qris_income'        => $allMatchingSales->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount'),
             'pending_income'     => $allMatchingSales->where('payment_status', 'pending')->sum('total_amount'),
             'total_transactions' => $allMatchingSales->where('payment_status', 'success')->count(),
+            'cash_count'         => $allMatchingSales->where('payment_method', 'cash')->where('payment_status', 'success')->count(),
+            'qris_count'         => $allMatchingSales->where('payment_method', 'qris')->where('payment_status', 'success')->count(),
             'pending_count'      => $allMatchingSales->where('payment_status', 'pending')->count(),
         ];
+
+        // Pisahkan data transaksi tunai dan qris untuk tab instan
+        $cashTransactions = (clone $query)->where('payment_method', 'cash')->orderBy('created_at', 'desc')->get();
+        $qrisTransactions = (clone $query)->where('payment_method', 'qris')->orderBy('created_at', 'desc')->get();
 
         // Chart tren arus kas 7 hari terakhir
         $chartData = Sale::where('payment_status', 'success')
@@ -358,7 +366,7 @@ class ReportController extends Controller
 
         $transactions = $query->orderBy('created_at', 'desc')->paginate(15)->withQueryString();
 
-        return view('reports.finance', compact('transactions', 'stats', 'chartData', 'periodLabel', 'filters'));
+        return view('reports.finance', compact('transactions', 'cashTransactions', 'qrisTransactions', 'stats', 'chartData', 'periodLabel', 'filters'));
     }
 
     /**

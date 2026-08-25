@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <title>Laporan Keuangan - {{ $shop['app_name'] ?? 'SIKANDA' }}</title>
     <style>
         @page {
             size: a4 landscape;
@@ -40,21 +41,35 @@
 <body>
     <div class="kop">
         {{ $shop['shop_name'] ?? 'TOKO ANANDA' }}<br>
-        <span class="underline-line">ADMINISTRASI KASIR SIKANDA</span>
+        <span class="underline-line">ADMINISTRASI KASIR {{ $shop['app_name'] ?? 'SIKANDA' }}</span>
     </div>
 
-    <p class="judul">LAPORAN KEUANGAN DAN ARUS KAS</p>
-    <p class="sub-judul">Nomor: LPK / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Periode: {{ $periodLabel ?? 'Semua' }}</p>
+    @php
+        $method = strtolower($filters['payment_method'] ?? 'all');
+        if ($method === 'cash') {
+            $reportTitle = 'LAPORAN REKAPITULASI PENERIMAAN KAS TUNAI (CASH)';
+            $docPrefix = 'LTNI';
+        } elseif ($method === 'qris') {
+            $reportTitle = 'LAPORAN REKAPITULASI PENERIMAAN DIGITAL QRIS (DOKU)';
+            $docPrefix = 'LQRS';
+        } else {
+            $reportTitle = 'LAPORAN REKAPITULASI KEUANGAN & ARUS KAS';
+            $docPrefix = 'LKEU';
+        }
+    @endphp
 
-    <p>1. &nbsp;&nbsp; Laporan penerimaan kas dan transaksi finansial pada periode {{ $periodLabel ?? '' }} dengan rincian sebagai berikut:</p>
+    <p class="judul">{{ $reportTitle }}</p>
+    <p class="sub-judul">Nomor: {{ $docPrefix }} / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Periode: {{ $periodLabel ?? 'Semua' }} &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
+
+    <p>1. &nbsp;&nbsp; Rekapitulasi transaksi penerimaan kas dan keuangan pada periode {{ $periodLabel ?? '' }} dengan rincian sebagai berikut:</p>
 
     <table class="data">
         <thead>
             <tr>
                 <th width="4%">NO</th>
                 <th width="20%">NOMOR INVOICE</th>
-                <th width="20%">NAMA PELANGGAN</th>
-                <th width="20%">TANGGAL & WAKTU</th>
+                <th width="22%">NAMA PELANGGAN</th>
+                <th width="18%">TANGGAL & WAKTU</th>
                 <th width="16%">KANAL BAYAR</th>
                 <th width="20%">NOMINAL MASUK</th>
             </tr>
@@ -68,7 +83,7 @@
             @forelse($transactions as $index => $trx)
             <tr>
                 <td align="center">{{ $index + 1 }}</td>
-                <td align="center">{{ $trx->transaction_number }}</td>
+                <td align="center" style="font-family: monospace;">{{ $trx->transaction_number }}</td>
                 <td>{{ $trx->customer_name ?? 'Pelanggan Umum' }}</td>
                 <td align="center">{{ $trx->created_at->format('d/m/Y - H:i') }} WIB</td>
                 <td align="center">
@@ -92,27 +107,41 @@
             @endif
             @empty
             <tr>
-                <td colspan="6" align="center">Tidak ada transaksi keuangan pada periode ini.</td>
+                <td colspan="6" align="center" style="padding: 20px; font-style: italic; color: #777;">
+                    Tidak ada transaksi keuangan pada periode ini.
+                </td>
             </tr>
             @endforelse
         </tbody>
         <tfoot>
-            <tr class="total-row">
-                <td colspan="4" align="right">TOTAL PENERIMAAN KAS TUNAI:</td>
-                <td colspan="2" align="right">Rp {{ number_format($calcCash, 0, ',', '.') }}</td>
-            </tr>
-            <tr class="total-row">
-                <td colspan="4" align="right">TOTAL PENERIMAAN DIGITAL QRIS:</td>
-                <td colspan="2" align="right">Rp {{ number_format($calcQris, 0, ',', '.') }}</td>
-            </tr>
-            <tr class="total-row" style="background-color: #dddddd;">
-                <td colspan="4" align="right">TOTAL PEMASUKAN BERSIH (LUNAS):</td>
-                <td colspan="2" align="right">Rp {{ number_format($calcTotal, 0, ',', '.') }}</td>
-            </tr>
+            @if($method === 'cash')
+                <tr class="total-row" style="background-color: #dddddd;">
+                    <td colspan="4" align="right">TOTAL PENERIMAAN KAS TUNAI ({{ $transactions->where('payment_status', 'success')->count() }} TRANSAKSI):</td>
+                    <td colspan="2" align="right">Rp {{ number_format($calcCash, 0, ',', '.') }}</td>
+                </tr>
+            @elseif($method === 'qris')
+                <tr class="total-row" style="background-color: #dddddd;">
+                    <td colspan="4" align="right">TOTAL PENERIMAAN DIGITAL QRIS ({{ $transactions->where('payment_status', 'success')->count() }} TRANSAKSI):</td>
+                    <td colspan="2" align="right">Rp {{ number_format($calcQris, 0, ',', '.') }}</td>
+                </tr>
+            @else
+                <tr class="total-row">
+                    <td colspan="4" align="right">TOTAL PENERIMAAN KAS TUNAI:</td>
+                    <td colspan="2" align="right">Rp {{ number_format($calcCash, 0, ',', '.') }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="4" align="right">TOTAL PENERIMAAN DIGITAL QRIS:</td>
+                    <td colspan="2" align="right">Rp {{ number_format($calcQris, 0, ',', '.') }}</td>
+                </tr>
+                <tr class="total-row" style="background-color: #dddddd;">
+                    <td colspan="4" align="right">TOTAL PEMASUKAN BERSIH (LUNAS):</td>
+                    <td colspan="2" align="right">Rp {{ number_format($calcTotal, 0, ',', '.') }}</td>
+                </tr>
+            @endif
         </tfoot>
     </table>
 
-    <p>2. &nbsp;&nbsp; Laporan ini dibuat berdasarkan catatan otomatis sistem SIKANDA untuk dipergunakan sebagaimana mestinya.</p>
+    <p>2. &nbsp;&nbsp; Laporan ini dibuat secara otomatis oleh sistem {{ $shop['app_name'] ?? 'SIKANDA' }} untuk dipergunakan sebagai dokumen audit arus kas dan rekonsiliasi keuangan.</p>
 
     <div class="footer">
         Jember, {{ date('d F Y') }}<br>
