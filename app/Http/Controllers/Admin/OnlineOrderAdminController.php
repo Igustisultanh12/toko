@@ -9,6 +9,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class OnlineOrderAdminController extends Controller
@@ -18,6 +19,11 @@ class OnlineOrderAdminController extends Controller
      */
     public function index(Request $request)
     {
+        // Jalankan pembersihan otomatis untuk pesanan yang tidak dibayar lebih dari 24 jam
+        try {
+            Artisan::call('orders:cleanup-unpaid', ['--hours' => 24]);
+        } catch (\Exception $e) {}
+
         $status = $request->get('status', 'all');
         $search = $request->get('search');
 
