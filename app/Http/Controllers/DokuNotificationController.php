@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Order;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +66,11 @@ class DokuNotificationController extends Controller
                             'paid_at'        => now(),
                         ]);
 
-                        $this->sendTelegramOrderNotification($order);
+                        try {
+                            $this->sendTelegramOrderNotification($order);
+                        } catch (\Throwable $te) {
+                            Log::warning("Telegram Notification Order failed: " . $te->getMessage());
+                        }
                         Log::info("Pesanan Online {$invoiceNumber} LUNAS via QRIS DOKU.");
                     } elseif ($isFailed) {
                         $order->update([
@@ -119,7 +125,11 @@ class DokuNotificationController extends Controller
                     'reference_number' => $data['transaction']['id'] ?? $data['transaction']['original_request_id'] ?? null
                 ]);
 
-                $this->sendTelegramNotification($sale);
+                try {
+                    $this->sendTelegramNotification($sale);
+                } catch (\Throwable $te) {
+                    Log::warning("Telegram Notification POS failed: " . $te->getMessage());
+                }
                 Log::info("Misi Sukses: Transaksi Kasir {$invoiceNumber} LUNAS.");
 
             } elseif ($isFailed) {
