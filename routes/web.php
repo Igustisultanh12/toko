@@ -143,6 +143,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/orders/{id}/ship', [OnlineOrderAdminController::class, 'shipOrder'])->name('orders.ship');
         Route::post('/orders/{id}/complete', [OnlineOrderAdminController::class, 'completeOrder'])->name('orders.complete');
         Route::post('/orders/{id}/cancel', [OnlineOrderAdminController::class, 'cancelOrder'])->name('orders.cancel');
+        Route::post('/orders/{id}/update-process', [OnlineOrderAdminController::class, 'updateProcess'])->name('orders.update-process');
         Route::get('/orders/{id}/shipping-label', [OnlineOrderAdminController::class, 'printShippingLabel'])->name('orders.shipping-label');
         Route::get('/orders/{id}/receipt-pdf', [OnlineOrderAdminController::class, 'printThermalReceipt'])->name('orders.receipt-pdf');
 

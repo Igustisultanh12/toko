@@ -165,6 +165,61 @@ class OnlineOrderAdminController extends Controller
     }
 
     /**
+     * UBAH PROSES / STATUS PESANAN ONLINE SECARA FLEKSIBEL DARI MODAL DETAIL
+     */
+    public function updateProcess(Request $request, $id)
+    {
+        $order = Order::with('items.product')->findOrFail($id);
+
+        $request->validate([
+            'status'          => 'required|in:paid,processing,shipped,completed,cancelled',
+            'tracking_number' => 'nullable|string|max:100',
+            'courier'         => 'nullable|string|max:50',
+            'customer_notes'  => 'nullable|string|max:500',
+        ]);
+
+        $oldStatus = $order->status;
+        $newStatus = $request->status;
+
+        DB::beginTransaction();
+        try {
+            $updateData = [
+                'status'         => $newStatus,
+                'courier'        => $request->courier ?: $order->courier,
+                'customer_notes' => $request->customer_notes ?: $order->customer_notes,
+            ];
+
+            if ($request->filled('tracking_number')) {
+                $updateData['tracking_number'] = strtoupper(trim($request->tracking_number));
+            }
+
+            if ($newStatus === 'processing' && !$order->confirmed_at) {
+                $updateData['confirmed_by'] = Auth::id();
+                $updateData['confirmed_at'] = now();
+            } elseif ($newStatus === 'shipped' && !$order->shipped_at) {
+                $updateData['shipped_at'] = now();
+            } elseif ($newStatus === 'completed' && !$order->completed_at) {
+                $updateData['completed_at'] = now();
+            } elseif ($newStatus === 'cancelled' && $oldStatus !== 'cancelled') {
+                // Kembalikan stok
+                foreach ($order->items as $item) {
+                    if ($item->product) {
+                        $item->product->increment('stock', $item->quantity);
+                    }
+                }
+            }
+
+            $order->update($updateData);
+            DB::commit();
+
+            return back()->with('success', "Status pesanan {$order->order_number} berhasil diperbarui menjadi " . strtoupper($order->status_label) . "!");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', "Gagal memperbarui proses pesanan: " . $e->getMessage());
+        }
+    }
+
+    /**
      * REALTIME POLLING NOTIFIKASI PESANAN BARU (KASIR & ADMIN)
      */
     public function checkNewOrders()
