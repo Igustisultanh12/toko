@@ -11,7 +11,7 @@
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 8.5pt;
-            line-height: 1.4;
+            line-height: 1.45;
             color: #2D3748;
             margin: 0;
             padding: 0;
@@ -29,57 +29,57 @@
         .cover-container {
             height: 100%;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 20px;
         }
 
         .cover-badge {
             background-color: #E6F4EA;
             color: #00880F;
             font-weight: 800;
-            font-size: 8pt;
-            padding: 4px 16px;
+            font-size: 8.5pt;
+            padding: 5px 18px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border: 1.5px solid #A8DAB5;
         }
 
         .cover-title {
-            font-size: 21pt;
+            font-size: 22pt;
             font-weight: 900;
             color: #1A202C;
             text-transform: uppercase;
             letter-spacing: -0.5px;
-            line-height: 1.2;
-            margin: 0 0 8px 0;
+            line-height: 1.25;
+            margin: 0 0 10px 0;
         }
 
         .cover-subtitle {
-            font-size: 11.5pt;
-            font-weight: 700;
+            font-size: 12pt;
+            font-weight: 800;
             color: #00AA13;
-            margin: 0 0 16px 0;
+            margin: 0 0 18px 0;
             line-height: 1.3;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .cover-divider {
-            width: 100px;
-            height: 3.5px;
+            width: 120px;
+            height: 4px;
             background-color: #00AA13;
-            margin: 10px auto 16px auto;
+            margin: 12px auto 20px auto;
             border-radius: 2px;
         }
 
         .cover-desc {
-            font-size: 8.5pt;
+            font-size: 8.8pt;
             color: #4A5568;
-            max-width: 500px;
-            margin: 0 auto 20px auto;
-            line-height: 1.45;
+            max-width: 520px;
+            margin: 0 auto 25px auto;
+            line-height: 1.5;
             text-align: center;
         }
 
@@ -87,20 +87,20 @@
             background-color: #F7FAFC;
             border: 1.5px solid #E2E8F0;
             border-radius: 10px;
-            padding: 12px;
+            padding: 14px 18px;
             text-align: left;
             margin: 0 auto;
-            width: 92%;
+            width: 90%;
         }
 
         .cover-meta-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 7.8pt;
+            font-size: 8pt;
         }
 
         .cover-meta-table td {
-            padding: 3px 5px;
+            padding: 3.5px 5px;
             vertical-align: top;
         }
 
@@ -116,8 +116,8 @@
         }
 
         .cover-footer {
-            margin-top: 25px;
-            font-size: 7.2pt;
+            margin-top: 35px;
+            font-size: 7.5pt;
             color: #718096;
             letter-spacing: 1.5px;
             font-weight: bold;
@@ -126,19 +126,19 @@
 
         /* HEADINGS */
         h1.chapter-title {
-            font-size: 13pt;
+            font-size: 13.5pt;
             font-weight: 900;
             color: #00661A;
             border-bottom: 2px solid #00AA13;
-            padding-bottom: 3px;
+            padding-bottom: 4px;
             margin-top: 0;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .chapter-num {
-            font-size: 8.5pt;
+            font-size: 8.8pt;
             font-weight: 800;
             color: #00AA13;
             text-transform: uppercase;
@@ -147,17 +147,25 @@
         }
 
         h2.section-title {
-            font-size: 9.8pt;
+            font-size: 10pt;
             font-weight: 800;
             color: #2D3748;
-            margin-top: 8px;
-            margin-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 6px;
             border-left: 3.5px solid #00AA13;
-            padding-left: 6px;
+            padding-left: 7px;
+        }
+
+        h3.subsection-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #4A5568;
+            margin-top: 8px;
+            margin-bottom: 4px;
         }
 
         p {
-            margin: 0 0 5px 0;
+            margin: 0 0 6px 0;
             text-align: justify;
         }
 
@@ -165,8 +173,8 @@
         table.doc-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 6px 0 8px 0;
-            font-size: 7.2pt;
+            margin: 8px 0 10px 0;
+            font-size: 7.6pt;
         }
 
         table.doc-table th {
@@ -174,14 +182,14 @@
             color: #FFFFFF;
             font-weight: bold;
             text-transform: uppercase;
-            padding: 4px 6px;
+            padding: 5px 7px;
             border: 1px solid #004D13;
             text-align: left;
             letter-spacing: 0.5px;
         }
 
         table.doc-table td {
-            padding: 4px 6px;
+            padding: 4.5px 7px;
             border: 1px solid #CBD5E0;
             vertical-align: top;
         }
@@ -193,9 +201,9 @@
         /* CALLOUT BOXES */
         .callout {
             border-radius: 6px;
-            padding: 6px 8px;
-            margin: 6px 0;
-            font-size: 7.5pt;
+            padding: 8px 10px;
+            margin: 8px 0;
+            font-size: 7.8pt;
             page-break-inside: avoid;
         }
 
@@ -220,120 +228,64 @@
         .callout-title {
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 7pt;
+            font-size: 7.2pt;
             letter-spacing: 0.5px;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             display: block;
         }
 
-        /* ========================================================================= */
-        /* UI WIREFRAME & GRAPHICAL MOCKUP ENGINE (100% DOMPDF COMPATIBLE) */
-        /* ========================================================================= */
-        .ui-mockup {
-            width: 100%;
-            margin: 8px 0;
-            border: 1px solid #CBD5E0;
-            border-radius: 6px;
+        /* STEP CARDS */
+        .step-box {
             background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 6px 9px;
+            margin-bottom: 6px;
             page-break-inside: avoid;
         }
 
-        .ui-window-bar {
+        .step-header {
+            font-weight: bold;
+            font-size: 8.2pt;
+            color: #1A202C;
+            margin-bottom: 2px;
+        }
+
+        .step-num {
+            background-color: #00AA13;
+            color: #FFFFFF;
+            font-size: 7pt;
+            font-weight: bold;
+            padding: 1px 5px;
+            border-radius: 3px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #EDF2F7;
+            color: #C53030;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 7.6pt;
+            font-weight: bold;
+        }
+
+        .badge-shortcut {
             background-color: #2D3748;
             color: #FFFFFF;
-            padding: 4px 8px;
-            font-size: 6.8pt;
-            font-weight: bold;
-        }
-
-        .ui-window-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            margin-right: 2px;
-        }
-        .dot-red { background-color: #E53E3E; }
-        .dot-yellow { background-color: #ECC94B; }
-        .dot-green { background-color: #38A169; }
-
-        .ui-window-body {
-            padding: 8px 10px;
-            background-color: #F8FAFC;
-        }
-
-        .ui-caption {
-            font-size: 6.5pt;
-            font-weight: bold;
-            color: #4A5568;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 3px 0;
-            background-color: #EDF2F7;
-            border-top: 1px solid #CBD5E0;
-        }
-
-        .ui-input-box {
-            background-color: #FFFFFF;
-            border: 1px solid #CBD5E0;
-            border-radius: 4px;
-            padding: 3px 6px;
+            font-family: monospace;
             font-size: 7pt;
-            color: #1A202C;
-            margin-top: 2px;
-        }
-
-        .ui-label {
-            font-size: 6pt;
+            padding: 1px 5px;
+            border-radius: 3px;
             font-weight: bold;
-            color: #718096;
-            text-transform: uppercase;
-            display: block;
-        }
-
-        .ui-btn {
             display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 6.5pt;
-            font-weight: bold;
-            text-align: center;
-        }
-        .ui-btn-primary { background-color: #00AA13; color: #FFFFFF; }
-        .ui-btn-dark { background-color: #1A202C; color: #FFFFFF; }
-        .ui-btn-blue { background-color: #2B6CB0; color: #FFFFFF; }
-        .ui-btn-red { background-color: #E53E3E; color: #FFFFFF; }
-        .ui-btn-light { background-color: #E2E8F0; color: #2D3748; }
-
-        .ui-badge {
-            display: inline-block;
-            padding: 1px 6px;
-            border-radius: 10px;
-            font-size: 5.8pt;
-            font-weight: bold;
-        }
-        .badge-green { background-color: #E6F4EA; color: #00880F; border: 1px solid #A8DAB5; }
-        .badge-yellow { background-color: #FFFAF0; color: #DD6B20; border: 1px solid #FBD38D; }
-        .badge-red { background-color: #FFF5F5; color: #E53E3E; border: 1px solid #FEB2B2; }
-        .badge-blue { background-color: #EBF8FF; color: #2B6CB0; border: 1px solid #90CDF4; }
-
-        /* RECEIPT THERMAL MOCKUP */
-        .receipt-box {
-            width: 250px;
-            margin: 0 auto;
-            background-color: #FFFFFF;
-            border: 1px dashed #718096;
-            padding: 8px 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 6.5pt;
-            color: #1A202C;
         }
 
-        /* TOC */
         .toc-chapter-row {
-            margin-bottom: 4px;
-            font-size: 7.8pt;
+            margin-bottom: 6px;
+            font-size: 8pt;
         }
 
         .toc-chapter-title {
@@ -345,17 +297,17 @@
         .toc-sub-row {
             padding-left: 14px;
             color: #4A5568;
-            font-size: 7.4pt;
-            margin-top: 1px;
+            font-size: 7.5pt;
+            margin-top: 1.5px;
         }
 
         ul, ol {
-            margin: 0 0 5px 0;
-            padding-left: 16px;
+            margin: 0 0 6px 0;
+            padding-left: 18px;
         }
 
         li {
-            margin-bottom: 2px;
+            margin-bottom: 2.5px;
         }
     </style>
 </head>
@@ -382,22 +334,16 @@
     </script>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 1: COVER BUKU PANDUAN UTAMA --}}
+    {{-- COVER BUKU PANDUAN UTAMA --}}
     {{-- ========================================================================= --}}
     <div class="cover-container">
-        <div class="cover-badge">Buku Petunjuk Operasional & Manual Resmi</div>
+        <div class="cover-badge">Buku Petunjuk Operasional & Pedoman Teknis Resmi</div>
         
         <h1 class="cover-title">BUKU PANDUAN LENGKAP<br>SISTEM KASIR & ADMINISTRASI</h1>
         <div class="cover-subtitle">{{ strtoupper($shop['app_name'] ?? 'SIKANDA POS') }} &bull; {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</div>
         
         <div class="cover-divider"></div>
 
-        <div style="margin: 8px auto 12px auto;">
-            <div style="display: inline-block; width: 60px; height: 60px; background-color: #00AA13; border-radius: 15px; line-height: 60px; color: #FFFFFF; font-size: 28pt; font-weight: bold;">
-                ✔
-            </div>
-        </div>
-        
         <p class="cover-desc">
             Buku panduan operasional komprehensif yang memuat seluruh tata kelola transaksi kasir Point of Sale (POS), penerimaan pembayaran digital Dynamic QRIS DOKU, pencatatan arus kas otomatis, manajemen pergudangan, sertifikasi Tanda Tangan Elektronik (TTE) berlandaskan UU ITE No. 11/2008, serta arsitektur pemeliharaan server terpusat.
         </p>
@@ -445,15 +391,15 @@
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 2: LEMBAR PENGESAHAN & HAK CIPTA --}}
+    {{-- LEMBAR HAK CIPTA & KATA PENGANTAR --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
-    <h1 class="chapter-title">LEMBAR HAK CIPTA & PENGESAHAN</h1>
+    <h1 class="chapter-title">LEMBAR HAK CIPTA & KATA PENGANTAR</h1>
     
     <div class="callout callout-info">
         <span class="callout-title">Pernyataan Hak Kekayaan Intelektual (HAKI)</span>
-        Seluruh isi dari buku panduan operasional ini, mencakup metodologi alur kerja, struktur basis data, arsitektur antarmuka pengguna (UI/UX), logika bisnis controller, serta modul kriptografi Tanda Tangan Elektronik (TTE) merupakan karya cipta yang dilindungi oleh undang-undang hak cipta Republik Indonesia.
+        Seluruh isi dari buku panduan operasional ini, mencakup metodologi alur kerja, struktur basis data, arsitektur antarmuka pengguna (UI/UX), logika bisnis controller, serta modul kriptografi Tanda Tangan Elektronik (TTE) merupakan karya cipta yang dilindungi oleh undang-undang hak cipta Republik Indonesia. Seluruh hak cipta dan kepemilikan intelektual dipegang teguh oleh <b>I Gusti Sultan</b>.
     </div>
 
     <table class="doc-table">
@@ -483,727 +429,273 @@
         </tr>
     </table>
 
-    <h2 class="section-title">PERNYATAAN LISENSI & KETENTUAN PENGGUNAAN</h2>
-    <p>
-        Buku panduan ini diterbitkan untuk digunakan sebagai pedoman standar operasional (*Standard Operating Procedure / SOP*) pada lingkungan usaha ritel yang mengimplementasikan sistem kasir ini. Dilarang keras menggandakan, mendistribusikan ulang untuk kepentingan komersial pihak ketiga, atau memodifikasi materi dokumen ini tanpa persetujuan tertulis dari <b>I Gusti Sultan</b> selaku pemegang hak cipta sah.
-    </p>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 3: KATA PENGANTAR --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <h1 class="chapter-title">KATA PENGANTAR PENGEMBANG</h1>
-    
+    <h2 class="section-title">KATA PENGANTAR PENGEMBANG</h2>
     <p>
         Puji dan syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas terselesaikannya penyusunan <b>Buku Panduan Lengkap Sistem Kasir Point of Sale (POS) dan Administrasi Toko Modern</b>. Sistem ini dirancang untuk menjawab tantangan operasional bisnis ritel kontemporer yang memerlukan kecepatan transaksi di meja kasir (*checkout speed*), transparansi arus kas real-time, integrasi pembayaran digital tanpa hambatan, serta akuntabilitas dokumen laporan formal yang berkekuatan hukum.
     </p>
     <p>
-        Buku panduan ini disusun secara terstruktur dari <b>Bab 1 hingga Bab 10</b> tanpa ada satupun fitur atau menu yang terlewatkan. Mulai dari prosedur login, pemindaian barcode, transaksi tunai & QRIS DOKU otomatis, rekapitulasi keuangan harian/bulanan/kuartal/tahunan, verifikasi keaslian Tanda Tangan Elektronik (TTE) berbasis UU ITE No. 11 Tahun 2008, hingga tata kelola pemeliharaan server produksi aaPanel yang dikelola secara eksklusif oleh <b>I Gusti Sultan</b>.
+        Buku panduan ini disusun secara terstruktur dan mendalam dari <b>Bab 1 hingga Bab 10</b> tanpa ada satupun fitur atau menu yang terlewatkan. Mulai dari prosedur login, pemindaian barcode, transaksi tunai & QRIS DOKU otomatis, rekapitulasi keuangan harian/bulanan/kuartal/tahunan, verifikasi keaslian Tanda Tangan Elektronik (TTE) berbasis UU ITE No. 11 Tahun 2008, hingga tata kelola pemeliharaan server produksi aaPanel yang dikelola secara eksklusif oleh <b>I Gusti Sultan</b>.
     </p>
     <p>
         Kami berharap buku ini dapat memberikan pemahaman menyeluruh dan menjadi panduan praktis harian bagi seluruh jajaran staf, mulai dari kasir garis depan hingga pimpinan manajemen toko.
     </p>
     
-    <div style="margin-top: 35px; text-align: right;" class="no-break">
-        <p style="margin-bottom: 45px;">Jember, {{ date('d F Y') }}<br><b>Lead Software Architect & Server Maintainer</b></p>
+    <div style="margin-top: 25px; text-align: right;" class="no-break">
+        <p style="margin-bottom: 30px;">Jember, {{ date('d F Y') }}<br><b>Lead Software Architect & Server Maintainer</b></p>
         <p><b><u>I Gusti Sultan</u></b><br><span style="font-size: 7.5pt; color: #718096;">Sistem Arsitek & Pengelola Server Utama</span></p>
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 4: DAFTAR ISI BAGIAN 1 --}}
+    {{-- DAFTAR ISI LENGKAP --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
-    <h1 class="chapter-title">DAFTAR ISI LENGKAP (BAGIAN 1)</h1>
+    <h1 class="chapter-title">DAFTAR ISI LENGKAP BUKU PANDUAN</h1>
 
     <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 1: GAMBARAN UMUM & ARSITEKTUR TEKNOLOGI SISTEM</div>
-        <div class="toc-sub-row">1.1 Latar Belakang & Filosofi Rancangan Sistem Kasir Modern ................................................. Halaman 6</div>
-        <div class="toc-sub-row">1.2 Tumpukan Teknologi (Technology Stack) & Arsitektur MVC ........................................... Halaman 7</div>
-        <div class="toc-sub-row">1.3 Matriks Perbandingan Hak Akses Pengguna (Admin vs Kasir) ........................................ Halaman 8</div>
-        <div class="toc-sub-row">1.4 Integrasi Layanan Pembayaran Digital QRIS DOKU Merchant .......................................... Halaman 9</div>
-        <div class="toc-sub-row">1.5 Landasan Hukum & Validitas Tanda Tangan Elektronik (UU ITE No. 11/2008) ................... Halaman 10</div>
+        <div class="toc-sub-row">1.1 Latar Belakang & Filosofi Rancangan Sistem Kasir Modern</div>
+        <div class="toc-sub-row">1.2 Tumpukan Teknologi (Technology Stack) & Arsitektur MVC Laravel 11</div>
+        <div class="toc-sub-row">1.3 Matriks Perbandingan Hak Akses Pengguna (Admin vs Kasir)</div>
+        <div class="toc-sub-row">1.4 Integrasi Layanan Pembayaran Digital Dynamic QRIS DOKU Merchant</div>
+        <div class="toc-sub-row">1.5 Landasan Hukum & Validitas Tanda Tangan Elektronik (UU ITE No. 11/2008)</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 8px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 2: MANAJEMEN OTENTIKASI & KEAMANAN AKUN</div>
-        <div class="toc-sub-row">2.1 Akses Masuk Sistem (Halaman Login /login) & Tata Letak Antarmuka ............................ Halaman 11</div>
-        <div class="toc-sub-row">2.2 Simulasi Gambar Antarmuka Login Blade ................................................................... Halaman 12</div>
-        <div class="toc-sub-row">2.3 Proteksi Formulir CSRF, Enkripsi Bcrypt & Proteksi Brute Force ..................................... Halaman 13</div>
-        <div class="toc-sub-row">2.4 Manajemen Profil Mandiri & Prosedur Pergantian Kata Sandi ......................................... Halaman 14</div>
-        <div class="toc-sub-row">2.5 Prosedur Keluar Aman (Logout) & Keamanan Sesi Kasir .................................................... Halaman 15</div>
+        <div class="toc-sub-row">2.1 Akses Masuk Sistem (Halaman Login /login) & Tata Letak Antarmuka</div>
+        <div class="toc-sub-row">2.2 Anatomi Elemen Formulir Login & Logika Smart Redirect</div>
+        <div class="toc-sub-row">2.3 Proteksi Formulir CSRF, Enkripsi Bcrypt & Proteksi Brute Force</div>
+        <div class="toc-sub-row">2.4 Manajemen Profil Mandiri & Prosedur Pergantian Kata Sandi (/profile)</div>
+        <div class="toc-sub-row">2.5 Prosedur Keluar Aman (Logout) & Keamanan Sesi Komputer Kasir</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 8px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 3: PUSAT KOMANDO & DASHBOARD ADMINISTRATOR</div>
-        <div class="toc-sub-row">3.1 Antarmuka Panel Kontrol Administrator (/dashboard) .................................................... Halaman 16</div>
-        <div class="toc-sub-row">3.2 Simulasi Gambar Dashboard & Struktur Banner Utama ................................................ Halaman 17</div>
-        <div class="toc-sub-row">3.3 Analitik Indikator Kinerja Utama (KPI) Finansial Real-Time ............................................. Halaman 18</div>
-        <div class="toc-sub-row">3.4 Visualisasi Grafik Tren Arus Kas & Analisis Penjualan 7 Hari ........................................... Halaman 19</div>
-        <div class="toc-sub-row">3.5 Struktur Navigasi Sidebar Responsif & Status Operasional Toko ..................................... Halaman 20</div>
+        <div class="toc-sub-row">3.1 Antarmuka Panel Kontrol Administrator (/dashboard)</div>
+        <div class="toc-sub-row">3.2 Banner Omset Hijau Gojek Pocket & Tombol Aksi Cepat (Quick Actions)</div>
+        <div class="toc-sub-row">3.3 Analitik 4 Indikator Kinerja Utama (KPI) Finansial Real-Time</div>
+        <div class="toc-sub-row">3.4 Visualisasi Grafik Tren Arus Kas & Analisis Penjualan 7 Hari Terakhir</div>
+        <div class="toc-sub-row">3.5 Struktur Navigasi Sidebar Responsif & Copyright I Gusti Sultan</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 8px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 4: MANAJEMEN INVENTARIS PRODUK & PERGUDANGAN</div>
-        <div class="toc-sub-row">4.1 Katalog Master Produk (/admin/products) & Indikator Ketersediaan .............................. Halaman 21</div>
-        <div class="toc-sub-row">4.2 Simulasi Gambar Katalog Produk & Pencarian Cepat ................................................... Halaman 22</div>
-        <div class="toc-sub-row">4.3 Formulir Tambah Produk Baru (/admin/products/create) & Barcode Generator ................. Halaman 23</div>
-        <div class="toc-sub-row">4.4 Struktur Penetapan Harga Jual Kasir, Diskon Promo (%) & Satuan ................................... Halaman 24</div>
-        <div class="toc-sub-row">4.5 Ambang Batas Stok Menipis & Peringatan Stok Habis (Out of Stock) ................................ Halaman 25</div>
-        <div class="toc-sub-row">4.6 Fitur Update Stok Cepat via Scanner Barcode ................................................................. Halaman 26</div>
-        <div class="toc-sub-row">4.7 Import Data Produk Massal Melalui Spreadsheet Excel/CSV ........................................... Halaman 27</div>
-        <div class="toc-sub-row">4.8 Pemeliharaan Data, Edit Barang & Prosedur Penghapusan Aman ..................................... Halaman 28</div>
+        <div class="toc-sub-row">4.1 Master Katalog Produk (/admin/products) & Indikator Ketersediaan</div>
+        <div class="toc-sub-row">4.2 Fitur Pencarian Cepat Nama Barang & Filter Barcode</div>
+        <div class="toc-sub-row">4.3 Formulir Tambah Produk Baru (/admin/products/create) & Barcode Auto Generator</div>
+        <div class="toc-sub-row">4.4 Struktur Penetapan Harga Jual Kasir, Diskon Promo (%) & Satuan Kemasan</div>
+        <div class="toc-sub-row">4.5 Tiga Tingkat Status Stok: Aman (Hijau), Menipis (Kuning), Habis (Merah)</div>
+        <div class="toc-sub-row">4.6 Fitur Update Stok Cepat via Scanner Barcode di Katalog</div>
+        <div class="toc-sub-row">4.7 Impor Data Produk Massal Melalui Spreadsheet Excel (.xlsx)</div>
+        <div class="toc-sub-row">4.8 Pemeliharaan Data, Edit Barang, Snapshot Pricing & Penghapusan Aman</div>
     </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 5: DAFTAR ISI BAGIAN 2 --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <h1 class="chapter-title">DAFTAR ISI LENGKAP (BAGIAN 2)</h1>
 
     <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 5: OPERASIONAL KASIR POINT OF SALE (POS) MODERN</div>
-        <div class="toc-sub-row">5.1 Tata Letak Antarmuka Kasir Layar Sentuh & PC (/cashier/pos) ........................................ Halaman 29</div>
-        <div class="toc-sub-row">5.2 Simulasi Gambar Layar Kasir POS Split-Pane ............................................................. Halaman 30</div>
-        <div class="toc-sub-row">5.3 Navigasi Kasir & Tombol Kembali ke Dashboard Admin ................................................. Halaman 31</div>
-        <div class="toc-sub-row">5.4 Metode Input Barang: Scanner Barcode, Pencarian Nama & Grid Cepat ........................... Halaman 32</div>
-        <div class="toc-sub-row">5.5 Manajemen Keranjang Belanja, Penyesuaian Qty & Pembatalan Item ............................... Halaman 33</div>
-        <div class="toc-sub-row">5.6 Penanganan Identitas Pelanggan (Pelanggan Umum vs Member Toko) .............................. Halaman 34</div>
-        <div class="toc-sub-row">5.7 Alur Pembayaran Tunai (Cash) & Perhitungan Kembalian Otomatis ................................. Halaman 35</div>
-        <div class="toc-sub-row">5.8 Alur Pembayaran Digital Dynamic QRIS DOKU & Webhook Real-Time .............................. Halaman 36</div>
-        <div class="toc-sub-row">5.9 Asisten Suara (Audio Chime) Notifikasi Transaksi Sukses ................................................. Halaman 37</div>
-        <div class="toc-sub-row">5.10 Pintasan Keyboard Efisiensi Kasir (Hotkeys B & ESC) ...................................................... Halaman 38</div>
-        <div class="toc-sub-row">5.11 Cetak Struk Thermal Bluetooth (58mm/80mm) & Format Raw ESC/POS ......................... Halaman 39</div>
-        <div class="toc-sub-row">5.12 Cetak Nota PDF Grayscale Monokrom (/receipt/{id}/print) ............................................ Halaman 40</div>
-        <div class="toc-sub-row">5.13 Pengiriman Bukti Pembayaran Digital via WhatsApp Pelanggan .................................... Halaman 41</div>
-        <div class="toc-sub-row">5.14 Modul Ekspedisi: Pembuatan & Pencetakan Label Resi Paket A6 ..................................... Halaman 42</div>
+        <div class="toc-sub-row">5.1 Tata Letak Antarmuka Kasir Layar Sentuh & PC Split-Pane (/cashier/pos)</div>
+        <div class="toc-sub-row">5.2 Navigasi Header Kasir & Perbedaan Tampilan Hak Akses Role</div>
+        <div class="toc-sub-row">5.3 Metode Input Barang: Pemindai Barcode Laser vs Pencarian Teks</div>
+        <div class="toc-sub-row">5.4 Manajemen Keranjang Belanja, Penyesuaian Kuantitas & Pembatalan Item</div>
+        <div class="toc-sub-row">5.5 Penanganan Identitas Pelanggan (Pelanggan Umum vs Member Toko)</div>
+        <div class="toc-sub-row">5.6 Alur Pembayaran Tunai (Cash) & Perhitungan Kembalian Otomatis</div>
+        <div class="toc-sub-row">5.7 Alur Pembayaran Digital Dynamic QRIS DOKU & Webhook Real-Time</div>
+        <div class="toc-sub-row">5.8 Asisten Suara (Audio Chime) Notifikasi Kasir Berhasil</div>
+        <div class="toc-sub-row">5.9 Pintasan Keyboard Efisiensi Kasir (Hotkeys B, ESC, ENTER)</div>
+        <div class="toc-sub-row">5.10 Cetak Struk Thermal Bluetooth (58mm/80mm) & Format Raw ESC/POS</div>
+        <div class="toc-sub-row">5.11 Cetak Nota Faktur PDF Grayscale Monokrom (/receipt/{id}/print)</div>
+        <div class="toc-sub-row">5.12 Pengiriman Bukti Pembayaran Digital via WhatsApp Pelanggan</div>
+        <div class="toc-sub-row">5.13 Modul Ekspedisi: Pembuatan & Pencetakan Label Resi Paket Standar A6</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 6px;">
-        <div class="toc-chapter-title">BAB 6: PUSAT ANALITIK, LAPORAN BISNIS & REKONSILIASI KEUANGAN</div>
-        <div class="toc-sub-row">6.1 Gambaran Umum Pusat Pelaporan Terpadu (/admin/reports) ........................................... Halaman 43</div>
-        <div class="toc-sub-row">6.2 Laporan Penjualan Transaksi (Filter Harian, Bulanan, Kuartal, Tahunan) ............................ Halaman 44</div>
-        <div class="toc-sub-row">6.3 Laporan Keuangan & Arus Kas (Pemisahan Kas Tunai vs Netto QRIS) ................................. Halaman 45</div>
-        <div class="toc-sub-row">6.4 Rekonsiliasi Biaya Potongan MDR DOKU 0.7% & Arus Kas Bersih .................................... Halaman 46</div>
-        <div class="toc-sub-row">6.5 Laporan Monitoring & Audit Transaksi Digital QRIS ........................................................ Halaman 47</div>
-        <div class="toc-sub-row">6.6 Laporan Inventaris, Mutasi & Valuasi Total Aset Barang Dagangan .................................. Halaman 48</div>
-        <div class="toc-sub-row">6.7 Pencetakan Struk Ringkasan Tutup Kasir Harian (Daily Closing Slip) ................................. Halaman 49</div>
-        <div class="toc-sub-row">6.8 Standar Ekspor Laporan Formal ke Format PDF Landscape & Excel (.xlsx) ......................... Halaman 50</div>
+    <div class="toc-chapter-row">
+        <div class="toc-chapter-title">BAB 6: PUSAT ANALITIK, 4 BUKU LAPORAN & REKONSILIASI KEUANGAN</div>
+        <div class="toc-sub-row">6.1 Gambaran Umum Pusat Pelaporan Terpadu (/admin/reports)</div>
+        <div class="toc-sub-row">6.2 Laporan Penjualan Transaksi (Filter Harian, Bulanan, Kuartal, Tahunan)</div>
+        <div class="toc-sub-row">6.3 Laporan Keuangan & Arus Kas (Pemisahan Kas Tunai vs Netto QRIS)</div>
+        <div class="toc-sub-row">6.4 Rekonsiliasi Biaya Potongan MDR DOKU Merchant 0.7% & Arus Kas Bersih</div>
+        <div class="toc-sub-row">6.5 Laporan Monitoring & Audit Transaksi Digital QRIS (LQRS-Report)</div>
+        <div class="toc-sub-row">6.6 Laporan Inventaris Gudang, Mutasi & Valuasi Total Aset Barang (LSTK-Report)</div>
+        <div class="toc-sub-row">6.7 Pencetakan Struk Ringkasan Tutup Kasir Harian (Daily Closing Slip)</div>
+        <div class="toc-sub-row">6.8 Standar Ekspor Laporan Formal ke Format PDF Landscape & Excel (.xlsx)</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 6px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 7: TANDA TANGAN ELEKTRONIK (TTE) & SERTIFIKASI DIGITAL</div>
-        <div class="toc-sub-row">7.1 Landasan Hukum UU ITE No. 11/2008 & Integritas Dokumen Digital ................................. Halaman 51</div>
-        <div class="toc-sub-row">7.2 Standar Kriptografi SHA-256 & Timestamp Keabsahan ................................................... Halaman 52</div>
-        <div class="toc-sub-row">7.3 Struktur Format Penomoran Dokumen Laporan Dinamis (LKEU/LPK/LSTK) ....................... Halaman 53</div>
-        <div class="toc-sub-row">7.4 Penandatangan Dokumen Otomatis Berdasarkan Akun & Gelar Alias ................................. Halaman 54</div>
-        <div class="toc-sub-row">7.5 Portal Publik Verifikasi Keaslian Dokumen Laporan (/verify/document) ............................ Halaman 55</div>
-        <div class="toc-sub-row">7.6 Portal Publik Verifikasi Keaslian Faktur Pelanggan (/verify/tte/{trx}) ................................. Halaman 56</div>
-        <div class="toc-sub-row">7.7 Tautan Faktur Digital Sementara Bertanda Tangan (Expired 24 Jam) ................................. Halaman 57</div>
+        <div class="toc-sub-row">7.1 Landasan Hukum UU ITE No. 11/2008 & Integritas Dokumen Digital</div>
+        <div class="toc-sub-row">7.2 Standar Kriptografi SHA-256 & Timestamp Keabsahan Dokumen</div>
+        <div class="toc-sub-row">7.3 Struktur Format Penomoran Dokumen Laporan Dinamis (LKEU/LPK/LSTK)</div>
+        <div class="toc-sub-row">7.4 Penandatangan Dokumen Otomatis Berdasarkan Akun & Gelar Alias TTE</div>
+        <div class="toc-sub-row">7.5 Portal Publik Verifikasi Keaslian Dokumen Laporan (/verify/document)</div>
+        <div class="toc-sub-row">7.6 Portal Publik Verifikasi Keaslian Faktur Pelanggan (/verify/tte/{trx})</div>
+        <div class="toc-sub-row">7.7 Tautan Faktur Digital Sementara Bertanda Tangan (Expired 24 Jam)</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 6px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 8: PENGATURAN TOKO, KONFIGURASI & INTEGRASI SISTEM</div>
-        <div class="toc-sub-row">8.1 Pusat Pengaturan Sistem (/admin/settings) ..................................................................... Halaman 58</div>
-        <div class="toc-sub-row">8.2 Personalisasi Identitas Bisnis, Nama Usaha, Alamat & Logo Toko ..................................... Halaman 59</div>
-        <div class="toc-sub-row">8.3 Kustomisasi Branding Aplikasi, Prefix Invoice & Favicon Browser .................................... Halaman 60</div>
-        <div class="toc-sub-row">8.4 Pengaturan & Pengunggahan Suara Bel Kasir (Audio Chime MP3/WAV) ............................ Halaman 61</div>
-        <div class="toc-sub-row">8.5 Konfigurasi Gateway DOKU Merchant (Sandbox & Production) ......................................... Halaman 62</div>
-        <div class="toc-sub-row">8.6 Konfigurasi Integrasi Bot Notifikasi Telegram Toko ........................................................ Halaman 63</div>
-        <div class="toc-sub-row">8.7 Pengaturan Footer Struk Kasir & Kebijakan Toko .............................................................. Halaman 64</div>
+        <div class="toc-sub-row">8.1 Pusat Pengaturan Sistem Terpadu (/admin/settings)</div>
+        <div class="toc-sub-row">8.2 Personalisasi Identitas Bisnis, Nama Usaha, Alamat & Logo Toko</div>
+        <div class="toc-sub-row">8.3 Kustomisasi Branding Aplikasi, Prefix Invoice & Favicon Browser</div>
+        <div class="toc-sub-row">8.4 Pengaturan & Pengunggahan Suara Bel Kasir (Audio Chime MP3/WAV)</div>
+        <div class="toc-sub-row">8.5 Konfigurasi Gateway DOKU Merchant (Sandbox & Production)</div>
+        <div class="toc-sub-row">8.6 Konfigurasi Integrasi Bot Notifikasi Telegram Toko</div>
+        <div class="toc-sub-row">8.7 Pengaturan Footer Struk Kasir & Kebijakan Toko</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 6px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 9: MANAJEMEN PENGGUNA & GELAR JABATAN (ALIAS TTE)</div>
-        <div class="toc-sub-row">9.1 Daftar Akun Pengguna (/admin/users) ............................................................................ Halaman 65</div>
-        <div class="toc-sub-row">9.2 Pendaftaran Akun Kasir / Admin Baru & Hak Wewenang Role .......................................... Halaman 66</div>
-        <div class="toc-sub-row">9.3 Konfigurasi Kolom "Alias / Gelar Jabatan TTD" Penandatangan Dokumen ......................... Halaman 67</div>
-        <div class="toc-sub-row">9.4 Pembaruan Data Pengguna & Prosedur Reset Kata Sandi ................................................. Halaman 68</div>
+        <div class="toc-sub-row">9.1 Daftar Akun Pengguna (/admin/users)</div>
+        <div class="toc-sub-row">9.2 Pendaftaran Akun Kasir / Admin Baru & Hak Wewenang Role</div>
+        <div class="toc-sub-row">9.3 Konfigurasi Kolom "Alias / Gelar Jabatan TTD" Penandatangan Dokumen</div>
+        <div class="toc-sub-row">9.4 Pembaruan Data Pengguna & Prosedur Reset Kata Sandi</div>
     </div>
 
-    <div class="toc-chapter-row" style="margin-top: 6px;">
+    <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 10: PEMELIHARAAN SERVER EKSKLUSIF DIKELOLA OLEH I GUSTI SULTAN</div>
-        <div class="toc-sub-row">10.1 Arsitektur Server Produksi & Manajemen Terpusat oleh I Gusti Sultan ........................... Halaman 69</div>
-        <div class="toc-sub-row">10.2 Dedicated Media Streaming Engine (/media-file) Anti 404 Nginx ................................... Halaman 70</div>
-        <div class="toc-sub-row">10.3 Prosedur Pemeliharaan Storage Symlink & File System aaPanel .................................... Halaman 71</div>
-        <div class="toc-sub-row">10.4 Konfigurasi Web Server Nginx & URL Rewrite Engine Laravel .......................................... Halaman 72</div>
-        <div class="toc-sub-row">10.5 Pemantauan Log Kesalahan Sistem (laravel.log) & Error Handling .................................. Halaman 73</div>
-        <div class="toc-sub-row">10.6 Prosedur Pencadangan (Backup) Harian & Disaster Recovery oleh I Gusti Sultan ............. Halaman 74</div>
-        <div class="toc-sub-row">10.7 Standar Operasional Prosedur (SOP) Pemeliharaan Server Rutin oleh I Gusti Sultan ......... Halaman 75</div>
-        <div class="toc-sub-row">10.8 Panduan Pemecahan Masalah Cepat (Troubleshooting FAQ) ........................................... Halaman 76</div>
-        <div class="toc-sub-row">10.9 Glosarium Lengkap Istilah POS, Perbankan, Kriptografi & E-Commerce ........................... Halaman 77</div>
-        <div class="toc-sub-row">10.10 Lembar Kontak Dukungan Teknis Langsung I Gusti Sultan ............................................. Halaman 78</div>
+        <div class="toc-sub-row">10.1 Arsitektur Server Produksi & Manajemen Terpusat oleh I Gusti Sultan</div>
+        <div class="toc-sub-row">10.2 Dedicated Media Streaming Engine (/media-file) Anti 404 Nginx</div>
+        <div class="toc-sub-row">10.3 Prosedur Pemeliharaan Storage Symlink & File System aaPanel</div>
+        <div class="toc-sub-row">10.4 Konfigurasi Web Server Nginx & URL Rewrite Engine Laravel</div>
+        <div class="toc-sub-row">10.5 Pemantauan Log Kesalahan Sistem (laravel.log) & Error Handling</div>
+        <div class="toc-sub-row">10.6 Prosedur Pencadangan (Backup) Harian & Disaster Recovery oleh I Gusti Sultan</div>
+        <div class="toc-sub-row">10.7 Standar Operasional Prosedur (SOP) Pemeliharaan Server Rutin oleh I Gusti Sultan</div>
+        <div class="toc-sub-row">10.8 Panduan Pemecahan Masalah Cepat (Troubleshooting FAQ)</div>
+        <div class="toc-sub-row">10.9 Glosarium Lengkap Istilah POS, Perbankan, Kriptografi & E-Commerce</div>
+        <div class="toc-sub-row">10.10 Lembar Kontak Dukungan Teknis Langsung I Gusti Sultan</div>
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 6: BAB 1.1 + GAMBAR ALUR TRANSAKSI --}}
+    {{-- BAB 1: GAMBARAN UMUM & ARSITEKTUR TEKNOLOGI --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 01</div>
-    <h1 class="chapter-title">GAMBARAN UMUM & ALUR TRANSAKSI KASIR MODERN</h1>
+    <h1 class="chapter-title">GAMBARAN UMUM & ARSITEKTUR TEKNOLOGI SISTEM</h1>
 
     <h2 class="section-title">1.1 Latar Belakang & Filosofi Rancangan Sistem Kasir Modern</h2>
     <p>
-        Sistem Point of Sale (POS) ini dirancang untuk menjawab tantangan operasional bisnis ritel kontemporer yang memerlukan kecepatan transaksi di meja kasir (*checkout speed*), transparansi pencatatan arus kas real-time, serta otomatisasi pembukuan digital.
+        Sistem Point of Sale (POS) dan Administrasi Terpadu ini dirancang untuk menjawab kebutuhan operasional bisnis ritel kontemporer yang menuntut kecepatan tinggi dalam melayani pelanggan di meja kasir (*checkout speed*), akurasi pembukuan tanpa celah selisih, transparansi arus kas real-time, serta otomatisasi pelaporan manajerial yang akuntabel.
     </p>
-
-    {{-- WIREFRAME MOCKUP 1.1 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; DIAGRAM ALUR PROSES TRANSAKSI MEJA KASIR POS
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 22%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="background-color: #00AA13; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">1</div>
-                            <div style="font-weight: bold; font-size: 7pt; color: #1A202C;">Scan Barcode</div>
-                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Entri barang instan via scanner / teks</div>
-                        </div>
-                    </td>
-                    <td style="width: 4%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 22%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="background-color: #00AA13; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">2</div>
-                            <div style="font-weight: bold; font-size: 7pt; color: #1A202C;">Keranjang Belanja</div>
-                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Kalkulasi diskon & subtotal otomatis</div>
-                        </div>
-                    </td>
-                    <td style="width: 4%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 22%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="background-color: #00AA13; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">3</div>
-                            <div style="font-weight: bold; font-size: 7pt; color: #1A202C;">Bayar Tunai / QRIS</div>
-                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Kembalian instan / Dynamic QRIS DOKU</div>
-                        </div>
-                    </td>
-                    <td style="width: 4%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 22%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="background-color: #38A169; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">✔</div>
-                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">Cetak & E-Struk</div>
-                            <div style="font-size: 6pt; color: #276749; margin-top: 2px;">Struk Bluetooth / Kirim WA Pembeli</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 1.1: Diagram Alur Proses Transaksi Penjualan Meja Kasir POS</div>
-    </div>
-
     <p>
-        Melalui metodologi reaktivitas satu layar (*One-Screen POS Workflow*), kasir dapat menuntaskan transaksi dalam hitungan detik tanpa membuka jendela browser baru.
+        Filosofi utama dari sistem ini adalah **Reaktivitas Satu Layar (*One-Screen POS Workflow*)**, di mana petugas kasir dapat memindai barcode barang, menyesuaikan kuantitas, memilih identitas pelanggan, memproses pembayaran tunai maupun non-tunai, mencetak struk thermal, hingga mengirim bukti transaksi elektronik melalui WhatsApp dalam satu tampilan antarmuka terpadu tanpa perlu berpindah-pindah tab peramban.
     </p>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 7: BAB 1.2 + GAMBAR MVC ARCHITECTURE --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 01</div>
-    <h1 class="chapter-title">ARSITEKTUR PERANGKAT LUNAK & TECH STACK</h1>
 
     <h2 class="section-title">1.2 Tumpukan Teknologi (Technology Stack) & Arsitektur MVC</h2>
     <p>
-        Sistem dibangun di atas fondasi arsitektur Model-View-Controller (MVC) Laravel 11 dengan performa tinggi:
+        Sistem dibangun di atas fondasi arsitektur Model-View-Controller (MVC) yang kokoh, modular, dan teruji pada skala produksi tinggi. Setiap lapisan arsitektur dioptimalkan untuk menghasilkan performa komputasi terbaik:
     </p>
+    <ul>
+        <li><b>Backend Framework:</b> Laravel 11.x (PHP 8.2+) dengan arsitektur RESTful controller, Eloquent ORM untuk manajemen relasi basis data yang aman dari SQL Injection, serta sistem autentikasi session-based yang terlindungi token CSRF.</li>
+        <li><b>Frontend & Reaktivitas:</b> Tailwind CSS 3.x untuk tata letak antarmuka modern bernuansa hijau Gojek yang responsif, dikombinasikan dengan Alpine.js 3.x untuk menangani kalkulasi keranjang belanja, kembalian tunai, dan modal QRIS secara reaktif di sisi peramban kasir tanpa membebani server.</li>
+        <li><b>Basis Data:</b> MySQL 8.0 Enterprise Relational Database yang mengimplementasikan indeks integritas referensial dan transaksi ACID untuk mencegah data korup saat ribuan transaksi kasir terjadi secara simultan.</li>
+        <li><b>Mesin Dokumen & PDF:</b> DomPDF Engine yang dikonfigurasi khusus dengan resolusi vektor tajam untuk menghasilkan cetakan struk thermal (58mm/80mm), nota faktur A4/A5, dan laporan keuangan manajerial bertanda tangan digital.</li>
+        <li><b>Infrastruktur Server:</b> Dikelola secara terpusat pada sistem operasi Linux berbasis host aaPanel oleh <b>I Gusti Sultan</b> dengan konfigurasi Nginx reverse proxy dan PHP-FPM socket berkecepatan tinggi.</li>
+    </ul>
 
-    {{-- WIREFRAME MOCKUP 1.2 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar" style="background-color: #00360D;">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; ARSITEKTUR TEKNOLOGI & MVC FRAMEWORK ENGINE
-        </div>
-        <div class="ui-window-body" style="background-color: #F0FFF4;">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 32%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; overflow: hidden;">
-                            <div style="background-color: #00661A; color: white; padding: 4px; font-weight: bold; font-size: 6.8pt; text-align: center;">1. FRONTEND LAYER</div>
-                            <div style="padding: 6px; font-size: 6.2pt; color: #2D3748;">
-                                <b style="color: #00880F;">• Tailwind CSS 3.x</b><br>
-                                Desain antarmuka hijau Gojek responsif.<br><br>
-                                <b style="color: #00880F;">• Alpine.js 3.x</b><br>
-                                Reaktivitas keranjang & hitung kembalian.<br><br>
-                                <b style="color: #00880F;">• Blade Engine</b><br>
-                                Templating modular cepat.
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width: 34%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; overflow: hidden;">
-                            <div style="background-color: #1A202C; color: white; padding: 4px; font-weight: bold; font-size: 6.8pt; text-align: center;">2. BACKEND MVC ENGINE</div>
-                            <div style="padding: 6px; font-size: 6.2pt; color: #2D3748;">
-                                <b style="color: #1A202C;">• Laravel 11 (PHP 8.2)</b><br>
-                                Routing, ORM Eloquent, Auth Middleware.<br><br>
-                                <b style="color: #1A202C;">• DokuService API</b><br>
-                                Dynamic QRIS generator & webhook.<br><br>
-                                <b style="color: #1A202C;">• DomPDF Engine</b><br>
-                                Rendering dokumen PDF formal & nota.
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width: 34%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; overflow: hidden;">
-                            <div style="background-color: #EE2737; color: white; padding: 4px; font-weight: bold; font-size: 6.8pt; text-align: center;">3. SERVER & DATABASE</div>
-                            <div style="padding: 6px; font-size: 6.2pt; color: #2D3748;">
-                                <b style="color: #EE2737;">• MySQL 8.0 Engine</b><br>
-                                Basis data relasional ACID transaksi.<br><br>
-                                <b style="color: #EE2737;">• Nginx & FastCGI</b><br>
-                                Web server produksi Linux aaPanel.<br><br>
-                                <b style="color: #00880F;">• I Gusti Sultan</b><br>
-                                Server architect & maintenance terpusat.
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 1.2: Diagram Tumpukan Teknologi & Arsitektur Perangkat Lunak MVC</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 8: BAB 1.3 + GAMBAR ROLE MATRIX --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 01</div>
-    <h1 class="chapter-title">MATRIKS HAK AKSES PENGGUNA (ROLE MATRIX)</h1>
-
-    <h2 class="section-title">1.3 Matriks Perbandingan Hak Akses Pengguna (Admin vs Kasir)</h2>
+    <h2 class="section-title">1.3 Matriks Hak Akses Pengguna (Admin vs Kasir)</h2>
     <p>
-        Sistem membagi akses pengguna ke dalam dua peran (*role*) terpisah guna menjaga keamanan data finansial:
+        Sistem menerapkan prinsip *Role-Based Access Control (RBAC)* yang membagi wewenang pengguna ke dalam dua peran berbeda untuk mencegah manipulasi data finansial:
     </p>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 30%;">Fitur & Modul Sistem</th>
+            <th style="width: 35%;">Role: Administrator</th>
+            <th style="width: 35%;">Role: Petugas Kasir</th>
+        </tr>
+        <tr>
+            <td><b>Akses Meja Kasir POS</b></td>
+            <td>Akses Penuh (Termasuk Tombol Kembali)</td>
+            <td>Akses Penuh (Hanya Transaksi & Logout)</td>
+        </tr>
+        <tr>
+            <td><b>Dashboard Utama & Analitik</b></td>
+            <td>Akses Penuh (Omset, Grafik, KPI)</td>
+            <td>Akses Ditolak (HTTP 403 Forbidden)</td>
+        </tr>
+        <tr>
+            <td><b>Katalog Produk & Stok</b></td>
+            <td>Tambah, Edit, Hapus, Impor Excel, Barcode</td>
+            <td>Hanya Melihat Stok Melalui Kasir</td>
+        </tr>
+        <tr>
+            <td><b>Pusat Laporan Keuangan</b></td>
+            <td>Akses 4 Buku Laporan & Ekspor PDF/Excel</td>
+            <td>Akses Ditolak</td>
+        </tr>
+        <tr>
+            <td><b>Pengaturan Toko & Gateway</b></td>
+            <td>Akses Penuh (Identitas, Audio, DOKU, Bot)</td>
+            <td>Akses Ditolak</td>
+        </tr>
+        <tr>
+            <td><b>Manajemen Pengguna & Gelar TTE</b></td>
+            <td>Akses Penuh (Tambah User, Reset Password)</td>
+            <td>Hanya Edit Profil Sendiri (/profile)</td>
+        </tr>
+    </table>
 
-    {{-- WIREFRAME MOCKUP 1.3 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; PERBANDINGAN HAK WEWENANG ROLE PENGGUNA SISTEM
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 50%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 6px;">
-                            <div style="background-color: #00661A; color: white; padding: 3px; font-weight: bold; font-size: 7pt; text-align: center; border-radius: 4px; margin-bottom: 6px;">
-                                👑 ROLE: ADMINISTRATOR (AKSES PENUH)
-                            </div>
-                            <div style="font-size: 6.2pt; color: #276749; line-height: 1.5;">
-                                ✔ Dashboard Metrik & Grafik 7 Hari (<code>/dashboard</code>)<br>
-                                ✔ Manajemen Produk, Stok & Barcode (<code>/admin/products</code>)<br>
-                                ✔ Pusat 4 Buku Laporan & Rekap Omset (<code>/reports</code>)<br>
-                                ✔ Pengaturan Toko, Audio & Gateway (<code>/admin/settings</code>)<br>
-                                ✔ Manajemen Staf Pengguna & Gelar TTE (<code>/admin/users</code>)<br>
-                                ✔ Transaksi Meja Kasir POS (<code>/cashier/pos</code>)
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width: 50%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #EBF8FF; border: 1.5px solid #90CDF4; border-radius: 6px; padding: 6px;">
-                            <div style="background-color: #2B6CB0; color: white; padding: 3px; font-weight: bold; font-size: 7pt; text-align: center; border-radius: 4px; margin-bottom: 6px;">
-                                🛒 ROLE: PETUGAS KASIR (TRANSAKSI)
-                            </div>
-                            <div style="font-size: 6.2pt; color: #2B6CB0; line-height: 1.5;">
-                                ✔ Transaksi Meja Kasir POS (<code>/cashier/pos</code>)<br>
-                                ✔ Pemindaian Barcode Laser & Pencarian Barang<br>
-                                ✔ Pembayaran Tunai & Hitung Uang Kembalian<br>
-                                ✔ Generate Dynamic QRIS DOKU & Kirim WA<br>
-                                <span style="color: #E53E3E; font-weight: bold;">✖ Akses Menu Dashboard & Laporan Ditolak (403)</span><br>
-                                <span style="color: #E53E3E; font-weight: bold;">✖ Pengaturan Toko & Manajemen Akun Terkunci</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 1.3: Matriks Hak Wewenang Akun Administrator vs Petugas Kasir</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 9: BAB 1.4 + GAMBAR QRIS GATEWAY --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 01</div>
-    <h1 class="chapter-title">INTEGRASI PEMBAYARAN DIGITAL QRIS DOKU</h1>
-
-    <h2 class="section-title">1.4 Ekosistem Pembayaran Digital QRIS Bank Indonesia & DOKU Gateway</h2>
+    <h2 class="section-title">1.4 Integrasi Layanan Pembayaran Digital Dynamic QRIS DOKU Merchant</h2>
     <p>
-        Sistem terhubung secara langsung dengan DOKU Payment Gateway untuk memproses pembayaran Dynamic QRIS:
+        Sistem mengintegrasikan Application Programming Interface (API) resmi dari DOKU Payment Gateway untuk menerbitkan kode QRIS Dinamis standar Bank Indonesia (ASPCI). Setiap kali transaksi kasir memilih metode QRIS, sistem mengirimkan permintaan HTTP aman ke gateway DOKU dengan menyertakan *Client-ID*, *Secret Key*, dan *Nominal Tagihan Eksak*. DOKU mengembalikan string kode QRIS yang langsung dirender di layar kasir. Saat pembeli memindai dan membayar melalui GoPay, OVO, Dana, ShopeePay, BCA Mobile, atau perbankan manapun, server DOKU mengirimkan sinyal Webhook instan ke server kasir untuk menyelesaikan transaksi tanpa perlu kasir menekan tombol apapun.
     </p>
 
-    {{-- WIREFRAME MOCKUP 1.4 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; DIAGRAM ALUR INTEGRASI DYNAMIC QRIS DOKU MERCHANT
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 30%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">KASIR POS</div>
-                            <div style="font-size: 6pt; color: #4A5568; margin: 4px 0;">Request Dynamic QRIS dengan nominal belanja presisi</div>
-                            <div class="ui-badge badge-green">Rp 51.000 (Eksak)</div>
-                        </div>
-                    </td>
-                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 30%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #EE2737; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #EE2737;">DOKU GATEWAY</div>
-                            <div style="font-size: 6pt; color: #4A5568; margin: 4px 0;">Generate QR Standar Bank Indonesia & broadcast webhook</div>
-                            <div class="ui-badge badge-blue">AS2938472910</div>
-                        </div>
-                    </td>
-                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 30%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">APLIKASI PEMBELI</div>
-                            <div style="font-size: 6pt; color: #276749; margin: 4px 0;">GoPay • OVO • DANA • BCA Mobile • Mandiri Livin</div>
-                            <div class="ui-badge badge-green">✔ Lunas Real-Time</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 1.4: Diagram Alur Integrasi Gateway Pembayaran Dynamic QRIS DOKU</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 10: BAB 1.5 + GAMBAR TTE LEGALITY --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 01</div>
-    <h1 class="chapter-title">LEGALITAS TANDA TANGAN ELEKTRONIK (TTE)</h1>
-
-    <h2 class="section-title">1.5 Landasan Hukum & Validitas Tanda Tangan Elektronik UU ITE No. 11/2008</h2>
+    <h2 class="section-title">1.5 Landasan Hukum & Validitas Tanda Tangan Elektronik (UU ITE No. 11/2008)</h2>
     <p>
-        Penerapan Tanda Tangan Elektronik (TTE) pada seluruh berkas PDF laporan resmi dilindungi oleh hukum positif Indonesia:
+        Seluruh dokumen laporan formal yang diterbitkan oleh sistem dilengkapi dengan stempel Tanda Tangan Elektronik (TTE) berbasis kriptografi SHA-256. Berdasarkan <b>Pasal 11 Undang-Undang Republik Indonesia Nomor 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik (UU ITE)</b>, Tanda Tangan Elektronik memiliki kekuatan hukum dan akibat hukum yang sah selama memenuhi persyaratan keaslian identitas penandatangan dan integritas data yang tidak dapat dimanipulasi pasca-penandatanganan.
     </p>
 
-    {{-- WIREFRAME MOCKUP 1.5 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; TIGA PILAR KEABSAHAN HUKUM TANDA TANGAN ELEKTRONIK (UU ITE PASAL 11)
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 33%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 6px; padding: 6px;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #00880F; margin-bottom: 3px;">1. OTENTISITAS</div>
-                            <div style="font-size: 6pt; color: #2D3748;">
-                                Identitas penandatangan terverifikasi akun resmi terdaftar & Gelar Jabatan Alias penandatangan resmi.
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width: 33%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #EBF8FF; border: 1px solid #90CDF4; border-radius: 6px; padding: 6px;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0; margin-bottom: 3px;">2. INTEGRITAS DATA</div>
-                            <div style="font-size: 6pt; color: #2D3748;">
-                                Enkripsi SHA-256 mengunci isi laporan dari manipulasi angka pasca-cetak. Setiap perubahan terdeteksi otomatis.
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width: 34%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFAF0; border: 1px solid #FBD38D; border-radius: 6px; padding: 6px;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #DD6B20; margin-bottom: 3px;">3. VERIFIKASI PUBLIK</div>
-                            <div style="font-size: 6pt; color: #2D3748;">
-                                Pemindaian QR Code membuka portal sertifikat digital resmi <code>/verify/document</code> tanpa aplikasi khusus.
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 1.5: Landasan Tiga Pilar Legalitas TTE Kriptografis pada Sistem Laporan</div>
-    </div>
-
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 11: BAB 2.1 + GAMBAR LOGIN --}}
+    {{-- BAB 2: MANAJEMEN OTENTIKASI & KEAMANAN AKUN --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 02</div>
     <h1 class="chapter-title">MANAJEMEN OTENTIKASI & KEAMANAN AKUN</h1>
 
-    <h2 class="section-title">2.1 Akses Masuk Sistem (Halaman Login /login)</h2>
+    <h2 class="section-title">2.1 Akses Masuk Sistem (Halaman Login /login) & Tata Letak Antarmuka</h2>
     <p>
-        Halaman login (<code>/login</code>) merupakan gerbang masuk terpusat untuk seluruh personil kasir dan administrator:
+        Halaman login (<code>/login</code>) merupakan pintu gerbang keamanan utama ke seluruh ekosistem kasir. Antarmuka login dirancang bersih, profesional, dan terpusat dengan logo toko dinamis, kolom alamat surel (*email*), kata sandi (*password*), kotak centang *Ingat Saya* (*Remember Me*), tombol *Masuk Sistem*, serta footer hak cipta resmi oleh <b>I Gusti Sultan</b>.
     </p>
 
-    {{-- WIREFRAME MOCKUP 2.1 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; https://kasir.site/login - FORMULIR MASUK SISTEM KASIR POS
-        </div>
-        <div class="ui-window-body" style="text-align: center; padding: 15px;">
-            <div style="display: inline-block; width: 280px; background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 8px; padding: 12px; text-align: left;">
-                <div style="text-align: center; margin-bottom: 8px;">
-                    <div style="display: inline-block; width: 32px; height: 32px; background-color: #00AA13; border-radius: 8px; line-height: 32px; color: white; font-weight: bold; font-size: 14pt;">✔</div>
-                    <div style="font-weight: 900; font-size: 8.5pt; color: #1A202C; margin-top: 4px;">MASUK SISTEM KASIR</div>
-                    <div style="font-size: 6pt; color: #718096;">Masukkan kredensial akun kasir / admin Anda</div>
-                </div>
+    <h2 class="section-title">2.2 Anatomi Elemen Formulir Login & Logika Smart Redirect</h2>
+    <p>
+        Proses otentikasi dikendalikan oleh <code>AuthenticatedSessionController</code> yang dilengkapi mekanisme *Smart Role-Based Redirection*:
+    </p>
+    <ul>
+        <li><b>Validasi Masukan:</b> Sistem memeriksa format email standar RFC dan memastikan panjang kata sandi memenuhi kriteria keamanan.</li>
+        <li><b>Smart Redirection:</b> Jika pengguna yang berhasil masuk memiliki role <code>cashier</code>, sistem secara otomatis mengarahkan peramban ke rute kasir (<code>/cashier/pos</code>). Jika pengguna memiliki role <code>admin</code>, peramban langsung diarahkan ke panel komando (<code>/dashboard</code>).</li>
+        <li><b>Pencegahan Duplikasi Login:</b> Jika pengguna yang sudah memiliki sesi aktif mencoba membuka halaman <code>/login</code>, sistem otomatis mengalihkannya ke halaman kerja sesuai role tanpa meminta kredensial ulang.</li>
+    </ul>
 
-                <span class="ui-label">ALAMAT EMAIL RESMI</span>
-                <div class="ui-input-box">✉ kasir1@toko.site</div>
-
-                <div style="margin-top: 6px;">
-                    <span class="ui-label">KATA SANDI</span>
-                    <div class="ui-input-box">🔒 ••••••••••••</div>
-                </div>
-
-                <div style="margin: 8px 0; font-size: 6pt; color: #4A5568;">
-                    <input type="checkbox" checked> Ingat sesi masuk saya (30 Hari)
-                </div>
-
-                <div style="background-color: #00AA13; color: white; text-align: center; padding: 5px; border-radius: 5px; font-weight: bold; font-size: 7.5pt;">
-                    MASUK KE KASIR / DASHBOARD
-                </div>
-
-                <div style="text-align: center; margin-top: 8px; font-size: 5.5pt; color: #718096;">
-                    © {{ date('Y') }} I Gusti Sultan. All rights reserved.
-                </div>
-            </div>
-        </div>
-        <div class="ui-caption">Gambar 2.1: Antarmuka Formulir Otentikasi Pengguna (resources/views/auth/login.blade.php)</div>
+    <h2 class="section-title">2.3 Proteksi Formulir CSRF, Enkripsi Bcrypt & Proteksi Brute Force</h2>
+    <p>
+        Keamanan akun dilindungi oleh tiga lapisan proteksi standar industri:
+    </p>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">1</span> Proteksi Cross-Site Request Forgery (CSRF)</div>
+        Setiap formulir masukan menyertakan directiva <code>@csrf</code> yang menghasilkan token acak terenkripsi 40 karakter. Token ini diverifikasi oleh middleware server pada setiap permintaan POST. Jika permintaan berasal dari pihak ketiga atau token kedaluwarsa, server mengembalikan respon HTTP 419 (*Page Expired*).
+    </div>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">2</span> Enkripsi Kata Sandi Bcrypt Hashing (Cost 12)</div>
+        Kata sandi pengguna tidak pernah disimpan dalam format teks biasa (*plaintext*). Sistem menggunakan algoritma adaptif *Bcrypt* dengan *salt* acak unik per pengguna dan faktor kerja *Cost 12*, memastikan kata sandi mustahil dibongkar bahkan jika basis data diekspor.
+    </div>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">3</span> Pembatasan Percobaan Masuk (Rate Limiting)</div>
+        Sistem membatasi percobaan masuk maksimal 5 kali berturut-turut dalam kurun waktu 1 menit per alamat IP. Jika ambang batas terlampaui, sistem mengunci akses selama 60 detik untuk memitigasi serangan brute force kamus kata sandi.
     </div>
 
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 12: BAB 2.2 + GAMBAR ANATOMI LOGIN --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 02</div>
-    <h1 class="chapter-title">ANATOMI ELEMEN ANTARMUKA LOGIN BLADE</h1>
-
-    <h2 class="section-title">2.2 Penjelasan Field & Validasi pada Halaman Login</h2>
+    <h2 class="section-title">2.4 Manajemen Profil Mandiri & Prosedur Pergantian Kata Sandi (/profile)</h2>
     <p>
-        Setiap komponen formulir pada template <code>resources/views/auth/login.blade.php</code> dilengkapi proteksi otomatis:
+        Setiap pengguna, baik kasir maupun admin, dapat memperbarui identitas profil dan mengganti kata sandi secara mandiri pada rute <code>/profile</code>. Prosedur pergantian sandi mewajibkan input kata sandi lama sebagai verifikasi kepemilikan sah sebelum sistem mengizinkan penyimpanan kata sandi baru.
     </p>
 
-    {{-- WIREFRAME MOCKUP 2.2 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; ANATOMI STRUKTUR KOMPONEN & VALIDASI LOGIN BLADE
-        </div>
-        <div class="ui-window-body">
-            <table class="doc-table">
-                <tr>
-                    <th style="width: 25%;">Komponen Blade</th>
-                    <th style="width: 35%;">Spesifikasi Validasi</th>
-                    <th>Fungsi Operasional</th>
-                </tr>
-                <tr>
-                    <td><b>Logo Toko Dinamis</b></td>
-                    <td>Rute <code>/media-file</code> otomatis</td>
-                    <td>Menampilkan identitas toko tanpa risiko error 404 Nginx.</td>
-                </tr>
-                <tr>
-                    <td><b>Input Email</b></td>
-                    <td><code>required|email|max:255</code></td>
-                    <td>Menerima alamat surel resmi personil terdaftar.</td>
-                </tr>
-                <tr>
-                    <td><b>Input Password</b></td>
-                    <td><code>required|min:8</code></td>
-                    <td>Disamarkan karakter bullet, dicocokkan dengan hash Bcrypt.</td>
-                </tr>
-                <tr>
-                    <td><b>Smart Redirect</b></td>
-                    <td>Role-Based Redirection</td>
-                    <td>Kasir otomatis masuk ke <code>/cashier/pos</code>, Admin ke <code>/dashboard</code>.</td>
-                </tr>
-                <tr>
-                    <td><b>Copyright Banner</b></td>
-                    <td>&copy; I Gusti Sultan</td>
-                    <td>Menegaskan hak cipta dan lisensi resmi perangkat lunak.</td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 2.2: Rincian Anatomi Elemen Formulir Login & Logika Alur Masuk</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 13: BAB 2.3 + GAMBAR CSRF & BCRYPT --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 02</div>
-    <h1 class="chapter-title">ARSITEKTUR KEAMANAN CSRF & BCRYPT HASHING</h1>
-
-    <h2 class="section-title">2.3 Arsitektur Keamanan CSRF, Hash Bcrypt & Perlindungan Sesi</h2>
+    <h2 class="section-title">2.5 Prosedur Keluar Aman (Logout) & Keamanan Sesi Komputer Kasir</h2>
     <p>
-        Sistem kasir mengimplementasikan standar keamanan web tertinggi guna melindungi integritas data finansial:
+        Saat pergantian shift kerja kasir atau penutupan operasional harian toko, petugas wajib menjalankan prosedur keluar aman dengan mengklik tombol **Logout (Keluar)** berwarna merah. Server akan menghancurkan cookie sesi pada peramban, membatalkan token autentikasi di tabel sesi, membersihkan memori keranjang lokal, dan mengunci peramban kembali ke tampilan login.
     </p>
 
-    {{-- WIREFRAME MOCKUP 2.3 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar" style="background-color: #00360D;">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; DIAGRAM MEKANISME PROTEKSI CSRF & ENKRIPSI BCRYPT
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 50%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 8px;">
-                            <div style="font-weight: bold; font-size: 7.5pt; color: #00880F; margin-bottom: 4px;">🛡️ PROTEKSI CSRF TOKEN</div>
-                            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
-                                • Directiva <code>@csrf</code> menyisipkan token unik per sesi.<br>
-                                • Divalidasi oleh <code>VerifyCsrfToken</code> middleware.<br>
-                                • Menolak serangan Cross-Site Request Forgery.<br>
-                                • Error HTTP 419 Page Expired jika sesi tidak valid.
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width: 50%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 8px;">
-                            <div style="font-weight: bold; font-size: 7.5pt; color: #2B6CB0; margin-bottom: 4px;">🔒 ENKRIPSI BCRYPT HASH</div>
-                            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
-                                • Kata sandi di-hash satu arah (Algoritma Cost 12).<br>
-                                • Garam acak (*Random Salt*) unik per setiap akun.<br>
-                                • Sandi tidak dapat dibaca bahkan dari basis data.<br>
-                                • Standar enkripsi perbankan dan enterprise global.
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 2.3: Diagram Arsitektur Perlindungan CSRF dan Hashing Kata Sandi Bcrypt</div>
-    </div>
-
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 14: BAB 2.4 + GAMBAR PROFILE EDIT --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 02</div>
-    <h1 class="chapter-title">MANAJEMEN PROFIL PENGGUNA & GANTI PASSWORD</h1>
-
-    <h2 class="section-title">2.4 Manajemen Profil Pengguna & Prosedur Pergantian Kata Sandi</h2>
-    <p>
-        Setiap pengguna dapat memperbarui informasi nama dan mengganti kata sandi secara mandiri pada rute <code>/profile</code>:
-    </p>
-
-    {{-- WIREFRAME MOCKUP 2.4 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; https://kasir.site/profile - PENGATURAN PROFIL & KATA SANDI MANDIRI
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 50%; padding: 4px; vertical-align: top;">
-                        <span class="ui-label">NAMA LENGKAP PENGGUNA</span>
-                        <div class="ui-input-box">Siti Rahma</div>
-                    </td>
-                    <td style="width: 50%; padding: 4px; vertical-align: top;">
-                        <span class="ui-label">ALAMAT EMAIL RESMI</span>
-                        <div class="ui-input-box">kasir1@toko.site</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 4px; vertical-align: top;">
-                        <span class="ui-label">KATA SANDI SAAT INI</span>
-                        <div class="ui-input-box">••••••••</div>
-                    </td>
-                    <td style="padding: 4px; vertical-align: top;">
-                        <span class="ui-label">KATA SANDI BARU</span>
-                        <div class="ui-input-box">••••••••</div>
-                    </td>
-                </tr>
-            </table>
-            <div style="text-align: right; margin-top: 8px;">
-                <div class="ui-btn ui-btn-primary">SIMPAN PERUBAHAN PROFIL</div>
-            </div>
-        </div>
-        <div class="ui-caption">Gambar 2.4: Formulir Pembaruan Profil Mandiri & Penggantian Kata Sandi (/profile)</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 15: BAB 2.5 + GAMBAR LOGOUT --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 02</div>
-    <h1 class="chapter-title">PROSEDUR KELUAR AMAN (LOGOUT)</h1>
-
-    <h2 class="section-title">2.5 Prosedur Keluar Aman (Logout) & Keamanan Sesi Kasir</h2>
-    <p>
-        Prosedur standar saat pergantian shift kasir atau penutupan toko:
-    </p>
-
-    {{-- WIREFRAME MOCKUP 2.5 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; DIAGRAM ALUR KELUAR AMAN (SECURE LOGOUT WORKFLOW)
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 30%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #E53E3E; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #E53E3E;">1. KLIK LOGOUT</div>
-                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Tombol merah sidebar / menu profil kasir</div>
-                        </div>
-                    </td>
-                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 30%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">2. HANCURKAN SESI</div>
-                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Server invalidate cookie sesi & token kasir</div>
-                        </div>
-                    </td>
-                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
-                    <td style="width: 30%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">3. REDIRECT /LOGIN</div>
-                            <div style="font-size: 6pt; color: #276749; margin-top: 2px;">Layar terkunci aman, siap untuk shift berikutnya</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 2.5: Diagram Prosedur Logout Aman dan Pembersihan Sesi Komputer Kasir</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 16: BAB 3.1 + GAMBAR DASHBOARD OVERVIEW --}}
+    {{-- BAB 3: PUSAT KOMANDO & DASHBOARD ADMINISTRATOR --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
@@ -1212,304 +704,721 @@
 
     <h2 class="section-title">3.1 Antarmuka Panel Kontrol Administrator (/dashboard)</h2>
     <p>
-        Dashboard Administrator menyajikan denyut nadi bisnis toko secara real-time:
+        Panel kontrol Administrator (<code>/dashboard</code>) menyajikan ikhtisar performa bisnis toko secara komprehensif. Dirancang dengan tata letak modern yang intuitif, dashboard menampilkan ringkasan arus kas harian, volume penjualan, kartu indikator kinerja utama (*KPI*), grafik tren 7 hari, dan akses navigasi cepat ke seluruh modul administratif.
     </p>
 
-    {{-- WIREFRAME MOCKUP 3.1 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; https://kasir.site/dashboard - PANEL KONTROL ADMINISTRATOR
-        </div>
-        <div class="ui-window-body">
-            <!-- Header Banner -->
-            <div style="background-color: #00661A; color: white; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tr>
-                        <td style="vertical-align: middle;">
-                            <div style="font-size: 6.5pt; color: #A8DAB5; font-weight: bold;">TOTAL OMSET HARI INI • {{ date('d F Y') }}</div>
-                            <div style="font-size: 14pt; font-weight: 900; color: #FFFFFF;">Rp 1.450.000</div>
-                            <div style="font-size: 6pt; color: #E2E8F0;">18 Transaksi Berhasil • 42 Item Terjual</div>
-                        </td>
-                        <td style="text-align: right; vertical-align: middle;">
-                            <div class="ui-btn ui-btn-primary" style="background-color: #00AA13; border: 1px solid #A8DAB5;">🛒 BUKA KASIR POS</div>
-                        </td>
-                    </tr>
-                </table>
+    <h2 class="section-title">3.2 Banner Omset Hijau Gojek Pocket & Tombol Aksi Cepat (Quick Actions)</h2>
+    <p>
+        Elemen paling menonjol pada bagian atas dashboard adalah **Banner Omset Hijau Gojek Pocket (#00661A)**. Banner ini menampilkan:
+    </p>
+    <ul>
+        <li><b>Total Omset Hari Ini (Rupiah):</b> Angka nominal pendapatan kotor yang terkumpul dari seluruh transaksi tunai dan non-tunai pada hari berjalan secara real-time.</li>
+        <li><b>Volume Transaksi:</b> Jumlah transaksi yang berhasil diselesaikan dan total kuantitas produk yang terjual hari ini.</li>
+        <li><b>Tombol Aksi Cepat (Quick Actions):</b> Pintasan langsung menuju *Buka Kasir POS*, *+ Tambah Produk Baru*, *Laporan Penjualan*, *Laporan Keuangan*, dan *Unduh Buku Panduan PDF*.</li>
+    </ul>
+
+    <h2 class="section-title">3.3 Analitik 4 Indikator Kinerja Utama (KPI) Finansial Real-Time</h2>
+    <p>
+        Di bawah banner utama, terdapat empat kartu indikator performa yang diperbarui secara otomatis setiap kali ada transaksi baru:
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 25%;">Kartu KPI</th>
+            <th style="width: 25%;">Sumber Data</th>
+            <th>Fungsi Analitik & Nilai Informasi</th>
+        </tr>
+        <tr>
+            <td><b>Omset Hari Ini</b></td>
+            <td>Tabel <code>sales</code> (SUM total_price hari ini)</td>
+            <td>Mengetahui likuiditas harian dan pencapaian target penjualan toko hari ini.</td>
+        </tr>
+        <tr>
+            <td><b>Total Transaksi</b></td>
+            <td>Tabel <code>sales</code> (COUNT id hari ini)</td>
+            <td>Mengukur intensitas pelanggan dan kepadatan antrean meja kasir.</td>
+        </tr>
+        <tr>
+            <td><b>Item Terjual</b></td>
+            <td>Tabel <code>sale_items</code> (SUM quantity hari ini)</td>
+            <td>Memantau perputaran barang fisik (*inventory turnover*) dari gudang.</td>
+        </tr>
+        <tr>
+            <td><b>Status Operasional</b></td>
+            <td>Database & Gateway Health Check</td>
+            <td>Menunjukkan status online koneksi server, basis data, dan DOKU gateway.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">3.4 Visualisasi Grafik Tren Arus Kas & Analisis Penjualan 7 Hari Terakhir</h2>
+    <p>
+        Dashboard menyajikan visualisasi grafik batang komparatif selama 7 hari kalender terakhir. Grafik ini memecah pendapatan harian menjadi dua batang warna terpisah: **Warna Hijau (#00AA13)** untuk penerimaan uang kas tunai dan **Warna Biru (#00AED6)** untuk penerimaan uang digital Dynamic QRIS DOKU. Grafik ini memudahkan pimpinan toko dalam melihat tren belanja akhir pekan (*weekend peak*) dan pola adopsi pembayaran digital oleh pelanggan.
+    </p>
+
+    <h2 class="section-title">3.5 Struktur Navigasi Sidebar Responsif & Copyright I Gusti Sultan</h2>
+    <p>
+        Bilah navigasi samping (*Sidebar*) menggunakan skema warna hijau tua Gojek (#00360D) yang elegan dan terstruktur secara hierarkis:
+    </p>
+    <ul>
+        <li><b>Header Sidebar:</b> Logo toko dan nama resmi aplikasi (<code>{{ $shop['app_name'] ?? 'SIKANDA' }} POS</code>).</li>
+        <li><b>Menu Utama:</b> *Dashboard Ringkasan*, *Katalog Produk & Stok*, *Laporan Penjualan*, *Laporan Keuangan & Kas*, *Manajemen Pengguna*, dan *Pengaturan Toko*.</li>
+        <li><b>Menu Panduan:</b> *Buku Panduan PDF* untuk membuka viewer dan mengekspor dokumen SOP resmi ini.</li>
+        <li><b>Footer Sidebar:</b> Pernyataan lisensi resmi: <code>&copy; {{ date('Y') }} I Gusti Sultan. All rights reserved.</code></li>
+    </ul>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 4: MANAJEMEN INVENTARIS PRODUK & PERGUDANGAN --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 04</div>
+    <h1 class="chapter-title">MANAJEMEN INVENTARIS PRODUK & PERGUDANGAN</h1>
+
+    <h2 class="section-title">4.1 Master Katalog Produk (/admin/products) & Indikator Ketersediaan</h2>
+    <p>
+        Modul Katalog Produk (<code>/admin/products</code>) mengelola seluruh master data barang dagangan toko. Tabel master menampilkan informasi lengkap mencakup kode barcode, nama produk, harga jual kasir, diskon promo, stok fisik di gudang, serta tombol tindakan operasional.
+    </p>
+
+    <h2 class="section-title">4.2 Fitur Pencarian Cepat Nama Barang & Filter Barcode</h2>
+    <p>
+        Tabel katalog produk dilengkapi kotak pencarian cerdas yang merespon input secara instan. Administrator dapat mengetikkan sebagian nama produk (misalnya: *Minyak*) atau langsung memindai barcode menggunakan scanner laser. Sistem menyaring daftar produk secara real-time tanpa memuat ulang seluruh halaman peramban.
+    </p>
+
+    <h2 class="section-title">4.3 Formulir Tambah Produk Baru (/admin/products/create) & Barcode Auto Generator</h2>
+    <p>
+        Penambahan produk baru dilakukan melalui formulir <code>/admin/products/create</code> dengan parameter berikut:
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 25%;">Kolom Input</th>
+            <th style="width: 25%;">Karakteristik Validasi</th>
+            <th>Keterangan Operasional</th>
+        </tr>
+        <tr>
+            <td><b>Nama Produk (*)</b></td>
+            <td><code>required|string|max:255</code></td>
+            <td>Nama lengkap komoditas barang dagangan (contoh: *Kopi Susu Aren 250ml*).</td>
+        </tr>
+        <tr>
+            <td><b>Barcode / SKU</b></td>
+            <td><code>nullable|unique:products</code></td>
+            <td>Nomor barcode unik produk. Jika barang tidak memiliki barcode pabrik, tekan tombol <b>AUTO ⚡</b> untuk membuat kode EAN-13 acak unik secara otomatis.</td>
+        </tr>
+        <tr>
+            <td><b>Harga Jual (Rp) (*)</b></td>
+            <td><code>required|numeric|min:0</code></td>
+            <td>Harga jual eceran di kasir sebelum dikenakan diskon promosi.</td>
+        </tr>
+        <tr>
+            <td><b>Stok Fisik Awal (*)</b></td>
+            <td><code>required|integer|min:0</code></td>
+            <td>Jumlah unit fisik barang yang tersedia di gudang atau rak pajangan toko.</td>
+        </tr>
+        <tr>
+            <td><b>Diskon Promo (%)</b></td>
+            <td><code>nullable|numeric|min:0|max:100</code></td>
+            <td>Persentase diskon promosi (0 - 100%). Kasir otomatis memotong harga saat ditransaksikan.</td>
+        </tr>
+        <tr>
+            <td><b>Keterangan / Satuan</b></td>
+            <td><code>nullable|string|max:1000</code></td>
+            <td>Satuan kemasan barang (Pcs, Botol, Pack, Dus, Kg, Liter) atau deskripsi singkat.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">4.4 Struktur Penetapan Harga Jual Kasir, Diskon Promo (%) & Satuan Kemasan</h2>
+    <p>
+        Sistem menghitung harga kasir (*net sales price*) menggunakan formula:
+    </p>
+    <div style="background-color: #F7FAFC; border: 1px solid #E2E8F0; padding: 6px 10px; border-radius: 4px; font-family: monospace; font-size: 8pt; margin: 4px 0;">
+        Harga_Final_Kasir = Harga_Jual - (Harga_Jual &times; (Diskon_Percent / 100))
+    </div>
+    <p>
+        Harga final ini yang akan dicatat pada nota penjualan dan struk thermal pembeli.
+    </p>
+
+    <h2 class="section-title">4.5 Tiga Tingkat Status Stok: Aman (Hijau), Menipis (Kuning), Habis (Merah)</h2>
+    <p>
+        Untuk mempermudah manajemen logistik, sistem mengklasifikasikan status ketersediaan barang ke dalam tiga badge warna:
+    </p>
+    <ul>
+        <li><b style="color: #00880F;">Badge Hijau (STOK AMAN):</b> Kuantitas stok di atas 5 unit (&gt; 5). Barang dalam kondisi aman untuk transaksi kasir normal.</li>
+        <li><b style="color: #DD6B20;">Badge Kuning (STOK MENIPIS):</b> Kuantitas stok tersisa antara 1 hingga 5 unit (1 - 5). Memberikan peringatan kepada petugas gudang untuk segera melakukan pemesanan ulang (*re-order*).</li>
+        <li><b style="color: #E53E3E;">Badge Merah (STOK HABIS):</b> Kuantitas stok bernilai 0 unit. Sistem kasir secara otomatis mengunci dan menolak penambahan barang ini ke keranjang belanja guna mencegah penjualan fiktif (*overselling*).</li>
+    </ul>
+
+    <h2 class="section-title">4.6 Fitur Update Stok Cepat via Scanner Barcode di Katalog</h2>
+    <p>
+        Petugas gudang dapat melakukan penambahan stok barang masuk (*stock in*) tanpa harus membuka formulir edit satu per satu. Pada bagian atas halaman katalog produk, tersedia kotak input cepat: cukup pindai barcode barang masuk, ketikkan jumlah kuantitas tambahan, dan tekan **ENTER**. Stok produk langsung bertambah secara instan melalui permintaan AJAX.
+    </p>
+
+    <h2 class="section-title">4.7 Impor Data Produk Massal Melalui Spreadsheet Excel (.xlsx)</h2>
+    <p>
+        Untuk pengisian awal ratusan produk toko baru, sistem menyediakan fitur impor massal via berkas Excel (<code>/admin/products/import</code>). Berkas Excel harus memiliki 4 kolom berurutan: **Kolom A (nama)**, **Kolom B (barcode)**, **Kolom C (harga)**, dan **Kolom D (stok)**. Mesin impor memproses data secara berurutan dan memberikan laporan jumlah produk yang berhasil didaftarkan.
+    </p>
+
+    <h2 class="section-title">4.8 Pemeliharaan Data, Edit Barang, Snapshot Pricing & Penghapusan Aman</h2>
+    <p>
+        Jika data harga atau nama produk diubah, transaksi kasir yang terjadi sebelum perubahan tetap mempertahankan nilai harga historis aslinya (*Price Snapshotting*). Selain itu, sistem menerapkan mekanisme penghapusan aman (*Safe Deletion*): produk yang sudah memiliki riwayat transaksi dilindungi integritasnya sehingga laporan pembukuan masa lalu tidak mengalami selisih atau error relasi basis data.
+    </p>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 5: OPERASIONAL KASIR POINT OF SALE (POS) MODERN --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 05</div>
+    <h1 class="chapter-title">OPERASIONAL KASIR POINT OF SALE (POS) MODERN</h1>
+
+    <h2 class="section-title">5.1 Tata Letak Antarmuka Kasir Layar Sentuh & PC Split-Pane (/cashier/pos)</h2>
+    <p>
+        Antarmuka kasir Point of Sale (<code>/cashier/pos</code>) dirancang dengan tata letak dua panel terpisah (*Split-Pane Layout*) yang dioptimalkan untuk monitor layar sentuh maupun keyboard desktop:
+    </p>
+    <ul>
+        <li><b>Panel Kiri (Keranjang Belanja):</b> Memuat kotak pemindaian barcode, daftar item yang sedang dibeli, tombol pengubah kuantitas (+/-), tombol hapus item, rincian diskon, dan subtotal harga per baris.</li>
+        <li><b>Panel Kanan (Dompet Pembayaran):</b> Bergaya kartu saku hijau tua Gojek (#00661A) yang memuat input nama pelanggan, ringkasan nominal total tagihan berukuran besar, pilihan metode pembayaran (Tunai vs QRIS), serta tombol utama **PROSES BAYAR (B)**.</li>
+    </ul>
+
+    <h2 class="section-title">5.2 Navigasi Header Kasir & Perbedaan Tampilan Hak Akses Role</h2>
+    <p>
+        Header kasir secara dinamis menyesuaikan role pengguna yang sedang login:
+    </p>
+    <ul>
+        <li><b>Jika Login sebagai Administrator:</b> Header menampilkan tombol **"← Dashboard Admin"** berwarna gelap, memungkinkan pimpinan toko berpindah dari meja kasir ke panel manajemen tanpa harus logout.</li>
+        <li><b>Jika Login sebagai Petugas Kasir:</b> Tombol dashboard disembunyikan. Header hanya menampilkan nama kasir bertugas (contoh: *Kasir: Siti Rahma*) dan tombol **"Logout"** merah untuk mengakhiri shift.</li>
+    </ul>
+
+    <h2 class="section-title">5.3 Metode Input Barang: Pemindai Barcode Laser vs Pencarian Teks</h2>
+    <p>
+        Kasir dapat memasukkan barang ke dalam keranjang belanja melalui dua cara:
+    </p>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">A</span> Pemindaian Barcode Laser (Otomatis & Cepat)</div>
+        Arahkan pemindai laser barcode ke label produk. Pemindai secara otomatis membaca kode, memasukkan nilai ke kolom pencarian, dan menekan simulasi 'ENTER'. Barang langsung masuk ke keranjang belanja dalam waktu kurang dari 0.2 detik. Pemindaian ulang pada barang yang sama akan otomatis menambah kuantitas (+1).
+    </div>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">B</span> Pencarian Teks / Nama Barang Manual</div>
+        Ketik minimal 2 huruf nama produk pada kotak input (contoh: *Bimoli*). Dropdown saran produk yang cocok akan muncul di bawah kotak pencarian. Kasir dapat mengklik produk yang diinginkan atau menekan tombol panah bawah keyboard lalu tekan 'ENTER'.
+    </div>
+
+    <h2 class="section-title">5.4 Manajemen Keranjang Belanja, Penyesuaian Kuantitas & Pembatalan Item</h2>
+    <p>
+        Pada setiap baris produk di dalam keranjang belanja, kasir dapat:
+    </p>
+    <ul>
+        <li>Menekan tombol <b>[ + ]</b> untuk menambah kuantitas barang (+1 unit). Sistem otomatis memvalidasi sisa stok gudang agar tidak melebihi batas fisik.</li>
+        <li>Menekan tombol <b>[ &minus; ]</b> untuk mengurangi kuantitas barang (&minus;1 unit). Jika kuantitas mencapai 0, item otomatis dihapus dari keranjang.</li>
+        <li>Menekan tombol ikon tempat sampah merah <b>[ 🗑 ]</b> untuk membatalkan dan menghapus baris produk tersebut dari keranjang secara langsung.</li>
+    </ul>
+
+    <h2 class="section-title">5.5 Penanganan Identitas Pelanggan (Pelanggan Umum vs Member Toko)</h2>
+    <p>
+        Secara default, kolom nama pelanggan terisi otomatis dengan teks **"Pelanggan Umum"** untuk menghemat waktu saat antrean padat. Namun, jika pembeli adalah pelanggan langganan atau menginginkan pengiriman struk digital via WhatsApp, kasir dapat mengetikkan nama pelanggan (misalnya: *Ibu Dewi*) dan nomor teleponnya. Nama ini akan dicetak pada struk belanja dan disertifikasi dalam stempel digital TTE.
+    </p>
+
+    <h2 class="section-title">5.6 Alur Pembayaran Tunai (Cash) & Perhitungan Kembalian Otomatis</h2>
+    <p>
+        Jika pembeli memilih pembayaran tunai, kasir menekan tombol **Bayar Tunai** (atau tombol pintas **B**). Dialog popup muncul menampilkan total tagihan, kolom input uang yang diterima, tombol nominal uang pas, serta tombol pecahan cepat (Rp 50.000, Rp 100.000, Rp 200.000). Alpine.js secara otomatis menghitung nilai **Uang Kembalian** secara instan. Kasir menekan **ENTER** untuk menyimpan transaksi dan membuka laci kasir (*cash drawer*).
+    </p>
+
+    <h2 class="section-title">5.7 Alur Pembayaran Digital Dynamic QRIS DOKU & Webhook Real-Time</h2>
+    <p>
+        Jika pembeli memilih pembayaran non-tunai, kasir menekan tombol **Dynamic QRIS DOKU**. Sistem melakukan panggilan API ke DOKU dan menampilkan modal dialog dengan kode QRIS standar Bank Indonesia beserta nominal eksak dan hitung mundur batas waktu (5 menit). Begitu pembeli berhasil melakukan transfer scan QR melalui aplikasi perbankan atau dompet digital (GoPay, OVO, Dana, BCA), webhook DOKU secara otomatis memicu pelunasan di layar kasir, membunyikan bel audio sukses, dan mencetak struk belanja.
+    </p>
+
+    <h2 class="section-title">5.8 Asisten Suara (Audio Chime) Notifikasi Kasir Berhasil</h2>
+    <p>
+        Sistem dilengkapi dengan asisten audio lonceng bel (*Audio Chime Effect*). Setiap kali transaksi kasir berhasil diselesaikan—baik melalui pembayaran tunai maupun konfirmasi otomatis QRIS—sistem memutar efek suara lonceng yang jernih. Hal ini memberikan konfirmasi auditif langsung kepada kasir dan pembeli tanpa kasir harus menatap layar secara terus-menerus, serta mencegah penipuan screenshot struk palsu.
+    </p>
+
+    <h2 class="section-title">5.9 Pintasan Keyboard Efisiensi Kasir (Hotkeys B, ESC, ENTER)</h2>
+    <p>
+        Untuk meningkatkan kecepatan checkout kasir profesional, sistem mendukung hotkeys keyboard:
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 25%;">Tombol Keyboard</th>
+            <th style="width: 30%;">Aksi Sistem</th>
+            <th>Fungsi Operasional</th>
+        </tr>
+        <tr>
+            <td><span class="badge-shortcut">B</span></td>
+            <td>Buka Modal Pembayaran</td>
+            <td>Membuka dialog popup pembayaran kasir secara instan.</td>
+        </tr>
+        <tr>
+            <td><span class="badge-shortcut">ESC</span></td>
+            <td>Batal / Tutup Dialog</td>
+            <td>Menutup dialog modal yang sedang terbuka atau membatalkan input.</td>
+        </tr>
+        <tr>
+            <td><span class="badge-shortcut">ENTER</span></td>
+            <td>Konfirmasi / Simpan Transaksi</td>
+            <td>Memfinalisasi pembayaran, menyimpan ke database & cetak struk.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">5.10 Format Cetak Struk Thermal Bluetooth (58mm/80mm) & Format Raw ESC/POS</h2>
+    <p>
+        Sistem mendukung pencetakan langsung ke printer kasir thermal mini melalui koneksi Bluetooth maupun kabel USB menggunakan format perintah raw ESC/POS standar industri. Tata letak struk dirancang presisi dengan lebar 32 kolom karakter untuk kertas 58mm dan 48 kolom karakter untuk kertas 80mm. Struk memuat header nama toko, alamat, nomor invoice, nama kasir, daftar item dan kuantitas, total, bayar, kembalian, dan catatan kaki (*footer policy*).
+    </p>
+
+    <h2 class="section-title">5.11 Cetak Nota Faktur PDF Grayscale Monokrom (/receipt/{id}/print)</h2>
+    <p>
+        Untuk pelanggan perusahaan atau transaksi bernilai besar yang memerlukan bukti fisik formal, kasir dapat mencetak **Nota Faktur PDF Grayscale Monokrom** ukuran A4 atau A5. Dokumen ini menggunakan latar belakang putih murni yang bersih, garis batas formal, rincian produk bertabel rapi, serta stempel Tanda Tangan Elektronik (TTE) resmi kasir bertugas.
+    </p>
+
+    <h2 class="section-title">5.12 Pengiriman Bukti Pembayaran Digital via WhatsApp Pelanggan</h2>
+    <p>
+        Sistem menyediakan fitur pengiriman struk digital (*e-receipt*) nir-kertas (*paperless*). Setelah transaksi selesai, kasir dapat memasukkan nomor WhatsApp pembeli dan menekan tombol **Kirim Struk (WA)**. Sistem secara otomatis membuka tautan WhatsApp Web atau WhatsApp App dengan draf pesan sopan berisi salam, nama toko, ringkasan total belanja, dan tautan e-faktur digital resmi bertanda tangan elektronik.
+    </p>
+
+    <h2 class="section-title">5.13 Modul Ekspedisi: Pembuatan & Pencetakan Label Resi Paket Standar A6</h2>
+    <p>
+        Untuk toko yang melayani pengiriman barang jarak jauh atau pesanan online, sistem dilengkapi dengan generator label resi paket ukuran standar A6 (105mm &times; 148mm) pada rute <code>/shipping/label/{sale_id}</code>. Label ini memuat kotak data penerima (TO) lengkap dengan nomor telepon, kotak data pengirim (FROM) identitas toko, nomor resi pengiriman berformat visual barcode, logo ekspedisi (JNE, J&T, SiCepat), serta peringatan **FRAGILE (Mudah Pecah)** yang jelas.
+    </p>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 6: PUSAT ANALITIK & 4 BUKU LAPORAN KEUANGAN --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 06</div>
+    <h1 class="chapter-title">PUSAT ANALITIK & 4 BUKU LAPORAN KEUANGAN</h1>
+
+    <h2 class="section-title">6.1 Gambaran Umum Pusat Pelaporan Terpadu (/admin/reports)</h2>
+    <p>
+        Pusat Pelaporan Terpadu (<code>/admin/reports</code>) menyajikan empat buku laporan bisnis terpisah yang saling terintegrasi secara otomatis:
+    </p>
+    <ul>
+        <li><b>Buku 1 - Laporan Penjualan (LPK):</b> Merekap volume transaksi, waktu belanja, kasir pelaksana, dan rincian omset kotor.</li>
+        <li><b>Buku 2 - Laporan Keuangan & Arus Kas (LKEU):</b> Memisahkan arus kas fisik di laci dengan kas digital perbankan serta laba operasional.</li>
+        <li><b>Buku 3 - Laporan Monitoring QRIS (LQRS):</b> Mengaudit transaksi gateway DOKU, potongan biaya MDR, dan pencairan (*settlement*).</li>
+        <li><b>Buku 4 - Laporan Stok & Valuasi Aset (LSTK):</b> Mengkalkulasi nilai total kekayaan barang dagangan yang tersimpan di gudang toko.</li>
+    </ul>
+
+    <h2 class="section-title">6.2 Laporan Penjualan Transaksi (Filter Harian, Bulanan, Kuartal, Tahunan)</h2>
+    <p>
+        Administrator dapat memfilter laporan penjualan berdasarkan rentang tanggal fleksibel: harian, mingguan, bulanan, kuartal (tiga bulanan), maupun tahunan. Filter juga dapat dipersempit berdasarkan metode pembayaran tertentu (Hanya Tunai atau Hanya QRIS) dan kasir bertugas. Panel ringkasan menampilkan total nominal transaksi kotor, rata-rata nilai keranjang (*average basket size*), dan status pelunasan.
+    </p>
+
+    <h2 class="section-title">6.3 Laporan Keuangan & Arus Kas (Pemisahan Kas Tunai vs Netto QRIS)</h2>
+    <p>
+        Guna mencegah selisih pembukuan antara uang fisik dan saldo rekening bank, Laporan Keuangan secara ketat memisahkan:
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 30%;">Pos Keuangan</th>
+            <th style="width: 35%;">Karakteristik Aliran Dana</th>
+            <th style="width: 35%;">Prosedur Rekonsiliasi</th>
+        </tr>
+        <tr>
+            <td><b>Kas Fisik di Laci (Cash)</b></td>
+            <td>Uang kertas dan koin riil di laci kasir. Bebas biaya potongan MDR (0%).</td>
+            <td>Dihitung manual (*cash count*) setiap penutupan shift dan dicocokkan dengan struk closing.</td>
+        </tr>
+        <tr>
+            <td><b>Kas Digital Bank (Net QRIS)</b></td>
+            <td>Dana masuk ke rekening merchant bank setelah dipotong biaya MDR 0.7%.</td>
+            <td>Dicocokkan dengan mutasi rekening koran (*bank statement*) pada tanggal pencairan H+1.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">6.4 Rekonsiliasi Biaya Potongan MDR DOKU Merchant 0.7% & Arus Kas Bersih</h2>
+    <p>
+        Berdasarkan regulasi Bank Indonesia, transaksi QRIS Merchant dikenakan biaya Merchant Discount Rate (MDR) sebesar 0.7%. Sistem kasir secara otomatis mengkalkulasi pemotongan ini pada setiap transaksi QRIS:
+    </p>
+    <div style="background-color: #F7FAFC; border: 1px solid #E2E8F0; padding: 6px 10px; border-radius: 4px; font-family: monospace; font-size: 8pt; margin: 4px 0;">
+        Biaya_MDR = Nominal_Bruto &times; 0.007<br>
+        Pendapatan_Netto_Bank = Nominal_Bruto - Biaya_MDR
+    </div>
+    <p>
+        Dengan demikian, laporan keuangan toko selalu mencerminkan nilai uang bersih (*net cash flow*) yang sebenarnya diterima oleh pemilik usaha tanpa ada selisih tersembunyi.
+    </p>
+
+    <h2 class="section-title">6.5 Laporan Monitoring & Audit Transaksi Digital QRIS (LQRS-Report)</h2>
+    <p>
+        Buku laporan audit QRIS mencatat ID referensi transaksi perbankan, waktu presisi webhook diterima, nominal bruto, nilai potongan MDR, dan status settlement perbankan. Laporan ini menjadi bukti audit resmi saat melakukan rekonsiliasi dengan pihak DOKU Merchant.
+    </p>
+
+    <h2 class="section-title">6.6 Laporan Inventaris Gudang, Mutasi & Valuasi Total Aset Barang (LSTK-Report)</h2>
+    <p>
+        Laporan Valuasi Stok mengalikan sisa unit fisik setiap barang dengan harga jualnya untuk menghitung total nilai aset gudang toko yang sedang aktif. Laporan ini juga mengelompokkan barang berdasarkan status ketersediaannya sehingga bagian pengadaan dapat memprioritaskan pembelian barang yang berada pada kategori stok menipis.
+    </p>
+
+    <h2 class="section-title">6.7 Pencetakan Struk Ringkasan Tutup Kasir Harian (Daily Closing Slip)</h2>
+    <p>
+        Saat pergantian shift atau penutupan toko pada malam hari, supervisor kasir dapat mencetak **Struk Ringkasan Tutup Kasir Harian (*Daily Closing Slip*)** melalui printer thermal. Struk ini merangkum total uang tunai yang wajib diserahkan, total penerimaan QRIS, total potongan fee, dan ditandatangani oleh kasir dan supervisor sebagai bukti serah terima kas resmi.
+    </p>
+
+    <h2 class="section-title">6.8 Standar Ekspor Laporan Formal ke Format PDF Landscape & Excel (.xlsx)</h2>
+    <p>
+        Seluruh buku laporan dapat diekspor ke dalam dua format formal:
+    </p>
+    <ul>
+        <li><b>Format PDF Landscape A4:</b> Tata letak horizontal yang lega dan rapi untuk presentasi manajerial, dilengkapi kop surat toko resmi, nomor dokumen dinamis, tabel audit bergaris rapi, dan stempel Tanda Tangan Elektronik (TTE).</li>
+        <li><b>Format Spreadsheet Excel (.xlsx):</b> Berkas tabel spreadsheet data mentah yang dapat diolah lebih lanjut untuk keperluan akuntansi perpajakan atau audit internal.</li>
+    </ul>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 7: TANDA TANGAN ELEKTRONIK (TTE) & SERTIFIKASI DIGITAL --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 07</div>
+    <h1 class="chapter-title">TANDA TANGAN ELEKTRONIK (TTE) & SERTIFIKASI DIGITAL</h1>
+
+    <h2 class="section-title">7.1 Landasan Hukum UU ITE No. 11/2008 & Integritas Dokumen Digital</h2>
+    <p>
+        Implementasi Tanda Tangan Elektronik (TTE) pada sistem ini berlandaskan pada <b>Pasal 11 Undang-Undang Republik Indonesia Nomor 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik (UU ITE)</b> serta Peraturan Pemerintah Nomor 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik (PSTE). TTE yang dihasilkan memiliki kekuatan hukum dan akibat hukum yang sah, mengikat para pihak yang menandatanganinya, dan diakui sebagai alat bukti hukum yang sah di pengadilan.
+    </p>
+
+    <h2 class="section-title">7.2 Standar Kriptografi SHA-256 & Timestamp Keabsahan Dokumen</h2>
+    <p>
+        Mekanisme pengamanan dokumen laporan dan struk digital menggunakan standar kriptografi asimetris:
+    </p>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">1</span> Pembentukan Signature Hash SHA-256</div>
+        Sistem menggabungkan metadata dokumen (Nomor Dokumen, Tanggal Periode, Total Nilai Finansial, ID Pengguna Penandatangan, dan Garam Rahasia <code>APP_KEY</code>) lalu meng-hash data tersebut menggunakan algoritma Secure Hash Algorithm 256-bit (SHA-256).
+    </div>
+    <div class="step-box">
+        <div class="step-header"><span class="step-num">2</span> Penyematan Timestamp & QR Code Verifikasi</div>
+        Hasil hash SHA-256 beserta cap waktu (*timestamp*) presisi detik disematkan ke dalam QR Code stempel dokumen dan dicetak di sudut kanan bawah berkas PDF laporan.
+    </div>
+
+    <h2 class="section-title">7.3 Struktur Format Penomoran Dokumen Laporan Dinamis (LKEU/LPK/LSTK)</h2>
+    <p>
+        Untuk memastikan konsistensi penomoran arsip, sistem menerapkan aturan penomoran dokumen dinamis berbasis **Tanggal Periode Laporan**:
+    </p>
+    <div style="background-color: #F7FAFC; border: 1.5px solid #00AA13; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 8.5pt; margin: 6px 0; text-align: center;">
+        <b>[KODE_BUKU] / [BULAN_DATA] / [TANGGAL_DATA] / [TAHUN_DATA] / [NOMOR_URUT]</b><br>
+        <span style="font-size: 7.5pt; color: #718096; font-family: sans-serif;">Contoh: LKEU / 08 / 05 / 2026 / 001 (Laporan Keuangan data tgl 5 Agustus 2026)</span>
+    </div>
+    <p>
+        Sistem memastikan bahwa kapanpun dokumen tersebut dicetak ulang di masa depan, nomor dokumen yang tercetak tetap merujuk pada tanggal data laporan tersebut dihasilkan, menjaga validitas riwayat audit.
+    </p>
+
+    <h2 class="section-title">7.4 Penandatangan Dokumen Otomatis Berdasarkan Akun & Gelar Alias TTE</h2>
+    <p>
+        Saat laporan diekspor ke format PDF, sistem secara otomatis mengidentifikasi akun administrator yang sedang login dan mencetak nama lengkap serta **Gelar Jabatan Resmi TTD** (misalnya: *Budi Santoso, S.E. &bull; Kepala Bagian Keuangan*) di bawah stempel digital TTE.
+    </p>
+
+    <h2 class="section-title">7.5 Portal Publik Verifikasi Keaslian Dokumen Laporan (/verify/document)</h2>
+    <p>
+        Siapapun yang menerima berkas cetak PDF laporan formal dapat memverifikasi keaslian dokumen tersebut dengan memindai QR Code menggunakan kamera ponsel pintar. Peramban akan otomatis membuka **Portal Publik Verifikasi Dokumen Resmi (<code>/verify/document</code>)** yang menampilkan Sertifikat Hijau Keabsahan Dokumen dengan status valid, tanggal pengesahan, dan ringkasan data resmi.
+    </p>
+
+    <h2 class="section-title">7.6 Portal Publik Verifikasi Keaslian Faktur Pelanggan (/verify/tte/{trx})</h2>
+    <p>
+        Pelanggan yang menerima struk belanja dapat memindai kode QR pada nota untuk membuka **Portal Verifikasi Faktur Belanja (<code>/verify/tte/{trx}</code>)** guna memastikan bahwa transaksi belanja mereka benar-benar tercatat secara sah di server toko.
+    </p>
+
+    <h2 class="section-title">7.7 Tautan Faktur Digital Sementara Bertanda Tangan (Expired 24 Jam)</h2>
+    <p>
+        Untuk menjaga kerahasiaan dan privasi data transaksi pelanggan yang dikirim melalui pesan WhatsApp, sistem menerapkan pengamanan URL bertanda tangan kriptografis (*Signed URL*) dengan masa kedaluwarsa **24 Jam**. Setelah lewat 24 jam, tautan e-faktur WhatsApp tersebut otomatis terkunci dan tidak dapat diakses lagi oleh publik, sementara data transaksi di server toko tetap tersimpan abadi secara aman.
+    </p>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 8: PENGATURAN TOKO, KONFIGURASI & INTEGRASI --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 08</div>
+    <h1 class="chapter-title">PENGATURAN TOKO, KONFIGURASI & INTEGRASI SISTEM</h1>
+
+    <h2 class="section-title">8.1 Pusat Pengaturan Sistem Terpadu (/admin/settings)</h2>
+    <p>
+        Menu Pengaturan Sistem (<code>/admin/settings</code>) merupakan pusat kendali untuk mengonfigurasi seluruh aspek identitas bisnis toko, branding aplikasi, parameter printer struk, pengunggahan audio bel, integrasi gateway DOKU, dan notifikasi bot Telegram.
+    </p>
+
+    <h2 class="section-title">8.2 Personalisasi Identitas Bisnis, Nama Usaha, Alamat & Logo Toko</h2>
+    <p>
+        Seluruh teks identitas toko bersifat dinamis dan dapat dipersonalisasi tanpa menyentuh kode program:
+    </p>
+    <ul>
+        <li><b>Nama Toko:</b> Nama resmi badan usaha yang akan tercetak pada header struk kasir thermal, nota PDF, cover buku panduan, dan portal sertifikat digital.</li>
+        <li><b>Alamat Lengkap Toko:</b> Alamat fisik gerai atau toko ritel beserta kota dan kode pos.</li>
+        <li><b>Nomor Telepon / WhatsApp Bantuan:</b> Saluran kontak layanan pelanggan toko.</li>
+        <li><b>Logo Usaha:</b> Berkas gambar logo toko (.png, .jpg, .svg). Berkas logo yang diunggah disimpan di direktori aman dan dialirkan melalui rute khusus <code>/media-file</code>.</li>
+    </ul>
+
+    <h2 class="section-title">8.3 Kustomisasi Branding Aplikasi, Prefix Invoice & Favicon Browser</h2>
+    <p>
+        Administrator dapat mengubah nama branding aplikasi (contoh: <code>SIKANDA POS</code>) yang tampil pada tab browser dan bilah sidebar. Selain itu, administrator dapat menentukan **Prefix Nomor Faktur** (misalnya: *INV*, *TRX*, *SLS*) untuk membedakan identitas transaksi antar cabang toko.
+    </p>
+
+    <h2 class="section-title">8.4 Pengaturan & Pengunggahan Suara Bel Kasir (Audio Chime MP3/WAV)</h2>
+    <p>
+        Melalui tab Audio Bel Kasir, administrator dapat mengunggah berkas efek suara lonceng kasir khusus berformat <code>.mp3</code> atau <code>.wav</code> (ukuran maksimal 2 MB) dan mengujinya secara langsung menggunakan tombol **Tes Putar Audio**. Berkas audio ini akan diputar otomatis pada peramban meja kasir setiap kali pembayaran berhasil.
+    </p>
+
+    <h2 class="section-title">8.5 Konfigurasi Gateway DOKU Merchant (Sandbox & Production)</h2>
+    <p>
+        Untuk menghubungkan sistem dengan layanan Dynamic QRIS Bank Indonesia, administrator memasukkan parameter kredensial resmi dari dashboard DOKU Merchant:
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 30%;">Parameter DOKU</th>
+            <th style="width: 35%;">Format Nilai</th>
+            <th>Keterangan Integrasi</th>
+        </tr>
+        <tr>
+            <td><b>DOKU Client ID</b></td>
+            <td>String numerik (contoh: <code>MALL-ID-829103...</code>)</td>
+            <td>Identitas merchant unik yang diterbitkan oleh DOKU.</td>
+        </tr>
+        <tr>
+            <td><b>DOKU Secret Key</b></td>
+            <td>String acak (contoh: <code>SK-live-892837498...</code>)</td>
+            <td>Kunci enkripsi rahasia untuk menghasilkan tanda tangan HMAC-SHA256 pada header permintaan API.</td>
+        </tr>
+        <tr>
+            <td><b>Mode Lingkungan</b></td>
+            <td><code>sandbox</code> atau <code>production</code></td>
+            <td>Pilihan mode uji coba (*Sandbox*) untuk pelatihan staf atau mode langsung (*Production*) untuk transaksi riil.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">8.6 Konfigurasi Integrasi Bot Notifikasi Telegram Toko</h2>
+    <p>
+        Sistem dapat mengirimkan ringkasan omset harian otomatis ke grup Telegram pemilik usaha. Administrator cukup memasukkan **Telegram Bot Token** dari BotFather dan **Chat ID / Group ID** tujuan, lalu menekan tombol **Tes Notifikasi Telegram**.
+    </p>
+
+    <h2 class="section-title">8.7 Pengaturan Footer Struk Kasir & Kebijakan Toko</h2>
+    <p>
+        Administrator dapat menyesuaikan 2 baris pesan catatan kaki (*footer*) pada struk belanja thermal, seperti ucapan terima kasih (*"Terima Kasih Atas Kunjungan Anda"*) dan kebijakan penukaran barang (*"Barang yang sudah dibeli tidak dapat ditukar/dikembalikan"*).
+    </p>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 9: MANAJEMEN PENGGUNA & GELAR JABATAN (ALIAS TTE) --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 09</div>
+    <h1 class="chapter-title">MANAJEMEN PENGGUNA & GELAR JABATAN (ALIAS TTE)</h1>
+
+    <h2 class="section-title">9.1 Daftar Akun Pengguna (/admin/users)</h2>
+    <p>
+        Modul Manajemen Pengguna (<code>/admin/users</code>) memuat tabel seluruh akun personil kasir dan administrator toko. Tabel menampilkan nama lengkap, alamat email, role wewenang, gelar jabatan alias penandatangan dokumen, serta opsi tindakan edit dan hapus akun.
+    </p>
+
+    <h2 class="section-title">9.2 Pendaftaran Akun Kasir / Admin Baru & Hak Wewenang Role</h2>
+    <p>
+        Penambahan staf baru dilakukan dengan mengklik tombol **+ Tambah Pengguna Baru** dan melengkapi data:
+    </p>
+    <ul>
+        <li><b>Nama Lengkap:</b> Nama personil staf toko (contoh: *Dewi Lestari*).</li>
+        <li><b>Alamat Email Resmi:</b> Surel unik yang digunakan untuk login (contoh: *dewi@toko.site*).</li>
+        <li><b>Peran (Role):</b> Pilihan role **Administrator** (akses penuh ke seluruh menu) atau **Kasir** (akses terbatas hanya untuk melayani meja kasir).</li>
+        <li><b>Kata Sandi Awal:</b> Sandi default minimal 8 karakter yang dapat diganti mandiri oleh staf saat login pertama kali.</li>
+    </ul>
+
+    <h2 class="section-title">9.3 Konfigurasi Kolom "Alias / Gelar Jabatan TTD" Penandatangan Dokumen</h2>
+    <p>
+        Kolom **"Alias / Gelar Jabatan TTD"** merupakan fitur khusus yang menentukan teks jabatan formal yang dicetak di bawah nama pada stempel digital TTE berkas PDF laporan keuangan. Contoh pengisian:
+    </p>
+    <ul>
+        <li><code>Kepala Bagian Keuangan</code> &bull; Untuk administrator divisi perbendaharaan.</li>
+        <li><code>Store Manager / Pimpinan Usaha</code> &bull; Untuk pemilik atau pengelola gerai toko.</li>
+        <li><code>Supervisor Meja Kasir</code> &bull; Untuk kepala regu operasional kasir harian.</li>
+    </ul>
+    <p>
+        Jika kolom ini dibiarkan kosong, sistem secara otomatis menggunakan fallback nama role akun pengguna tersebut.
+    </p>
+
+    <h2 class="section-title">9.4 Pembaruan Data Pengguna & Prosedur Reset Kata Sandi</h2>
+    <p>
+        Jika seorang kasir lupa kata sandi akunnya, Administrator dapat melakukan reset kata sandi dengan membuka menu edit pengguna pada rute <code>/admin/users/{id}/edit</code>, mengetikkan kata sandi baru, dan menyimpannya. Sistem akan langsung mengenkripsi sandi baru dengan hash Bcrypt dan membatalkan seluruh sesi aktif lama pengguna tersebut.
+    </p>
+
+    {{-- ========================================================================= --}}
+    {{-- BAB 10: PEMELIHARAAN SERVER EKSKLUSIF DIKELOLA OLEH I GUSTI SULTAN --}}
+    {{-- ========================================================================= --}}
+    <div class="page-break"></div>
+
+    <div class="chapter-num">BAB 10</div>
+    <h1 class="chapter-title">PEMELIHARAAN SERVER EKSKLUSIF OLEH I GUSTI SULTAN</h1>
+
+    <h2 class="section-title">10.1 Arsitektur Server Produksi & Manajemen Terpusat oleh I Gusti Sultan</h2>
+    <p>
+        Seluruh infrastruktur server, instalasi lingkungan produksi, konfigurasi web server, tuning basis data, pengamanan firewall, dan pemeliharaan berkesinambungan **dikelola dan dipelihara secara eksklusif oleh I Gusti Sultan**.
+    </p>
+    <p>
+        Arsitektur server mengadopsi tumpukan Linux enterprise berbasis host aaPanel pada direktori root <code>/www/wwwroot/kasir.site</code> dengan web server Nginx berkecepatan tinggi, PHP-FPM 8.2 socket, MySQL 8.0, dan integrasi Git Repository terpusat.
+    </p>
+
+    <h2 class="section-title">10.2 Dedicated Media Streaming Engine (/media-file) Anti-404 Nginx</h2>
+    <p>
+        Pada arsitektur hosting aaPanel standar, tautan symlink statis <code>public/storage</code> kerap mengalami kendala *404 Not Found* saat peramban memuat gambar logo atau audio bel kasir akibat restriksi hak akses Nginx.
+    </p>
+    <p>
+        Untuk mengatasi masalah ini secara permanen, **I Gusti Sultan** merancang dan mengimplementasikan **Dedicated Media Streaming Engine** melalui rute khusus <code>/media-file/{path}</code>. Mesin ini membaca berkas biner langsung dari storage internal, memvalidasi MIME-type secara akurat, dan mengalirkan data biner dengan header *HTTP Cache-Control (30 Hari)*. Hal ini menjamin bahwa logo toko dan audio bel kasir **100% selalu tampil dan berbunyi normal tanpa pernah mengalami broken image atau error 404**.
+    </p>
+
+    <h2 class="section-title">10.3 Prosedur Pemeliharaan Storage Symlink & File System aaPanel</h2>
+    <p>
+        Struktur pohon direktori penyimpanan berkas pada server dikonfigurasi sebagai berikut:
+    </p>
+    <div style="background-color: #F7FAFC; border: 1px solid #CBD5E0; padding: 8px 12px; border-radius: 4px; font-family: monospace; font-size: 7.8pt; line-height: 1.5; margin: 6px 0;">
+        /www/wwwroot/kasir.site/<br>
+        ├── public/storage &rarr; ../storage/app/public (Symlink Linux)<br>
+        ├── storage/app/public/logos/ (Direktori Berkas Logo Usaha)<br>
+        ├── storage/app/public/audio/ (Direktori Berkas Suara Bel Kasir)<br>
+        └── storage/logs/laravel.log (Berkas Log Monitoring Sistem)
+    </div>
+    <p>
+        Hak akses direktori diatur ketat pada <code>CHMOD 755</code> untuk folder dan <code>CHMOD 644</code> untuk berkas dengan kepemilikan user web server <code>chown -R www:www /www/wwwroot/kasir.site</code>.
+    </p>
+
+    <h2 class="section-title">10.4 Konfigurasi Web Server Nginx & URL Rewrite Engine Laravel 11</h2>
+    <p>
+        Blok konfigurasi Nginx pada berkas virtual host server dikonfigurasi dengan URL rewrite engine standar Laravel:
+    </p>
+    <div style="background-color: #2D3748; color: #E2E8F0; padding: 8px 12px; border-radius: 4px; font-family: monospace; font-size: 7.5pt; line-height: 1.4; margin: 6px 0;">
+        server {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;listen 80; listen 443 ssl http2;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;server_name botnomor.my.id kasir.site;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;root /www/wwwroot/kasir.site/public;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;index index.php index.html;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;location / {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try_files $uri $uri/ /index.php?$query_string;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;location ~ \.php$ {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fastcgi_pass unix:/tmp/php-cgi-82.sock;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fastcgi_index index.php;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include fastcgi.conf;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;client_max_body_size 50M;<br>
+        }
+    </div>
+
+    <h2 class="section-title">10.5 Pemantauan Log Kesalahan Sistem (laravel.log) & Error Handling</h2>
+    <p>
+        Sistem mencatat setiap aktivitas kritis dan potensi error ke dalam berkas log terpusat di <code>storage/logs/laravel.log</code>. **I Gusti Sultan** melakukan pemantauan log secara rutin untuk mendeteksi anomali koneksi webhook DOKU, kegagalan pencetakan printer thermal, atau beban memori tinggi saat ekspor laporan PDF.
+    </p>
+
+    <h2 class="section-title">10.6 Prosedur Pencadangan (Backup) Harian & Disaster Recovery oleh I Gusti Sultan</h2>
+    <p>
+        Untuk menjamin keamanan aset data transaksi toko dari segala risiko kerusakan perangkat keras, **I Gusti Sultan** mengonfigurasi skema pencadangan otomatis:
+    </p>
+    <ul>
+        <li><b>Pencadangan Database Otomatis Harian:</b> Cron job mengeksekusi perintah <code>mysqldump</code> setiap pukul 00:00 tengah malam untuk mengompresi dan menyimpan seluruh tabel basis data.</li>
+        <li><b>Penyimpanan Cadangan Terisolasi:</b> Berkas cadangan disimpan pada partisi khusus dengan retensi rotasi selama 30 hari.</li>
+        <li><b>Pemulihan Bencana (*Disaster Recovery*):</b> Jika terjadi kegagalan server fisik, waktu pemulihan (*Recovery Time Objective / RTO*) dijamin di bawah 15 menit dengan nol kehilangan data transaksi (*Zero Data Loss*).</li>
+    </ul>
+
+    <h2 class="section-title">10.7 Standar Operasional Prosedur (SOP) Deployment Pembaruan Sistem</h2>
+    <p>
+        Setiap pembaruan fitur atau perbaikan kode sistem dilakukan melalui alur deployment Git resmi:
+    </p>
+    <div style="background-color: #00360D; color: #FFFFFF; padding: 8px 12px; border-radius: 4px; font-family: monospace; font-size: 8pt; line-height: 1.5; margin: 6px 0;">
+        <span style="color: #A8DAB5;"># Masuk ke direktori aplikasi</span><br>
+        cd /www/wwwroot/kasir.site<br><br>
+        <span style="color: #A8DAB5;"># Tarik pemutakhiran kode sumber terbaru</span><br>
+        git pull origin main<br><br>
+        <span style="color: #A8DAB5;"># Bersihkan cache tampilan dan routing</span><br>
+        php artisan view:clear && php artisan route:clear
+    </div>
+
+    <h2 class="section-title">10.8 Panduan Pemecahan Masalah Cepat (FAQ Troubleshooting Operasional)</h2>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 30%;">Gejala Kendala</th>
+            <th style="width: 32%;">Kemungkinan Penyebab</th>
+            <th>Langkah Solusi Cepat</th>
+        </tr>
+        <tr>
+            <td><b>Struk Thermal Tidak Keluar</b></td>
+            <td>Koneksi Bluetooth printer terputus atau kertas habis.</td>
+            <td>Periksa rol kertas struk, matikan dan nyalakan ulang printer Bluetooth, lalu pasangkan ulang (*re-pair*).</td>
+        </tr>
+        <tr>
+            <td><b>QRIS Tidak Muncul di Kasir</b></td>
+            <td>Koneksi internet toko terganggu atau kredensial DOKU salah.</td>
+            <td>Alihkan sementara ke pembayaran TUNAI. Periksa koneksi internet modem toko dan cek kredensial DOKU di menu Pengaturan.</td>
+        </tr>
+        <tr>
+            <td><b>Halaman Menampilkan Error 419</b></td>
+            <td>Sesi peramban kasir telah kedaluwarsa.</td>
+            <td>Muat ulang halaman (*Refresh*) peramban dan lakukan login ulang dengan email & kata sandi.</td>
+        </tr>
+        <tr>
+            <td><b>Logo Toko Tidak Muncul</b></td>
+            <td>Tautan symlink storage terputus.</td>
+            <td>Hubungi I Gusti Sultan untuk memastikan rute <code>/media-file</code> aktif dan mengeksekusi <code>php artisan storage:link</code>.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">10.9 Glosarium Istilah POS, Perbankan, Kriptografi & E-Commerce</h2>
+    <table class="doc-table">
+        <tr>
+            <th style="width: 25%;">Istilah Teknis</th>
+            <th>Definisi & Penjelasan Kontekstual</th>
+        </tr>
+        <tr>
+            <td><b>POS (Point of Sale)</b></td>
+            <td>Sistem perangkat lunak meja kasir untuk memproses dan mencatat transaksi penjualan ritel secara langsung.</td>
+        </tr>
+        <tr>
+            <td><b>Dynamic QRIS</b></td>
+            <td>Kode QR pembayaran digital nasional Bank Indonesia yang diterbitkan secara dinamis dengan nominal tagihan presisi.</td>
+        </tr>
+        <tr>
+            <td><b>MDR (0.7%)</b></td>
+            <td>Merchant Discount Rate, yaitu biaya resmi pemrosesan transaksi pembayaran QRIS yang ditetapkan regulator.</td>
+        </tr>
+        <tr>
+            <td><b>TTE</b></td>
+            <td>Tanda Tangan Elektronik yang bersertifikat dan berkekuatan hukum sah berdasarkan UU ITE No. 11/2008 Pasal 11.</td>
+        </tr>
+        <tr>
+            <td><b>SHA-256</b></td>
+            <td>Algoritma fungsi hash kriptografi satu arah berukuran 256-bit untuk mengunci keabsahan data laporan dari manipulasi.</td>
+        </tr>
+        <tr>
+            <td><b>Webhook</b></td>
+            <td>Mekanisme pengiriman notifikasi HTTP otomatis dari server perbankan ke server kasir saat pembayaran sukses.</td>
+        </tr>
+    </table>
+
+    <h2 class="section-title">10.10 Lembar Kontak Dukungan Teknis & Komitmen Garansi I Gusti Sultan</h2>
+    <p>
+        Untuk eskalasi kendala teknis darurat, konsultasi integrasi perangkat keras kasir, atau pemeliharaan infrastruktur server, silakan menghubungi saluran resmi berikut:
+    </p>
+    <table class="doc-table">
+        <tr>
+            <td style="width: 38%;"><b>Lead Software Architect & Server Maintainer</b></td>
+            <td><b>I Gusti Sultan</b></td>
+        </tr>
+        <tr>
+            <td><b>Layanan Pemeliharaan Server</b></td>
+            <td>Pemantauan Server 24/7, Pencadangan Database Harian & Pembaruan Sistem</td>
+        </tr>
+        <tr>
+            <td><b>Repositori Kode Sumber Resmi</b></td>
+            <td><code>https://github.com/Igustisultanh12/toko.git</code> (Branch: <code>main</code>)</td>
+        </tr>
+        <tr>
+            <td><b>Status Jaminan Layanan</b></td>
+            <td><b style="color: #00880F;">● AKTIF & TERPELIHARA PENUH</b></td>
+        </tr>
+    </table>
+
+    <div style="margin-top: 30px; text-align: center;" class="no-break">
+        <div style="background-color: #E6F4EA; border: 1.5px solid #A8DAB5; border-radius: 8px; padding: 15px; display: inline-block; width: 85%;">
+            <div style="font-weight: 900; font-size: 9pt; color: #00661A; text-transform: uppercase;">
+                KOMITMEN KUALITAS & KESTABILAN SISTEM KASIR POS
             </div>
-
-            <!-- 4 KPI Cards -->
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
-                <tr>
-                    <td style="width: 25%; padding: 2px;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px 6px;">
-                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">OMSET HARI INI</div>
-                            <div style="font-size: 8.5pt; font-weight: bold; color: #00AA13;">Rp 1.45M</div>
-                        </div>
-                    </td>
-                    <td style="width: 25%; padding: 2px;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #90CDF4; border-radius: 4px; padding: 4px 6px;">
-                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">TOTAL ORDER</div>
-                            <div style="font-size: 8.5pt; font-weight: bold; color: #2B6CB0;">18 Transaksi</div>
-                        </div>
-                    </td>
-                    <td style="width: 25%; padding: 2px;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #FBD38D; border-radius: 4px; padding: 4px 6px;">
-                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">ITEM TERJUAL</div>
-                            <div style="font-size: 8.5pt; font-weight: bold; color: #DD6B20;">42 Pcs</div>
-                        </div>
-                    </td>
-                    <td style="width: 25%; padding: 2px;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px 6px;">
-                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">STATUS SERVER</div>
-                            <div style="font-size: 8pt; font-weight: bold; color: #38A169;">● AKTIF ONLINE</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div style="font-size: 7.8pt; color: #2D3748; margin-top: 4px;">
+                Hak Cipta Perangkat Lunak, Arsitektur Basis Data & Seluruh Pemeliharaan Server Produksi Dikelola Penuh oleh:
+            </div>
+            <div style="font-size: 11pt; font-weight: 900; color: #00880F; margin-top: 4px;">
+                I GUSTI SULTAN
+            </div>
         </div>
-        <div class="ui-caption">Gambar 3.1: Antarmuka Panel Kontrol Dashboard Utama Administrator</div>
+        <p style="font-size: 7.5pt; color: #718096; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; margin-top: 20px;">
+            &copy; {{ date('Y') }} {{ strtoupper($shop['app_name'] ?? 'SIKANDA POS') }} &bull; Dikelola oleh I Gusti Sultan. All rights reserved.
+        </p>
     </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 17: BAB 3.2 + GAMBAR BANNER ACTIONS --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 03</div>
-    <h1 class="chapter-title">STRUKTUR BANNER OMSET & QUICK ACTIONS</h1>
-
-    <h2 class="section-title">3.2 Banner Omset Hijau Gojek & Tombol Pintasan Cepat</h2>
-    <p>
-        Banner utama pada dashboard dirancang memberikan ringkasan omset dan akses pintas modul:
-    </p>
-
-    {{-- WIREFRAME MOCKUP 3.2 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar" style="background-color: #00360D;">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; STRUKTUR BANNER UTAMA GOPAY POCKET & TOMBOL AKSI CEPAT
-        </div>
-        <div class="ui-window-body" style="background-color: #00661A;">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="vertical-align: middle; padding: 6px;">
-                        <div style="font-size: 7pt; color: #A8DAB5; font-weight: bold;">⚡ TOTAL PENDAPATAN HARI INI</div>
-                        <div style="font-size: 16pt; font-weight: 900; color: #FFFFFF;">Rp 1.450.000</div>
-                        <div style="font-size: 6.5pt; color: #E2E8F0;">18 Transaksi Berhasil • 42 Item Terjual Hari Ini</div>
-                    </td>
-                </tr>
-            </table>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 6px;">
-                <tr>
-                    <td style="width: 20%; padding: 2px;">
-                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
-                            🛒 KASIR POS
-                        </div>
-                    </td>
-                    <td style="width: 20%; padding: 2px;">
-                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
-                            📦 + PRODUK
-                        </div>
-                    </td>
-                    <td style="width: 20%; padding: 2px;">
-                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
-                            📈 PENJUALAN
-                        </div>
-                    </td>
-                    <td style="width: 20%; padding: 2px;">
-                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
-                            💰 KEUANGAN
-                        </div>
-                    </td>
-                    <td style="width: 20%; padding: 2px;">
-                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
-                            📖 PANDUAN
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 3.2: Banner Utama Ringkasan Finansial & Tombol Aksi Cepat (Quick Actions)</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 18: BAB 3.3 + GAMBAR KPI CARDS --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 03</div>
-    <h1 class="chapter-title">ANALITIK INDIKATOR KINERJA UTAMA (KPI)</h1>
-
-    <h2 class="section-title">3.3 Rincian 4 Kartu KPI Finansial Real-Time</h2>
-    <p>
-        Setiap kartu indikator kinerja utama diperbarui otomatis secara real-time:
-    </p>
-
-    {{-- WIREFRAME MOCKUP 3.3 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; RINCIAN 4 KARTU METRIK KPI FINANSIAL REAL-TIME
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 25%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-size: 6pt; font-weight: bold; color: #00880F;">OMSET HARI INI</div>
-                            <div style="font-size: 11pt; font-weight: 900; color: #00AA13; margin: 4px 0;">Rp 1.45M</div>
-                            <div style="font-size: 5.5pt; color: #718096;">Total arus kas masuk</div>
-                            <div class="ui-badge badge-green" style="margin-top: 3px;">⚡ Real-Time</div>
-                        </div>
-                    </td>
-                    <td style="width: 25%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-size: 6pt; font-weight: bold; color: #2B6CB0;">TOTAL TRANSAKSI</div>
-                            <div style="font-size: 11pt; font-weight: 900; color: #2B6CB0; margin: 4px 0;">18 Order</div>
-                            <div style="font-size: 5.5pt; color: #718096;">Jumlah nota kasir</div>
-                            <div class="ui-badge badge-blue" style="margin-top: 3px;">🧾 100% Lunas</div>
-                        </div>
-                    </td>
-                    <td style="width: 25%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #DD6B20; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-size: 6pt; font-weight: bold; color: #DD6B20;">ITEM TERJUAL</div>
-                            <div style="font-size: 11pt; font-weight: 900; color: #DD6B20; margin: 4px 0;">42 Pcs</div>
-                            <div style="font-size: 5.5pt; color: #718096;">Volume fisik keluar</div>
-                            <div class="ui-badge badge-yellow" style="margin-top: 3px;">📦 Gudang Aktif</div>
-                        </div>
-                    </td>
-                    <td style="width: 25%; padding: 4px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
-                            <div style="font-size: 6pt; font-weight: bold; color: #38A169;">STATUS SISTEM</div>
-                            <div style="font-size: 9pt; font-weight: 900; color: #38A169; margin: 4px 0;">● ONLINE</div>
-                            <div style="font-size: 5.5pt; color: #718096;">Database & Gateway</div>
-                            <div class="ui-badge badge-green" style="margin-top: 3px;">🛡️ Server Sehat</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 3.3: Rincian Metrik pada 4 Kartu KPI Finansial Dashboard Administrator</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 19: BAB 3.4 + GAMBAR 7-DAY CHART --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 03</div>
-    <h1 class="chapter-title">VISUALISASI GRAFIK TREN PENJUALAN 7 HARI</h1>
-
-    <h2 class="section-title">3.4 Grafik Analisis Tren Arus Kas Sepekan</h2>
-    <p>
-        Grafik komparasi pendapatan tunai versus digital QRIS:
-    </p>
-
-    {{-- WIREFRAME MOCKUP 3.4 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; GRAFIK TREN PENJUALAN 7 HARI (TUNAI VS DIGITAL QRIS)
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
-                <tr>
-                    <td style="font-size: 6.5pt; font-weight: bold; color: #1A202C;">TREN TRANSAKSI SEPEKAN:</td>
-                    <td style="text-align: right; font-size: 6pt;">
-                        <span style="display: inline-block; width: 8px; height: 8px; background-color: #00AA13; vertical-align: middle;"></span> Tunai &nbsp;&nbsp;
-                        <span style="display: inline-block; width: 8px; height: 8px; background-color: #00AED6; vertical-align: middle;"></span> QRIS DOKU
-                    </td>
-                </tr>
-            </table>
-            <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 6pt;">
-                <tr style="height: 65px; vertical-align: bottom;">
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 35px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 20px; width: 14px; margin: 0 auto;"></div></td>
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 42px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 25px; width: 14px; margin: 0 auto;"></div></td>
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 45px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 30px; width: 14px; margin: 0 auto;"></div></td>
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 48px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 32px; width: 14px; margin: 0 auto;"></div></td>
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 52px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 38px; width: 14px; margin: 0 auto;"></div></td>
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 60px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 45px; width: 14px; margin: 0 auto;"></div></td>
-                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 65px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 50px; width: 14px; margin: 0 auto;"></div></td>
-                </tr>
-                <tr style="border-top: 1px solid #CBD5E0;">
-                    <td>Sen</td><td>Sel</td><td>Rab</td><td>Kam</td><td>Jum</td><td style="font-weight: bold; color: #00880F;">Sab 🔥</td><td style="font-weight: bold; color: #00880F;">Min 🔥</td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 3.4: Visualisasi Grafik Analisis Penjualan & Arus Kas 7 Hari Terakhir</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 20: BAB 3.5 + GAMBAR SIDEBAR NAVIGATION --}}
-    {{-- ========================================================================= --}}
-    <div class="page-break"></div>
-
-    <div class="chapter-num">BAB 03</div>
-    <h1 class="chapter-title">STRUKTUR NAVIGASI SIDEBAR ADMINISTRATOR</h1>
-
-    <h2 class="section-title">3.5 Struktur Navigasi Sidebar Responsif (partials/sidebar.blade.php)</h2>
-    <p>
-        Sidebar hijau tua Gojek (#00360D) memuat seluruh akses menu terintegrasi:
-    </p>
-
-    {{-- WIREFRAME MOCKUP 3.5 --}}
-    <div class="ui-mockup">
-        <div class="ui-window-bar">
-            <span class="ui-window-dot dot-red"></span>
-            <span class="ui-window-dot dot-yellow"></span>
-            <span class="ui-window-dot dot-green"></span>
-            &nbsp; STRUKTUR MENU NAVIGASI SIDEBAR RESPONSIF
-        </div>
-        <div class="ui-window-body">
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="width: 40%; vertical-align: top;">
-                        <div style="background-color: #00360D; border-radius: 6px; padding: 6px; color: white;">
-                            <div style="font-size: 7.5pt; font-weight: bold; padding: 3px 6px; border-bottom: 1px solid #00661A;">
-                                🏪 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS
-                            </div>
-                            <div style="background-color: #00661A; border-radius: 4px; padding: 3px 6px; margin-top: 4px; font-size: 6.5pt; font-weight: bold; color: #A8DAB5;">
-                                📊 Dashboard Ringkasan
-                            </div>
-                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">📦 Katalog Produk & Stok</div>
-                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">📈 Laporan Penjualan</div>
-                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">💰 Laporan Keuangan & Kas</div>
-                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">👥 Manajemen Pengguna</div>
-                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">⚙️ Pengaturan Toko</div>
-                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">📖 Buku Panduan PDF</div>
-                        </div>
-                    </td>
-                    <td style="width: 60%; padding-left: 10px; vertical-align: top;">
-                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 8px;">
-                            <div style="font-weight: bold; font-size: 7.5pt; color: #00661A; margin-bottom: 4px;">FITUR SIDEBAR TERPADU:</div>
-                            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
-                                • Terintegrasi otomatis dengan sistem role permission.<br>
-                                • Status menu aktif ditandai highlight hijau muda terang.<br>
-                                • Tombol cepat akses modul transaksi dan unduh panduan.<br>
-                                • Footer sidebar memuat copyright resmi:<br>
-                                <b style="color: #00880F;">© {{ date('Y') }} I Gusti Sultan. All rights reserved.</b>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="ui-caption">Gambar 3.5: Struktur Menu Navigasi Sidebar Responsif (resources/views/partials/sidebar.blade.php)</div>
-    </div>
-
-    {{-- ========================================================================= --}}
-    {{-- HALAMAN 21 s/d 78: Bab 4 hingga Bab 10 dengan Diagram HTML/CSS Lengkap --}}
-    {{-- ========================================================================= --}}
-    @include('admin.manual.pdf_chapters_rest')
 
 </body>
 </html>
