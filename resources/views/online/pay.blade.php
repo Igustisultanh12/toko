@@ -3,7 +3,7 @@
 @section('title', 'Pembayaran QRIS Pesanan ' . $order->order_number)
 
 @section('content')
-<div x-data="qrisPayment('{{ $order->order_number }}', @json($order->qris_url))" class="max-w-xl mx-auto px-4 py-8 space-y-6">
+<div x-data="qrisPayment" class="max-w-xl mx-auto px-4 py-8 space-y-6">
 
     {{-- KARTU PEMBAYARAN QRIS RESMI (PERSIS KASIR POS) --}}
     <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 border border-gray-100 shadow-xl text-center space-y-6">
@@ -49,10 +49,16 @@
             </template>
         </div>
 
-        {{-- COUNTDOWN TIMER --}}
-        <div class="flex items-center justify-center space-x-2 text-xs font-bold text-gray-500">
-            <span>Selesaikan pembayaran dalam:</span>
-            <span class="font-mono font-black text-rose-600 bg-rose-50 px-3 py-1 rounded-xl text-sm" x-text="countdownText">15:00</span>
+        {{-- COUNTDOWN TIMER & TOMBOL CEK STATUS --}}
+        <div class="space-y-3">
+            <div class="flex items-center justify-center space-x-2 text-xs font-bold text-gray-500">
+                <span>Selesaikan pembayaran dalam:</span>
+                <span class="font-mono font-black text-rose-600 bg-rose-50 px-3 py-1 rounded-xl text-sm" x-text="countdownText">15:00</span>
+            </div>
+
+            <button @click="checkStatusManual()" class="px-6 py-2.5 bg-emerald-50 text-[#00880F] hover:bg-emerald-100 rounded-xl text-xs font-black uppercase tracking-wider border border-emerald-200 transition">
+                🔄 Sudah Transfer? Cek Status
+            </button>
         </div>
 
         {{-- DETEKSI PEMBAYARAN OTOMATIS LIVE REALTIME --}}
@@ -85,9 +91,10 @@
 </div>
 
 <script>
-function qrisPayment(orderNumber, initialQrisUrl) {
-    return {
-        qrisUrl: initialQrisUrl || null,
+document.addEventListener('alpine:init', () => {
+    Alpine.data('qrisPayment', () => ({
+        orderNumber: @json($order->order_number),
+        qrisUrl: @json($order->qris_url),
         loadError: false,
         errorMessage: '',
         timeLeft: 900, // 15 menit
@@ -115,41 +122,77 @@ function qrisPayment(orderNumber, initialQrisUrl) {
             }, 1000);
 
             // Polling status pembayaran realtime via Webhook setiap 3 detik
-            this.checkInterval = setInterval(async () => {
-                try {
-                    const res = await fetch(`/order/check-status/${orderNumber}`);
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data.is_paid) {
-                            clearInterval(this.checkInterval);
-                            clearInterval(this.timerInterval);
-                            
-                            if (typeof window.playNotificationSound === 'function') {
-                                window.playNotificationSound('payment_success');
-                            }
-
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pembayaran QRIS Lunas!',
-                                text: 'Pembayaran Anda berhasil diverifikasi. Mengalihkan ke struk pesanan...',
-                                timer: 2200,
-                                showConfirmButton: false
-                            }).then(() => {
-                                window.location.href = data.redirect_url;
-                            });
-                        }
-                    }
-                } catch (e) {
-                    console.log('Error checking payment status:', e);
-                }
+            this.checkInterval = setInterval(() => {
+                this.checkStatusAuto();
             }, 3000);
+
+            // Tangkap event postMessage jika iframe DOKU selesai transaksi
+            window.addEventListener('message', (event) => {
+                if (event.data && (event.data.status === 'SUCCESS' || event.data.type === 'DOKU_PAYMENT_SUCCESS' || event.data.event === 'payment_success')) {
+                    this.handlePaymentSuccess("{{ route('order.receipt', $order->order_number) }}");
+                }
+            });
+        },
+
+        async checkStatusAuto() {
+            try {
+                const res = await fetch(`/order/check-status/${this.orderNumber}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.is_paid) {
+                        this.handlePaymentSuccess(data.redirect_url);
+                    }
+                }
+            } catch (e) {
+                console.log('Error checking payment status:', e);
+            }
+        },
+
+        async checkStatusManual() {
+            try {
+                const res = await fetch(`/order/check-status/${this.orderNumber}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.is_paid) {
+                        this.handlePaymentSuccess(data.redirect_url);
+                    } else {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Menunggu Pembayaran',
+                            text: 'Pembayaran QRIS Anda belum terkonfirmasi oleh server perbankan. Silakan selesaikan pembayaran di aplikasi m-banking atau e-wallet Anda.',
+                            confirmButtonColor: '#00AA13'
+                        });
+                    }
+                }
+            } catch (e) {
+                Swal.fire('Error', 'Gagal memeriksa status pembayaran.', 'error');
+            }
+        },
+
+        handlePaymentSuccess(redirectUrl) {
+            if (this.checkInterval) clearInterval(this.checkInterval);
+            if (this.timerInterval) clearInterval(this.timerInterval);
+
+            if (typeof window.playNotificationSound === 'function') {
+                window.playNotificationSound('payment_success');
+            }
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Pembayaran QRIS Lunas!',
+                text: 'Pembayaran Anda berhasil diverifikasi. Mengalihkan ke struk pesanan...',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = redirectUrl;
+            });
         },
 
         async fetchQris() {
             this.loadError = false;
             this.errorMessage = '';
             try {
-                const res = await fetch(`/order/get-qris/${orderNumber}`);
+                const res = await fetch(`/order/get-qris/${this.orderNumber}`);
                 const data = await res.json();
                 if (res.ok && data.success && data.qris_url) {
                     this.qrisUrl = data.qris_url;
@@ -162,7 +205,7 @@ function qrisPayment(orderNumber, initialQrisUrl) {
                 this.errorMessage = 'Koneksi ke gateway DOKU terputus. Silakan coba lagi.';
             }
         }
-    }
-}
+    }));
+});
 </script>
 @endsection
