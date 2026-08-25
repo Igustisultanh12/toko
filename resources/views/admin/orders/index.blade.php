@@ -310,27 +310,29 @@
                         </div>
                     </div>
 
-                    {{-- KOTAK FITUR LINK KOMPLAIN PELANGGAN --}}
-                    <div class="p-4 bg-rose-50/70 rounded-2xl border border-rose-200 text-xs space-y-2">
-                        <div class="flex items-center space-x-1.5 text-rose-700 font-black uppercase text-[10px] tracking-wider">
-                            <span>🛡️</span>
-                            <span>Link Pengaduan / Komplain Pelanggan:</span>
-                        </div>
-                        <p class="text-[11px] text-gray-600">Berikan tautan ini jika pembeli mengajukan keluhan barang tidak sesuai/rusak:</p>
-                        
-                        <div class="flex flex-wrap gap-2 pt-1">
-                            <button type="button" @click="copyComplaintLink()"
-                                    class="px-3.5 py-2 bg-white hover:bg-rose-100 text-rose-700 border border-rose-300 rounded-xl font-black text-[10px] uppercase tracking-wider transition shadow-sm flex items-center space-x-1">
-                                <span>📋 Salin Link Komplain</span>
-                            </button>
+                    {{-- KOTAK FITUR LINK KOMPLAIN PELANGGAN (HANYA UNTUK PESANAN YANG SUDAH LUNAS) --}}
+                    <template x-if="selectedOrder.payment_status === 'paid'">
+                        <div class="p-4 bg-emerald-50/60 rounded-2xl border border-emerald-200/80 text-xs space-y-2">
+                            <div class="flex items-center space-x-1.5 text-[#00880F] font-black uppercase text-[10px] tracking-wider">
+                                <span>🛡️</span>
+                                <span>Link Pengaduan / Komplain Pelanggan:</span>
+                            </div>
+                            <p class="text-[11px] text-gray-600">Berikan tautan ini jika pembeli mengajukan keluhan barang tidak sesuai/rusak:</p>
+                            
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <button type="button" @click="copyComplaintLink()"
+                                        class="px-3.5 py-2 bg-white hover:bg-emerald-50 text-[#00880F] border border-emerald-300 rounded-xl font-black text-[10px] uppercase tracking-wider transition shadow-sm flex items-center space-x-1">
+                                    <span>📋 Salin Link Komplain</span>
+                                </button>
 
-                            <a :href="'https://api.whatsapp.com/send?phone=' + (selectedOrder.customer_phone || '').replace(/[^0-9]/g, '') + '&text=' + encodeURIComponent('Halo ' + selectedOrder.customer_name + ', jika Anda memiliki kendala/keluhan barang pada pesanan ' + selectedOrder.order_number + ', silakan isi form pengaduan resmi kami di tautan berikut: ' + window.location.origin + '/komplain/' + selectedOrder.order_number)" 
-                               target="_blank"
-                               class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-black text-[10px] uppercase tracking-wider transition shadow-sm flex items-center space-x-1">
-                                <span>💬 Kirim Link via WA</span>
-                            </a>
+                                <a :href="'https://api.whatsapp.com/send?phone=' + (selectedOrder.customer_phone || '').replace(/[^0-9]/g, '') + '&text=' + encodeURIComponent('Halo ' + selectedOrder.customer_name + ', jika Anda memiliki kendala/keluhan barang pada pesanan ' + selectedOrder.order_number + ', silakan isi form pengaduan resmi kami di tautan berikut: ' + window.location.origin + '/komplain/' + selectedOrder.order_number)" 
+                                   target="_blank"
+                                   class="px-3.5 py-2 bg-[#00AA13] hover:bg-[#00880F] text-white rounded-xl font-black text-[10px] uppercase tracking-wider transition shadow-sm flex items-center space-x-1">
+                                    <span>💬 Kirim Link via WA</span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    </template>
 
                     {{-- JIKA PESANAN INI SUDAH ADA KOMPLAIN MASUK DARI PELANGGAN --}}
                     <template x-if="selectedOrder.latest_complaint">

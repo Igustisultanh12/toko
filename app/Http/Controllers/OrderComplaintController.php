@@ -19,6 +19,18 @@ class OrderComplaintController extends Controller
     public function showForm($order_number)
     {
         $order = Order::with(['items.product', 'complaints'])->where('order_number', $order_number)->firstOrFail();
+
+        // PROTEKSI KETAT: Jika pesanan belum lunas, tidak dapat mengakses form komplain
+        if ($order->payment_status !== 'paid') {
+            return redirect()->route('order.pay', $order->order_number)
+                             ->with('error', 'Pesanan ini belum dibayar. Layanan komplain & garansi toko hanya dapat diakses untuk pesanan yang telah lunas.');
+        }
+
+        if ($order->status === 'cancelled') {
+            return redirect()->route('order.track', $order->order_number)
+                             ->with('error', 'Pesanan ini telah dibatalkan.');
+        }
+
         $shop = Setting::pluck('value', 'key')->all();
         $latestComplaint = $order->complaints()->latest()->first();
 
@@ -31,6 +43,17 @@ class OrderComplaintController extends Controller
     public function store(Request $request, $order_number)
     {
         $order = Order::with('items')->where('order_number', $order_number)->firstOrFail();
+
+        // PROTEKSI KETAT: Validasi status lunas di sisi server
+        if ($order->payment_status !== 'paid') {
+            return redirect()->route('order.pay', $order->order_number)
+                             ->with('error', 'Pesanan belum lunas dibayar. Anda tidak dapat mengajukan komplain.');
+        }
+
+        if ($order->status === 'cancelled') {
+            return redirect()->route('order.track', $order->order_number)
+                             ->with('error', 'Pesanan ini telah dibatalkan.');
+        }
 
         $request->validate([
             'reason'            => 'required|string|max:255',
