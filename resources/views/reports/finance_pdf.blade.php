@@ -59,7 +59,7 @@
     @endphp
 
     <p class="judul">{{ $reportTitle }}</p>
-    <p class="sub-judul">Nomor: {{ $docPrefix }} / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Periode: {{ $periodLabel ?? 'Semua' }} &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
+    <p class="sub-judul">Nomor: {{ $docNumber ?? ($docPrefix . ' / ' . date('m / Y') . ' / ' . ($shop['app_name'] ?? 'SIKANDA')) }} &nbsp;|&nbsp; Periode: {{ $periodLabel ?? 'Semua' }} &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
 
     <p>1. &nbsp;&nbsp; Rekapitulasi transaksi penerimaan kas dan keuangan pada periode {{ $periodLabel ?? '' }} dengan rincian sebagai berikut:</p>
 

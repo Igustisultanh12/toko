@@ -45,7 +45,7 @@
     </div>
 
     <p class="judul">LAPORAN REKAPITULASI PENERIMAAN DIGITAL QRIS (DOKU)</p>
-    <p class="sub-judul">Nomor: LQRS / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Tarif MDR DOKU: 0.7% &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
+    <p class="sub-judul">Nomor: {{ $docNumber ?? ('LKEU-QRIS / ' . date('d / m / Y') . ' / ' . ($shop['app_name'] ?? 'SIKANDA')) }} &nbsp;|&nbsp; Tarif MDR DOKU: 0.7% &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
 
     <p>1. &nbsp;&nbsp; Rekapitulasi transaksi pembayaran digital via QRIS DOKU dengan rincian pemotongan MDR 0.7% per transaksi adalah sebagai berikut:</p>
 

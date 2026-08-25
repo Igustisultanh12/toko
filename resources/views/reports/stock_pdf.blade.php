@@ -51,7 +51,7 @@
     </div>
 
     <p class="judul">LAPORAN REKAPITULASI STOK & INVENTARIS BARANG</p>
-    <p class="sub-judul">Nomor: LSTK / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Status Filter: {{ $statusLabel ?? 'Semua Stok' }} &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
+    <p class="sub-judul">Nomor: {{ $docNumber ?? ('LSTK-STOK / ' . date('d / m / Y') . ' / ' . ($shop['app_name'] ?? 'SIKANDA')) }} &nbsp;|&nbsp; Status Filter: {{ $statusLabel ?? 'Semua Stok' }} &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
 
     <p>1. &nbsp;&nbsp; Rekapitulasi data stok fisik, harga jual, dan estimasi valuasi aset inventaris produk toko adalah sebagai berikut:</p>
 

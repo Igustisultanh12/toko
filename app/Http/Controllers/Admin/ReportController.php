@@ -138,6 +138,34 @@ class ReportController extends Controller
     }
 
     /**
+     * Helper untuk konversi angka bulan ke angka romawi (I - XII)
+     */
+    private function getRomanMonth($monthNumber = null)
+    {
+        $month = (int) ($monthNumber ?: date('n'));
+        $romans = [
+            1 => 'I', 2 => 'II', 3 => 'III', 4 => 'IV', 5 => 'V', 6 => 'VI',
+            7 => 'VII', 8 => 'VIII', 9 => 'IX', 10 => 'X', 11 => 'XI', 12 => 'XII'
+        ];
+        return $romans[$month] ?? 'I';
+    }
+
+    /**
+     * Helper untuk generate nomor dokumen resmi format dinamis:
+     * [KODE]-[METODE]/[TANGGAL]/[BULAN_ROMAWI]/[NAMA_APLIKASI]/[TAHUN]
+     */
+    private function generateDocNumber(string $prefix, ?string $subType, array $shop)
+    {
+        $day = date('d');
+        $romanMonth = $this->getRomanMonth();
+        $appName = preg_replace('/[^A-Za-z0-9]/', '', strtoupper($shop['app_name'] ?? 'SIKANDA')) ?: 'SIKANDA';
+        $year = date('Y');
+
+        $sub = $subType ? strtoupper($subType) : 'ALL';
+        return "{$prefix}-{$sub}/{$day}/{$romanMonth}/{$appName}/{$year}";
+    }
+
+    /**
      * Helper untuk Generate Data Penandatangan TTE Dinamis Sesuai User yang Mencetak
      */
     private function getSignerData(array $shop, string $docType, string $docNo)
@@ -172,10 +200,10 @@ class ReportController extends Controller
         $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
         $totalQty = $transactions->sum(fn($s) => $s->details->sum('quantity'));
 
-        $docNumber = 'LPK/' . date('m/Y') . '/SIKANDA';
+        $docNumber = $this->generateDocNumber('LPK', 'JUAL', $shop);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'sales', $docNumber);
 
-        $pdf = Pdf::loadView('reports.pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalQty', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64'))
+        $pdf = Pdf::loadView('reports.pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalQty', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64', 'docNumber'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Penjualan_' . date('Ymd_His') . '.pdf');
@@ -328,10 +356,10 @@ class ReportController extends Controller
         $totalFee = round($totalGross * 0.007, 0);
         $totalNet = $totalGross - $totalFee;
 
-        $docNumber = 'LQRS/' . date('m/Y') . '/SIKANDA';
+        $docNumber = $this->generateDocNumber('LKEU', 'QRIS', $shop);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'qris', $docNumber);
 
-        $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalGross', 'totalFee', 'totalNet', 'shop', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalGross', 'totalFee', 'totalNet', 'shop', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64', 'docNumber'))->setPaper('a4', 'landscape');
         return $pdf->download('LPK_QRIS_'.date('Ymd_His').'.pdf');
     }
 
@@ -448,10 +476,12 @@ class ReportController extends Controller
         $totalQrisNet = $totalQrisGross - $totalQrisFee;
         $totalNominal = $totalCash + $totalQrisNet;
 
-        $docNumber = 'LKEU/' . date('m/Y') . '/SIKANDA';
+        $method = strtolower($filters['payment_method'] ?? 'all');
+        $subType = ($method === 'cash') ? 'TUNAI' : (($method === 'qris') ? 'QRIS' : 'KAS');
+        $docNumber = $this->generateDocNumber('LKEU', $subType, $shop);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'finance', $docNumber);
 
-        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQrisGross', 'totalQrisFee', 'totalQrisNet', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64'))
+        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQrisGross', 'totalQrisFee', 'totalQrisNet', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64', 'docNumber'))
                   ->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Keuangan_'.date('Ymd_His').'.pdf');
@@ -687,7 +717,7 @@ class ReportController extends Controller
         $totalStock = $products->sum('stock');
         $totalValuation = $products->sum(fn($p) => $p->stock * $p->price);
 
-        $docNumber = 'LSTK/' . date('m/Y') . '/SIKANDA';
+        $docNumber = $this->generateDocNumber('LSTK', 'STOK', $shop);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'stock', $docNumber);
 
         $pdf = Pdf::loadView('reports.stock_pdf', compact(
@@ -701,7 +731,8 @@ class ReportController extends Controller
             'signerName',
             'signerTitle',
             'verifyUrl',
-            'tteQrBase64'
+            'tteQrBase64',
+            'docNumber'
         ))->setPaper('a4', 'landscape');
 
         return $pdf->download('Laporan_Stok_Barang_' . date('Ymd_His') . '.pdf');

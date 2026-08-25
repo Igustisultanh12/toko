@@ -41,12 +41,12 @@
 </head>
 <body>
     <div class="kop">
-        TOKO ANANDA<br>
-        <span class="underline-line">ADMINISTRASI KASIR SIKANDA</span>
+        {{ $shop['shop_name'] ?? 'TOKO ANANDA' }}<br>
+        <span class="underline-line">ADMINISTRASI KASIR {{ $shop['app_name'] ?? 'SIKANDA' }}</span>
     </div>
 
     <p class="judul">LAPORAN REKAPITULASI PENJUALAN</p>
-    <p class="sub-judul">Nomor: LPK / {{ date('m / Y') }} / SIKANDA &nbsp;|&nbsp; Periode: {{ $periodLabel ?? 'Semua' }}</p>
+    <p class="sub-judul">Nomor: {{ $docNumber ?? ('LPK-JUAL / ' . date('d / m / Y') . ' / ' . ($shop['app_name'] ?? 'SIKANDA')) }} &nbsp;|&nbsp; Periode: {{ $periodLabel ?? 'Semua' }} &nbsp;|&nbsp; Tanggal Cetak: {{ date('d F Y, H:i') }} WIB</p>
 
     <p>1. &nbsp;&nbsp; Laporan transaksi penjualan toko pada periode {{ $periodLabel ?? '' }} dengan rincian sebagai berikut:</p>
 
