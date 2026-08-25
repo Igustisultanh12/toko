@@ -114,10 +114,16 @@
                         </a>
                     @endif
 
+                    @php
+                        $unconfirmedCount = \App\Models\Order::where('status', 'paid')->count();
+                    @endphp
+
                     <a href="{{ route('admin.orders.index') }}" 
-                       class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-emerald-50 text-[#00880F] hover:bg-emerald-100 text-[11px] font-black uppercase tracking-wider rounded-xl transition border border-emerald-200/60 relative">
+                       class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-emerald-50 text-[#00880F] hover:bg-emerald-100 text-[11px] font-black uppercase tracking-wider rounded-xl transition border border-emerald-200/60 shadow-sm relative group">
                         <span>🛒 Pesanan Online</span>
-                        <span id="posOrderBadge" class="bg-rose-500 text-white px-2 py-0.5 rounded-full text-[9px] font-black hidden animate-pulse">0</span>
+                        <span id="posOrderBadge" class="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-600 text-white shadow-sm animate-pulse {{ $unconfirmedCount > 0 ? '' : 'hidden' }}">
+                            {{ $unconfirmedCount }}
+                        </span>
                     </a>
                 </div>
             </div>
@@ -692,54 +698,56 @@
                 },
 
                 startOnlineOrderPolling() {
-                    let lastNotified = 0;
+                    let lastNotified = {{ $unconfirmedCount ?? 0 }};
                     const checkOrders = async () => {
                         try {
                             const res = await fetch("{{ route('orders.realtime-check') }}");
                             if (res.ok) {
                                 const data = await res.json();
                                 const badge = document.getElementById('posOrderBadge');
-                                if (data.count > 0) {
-                                    if (badge) {
+                                if (badge) {
+                                    if (data.count > 0) {
                                         badge.innerText = data.count;
                                         badge.classList.remove('hidden');
+                                    } else {
+                                        badge.innerText = '0';
+                                        badge.classList.add('hidden');
                                     }
-                                    if (data.count > lastNotified) {
-                                        lastNotified = data.count;
-                                        if (typeof window.playNotificationSound === 'function') {
-                                            window.playNotificationSound('order_new');
-                                        }
-                                        if (data.latest_order) {
-                                            Swal.fire({
-                                                title: '🚨 PESANAN ONLINE BARU!',
-                                                html: `<div style="text-align:left; font-size:12px; line-height:1.6; margin-top:6px;">
-                                                            <p><b>No Pesanan:</b> <code style="color:#00AA13; font-weight:bold;">${data.latest_order.order_number}</code></p>
-                                                            <p><b>Nama:</b> ${data.latest_order.customer_name}</p>
-                                                            <p><b>Total:</b> <b style="color:#00AA13;">${data.latest_order.formatted_total}</b> (QRIS)</p>
-                                                            <p><b>Ekspedisi:</b> ${data.latest_order.courier}</p>
-                                                       </div>`,
-                                                icon: 'info',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#00AA13',
-                                                cancelButtonColor: '#6B7280',
-                                                confirmButtonText: 'Buka Pesanan',
-                                                cancelButtonText: 'Tutup'
-                                            }).then((res) => {
-                                                if (res.isConfirmed) {
-                                                    window.location.href = "{{ route('admin.orders.index') }}?status=unconfirmed";
-                                                }
-                                            });
-                                        }
+                                }
+                                if (data.count > lastNotified) {
+                                    lastNotified = data.count;
+                                    if (typeof window.playNotificationSound === 'function') {
+                                        window.playNotificationSound('order_new');
                                     }
-                                } else {
-                                    if (badge) badge.classList.add('hidden');
-                                    lastNotified = 0;
+                                    if (data.latest_order) {
+                                        Swal.fire({
+                                            title: '🚨 PESANAN ONLINE BARU!',
+                                            html: `<div style="text-align:left; font-size:12px; line-height:1.6; margin-top:6px;">
+                                                        <p><b>No Pesanan:</b> <code style="color:#00AA13; font-weight:bold;">${data.latest_order.order_number}</code></p>
+                                                        <p><b>Nama:</b> ${data.latest_order.customer_name}</p>
+                                                        <p><b>Total:</b> <b style="color:#00AA13;">${data.latest_order.formatted_total}</b> (QRIS)</p>
+                                                        <p><b>Ekspedisi:</b> ${data.latest_order.courier}</p>
+                                                   </div>`,
+                                            icon: 'info',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#00AA13',
+                                            cancelButtonColor: '#6B7280',
+                                            confirmButtonText: 'Buka Pesanan',
+                                            cancelButtonText: 'Tutup'
+                                        }).then((res) => {
+                                            if (res.isConfirmed) {
+                                                window.location.href = "{{ route('admin.orders.index') }}?status=unconfirmed";
+                                            }
+                                        });
+                                    }
+                                } else if (data.count < lastNotified) {
+                                    lastNotified = data.count;
                                 }
                             }
                         } catch(e) {}
                     };
                     checkOrders();
-                    setInterval(checkOrders, 6000);
+                    setInterval(checkOrders, 3500);
                 },
 
                 updateTime() { 

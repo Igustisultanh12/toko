@@ -28,11 +28,21 @@
                     <h1 class="text-2xl font-bold text-white">SmartPOS (Mode PC)</h1>
                     <p class="text-gray-400">Selamat datang, {{ Auth::user()->name ?? 'Kasir' }}!</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="{{ route('cashier.pos.index') }}" class="bg-gray-700 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 transition">Mode Normal</a>
+                <div class="flex items-center space-x-3">
+                    @php
+                        $unconfirmedCount = \App\Models\Order::where('status', 'paid')->count();
+                    @endphp
+                    <a href="{{ route('admin.orders.index') }}" 
+                       class="inline-flex items-center space-x-2 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow transition">
+                        <span>🛒 Pesanan Online</span>
+                        <span id="posPcOrderBadge" class="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-500 text-white shadow animate-pulse {{ $unconfirmedCount > 0 ? '' : 'hidden' }}">
+                            {{ $unconfirmedCount }}
+                        </span>
+                    </a>
+                    <a href="{{ route('cashier.pos.index') }}" class="bg-gray-700 text-white px-3.5 py-2 rounded-lg shadow hover:bg-gray-600 transition text-xs font-bold uppercase">Mode Normal</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="bg-gray-600 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-500 transition">Logout</button>
+                        <button type="submit" class="bg-gray-600 text-white px-3.5 py-2 rounded-lg shadow hover:bg-gray-500 transition text-xs font-bold uppercase">Logout</button>
                     </form>
                 </div>
             </header>
@@ -195,6 +205,56 @@
     </div>
 
     <script>
+    window.playNotificationSound = function(type = 'chime') {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+
+            if (type === 'order_new' || type === 'chime') {
+                const now = ctx.currentTime;
+                const osc1 = ctx.createOscillator();
+                const gain1 = ctx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(880, now);
+                gain1.gain.setValueAtTime(0.3, now);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                osc1.connect(gain1);
+                gain1.connect(ctx.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.4);
+
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(1320, now + 0.18);
+                gain2.gain.setValueAtTime(0.35, now + 0.18);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.start(now + 0.18);
+                osc2.stop(now + 0.8);
+            } else if (type === 'payment_success' || type === 'success') {
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const startTime = ctx.currentTime + (idx * 0.1);
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, startTime);
+                    gain.gain.setValueAtTime(0.25, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.35);
+                });
+            }
+        } catch(e) {
+            console.log("Audio Error:", e);
+        }
+    };
+
     function posSystem() {
         return {
             cart: [], isLoading: false, notification: { show: false, message: '', type: 'success' },
@@ -204,6 +264,60 @@
             
             init() {
                 this.$nextTick(() => this.$refs.manualBarcode.focus());
+                this.startOnlineOrderPolling();
+            },
+
+            startOnlineOrderPolling() {
+                let lastNotified = {{ $unconfirmedCount ?? 0 }};
+                const checkOrders = async () => {
+                    try {
+                        const res = await fetch("{{ route('orders.realtime-check') }}");
+                        if (res.ok) {
+                            const data = await res.json();
+                            const badge = document.getElementById('posPcOrderBadge');
+                            if (badge) {
+                                if (data.count > 0) {
+                                    badge.innerText = data.count;
+                                    badge.classList.remove('hidden');
+                                } else {
+                                    badge.innerText = '0';
+                                    badge.classList.add('hidden');
+                                }
+                            }
+                            if (data.count > lastNotified) {
+                                lastNotified = data.count;
+                                if (typeof window.playNotificationSound === 'function') {
+                                    window.playNotificationSound('order_new');
+                                }
+                                if (data.latest_order) {
+                                    Swal.fire({
+                                        title: '🚨 PESANAN ONLINE BARU!',
+                                        html: `<div style="text-align:left; font-size:12px; line-height:1.6; margin-top:6px;">
+                                                    <p><b>No Pesanan:</b> <code style="color:#00AA13; font-weight:bold;">${data.latest_order.order_number}</code></p>
+                                                    <p><b>Nama:</b> ${data.latest_order.customer_name}</p>
+                                                    <p><b>Total:</b> <b style="color:#00AA13;">${data.latest_order.formatted_total}</b> (QRIS)</p>
+                                                    <p><b>Ekspedisi:</b> ${data.latest_order.courier}</p>
+                                               </div>`,
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#00AA13',
+                                        cancelButtonColor: '#6B7280',
+                                        confirmButtonText: 'Buka Pesanan',
+                                        cancelButtonText: 'Tutup'
+                                    }).then((res) => {
+                                        if (res.isConfirmed) {
+                                            window.location.href = "{{ route('admin.orders.index') }}?status=unconfirmed";
+                                        }
+                                    });
+                                }
+                            } else if (data.count < lastNotified) {
+                                lastNotified = data.count;
+                            }
+                        }
+                    } catch(e) {}
+                };
+                checkOrders();
+                setInterval(checkOrders, 3500);
             },
             
             handleEnterKey(event) {
