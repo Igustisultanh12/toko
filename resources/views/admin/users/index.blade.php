@@ -143,7 +143,7 @@
                                 </a>
 
                                 @if(Auth::id() !== $u->id)
-                                <form action="{{ route('admin.users.destroy', $u->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun {{ $u->name }}? Akun ini tidak akan dapat login lagi.')" class="inline">
+                                <form action="{{ route('admin.users.destroy', $u->id) }}" method="POST" onsubmit="return confirmDelete(event, 'Apakah Anda yakin ingin menghapus akun {{ addslashes($u->name) }}? Akun ini tidak akan dapat login lagi.');" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="p-2.5 bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white rounded-xl transition-all font-bold text-xs" title="Hapus Akun">

@@ -747,7 +747,12 @@
 
                 printShippingLabel() {
                     if (!this.lastSaleId) {
-                        alert('ID Transaksi tidak valid.');
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Transaksi Tidak Valid',
+                            text: 'ID Transaksi tidak ditemukan untuk mencetak label resi.',
+                            confirmButtonColor: '#00AA13'
+                        });
                         return;
                     }
                     const params = new URLSearchParams({

@@ -7,6 +7,7 @@
     @if(!empty($shop['app_favicon']))
         <link rel="icon" href="{{ route('media.file', ['path' => $shop['app_favicon']]) }}">
     @endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,6 +26,42 @@
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Custom SweetAlert2 Style */
+        .swal2-popup {
+            border-radius: 2rem !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            padding: 1.8rem !important;
+        }
+        .swal2-title {
+            font-weight: 900 !important;
+            font-size: 1.15rem !important;
+            color: #1A202C !important;
+            text-transform: uppercase !important;
+            letter-spacing: -0.02em !important;
+        }
+        .swal2-html-container {
+            font-size: 0.82rem !important;
+            color: #4A5568 !important;
+            font-weight: 500 !important;
+        }
+        .swal2-confirm {
+            border-radius: 1rem !important;
+            font-weight: 800 !important;
+            font-size: 0.75rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            padding: 0.75rem 1.5rem !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+        }
+        .swal2-cancel {
+            border-radius: 1rem !important;
+            font-weight: 800 !important;
+            font-size: 0.75rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            padding: 0.75rem 1.5rem !important;
+        }
     </style>
 </head>
 <body class="flex min-h-screen antialiased text-gray-800">
@@ -84,5 +121,66 @@
             </footer>
         </div>
     </main>
+
+    {{-- GLOBAL SWEETALERT2 SCRIPTS & HANDLERS --}}
+    <script>
+        function confirmDelete(event, message = 'Yakin ingin menghapus data ini?', confirmText = 'Ya, Hapus!') {
+            if (event) {
+                event.preventDefault();
+            }
+            const form = event ? (event.target.closest('form') || event.target) : null;
+            
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: message,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#EE2737',
+                cancelButtonColor: '#6B7280',
+                confirmButtonText: confirmText,
+                cancelButtonText: 'Batal',
+                reverseButtons: true,
+                focusCancel: true
+            }).then((result) => {
+                if (result.isConfirmed && form) {
+                    form.submit();
+                }
+            });
+            return false;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: "{!! addslashes(session('success')) !!}",
+                    confirmButtonColor: '#00AA13',
+                    timer: 3500,
+                    timerProgressBar: true
+                });
+            @endif
+
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Terjadi Kesalahan!',
+                    text: "{!! addslashes(session('error')) !!}",
+                    confirmButtonColor: '#EE2737'
+                });
+            @endif
+
+            @if($errors->any())
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Periksa Masukan Anda',
+                    html: '<div style="text-align:left; font-size:12px; margin-top:8px;">' +
+                          '@foreach($errors->all() as $error)<p style="margin:2px 0;">• {{ addslashes($error) }}</p>@endforeach' +
+                          '</div>',
+                    confirmButtonColor: '#EE2737'
+                });
+            @endif
+        });
+    </script>
 </body>
 </html>

@@ -170,7 +170,7 @@
                         <div class="flex items-center gap-2">
                             <input type="text" readonly value="{{ url('/doku/notification') }}" id="webhookUrlInput"
                                    class="w-full bg-black/40 border border-emerald-800 text-emerald-200 text-[11px] font-mono px-3 py-2 rounded-xl outline-none">
-                            <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('webhookUrlInput').value); alert('URL Webhook berhasil disalin!');"
+                            <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('webhookUrlInput').value); Swal.fire({ icon: 'success', title: 'Tersalin!', text: 'URL Webhook berhasil disalin ke clipboard.', timer: 2000, showConfirmButton: false, toast: true, position: 'top-end' });"
                                     class="px-3 py-2 bg-[#00AA13] hover:bg-[#00880F] text-white text-[10px] font-black rounded-xl uppercase shrink-0">
                                 Salin
                             </button>

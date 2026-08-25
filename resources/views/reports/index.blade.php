@@ -460,7 +460,12 @@ document.addEventListener('alpine:init', () => {
 
         async sendWhatsAppReceipt() {
             if (!this.waPhone || this.waPhone.trim() === '') {
-                alert('Silakan masukkan nomor WhatsApp tujuan.');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nomor WhatsApp Kosong',
+                    text: 'Silakan masukkan nomor WhatsApp tujuan pengiriman struk.',
+                    confirmButtonColor: '#00AA13'
+                });
                 return;
             }
 
