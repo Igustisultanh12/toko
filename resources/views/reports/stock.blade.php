@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Laporan Stok Barang')
 @section('header_title', 'Pusat Laporan Stok & Inventaris')
@@ -86,7 +86,7 @@
         </form>
     </div>
 
-    {{-- SUMMARY STATS CARDS GOJEK STYLE --}}
+    {{-- SUMMARY STATS CARDS --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {{-- Total Valuasi --}}
         <div class="bg-gradient-to-r from-[#004D13] to-[#00880F] p-6 rounded-[2rem] shadow-xl text-white">

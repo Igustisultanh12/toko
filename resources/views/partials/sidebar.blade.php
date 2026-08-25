@@ -11,7 +11,7 @@
         @endif
         <div>
             <h1 class="text-xl font-black tracking-tight text-white uppercase leading-none">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
-            <p class="text-[9px] text-emerald-300 uppercase tracking-widest font-black mt-1">{{ $shop['app_tagline'] ?? 'Kasir Gojek Style' }}</p>
+            <p class="text-[9px] text-emerald-300 uppercase tracking-widest font-black mt-1">{{ $shop['app_tagline'] ?? 'Sultan Web Engine' }}</p>
         </div>
     </div>
 </div>

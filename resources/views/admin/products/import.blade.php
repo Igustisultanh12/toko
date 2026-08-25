@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Impor Produk Excel')
 @section('header_title', 'Impor Data Produk Excel')
@@ -31,7 +31,7 @@
         </div>
     @endif
 
-    {{-- UPLOAD CARD GOJEK STYLE --}}
+    {{-- UPLOAD CARD --}}
     <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-gray-100">
         <form action="{{ route('admin.products.import.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

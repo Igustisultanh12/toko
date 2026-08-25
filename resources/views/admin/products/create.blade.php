@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Tambah Produk')
 @section('header_title', 'Tambah Produk Baru')
@@ -30,8 +30,8 @@
         </div>
     @endif
 
-    {{-- FORM CARD GOJEK STYLE --}}
-    <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-gray-100">
+    {{-- FORM CARD --}}
+    <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 sm:p-12">
         <form action="{{ route('admin.products.store') }}" method="POST" class="space-y-6">
             @csrf
 

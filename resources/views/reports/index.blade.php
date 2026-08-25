@@ -137,7 +137,7 @@
         </form>
     </div>
 
-    {{-- SUMMARY STATS CARDS GOJEK STYLE --}}
+    {{-- SUMMARY STATS CARDS --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <div class="bg-gradient-to-r from-[#004D13] to-[#00880F] p-6 rounded-[2rem] shadow-xl text-white">
             <p class="text-[10px] font-black text-emerald-200 uppercase tracking-widest mb-1">Total Pemasukan (Lunas)</p>

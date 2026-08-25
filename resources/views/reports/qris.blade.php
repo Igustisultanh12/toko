@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Laporan QRIS DOKU')
 @section('header_title', 'Monitoring Digital QRIS DOKU')
@@ -148,7 +148,7 @@
     </div>
 </div>
 
-{{-- SCRIPT CHART.JS GOJEK CYAN GRADIENT --}}
+{{-- SCRIPT CHART.JS --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('qrisChart').getContext('2d');

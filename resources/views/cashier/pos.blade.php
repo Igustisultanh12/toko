@@ -83,7 +83,7 @@
 
         
 
-        {{-- HEADER GOJEK STYLE --}}
+        {{-- HEADER POS --}}
         <header class="bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-6 py-3.5 flex justify-between items-center shadow-sm z-50">
             <div class="flex items-center space-x-5">
                 <div class="flex items-center space-x-3">

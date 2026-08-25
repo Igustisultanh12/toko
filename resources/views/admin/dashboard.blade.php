@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            {{-- GOJEK QUICK ACTION SQUIRCLES --}}
+            {{-- QUICK ACTION SQUIRCLES --}}
             <div class="lg:col-span-6">
                 <div class="grid grid-cols-5 gap-2 bg-white/10 backdrop-blur-md p-3.5 rounded-3xl border border-white/15">
                     {{-- AKSI 1: KASIR POS --}}
@@ -252,14 +252,14 @@
 
 </div>
 
-{{-- SCRIPT CHART.JS GOJEK GREEN THEME --}}
+{{-- SCRIPT CHART.JS GREEN THEME --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const rawData = {!! $chartData !!};
     const ctx = document.getElementById('salesChart').getContext('2d');
     
-    // Gradient Gojek Green
+    // Gradient Green
     const gradient = ctx.createLinearGradient(0, 0, 0, 300);
     gradient.addColorStop(0, 'rgba(0, 170, 19, 0.35)');
     gradient.addColorStop(1, 'rgba(0, 170, 19, 0.0)');

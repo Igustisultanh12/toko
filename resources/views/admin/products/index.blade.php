@@ -42,7 +42,7 @@
         </div>
     @endif
 
-    {{-- KOTAK UPDATE STOK CEPAT GOJEK STYLE --}}
+    {{-- KOTAK UPDATE STOK CEPAT --}}
     <div class="bg-gradient-to-r from-emerald-50 to-teal-50/50 p-6 sm:p-8 rounded-[2.5rem] border border-emerald-200/60 shadow-sm space-y-4">
         <div class="flex items-center space-x-3">
             <div class="w-9 h-9 bg-[#00AA13] text-white rounded-2xl flex items-center justify-center shadow-md">
