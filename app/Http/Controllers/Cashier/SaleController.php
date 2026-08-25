@@ -286,7 +286,7 @@ class SaleController extends Controller
         $recipientName = $request->input('recipient_name', $sale->customer_name ?: 'Pelanggan Umum');
         $recipientPhone = $request->input('recipient_phone', '');
         $recipientAddress = $request->input('recipient_address', '');
-        $senderName = $request->input('sender_name', $shop['shop_name'] ?? 'TOKO ANANDA');
+        $senderName = $request->input('sender_name', $shop['shop_name'] ?? 'PENGIRIM');
         $senderPhone = $request->input('sender_phone', $shop['shop_phone'] ?? '');
         $senderAddress = $request->input('sender_address', $shop['shop_address'] ?? '');
         $courier = $request->input('courier', 'Reguler');

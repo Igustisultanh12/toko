@@ -56,27 +56,6 @@
                     </div>
                 </div>
 
-                {{-- KATEGORI --}}
-                <div>
-                    <label for="category_id" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Kategori Produk</label>
-                    <select name="category_id" id="category_id" 
-                            class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-bold text-gray-700 text-xs transition-all">
-                        <option value="">Pilih Kategori...</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-                {{-- HARGA BELI --}}
-                <div>
-                    <label for="cost_price" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Harga Pokok / Modal (Rp)</label>
-                    <input type="number" name="cost_price" id="cost_price" value="{{ old('cost_price', $product->cost_price) }}" min="0" 
-                           class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-black text-gray-800 text-xs transition-all" placeholder="0">
-                </div>
-
                 {{-- HARGA JUAL --}}
                 <div>
                     <label for="price" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Harga Jual Kasir (Rp) <span class="text-rose-500">*</span></label>
@@ -91,11 +70,18 @@
                            class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-black text-gray-800 text-xs transition-all" placeholder="10">
                 </div>
 
-                {{-- DESKRIPSI --}}
+                {{-- DISKON --}}
                 <div>
-                    <label for="description" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Satuan</label>
+                    <label for="discount_percent" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Diskon (%)</label>
+                    <input type="number" name="discount_percent" id="discount_percent" value="{{ old('discount_percent', $product->discount_percent) }}" min="0" max="100" step="0.1" 
+                           class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-black text-gray-800 text-xs transition-all" placeholder="0">
+                </div>
+
+                {{-- DESKRIPSI / SATUAN --}}
+                <div>
+                    <label for="description" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Satuan Barang</label>
                     <input type="text" name="description" id="description" value="{{ old('description', $product->description) }}" 
-                           class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-medium text-gray-700 text-xs transition-all" placeholder="Contoh: Pcs / Botol / Pack">
+                           class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-medium text-gray-700 text-xs transition-all" placeholder="Contoh: Pcs / Botol / Pack / Dus">
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -147,7 +147,7 @@
             <table>
                 <tr>
                     <td width="60%" valign="middle">
-                        <span class="shop-title">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }}</span><br>
+                        <span class="shop-title">{{ $shop['shop_name'] ?? 'TOKO' }}</span><br>
                         <span style="font-size: 7.5pt; color: #333; font-weight: bold;">TELP: {{ $shop['shop_phone'] ?? '-' }}</span>
                     </td>
                     <td width="40%" align="right" valign="middle">
@@ -176,7 +176,7 @@
         {{-- KOTAK PENGIRIM (DARI) --}}
         <div class="section-box">
             <div class="section-title">DARI / PENGIRIM (FROM):</div>
-            <div class="sender-name">{{ $senderName ?: ($shop['shop_name'] ?? 'TOKO ANANDA') }}</div>
+            <div class="sender-name">{{ $senderName ?: ($shop['shop_name'] ?? '') }}</div>
             <div style="font-size: 8pt; font-weight: bold; margin-top: 1px;">
                 <span class="tag-label">NO. TELP</span> {{ $senderPhone ?: ($shop['shop_phone'] ?? '-') }}
             </div>

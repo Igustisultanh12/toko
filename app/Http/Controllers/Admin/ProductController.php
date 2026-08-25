@@ -53,14 +53,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'barcode' => 'nullable|string|max:255|unique:products',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+        $validated = $request->validate([
+            'name'             => 'required|string|max:255',
+            'barcode'          => 'nullable|string|max:255|unique:products,barcode',
+            'price'            => 'required|numeric|min:0',
+            'stock'            => 'required|integer|min:0',
+            'discount_percent' => 'nullable|numeric|min:0|max:100',
+            'description'      => 'nullable|string|max:255',
         ]);
 
-        Product::create($request->all());
+        Product::create($validated);
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
@@ -70,7 +72,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // Biasanya tidak digunakan untuk panel admin, tapi bisa diarahkan ke edit
         return redirect()->route('admin.products.edit', $product);
     }
 
@@ -87,14 +88,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'barcode' => 'nullable|string|max:255|unique:products,barcode,' . $product->id,
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+        $validated = $request->validate([
+            'name'             => 'required|string|max:255',
+            'barcode'          => 'nullable|string|max:255|unique:products,barcode,' . $product->id,
+            'price'            => 'required|numeric|min:0',
+            'stock'            => 'required|integer|min:0',
+            'discount_percent' => 'nullable|numeric|min:0|max:100',
+            'description'      => 'nullable|string|max:255',
         ]);
 
-        $product->update($request->all());
+        $product->update($validated);
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui.');
     }
