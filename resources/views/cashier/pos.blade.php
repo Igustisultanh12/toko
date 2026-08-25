@@ -100,15 +100,17 @@
                     </div>
                 </div>
 
-                <div class="hidden sm:flex items-center space-x-2">
+                <div class="flex items-center space-x-2">
                     <span class="text-xs font-black text-emerald-800 uppercase flex items-center bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200/60">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
                         <span id="cashier-name">{{ Auth::user()->name }}</span>
                     </span>
 
-                    @if(Auth::user()->role === 'admin')
-                        <a href="{{ route('dashboard') }}" class="text-[10px] font-black uppercase text-gray-500 hover:text-emerald-700 bg-gray-100 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition">
-                            &larr; Dashboard Admin
+                    @if(Auth::check() && Auth::user()->role === 'admin')
+                        <a href="{{ route('dashboard') }}" 
+                           class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-gray-900 hover:bg-black text-white text-[11px] font-black uppercase tracking-wider rounded-xl shadow-md transition active:scale-95 border border-gray-800">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span>Dashboard Admin</span>
                         </a>
                     @endif
                 </div>
