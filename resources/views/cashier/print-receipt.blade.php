@@ -34,9 +34,9 @@
 <body>
     <div class="receipt-wrapper">
         <div class="header text-center">
-            {{-- 1. LOGO TOKO --}}
-            @if(!empty($shop['shop_logo']))
-                <img src="{{ public_path('storage/' . $shop['shop_logo']) }}" class="logo">
+            {{-- 1. LOGO TOKO (HITAM PUTIH KHUSUS THERMAL) --}}
+            @if(!empty($logoBase64))
+                <img src="{{ $logoBase64 }}" class="logo">
             @endif
             
             {{-- 2. IDENTITAS TOKO --}}

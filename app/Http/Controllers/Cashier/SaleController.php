@@ -190,9 +190,70 @@ class SaleController extends Controller
         $sale->load(['details.product', 'user']);
         $shop = Setting::pluck('value', 'key')->all();
         
-        $pdf = Pdf::loadView('cashier.print-receipt', compact('sale', 'shop'))
+        $logoBase64 = $this->getGrayscaleLogoBase64($shop['shop_logo'] ?? null);
+        
+        $pdf = Pdf::loadView('cashier.print-receipt', compact('sale', 'shop', 'logoBase64'))
                   ->setPaper([0, 0, 164.41, 600], 'portrait'); 
         return $pdf->stream("Nota-{$sale->transaction_number}.pdf");
+    }
+
+    /**
+     * Konversi Logo Toko ke Format Base64 Grayscale / Hitam Putih Khusus Struk Thermal
+     */
+    private function getGrayscaleLogoBase64($relativePath)
+    {
+        if (empty($relativePath)) return null;
+
+        $paths = [
+            storage_path('app/public/' . $relativePath),
+            storage_path('app/' . $relativePath),
+            public_path('storage/' . $relativePath),
+        ];
+
+        $fullPath = null;
+        foreach ($paths as $p) {
+            if (file_exists($p)) {
+                $fullPath = $p;
+                break;
+            }
+        }
+
+        if (!$fullPath) return null;
+
+        try {
+            if (extension_loaded('gd')) {
+                $imageInfo = @getimagesize($fullPath);
+                if ($imageInfo) {
+                    $mime = $imageInfo['mime'];
+                    $im = null;
+                    if ($mime === 'image/png') {
+                        $im = @imagecreatefrompng($fullPath);
+                    } elseif ($mime === 'image/jpeg' || $mime === 'image/jpg') {
+                        $im = @imagecreatefromjpeg($fullPath);
+                    } elseif ($mime === 'image/webp') {
+                        $im = @imagecreatefromwebp($fullPath);
+                    }
+
+                    if ($im) {
+                        imagefilter($im, IMG_FILTER_GRAYSCALE);
+                        ob_start();
+                        imagepng($im);
+                        $output = ob_get_clean();
+                        imagedestroy($im);
+                        return 'data:image/png;base64,' . base64_encode($output);
+                    }
+                }
+            }
+
+            // Fallback
+            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
+            $data = file_get_contents($fullPath);
+            return 'data:image/' . $type . ';base64,' . base64_encode($data);
+        } catch (\Exception $e) {
+            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
+            $data = file_get_contents($fullPath);
+            return 'data:image/' . $type . ';base64,' . base64_encode($data);
+        }
     }
 
     /**
