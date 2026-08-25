@@ -4,13 +4,13 @@
 @section('header_title', 'Perbarui Data Produk')
 
 @section('content')
-<div class="max-w-4xl mx-auto pb-10 space-y-6" x-data="productForm()">
+<div class="max-w-4xl mx-auto pb-10 space-y-6" x-data="productForm('{{ $product->image_url }}')">
 
     {{-- HEADER BAR --}}
     <div class="flex items-center justify-between bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
         <div>
             <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Edit Data Produk: {{ $product->name }}</h3>
-            <p class="text-xs text-gray-400 font-medium">Perbarui informasi harga, barcode, atau jumlah stok fisik.</p>
+            <p class="text-xs text-gray-400 font-medium">Perbarui informasi harga, barcode, jumlah stok fisik, dan foto barang.</p>
         </div>
         <a href="{{ route('admin.products.index') }}" 
            class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-wider transition">
@@ -32,7 +32,7 @@
 
     {{-- FORM CARD --}}
     <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-gray-100">
-        <form action="{{ route('admin.products.update', $product) }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -42,6 +42,26 @@
                     <label for="name" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nama Produk / Barang <span class="text-rose-500">*</span></label>
                     <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}" required 
                            class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-black text-gray-800 text-sm transition-all" placeholder="Contoh: Kopi Susu Aren 250ml">
+                </div>
+
+                {{-- FOTO PRODUK (MAX 4MB) --}}
+                <div class="md:col-span-2 bg-gray-50 p-6 rounded-3xl border-2 border-dashed border-gray-200">
+                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Foto / Gambar Produk (Maks. 4MB)</label>
+                    <div class="flex flex-col sm:flex-row items-center gap-5">
+                        <template x-if="imagePreview">
+                            <img :src="imagePreview" class="w-24 h-24 object-cover rounded-2xl border-2 border-[#00AA13] shadow-md">
+                        </template>
+                        <template x-if="!imagePreview">
+                            <div class="w-24 h-24 bg-gray-200/70 rounded-2xl flex items-center justify-center text-gray-400 text-3xl border border-gray-300">
+                                🖼️
+                            </div>
+                        </template>
+                        <div class="flex-1 text-center sm:text-left space-y-2">
+                            <input type="file" name="image" id="image" accept="image/*" @change="previewImage($event)"
+                                   class="block w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-xs file:font-black file:uppercase file:bg-[#00AA13] file:text-white hover:file:bg-[#00880F] file:cursor-pointer file:transition">
+                            <p class="text-[10px] text-gray-400 font-bold">Pilih file baru untuk mengganti foto produk saat ini (Maksimal <b>4MB</b>). Biarkan kosong jika tidak ingin mengubah foto.</p>
+                        </div>
+                    </div>
                 </div>
 
                 {{-- KODE BARCODE --}}
@@ -78,7 +98,7 @@
                 </div>
 
                 {{-- DESKRIPSI / SATUAN --}}
-                <div>
+                <div class="md:col-span-2">
                     <label for="description" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Satuan Barang</label>
                     <input type="text" name="description" id="description" value="{{ old('description', $product->description) }}" 
                            class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-medium text-gray-700 text-xs transition-all" placeholder="Contoh: Pcs / Botol / Pack / Dus">
@@ -98,11 +118,37 @@
 </div>
 
 <script>
-function productForm() {
+function productForm(initialImage) {
     return {
+        imagePreview: initialImage || null,
+
         generateRandomBarcode() {
             const rand = '899' + Math.floor(100000000 + Math.random() * 900000000);
             document.getElementById('barcode').value = rand;
+        },
+
+        previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 4 * 1024 * 1024) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Ukuran Melebihi Batas',
+                        text: 'Ukuran foto maksimal adalah 4MB. Silakan pilih foto dengan ukuran lebih kecil.',
+                        confirmButtonColor: '#00AA13'
+                    });
+                    event.target.value = '';
+                    this.imagePreview = initialImage || null;
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imagePreview = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                this.imagePreview = initialImage || null;
+            }
         }
     }
 }

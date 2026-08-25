@@ -53,16 +53,23 @@
             @endphp
             <div class="bg-white rounded-[2rem] border border-gray-100 p-4 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                 <div class="space-y-2.5">
-                    {{-- BADGE DISKON / STOK --}}
-                    <div class="flex justify-between items-start">
-                        <span class="text-[9px] font-black uppercase px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
-                            Stok: {{ $product->stock }}
-                        </span>
+                    {{-- FOTO PRODUK --}}
+                    <div class="relative w-full h-36 bg-gray-50 rounded-2xl overflow-hidden mb-3 flex items-center justify-center border border-gray-100 group-hover:border-emerald-200 transition">
+                        @if($product->image_url)
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        @else
+                            <div class="text-4xl text-gray-300">🛍️</div>
+                        @endif
+
                         @if(!empty($product->discount_percent) && $product->discount_percent > 0)
-                            <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-200">
-                                Diskon {{ $product->discount_percent }}%
+                            <span class="absolute top-2 right-2 text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-md">
+                                -{{ $product->discount_percent }}%
                             </span>
                         @endif
+
+                        <span class="absolute bottom-2 left-2 text-[9px] font-black uppercase px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm text-white">
+                            Stok: {{ $product->stock }}
+                        </span>
                     </div>
 
                     {{-- NAMA PRODUK --}}
@@ -96,6 +103,7 @@
                         'original_price'   => $product->price,
                         'discount_percent' => $product->discount_percent ?? 0,
                         'max_stock'        => $product->stock,
+                        'image_url'        => $product->image_url,
                     ]) }})"
                             class="w-full py-2.5 bg-emerald-50 hover:bg-[#00AA13] text-[#00880F] hover:text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-1">
                         <span>+ Keranjang</span>
@@ -136,9 +144,14 @@
                 <div class="space-y-3 max-h-60 overflow-y-auto pr-1">
                     <template x-for="(item, index) in cart" :key="item.id">
                         <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-100 flex justify-between items-center">
-                            <div class="flex-1 pr-2">
-                                <h4 class="font-black text-gray-800 text-xs leading-tight" x-text="item.name"></h4>
-                                <span class="text-[11px] font-bold text-[#00880F]" x-text="formatRupiah(item.price)"></span>
+                            <div class="flex items-center space-x-2.5 flex-1 pr-2">
+                                <template x-if="item.image_url">
+                                    <img :src="item.image_url" class="w-10 h-10 rounded-xl object-cover border border-gray-200 shrink-0">
+                                </template>
+                                <div>
+                                    <h4 class="font-black text-gray-800 text-xs leading-tight" x-text="item.name"></h4>
+                                    <span class="text-[11px] font-bold text-[#00880F]" x-text="formatRupiah(item.price)"></span>
+                                </div>
                             </div>
                             <div class="flex items-center space-x-2">
                                 <button @click="decreaseQty(index)" class="w-6 h-6 bg-white border border-gray-200 rounded-lg font-bold text-xs hover:bg-gray-100">-</button>

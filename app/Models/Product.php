@@ -14,13 +14,23 @@ class Product extends Model
      *
      * @var array<int, string>
      */
-    // PERBAIKAN: Tambahkan properti $fillable di bawah ini
     protected $fillable = [
         'name',
         'barcode',
         'description',
+        'image',
         'stock',
         'price',
         'discount_percent',
     ];
+
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return route('media.file', ['path' => $this->image]);
+        }
+        return null;
+    }
 }

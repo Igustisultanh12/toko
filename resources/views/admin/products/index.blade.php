@@ -91,6 +91,7 @@
             <table class="w-full text-left text-xs">
                 <thead>
                     <tr class="bg-gray-50/80 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100">
+                        <th class="p-5">Foto</th>
                         <th class="p-5">Informasi Produk</th>
                         <th class="p-5 text-center">Barcode</th>
                         <th class="p-5 text-right">Harga Jual</th>
@@ -101,12 +102,22 @@
                 <tbody class="divide-y divide-gray-50">
                     @forelse ($products as $product)
                         <tr class="hover:bg-emerald-50/30 transition-colors group">
+                            {{-- FOTO PRODUK --}}
+                            <td class="p-5 w-16">
+                                @if($product->image_url)
+                                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-12 h-12 rounded-2xl object-cover border border-gray-200 shadow-sm">
+                                @else
+                                    <div class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-400 text-lg border border-gray-200">
+                                        🛍️
+                                    </div>
+                                @endif
+                            </td>
                             <td class="p-5">
                                 <p class="font-black text-gray-900 text-sm leading-tight uppercase">{{ $product->name }}</p>
-                                <p class="text-[10px] text-gray-400 font-bold uppercase mt-0.5">SKU #{{ $product->id }} • Kategori: {{ $product->category->name ?? 'Umum' }}</p>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase mt-0.5">SKU #{{ $product->id }} • {{ $product->description ?: 'Umum' }}</p>
                             </td>
                             <td class="p-5 text-center">
-                                <span class="font-mono text-xs bg-gray-100 px-3 py-1 rounded-xl text-gray-700 font-black tracking-wider">{{ $product->barcode }}</span>
+                                <span class="font-mono text-xs bg-gray-100 px-3 py-1 rounded-xl text-gray-700 font-black tracking-wider">{{ $product->barcode ?: '-' }}</span>
                             </td>
                             <td class="p-5 text-right font-black text-[#00880F] text-sm">
                                 Rp {{ number_format($product->price, 0, ',', '.') }}

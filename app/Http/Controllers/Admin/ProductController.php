@@ -60,11 +60,16 @@ class ProductController extends Controller
             'stock'            => 'required|integer|min:0',
             'discount_percent' => 'nullable|numeric|min:0|max:100',
             'description'      => 'nullable|string|max:255',
+            'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:4096', // Max 4MB
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
 
         Product::create($validated);
 
-        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk dan gambar berhasil ditambahkan.');
     }
 
     /**
@@ -95,7 +100,15 @@ class ProductController extends Controller
             'stock'            => 'required|integer|min:0',
             'discount_percent' => 'nullable|numeric|min:0|max:100',
             'description'      => 'nullable|string|max:255',
+            'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:4096', // Max 4MB
         ]);
+
+        if ($request->hasFile('image')) {
+            if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image);
+            }
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
 
         $product->update($validated);
 
@@ -107,6 +120,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image)) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image);
+        }
+
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');

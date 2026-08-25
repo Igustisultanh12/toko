@@ -10,7 +10,7 @@
     <div class="flex items-center justify-between bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
         <div>
             <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Formulir Data Produk</h3>
-            <p class="text-xs text-gray-400 font-medium">Lengkapi detail informasi barang dan penetapan harga jual.</p>
+            <p class="text-xs text-gray-400 font-medium">Lengkapi detail informasi barang, harga jual, dan foto produk.</p>
         </div>
         <a href="{{ route('admin.products.index') }}" 
            class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-wider transition">
@@ -32,7 +32,7 @@
 
     {{-- FORM CARD --}}
     <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 sm:p-12">
-        <form action="{{ route('admin.products.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -41,6 +41,26 @@
                     <label for="name" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nama Produk / Barang <span class="text-rose-500">*</span></label>
                     <input type="text" name="name" id="name" value="{{ old('name') }}" required 
                            class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-black text-gray-800 text-sm transition-all" placeholder="Contoh: Kopi Susu Aren 250ml">
+                </div>
+
+                {{-- FOTO PRODUK (MAX 4MB) --}}
+                <div class="md:col-span-2 bg-gray-50 p-6 rounded-3xl border-2 border-dashed border-gray-200">
+                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Foto / Gambar Produk (Maks. 4MB)</label>
+                    <div class="flex flex-col sm:flex-row items-center gap-5">
+                        <template x-if="imagePreview">
+                            <img :src="imagePreview" class="w-24 h-24 object-cover rounded-2xl border-2 border-[#00AA13] shadow-md">
+                        </template>
+                        <template x-if="!imagePreview">
+                            <div class="w-24 h-24 bg-gray-200/70 rounded-2xl flex items-center justify-center text-gray-400 text-3xl border border-gray-300">
+                                🖼️
+                            </div>
+                        </template>
+                        <div class="flex-1 text-center sm:text-left space-y-2">
+                            <input type="file" name="image" id="image" accept="image/*" @change="previewImage($event)"
+                                   class="block w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-xs file:font-black file:uppercase file:bg-[#00AA13] file:text-white hover:file:bg-[#00880F] file:cursor-pointer file:transition">
+                            <p class="text-[10px] text-gray-400 font-bold">Format didukung: JPG, PNG, WEBP, JPEG, SVG. Ukuran maksimal <b>4MB</b>. Gambar ini akan tampil di katalog toko online.</p>
+                        </div>
+                    </div>
                 </div>
 
                 {{-- KODE BARCODE --}}
@@ -77,7 +97,7 @@
                 </div>
 
                 {{-- DESKRIPSI / SATUAN --}}
-                <div>
+                <div class="md:col-span-2">
                     <label for="description" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Satuan Barang</label>
                     <input type="text" name="description" id="description" value="{{ old('description') }}" 
                            class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white font-medium text-gray-700 text-xs transition-all" placeholder="Contoh: Pcs / Botol / Pack / Dus">
@@ -89,7 +109,7 @@
                     Batal
                 </a>
                 <button type="submit" class="px-8 py-4 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition">
-                    Simpan Produk
+                    Simpan Produk & Foto
                 </button>
             </div>
         </form>
@@ -99,9 +119,35 @@
 <script>
 function productForm() {
     return {
+        imagePreview: null,
+
         generateRandomBarcode() {
             const rand = '899' + Math.floor(100000000 + Math.random() * 900000000);
             document.getElementById('barcode').value = rand;
+        },
+
+        previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 4 * 1024 * 1024) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Ukuran Melebihi Batas',
+                        text: 'Ukuran foto maksimal adalah 4MB. Silakan pilih foto dengan ukuran lebih kecil.',
+                        confirmButtonColor: '#00AA13'
+                    });
+                    event.target.value = '';
+                    this.imagePreview = null;
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imagePreview = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                this.imagePreview = null;
+            }
         }
     }
 }
