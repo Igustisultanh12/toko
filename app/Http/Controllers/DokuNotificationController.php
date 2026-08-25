@@ -109,15 +109,18 @@ class DokuNotificationController extends Controller
             $itemDetails .= ($index + 1) . ". " . $itemName . " (x" . $detail->quantity . ")\n";
         }
 
+        $shopName = Setting::where('key', 'shop_name')->value('value') ?: 'KASIR';
+        $appName = Setting::where('key', 'app_name')->value('value') ?: 'POS';
+
         // Format Pesan ala Laporan Situasi Harian (LSH)
-        $message = "🚨 *DANA QRIS MASUK: TOKO ANANDA* 🚨\n\n"
+        $message = "🚨 *DANA QRIS MASUK: {$shopName}* 🚨\n\n"
                  . "💰 *TOTAL:* Rp " . number_format($sale->total_amount, 0, ',', '.') . "\n"
                  . "🧾 *INVOICE:* `" . $sale->transaction_number . "`\n"
                  . "⏰ *WAKTU:* " . now()->format('d/m/Y H:i') . " WIB\n\n"
                  . "📦 *RINCIAN BARANG:*\n"
                  . "_" . $itemDetails . "_\n"
                  . "✅ *STATUS:* Pembayaran Sah & Lunas.\n"
-                 . "💻 *SISTEM:* SIKANDA Sultan Web Engine";
+                 . "💻 *SISTEM:* {$appName}";
 
         try {
             Http::post("https://api.telegram.org/bot{$token}/sendMessage", [

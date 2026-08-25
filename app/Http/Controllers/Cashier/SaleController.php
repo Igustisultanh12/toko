@@ -130,15 +130,15 @@ class SaleController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error("Toko Ananda Error: " . $e->getMessage());
+            Log::error("Transaksi POS Error: " . $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
     /**
-     * FUNGSI NOTIFIKASI CASH KE TELEGRAM
+     * Kirim Notifikasi Transaksi Kasir (TUNAI) ke Telegram Pemilik Toko
      */
-    private function sendTelegramCashNotification(Sale $sale)
+    private function sendTelegramNotification(Sale $sale)
     {
         $token = env('TELEGRAM_BOT_TOKEN');
         $chatId = env('TELEGRAM_CHAT_ID');
@@ -155,8 +155,10 @@ class SaleController extends Controller
         }
 
         $customerName = $sale->customer_name ?? 'Pelanggan Umum';
+        $shopName = Setting::where('key', 'shop_name')->value('value') ?: 'KASIR';
+        $appName = Setting::where('key', 'app_name')->value('value') ?: 'POS';
 
-        $message = "💵 *LAPORAN TUNAI (CASH) BARU* 💵\n\n"
+        $message = "💵 *LAPORAN TUNAI (CASH) - {$shopName}* 💵\n\n"
                  . "💰 *TOTAL:* Rp " . number_format($sale->total_amount, 0, ',', '.') . "\n"
                  . "🧾 *INVOICE:* `" . $sale->transaction_number . "`\n"
                  . "👤 *PELANGGAN:* " . $customerName . "\n"
@@ -165,7 +167,7 @@ class SaleController extends Controller
                  . "📦 *RINCIAN BARANG:*\n"
                  . "_" . $itemDetails . "_\n"
                  . "✅ *Status:* Transaksi Selesai & Uang Diterima.\n"
-                 . "💻 *SISTEM:* SIKANDA Sultan Web Engine";
+                 . "💻 *SISTEM:* {$appName}";
 
         try {
             Http::post("https://api.telegram.org/bot{$token}/sendMessage", [

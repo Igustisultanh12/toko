@@ -1,6 +1,6 @@
-﻿<table>
-    <tr><td colspan="2" style="font-weight: bold;">TOKO ANANDA</td></tr>
-    <tr><td colspan="2" style="font-weight: bold; text-decoration: underline;">ADMINISTRASI KASIR SIKANDA</td></tr>
+<table>
+    <tr><td colspan="2" style="font-weight: bold;">{{ $shop['shop_name'] ?? 'TOKO' }}</td></tr>
+    <tr><td colspan="2" style="font-weight: bold; text-decoration: underline;">ADMINISTRASI KASIR {{ $shop['app_name'] ?? 'POS' }}</td></tr>
     <tr><td></td></tr>
     <tr><td colspan="7" style="text-align: center; font-weight: bold; font-size: 14pt; text-decoration: underline;">LAPORAN TRANSAKSI DIGITAL QRIS (DOKU)</td></tr>
     <tr><td colspan="7" style="text-align: center; font-weight: bold;">Tarif MDR DOKU: 0.7% &nbsp;|&nbsp; Dicetak: {{ date('d/m/Y H:i') }} WIB</td></tr>

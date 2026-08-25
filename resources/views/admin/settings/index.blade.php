@@ -90,8 +90,8 @@
                 <div class="space-y-5">
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nama Toko / Usaha <span class="text-rose-500">*</span></label>
-                        <input type="text" name="shop_name" value="{{ $settings['shop_name'] ?? 'TOKO ANANDA' }}" required
-                               class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all font-black text-gray-800 text-sm" placeholder="TOKO ANANDA">
+                        <input type="text" name="shop_name" value="{{ $settings['shop_name'] ?? '' }}" required
+                               class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all font-black text-gray-800 text-sm" placeholder="Contoh: BAGIAN LOGISTIK / TOKO KITA">
                     </div>
 
                     <div>

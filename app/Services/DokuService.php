@@ -44,8 +44,8 @@ class DokuService
                 'payment_method_types' => ['QRIS'], 
             ],
             'customer' => [
-                'id' => 'CUST-' . ($sale->user_id ?? 'GUEST'),
-                'name' => Auth::user()->name ?? 'Pelanggan Toko Ananda',
+                'id'    => 'CUST-' . ($sale->user_id ?? 'GUEST'),
+                'name'  => !empty($sale->customer_name) ? $sale->customer_name : (Auth::user()->name ?? 'Pelanggan Umum'),
                 'email' => 'admin@sultanweb.id',
             ]
         ];

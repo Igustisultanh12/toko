@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="header">
-        <h3>TOKO ANANDA</h3>
+        <h3>{{ $shop['shop_name'] ?? 'TOKO' }}</h3>
         <p>Jalan Argopuro No.77 Mayang</p>
         <p>Jember, 68182</p>
     </div>
