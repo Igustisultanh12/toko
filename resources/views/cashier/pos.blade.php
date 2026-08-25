@@ -433,31 +433,58 @@
                 </div>
 
                 <div x-show="paymentStatus === 'success'">
-
-                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="4"/></svg>
-
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3.5"/></svg>
                     </div>
 
-                    <h3 class="text-2xl font-black text-gray-900 mb-8 uppercase tracking-widest leading-none">LUNAS!</h3>
+                    <h3 class="text-xl font-black text-gray-900 uppercase tracking-wider leading-none">PEMBAYARAN BERHASIL!</h3>
+                    <p class="text-3xl font-black text-green-600 my-2" x-text="formatCurrency(lastTotal)"></p>
+                    
+                    {{-- DETAIL TRANSAKSI --}}
+                    <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-100 text-left my-4 text-xs space-y-1.5 font-medium text-gray-600">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">No. Invoice:</span>
+                            <span class="font-mono font-bold text-gray-800" x-text="lastTransactionNumber"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Pelanggan:</span>
+                            <span class="font-bold text-gray-800" x-text="lastCustomerName || 'Pelanggan Umum'"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Metode Bayar:</span>
+                            <span class="font-bold uppercase" :class="lastPaymentMethod === 'qris' ? 'text-indigo-600' : 'text-emerald-600'" x-text="lastPaymentMethod"></span>
+                        </div>
+                    </div>
 
                     <div class="space-y-3">
-
+                        {{-- PILIHAN 1: CETAK STRUK --}}
                         <button @click="isMobileApp() ? printReceiptBluetooth() : printReceiptWeb()" :disabled="isPrinting"
-
-                                class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-lg hover:bg-indigo-700 flex justify-center items-center">
-
-                            <span x-show="!isPrinting">CETAK NOTA</span>
-
+                                class="w-full bg-indigo-600 text-white py-3.5 rounded-2xl font-black uppercase text-xs tracking-wider shadow-lg shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all flex items-center justify-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-width="2.5"/></svg>
+                            <span x-show="!isPrinting">CETAK NOTA / STRUK</span>
                             <div x-show="isPrinting" class="loader h-4 w-4 border-2"></div>
-
                         </button>
 
-                        <button @click="location.reload()" class="w-full bg-gray-900 text-white py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-black transition-all">BARU (ESC)</button>
+                        {{-- PILIHAN 2: KIRIM STRUK KE WHATSAPP --}}
+                        <div class="bg-green-50/80 p-3.5 rounded-2xl border border-green-200 text-left space-y-2">
+                            <label class="block text-[10px] font-black text-green-800 uppercase tracking-wider">Kirim Struk ke WhatsApp Pelanggan</label>
+                            <div class="flex gap-2">
+                                <input type="tel" x-model="customerPhone" placeholder="08xxxxxxxxxx"
+                                       class="flex-1 bg-white border border-green-300 rounded-xl px-3 py-2 text-xs font-bold text-gray-800 outline-none focus:ring-2 focus:ring-green-500">
+                                <button @click="sendReceiptToWhatsApp()" 
+                                        class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-black text-xs rounded-xl shadow transition-all flex items-center shrink-0">
+                                    <svg class="w-3.5 h-3.5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+                                    Kirim
+                                </button>
+                            </div>
+                        </div>
 
+                        {{-- PILIHAN 3: TRANSAKSI BARU --}}
+                        <button @click="location.reload()" 
+                                class="w-full bg-gray-900 text-white py-3.5 rounded-2xl font-black uppercase text-xs tracking-wider hover:bg-black transition-all">
+                            Transaksi Baru (ESC)
+                        </button>
                     </div>
-
                 </div>
 
             </div>
@@ -473,142 +500,173 @@
 
 
     <script>
+        {{-- FUNGSI TEXT-TO-SPEECH (SUARA NOMINAL BAHASA INDONESIA) --}}
+        function speakPaymentSuccess(amount, isMuted) {
+            if (isMuted) return;
 
-        {{-- LOGIKA PEMUTARAN AUDIO MP3 --}}
+            try {
+                const nominalInt = Math.round(amount || 0);
+                const textToSpeak = `Pembayaran senilai ${nominalInt} rupiah berhasil`;
 
-        function playPaymentSound(soundUrl, isMuted) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                    utterance.lang = 'id-ID';
+                    utterance.rate = 0.95;
+                    utterance.pitch = 1.0;
 
-            if (isMuted || !soundUrl || soundUrl === "") return;
+                    const voices = window.speechSynthesis.getVoices();
+                    const idVoice = voices.find(v => (v.lang === 'id-ID' || v.lang === 'id_ID' || (v.lang && v.lang.toLowerCase().includes('id'))));
+                    if (idVoice) {
+                        utterance.voice = idVoice;
+                    }
 
-            const audio = new Audio(soundUrl);
-
-            audio.play().catch(e => {
-
-                console.error("Audio Playback Error:", e);
-
-            });
-
+                    window.speechSynthesis.speak(utterance);
+                }
+            } catch (e) {
+                console.error("Speech Synthesis Error:", e);
+            }
         }
 
+        {{-- LOGIKA PEMUTARAN AUDIO MP3 + SUARA NOMINAL --}}
+        function announcePaymentSuccess(amount, soundUrl, isMuted) {
+            if (isMuted) return;
 
+            if (soundUrl && soundUrl !== "") {
+                const audio = new Audio(soundUrl);
+                audio.play().catch(e => console.log("Audio Playback Error:", e));
+                setTimeout(() => {
+                    speakPaymentSuccess(amount, isMuted);
+                }, 1000);
+            } else {
+                speakPaymentSuccess(amount, isMuted);
+            }
+        }
+
+        function playPaymentSound(soundUrl, isMuted) {
+            if (isMuted || !soundUrl || soundUrl === "") return;
+            const audio = new Audio(soundUrl);
+            audio.play().catch(e => console.error("Audio Playback Error:", e));
+        }
 
         document.addEventListener('alpine:init', () => {
-
             Alpine.data('posSystem', () => ({
-
                 shop: {
-
                     name: @json($shop['shop_name'] ?? 'TOKO ANANDA'),
-
                     address: @json($shop['shop_address'] ?? 'Jember'),
-
                     phone: @json($shop['shop_phone'] ?? '-'),
-
                     footer: @json($shop['receipt_footer'] ?? 'Terima Kasih!'),
-
                     payment_sound: @json($shop['payment_sound'] ?? null) 
-
                 },
-
-
 
                 customerName: 'Pelanggan Umum',
+                customerPhone: '',
                 cart: [], searchQuery: '', searchResults: [], manualBarcode: '',
-
                 isPaymentModalOpen: false, isQrisModalOpen: false, 
-
                 paymentMethod: 'cash', amountPaid: '', isSuccessModalOpen: false,
-
                 lastSaleId: null, lastTransactionNumber: null,
-
+                lastTotal: 0, lastItems: [], lastCustomerName: '', lastPaymentMethod: 'cash',
                 isLoading: false, isPrinting: false, currentTime: '',
-
                 paymentStatus: 'pending', statusInterval: null,
-
                 isMuted: !(@json($shop['is_voice_enabled'] ?? true)),
 
-
-
                 get total() { return this.cart.reduce((a, b) => a + (b.price * b.quantity), 0); },
-
                 get change() { return Math.max(0, (this.amountPaid || 0) - this.total); },
 
-
-
                 init() {
-
                     this.updateTime();
-
                     setInterval(() => this.updateTime(), 1000);
-
                     this.codeReader = new ZXing.BrowserMultiFormatReader();
-
                     this.$nextTick(() => this.$refs.manualBarcode?.focus());
-
+                    
+                    // Preload voice jika browser siap
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.onvoiceschanged = () => {
+                            window.speechSynthesis.getVoices();
+                        };
+                    }
                 },
-
-
 
                 updateTime() { this.currentTime = new Date().toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' }); },
-
                 formatCurrency(n) { return new Intl.NumberFormat('id-ID', {style:'currency', currency:'IDR', maximumFractionDigits:0}).format(n); },
-
                 formatNumber(n) { return new Intl.NumberFormat('id-ID').format(n); },
-
                 isMobileApp() { return !!window.bluetoothSerial; },
 
-
-
                 toggleMute() {
-
                     this.isMuted = !this.isMuted;
-
                     if (!this.isMuted) {
-
                         Swal.fire({ title: 'Suara Aktif', icon: 'success', toast: true, position: 'top-end', timer: 2000, showConfirmButton: false });
-
-                        // Pancing audio sistem (Silent Play) agar Android WebView mengizinkan suara otomatis berikutnya
-
                         this.unlockAudio();
-
                     }
-
                 },
-
-
-
-                {{-- FUNGSI KHUSUS UNTUK UNLOCK AUDIO DI APK --}}
 
                 unlockAudio() {
-
                     if (this.shop.payment_sound) {
-
                         let pancingan = new Audio(this.shop.payment_sound);
-
                         pancingan.volume = 0;
-
                         pancingan.play().catch(e => {});
-
                     }
-
                 },
 
-
-
                 testVoice() {
-
-                    if (!this.shop.payment_sound) {
-
-                        Swal.fire({ title: 'MP3 Kosong', text: 'Upload file MP3 di Admin dulu!', icon: 'warning', toast: true, position: 'top-end', timer: 3000 });
-
+                    if (this.isMuted) {
+                        Swal.fire({ title: 'Suara Dibisukan', text: 'Aktifkan suara di pojok kanan atas dulu.', icon: 'warning', toast: true, position: 'top-end', timer: 2500 });
                         return;
+                    }
+                    Swal.fire({ title: 'Mengetes Suara...', text: 'Pembayaran senilai 2000 rupiah berhasil', icon: 'info', toast: true, position: 'top-end', timer: 3000, showConfirmButton: false });
+                    announcePaymentSuccess(2000, this.shop.payment_sound, false);
+                },
 
+                sendReceiptToWhatsApp() {
+                    if (!this.customerPhone || this.customerPhone.trim() === '') {
+                        Swal.fire({
+                            title: 'Nomor WhatsApp Kosong',
+                            text: 'Silakan masukkan nomor WhatsApp pelanggan.',
+                            icon: 'warning',
+                            confirmButtonColor: '#4f46e5'
+                        });
+                        return;
                     }
 
-                    Swal.fire({ title: 'Mengetes Audio...', icon: 'info', toast: true, position: 'top-end', timer: 3000, showConfirmButton: false });
+                    let phone = this.customerPhone.replace(/[^0-9]/g, '');
+                    if (phone.startsWith('0')) {
+                        phone = '62' + phone.substring(1);
+                    } else if (!phone.startsWith('62')) {
+                        phone = '62' + phone;
+                    }
 
-                    playPaymentSound(this.shop.payment_sound, false);
+                    const shopName = this.shop.name || 'TOKO ANANDA';
+                    const shopAddress = this.shop.address || '';
+                    const shopPhone = this.shop.phone || '';
+                    const now = new Date();
+                    const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
+                    let itemsList = '';
+                    (this.lastItems || []).forEach((item, idx) => {
+                        const subtotal = this.formatNumber(item.price * item.quantity);
+                        itemsList += `${idx + 1}. *${item.name}*\n   ${item.quantity} pcs x Rp ${this.formatNumber(item.price)} = Rp ${subtotal}\n`;
+                    });
+
+                    let message = `*${shopName.toUpperCase()}*\n`;
+                    if (shopAddress) message += `📍 _${shopAddress}_\n`;
+                    if (shopPhone && shopPhone !== '-') message += `📞 _Telp: ${shopPhone}_\n`;
+                    message += `================================\n`;
+                    message += `🧾 *STRUK PEMBELIAN RESMI*\n`;
+                    message += `No. Nota   : \`${this.lastTransactionNumber || '-'}\`\n`;
+                    message += `Tanggal    : ${dateStr} WIB\n`;
+                    message += `Pelanggan  : *${this.lastCustomerName || 'Pelanggan Umum'}*\n`;
+                    message += `Kasir      : ${document.querySelector('.user-name')?.innerText?.trim() || 'Admin'}\n`;
+                    message += `--------------------------------\n`;
+                    message += `*DAFTAR BARANG:*\n${itemsList}`;
+                    message += `--------------------------------\n`;
+                    message += `💰 *TOTAL BELANJA : Rp ${this.formatNumber(this.lastTotal)}*\n`;
+                    message += `Metode Bayar  : ${(this.lastPaymentMethod || 'CASH').toUpperCase()}\n`;
+                    message += `Status Bayar  : ✅ *LUNAS / SUKSES*\n`;
+                    message += `================================\n`;
+                    message += `_${this.shop.footer || 'Terima kasih telah berbelanja!'}_`;
+
+                    const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+                    window.open(waUrl, '_blank');
                 },
 
 
@@ -697,93 +755,56 @@
 
 
                         this.lastSaleId = data.sale.id;
-
                         this.lastTransactionNumber = data.sale.transaction_number;
-
+                        this.lastTotal = data.sale.total_amount || this.total;
+                        this.lastItems = JSON.parse(JSON.stringify(this.cart));
+                        this.lastCustomerName = this.customerName || 'Pelanggan Umum';
+                        this.lastPaymentMethod = this.paymentMethod;
+                        this.customerPhone = '';
                         this.isPaymentModalOpen = false;
 
-
-
                         if (this.paymentMethod === 'qris' && data.qr_string) {
-
                             this.isQrisModalOpen = true;
-
                             this.$nextTick(() => {
-
                                 const placeholder = document.getElementById('qris-placeholder');
-
                                 if (data.qr_string.startsWith('http')) {
-
                                     placeholder.innerHTML = `<iframe src="${data.qr_string}"></iframe>`;
-
                                 } else {
-
                                     placeholder.innerHTML = "";
-
                                     new QRCode(placeholder, { text: data.qr_string, width: 250, height: 250 });
-
                                 }
-
                             });
-
                             this.paymentStatus = 'pending';
-
                             this.startAutoCheckStatus(data.sale.id); 
-
                         } else {
-
-                            // SUKSES TUNAI: Putar Suara MP3
-
-                            setTimeout(() => playPaymentSound(this.shop.payment_sound, this.isMuted), 300);
-
+                            // SUKSES TUNAI: Putar Suara MP3 + Suara Nominal
+                            setTimeout(() => announcePaymentSuccess(this.lastTotal, this.shop.payment_sound, this.isMuted), 300);
                             this.paymentStatus = 'success';
-
                             this.isSuccessModalOpen = true;
-
                             if (this.isMobileApp()) setTimeout(() => this.printReceiptBluetooth(), 1000);
-
                         }
-
                     } catch (e) { Swal.fire('Gagal', e.message, 'error'); } finally { this.isLoading = false; }
-
                 },
 
-
-
                 startAutoCheckStatus(saleId) {
-
                     if (this.statusInterval) clearInterval(this.statusInterval);
-
                     this.statusInterval = setInterval(async () => {
-
                         try {
-
                             const res = await fetch(`/cashier/pos/check-status/${saleId}`);
-
                             const data = await res.json();
-
                             if (data.status === 'success') {
-
                                 clearInterval(this.statusInterval);
-
                                 this.isQrisModalOpen = false;
-
                                 this.paymentStatus = 'success';
-
                                 this.isSuccessModalOpen = true;
 
-                                // SUKSES QRIS: Putar Suara MP3
-
-                                playPaymentSound(this.shop.payment_sound, this.isMuted);
+                                // SUKSES QRIS: Putar Suara MP3 + Suara Nominal (misal: "Pembayaran senilai 2000 rupiah berhasil")
+                                announcePaymentSuccess(this.lastTotal, this.shop.payment_sound, this.isMuted);
 
                                 if (this.isMobileApp()) setTimeout(() => this.printReceiptBluetooth(), 500);
-
                             }
-
                         } catch (e) { }
-
                     }, 3000); 
-
                 },
 
 
