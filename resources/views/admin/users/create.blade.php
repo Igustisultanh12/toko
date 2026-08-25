@@ -55,15 +55,16 @@
                 @enderror
             </div>
 
-            {{-- FORM ALIAS / GELAR JABATAN TTE (MUNCUL JIKA MEMILIH ROLE ADMIN) --}}
-            <div x-show="selectedRole === 'admin'" x-transition class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-5 space-y-2">
+            {{-- FORM ALIAS / GELAR JABATAN TTE (TERSEDIA UNTUK ADMIN DAN KASIR) --}}
+            <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-5 space-y-2">
                 <label class="block text-xs font-black text-[#00880F] uppercase tracking-wider">
-                    Alias / Jabatan TTD (TTE) <span class="text-rose-500">*</span>
+                    Alias / Jabatan TTD (TTE) <span class="text-gray-400 font-normal text-[10px] lowercase">(opsional)</span>
                 </label>
-                <input type="text" name="alias" value="{{ old('alias') }}" placeholder="Contoh: Pemilik Toko / Owner / Manager / Kepala Toko"
+                <input type="text" name="alias" value="{{ old('alias') }}" 
+                       :placeholder="selectedRole === 'admin' ? 'Contoh: Pemilik Toko / Owner / Manager / Kepala Cabang' : 'Contoh: Kasir Shift Pagi / Kasir Utama / Staff Pelayanan'"
                        class="w-full bg-white border border-emerald-300 rounded-xl px-4 py-3 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[#00AA13] transition-all outline-none @error('alias') border-rose-500 @enderror">
                 <p class="text-[10px] text-gray-500 font-medium">
-                    🛡️ Gelar/jabatan alias inilah yang akan tercetak otomatis di atas TTD / TTE pada nota faktur dan seluruh laporan PDF saat akun ini mencetak dokumen (menggantikan tulisan default "Administrator").
+                    🛡️ Gelar/jabatan alias inilah yang akan tercetak otomatis di atas TTD / TTE pada nota faktur dan laporan PDF saat akun ini mencetak dokumen (menggantikan tulisan default "Administrator" atau "Petugas Kasir").
                 </p>
                 @error('alias')
                     <p class="text-rose-500 text-[11px] font-bold mt-1">{{ $message }}</p>
