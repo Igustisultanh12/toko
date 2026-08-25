@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | {{ $shop['app_name'] ?? 'SIKANDA' }} POS</title>
     @if(!empty($shop['app_favicon']))
-        <link rel="icon" href="{{ asset('storage/' . $shop['app_favicon']) }}">
+        <link rel="icon" href="{{ route('media.file', ['path' => $shop['app_favicon']]) }}">
     @endif
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,9 +24,9 @@
         {{-- HEADER LOGO --}}
         <div class="text-center mb-6 space-y-2">
             @if(!empty($shop['shop_logo']))
-                <img src="{{ asset('storage/' . $shop['shop_logo']) }}" class="h-16 mx-auto object-contain mb-2 drop-shadow-md">
+                <img src="{{ route('media.file', ['path' => $shop['shop_logo']]) }}" class="h-16 mx-auto object-contain mb-2 drop-shadow-md">
             @elseif(!empty($shop['app_favicon']))
-                <img src="{{ asset('storage/' . $shop['app_favicon']) }}" class="w-16 h-16 rounded-3xl mx-auto p-2 bg-white object-contain shadow-xl">
+                <img src="{{ route('media.file', ['path' => $shop['app_favicon']]) }}" class="w-16 h-16 rounded-3xl mx-auto p-2 bg-white object-contain shadow-xl">
             @else
                 <div class="w-16 h-16 rounded-3xl bg-[#00AA13] text-white font-black text-2xl flex items-center justify-center mx-auto shadow-xl border-2 border-emerald-300/40">
                     {{ strtoupper(substr($shop['app_name'] ?? 'S', 0, 1)) }}

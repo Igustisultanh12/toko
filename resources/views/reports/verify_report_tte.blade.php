@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verifikasi Tanda Tangan Elektronik (TTE) | {{ $shop['shop_name'] ?? 'TOKO ANANDA' }}</title>
     @if(!empty($shop['app_favicon']))
-        <link rel="icon" href="{{ asset('storage/' . $shop['app_favicon']) }}">
+        <link rel="icon" href="{{ route('media.file', ['path' => $shop['app_favicon']]) }}">
     @endif
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         {{-- HEADER PORTAL --}}
         <div class="text-center space-y-2">
             @if(!empty($shop['shop_logo']))
-                <img src="{{ asset('storage/' . $shop['shop_logo']) }}" class="h-16 mx-auto object-contain mb-2">
+                <img src="{{ route('media.file', ['path' => $shop['shop_logo']]) }}" class="h-16 mx-auto object-contain mb-2">
             @endif
             <h1 class="text-2xl font-black text-gray-900 uppercase tracking-tight">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }}</h1>
             <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 inline-block px-4 py-1.5 rounded-full border border-emerald-200">

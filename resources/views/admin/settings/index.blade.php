@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Pusat Pengaturan Sistem')
 @section('header_title', 'Pengaturan Toko & Konfigurasi')
@@ -62,7 +62,7 @@
                         <div class="border-2 border-dashed border-gray-200 rounded-3xl p-6 text-center bg-gray-50 hover:border-emerald-400 transition-all">
                             @if(!empty($settings['app_favicon']))
                                 <div class="inline-block mb-3 p-3 bg-white rounded-2xl shadow border border-gray-100">
-                                    <img src="{{ asset('storage/' . $settings['app_favicon']) }}" class="h-12 w-12 object-contain mx-auto">
+                                    <img src="{{ route('media.file', ['path' => $settings['app_favicon']]) }}" class="h-12 w-12 object-contain mx-auto">
                                     <span class="text-[9px] font-bold text-gray-400 block mt-1">Favicon Saat Ini</span>
                                 </div>
                             @endif
@@ -111,7 +111,7 @@
                         <div class="border-2 border-dashed border-gray-200 rounded-3xl p-6 text-center bg-gray-50 hover:border-emerald-400 transition-all">
                             @if(!empty($settings['shop_logo']))
                                 <div class="inline-block mb-3 p-2 bg-white rounded-2xl shadow border border-gray-100">
-                                    <img src="{{ asset('storage/' . $settings['shop_logo']) }}" class="h-16 mx-auto object-contain rounded-xl">
+                                    <img src="{{ route('media.file', ['path' => $settings['shop_logo']]) }}" class="h-16 mx-auto object-contain rounded-xl">
                                     <span class="text-[9px] font-bold text-gray-400 block mt-1">Logo Toko Saat Ini</span>
                                 </div>
                             @endif
@@ -214,7 +214,7 @@
                                 <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 max-w-sm mx-auto">
                                     <p class="text-[10px] font-bold text-gray-500 mb-1">Audio Notifikasi Aktif:</p>
                                     <audio controls class="w-full h-8">
-                                        <source src="{{ asset('storage/' . $settings['payment_success_sound']) }}">
+                                        <source src="{{ route('media.file', ['path' => $settings['payment_success_sound']]) }}">
                                     </audio>
                                 </div>
                             @endif

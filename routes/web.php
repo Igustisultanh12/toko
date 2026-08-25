@@ -36,17 +36,63 @@ Route::get('/verify/document', [TteVerificationController::class, 'verifyDocumen
 Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::class, 'generateShippingLabel'])->name('shipping.label.pdf');
 
 /**
+ * Route Khusus Streaming File Media (Bypass Nginx Static Interception & Tanpa Bergantung Symlink)
+ */
+Route::get('/media-file', function (\Illuminate\Http\Request $request) {
+    $path = $request->query('path');
+    if (!$path) {
+        abort(404, 'Path file tidak diberikan.');
+    }
+
+    // Bersihkan path dari directory traversal
+    $path = ltrim(str_replace(['../', '..\\'], '', $path), '/\\');
+
+    $fullPath = storage_path('app/public/' . $path);
+    if (!file_exists($fullPath)) {
+        $altPath = storage_path('app/' . $path);
+        if (file_exists($altPath)) {
+            $fullPath = $altPath;
+        } else {
+            \Illuminate\Support\Facades\Log::warning("Media file tidak ditemukan di server: {$path}", [
+                'expected_path' => $fullPath,
+                'url'           => request()->fullUrl(),
+            ]);
+            abort(404, "File '{$path}' tidak ditemukan di storage server.");
+        }
+    }
+
+    $mime = mime_content_type($fullPath) ?: 'application/octet-stream';
+    if (str_ends_with(strtolower($fullPath), '.ico')) {
+        $mime = 'image/x-icon';
+    } elseif (str_ends_with(strtolower($fullPath), '.svg')) {
+        $mime = 'image/svg+xml';
+    } elseif (str_ends_with(strtolower($fullPath), '.mp3')) {
+        $mime = 'audio/mpeg';
+    }
+
+    return response()->file($fullPath, [
+        'Content-Type'  => $mime,
+        'Cache-Control' => 'public, max-age=86400',
+    ]);
+})->name('media.file');
+
+/**
  * Fallback Route untuk Serving File Storage Publik (Anti 404 jika symlink server aaPanel belum aktif)
  */
 Route::get('/storage/{path}', function ($path) {
     $filePath = storage_path('app/public/' . $path);
     if (!file_exists($filePath)) {
-        \Illuminate\Support\Facades\Log::warning("Storage file tidak ditemukan di server: {$path}", [
-            'expected_path' => $filePath,
-            'url'           => request()->fullUrl(),
-            'ip'            => request()->ip()
-        ]);
-        abort(404, "File '{$path}' tidak ditemukan di storage server.");
+        $altPath = storage_path('app/' . $path);
+        if (file_exists($altPath)) {
+            $filePath = $altPath;
+        } else {
+            \Illuminate\Support\Facades\Log::warning("Storage file tidak ditemukan di server: {$path}", [
+                'expected_path' => $filePath,
+                'url'           => request()->fullUrl(),
+                'ip'            => request()->ip()
+            ]);
+            abort(404, "File '{$path}' tidak ditemukan di storage server.");
+        }
     }
     \Illuminate\Support\Facades\Log::info("Serving storage asset: {$path}");
     return response()->file($filePath);

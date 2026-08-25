@@ -10,7 +10,7 @@
 
     <title>{{ $shop['app_name'] ?? 'SIKANDA' }} - Kasir Modern</title>
     @if(!empty($shop['app_favicon']))
-        <link rel="icon" href="{{ asset('storage/' . $shop['app_favicon']) }}">
+        <link rel="icon" href="{{ route('media.file', ['path' => $shop['app_favicon']]) }}">
     @endif
 
     
@@ -88,7 +88,7 @@
             <div class="flex items-center space-x-5">
                 <div class="flex items-center space-x-3">
                     @if(!empty($shop['app_favicon']))
-                        <img src="{{ asset('storage/' . $shop['app_favicon']) }}" class="w-8 h-8 rounded-xl object-contain shadow-sm">
+                        <img src="{{ route('media.file', ['path' => $shop['app_favicon']]) }}" class="w-8 h-8 rounded-xl object-contain shadow-sm">
                     @else
                         <div class="w-8 h-8 rounded-xl bg-[#00AA13] flex items-center justify-center font-black text-white text-sm shadow-sm">
                             {{ strtoupper(substr($shop['app_name'] ?? 'S', 0, 1)) }}

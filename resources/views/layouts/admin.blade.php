@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') | {{ $shop['app_name'] ?? 'SIKANDA' }} POS</title>
     @if(!empty($shop['app_favicon']))
-        <link rel="icon" href="{{ asset('storage/' . $shop['app_favicon']) }}">
+        <link rel="icon" href="{{ route('media.file', ['path' => $shop['app_favicon']]) }}">
     @endif
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>

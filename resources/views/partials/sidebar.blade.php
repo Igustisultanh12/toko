@@ -1,9 +1,9 @@
 <div class="p-6 pb-4">
     <div class="flex items-center space-x-3">
         @if(!empty($shop['app_favicon']))
-            <img src="{{ asset('storage/' . $shop['app_favicon']) }}" class="w-10 h-10 rounded-2xl bg-white p-1 object-contain shadow-md shadow-emerald-950/40">
+            <img src="{{ route('media.file', ['path' => $shop['app_favicon']]) }}" class="w-10 h-10 rounded-2xl bg-white p-1 object-contain shadow-md shadow-emerald-950/40">
         @elseif(!empty($shop['shop_logo']))
-            <img src="{{ asset('storage/' . $shop['shop_logo']) }}" class="w-10 h-10 rounded-2xl bg-white p-1 object-contain shadow-md shadow-emerald-950/40">
+            <img src="{{ route('media.file', ['path' => $shop['shop_logo']]) }}" class="w-10 h-10 rounded-2xl bg-white p-1 object-contain shadow-md shadow-emerald-950/40">
         @else
             <div class="w-10 h-10 rounded-2xl bg-[#00AA13] flex items-center justify-center font-black text-white text-lg shadow-md border border-emerald-400/30">
                 {{ strtoupper(substr($shop['app_name'] ?? 'S', 0, 1)) }}
