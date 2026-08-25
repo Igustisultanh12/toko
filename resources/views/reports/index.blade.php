@@ -454,7 +454,7 @@ document.addEventListener('alpine:init', () => {
             return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) + ' - ' + d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
         },
 
-        sendWhatsAppReceipt() {
+        async sendWhatsAppReceipt() {
             if (!this.waPhone || this.waPhone.trim() === '') {
                 alert('Silakan masukkan nomor WhatsApp tujuan.');
                 return;
@@ -468,7 +468,18 @@ document.addEventListener('alpine:init', () => {
             }
 
             const trx = this.selectedTrx;
-            const pdfUrl = `${window.location.origin}/invoice/${trx.transaction_number}/pdf`;
+
+            // Generate/Ambil tautan bertanda tangan digital yang aktif 24 jam
+            let pdfUrl = `${window.location.origin}/invoice/${trx.transaction_number}/download`;
+            try {
+                const res = await fetch(`/invoice/${trx.transaction_number}/get-link`);
+                const json = await res.json();
+                if (json.signed_url) {
+                    pdfUrl = json.signed_url;
+                }
+            } catch (e) {
+                pdfUrl = `${window.location.origin}/invoice/${trx.transaction_number}/download`;
+            }
 
             let itemsList = '';
             (trx.details || []).forEach((item, idx) => {
@@ -480,7 +491,7 @@ document.addEventListener('alpine:init', () => {
             if (this.shopAddress) message += `📍 _${this.shopAddress}_\n`;
             if (this.shopPhone && this.shopPhone !== '-') message += `📞 _Telp: ${this.shopPhone}_\n`;
             message += `================================\n`;
-            message += `🧾 *STRUK PEMBELIAN RESMI*\n`;
+            message += `🧾 *STRUK PEMBELIAN*\n`;
             message += `No. Nota   : \`${trx.transaction_number}\`\n`;
             message += `Tanggal    : ${this.formatDate(trx.created_at)}\n`;
             message += `Pelanggan  : *${trx.customer_name || 'Pelanggan Umum'}*\n`;
@@ -492,7 +503,8 @@ document.addEventListener('alpine:init', () => {
             message += `Metode Bayar  : ${trx.payment_method.toUpperCase()}\n`;
             message += `Status Bayar  : ✅ *${trx.payment_status === 'success' ? 'LUNAS' : trx.payment_status.toUpperCase()}*\n`;
             message += `================================\n`;
-            message += `📄 *UNDUH FAKTUR RESMI (PDF):*\n${pdfUrl}\n`;
+            message += `📄 *UNDUH FAKTUR (PDF):*\n${pdfUrl}\n`;
+            message += `_(Tautan berlaku selama 24 jam)_\n`;
             message += `================================\n`;
             message += `_${this.shopFooter}_`;
 

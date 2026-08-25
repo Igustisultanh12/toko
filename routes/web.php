@@ -27,7 +27,9 @@ Route::post('/doku/inquiry', [DokuInquiryController::class, 'handle'])->name('do
  */
 Route::get('/receipt/{sale}/print', [SaleController::class, 'generateReceipt'])->name('receipt.print');
 Route::get('/receipt/{sale}/pdf', [ReportController::class, 'exportInvoicePdf'])->name('receipt.pdf');
-Route::get('/invoice/{transaction_number}/pdf', [ReportController::class, 'publicInvoicePdfByNumber'])->name('invoice.public.number');
+Route::get('/invoice/{transaction_number}/get-link', [ReportController::class, 'getSignedInvoiceLink'])->name('invoice.get-link');
+Route::get('/invoice/{transaction_number}/download', [ReportController::class, 'downloadSignedInvoice'])->name('invoice.public.signed');
+Route::get('/invoice/{transaction_number}/pdf', [ReportController::class, 'downloadSignedInvoice'])->name('invoice.public.number');
 Route::match(['get', 'post'], '/shipping-label/{sale}/pdf', [SaleController::class, 'generateShippingLabel'])->name('shipping.label.pdf');
 
 /**

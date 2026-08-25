@@ -690,6 +690,7 @@
                 paymentMethod: 'cash', amountPaid: '', isSuccessModalOpen: false,
                 lastSaleId: null, lastTransactionNumber: null,
                 lastTotal: 0, lastItems: [], lastCustomerName: '', lastPaymentMethod: 'cash',
+                lastSignedInvoiceUrl: '',
                 isLoading: false, isPrinting: false, currentTime: '',
                 paymentStatus: 'pending', statusInterval: null,
                 isMuted: !(@json($shop['is_voice_enabled'] ?? true)),
@@ -752,7 +753,7 @@
                     announcePaymentSuccess(2000, this.shop.payment_sound, false);
                 },
 
-                sendReceiptToWhatsApp() {
+                async sendReceiptToWhatsApp() {
                     if (!this.customerPhone || this.customerPhone.trim() === '') {
                         Swal.fire({
                             title: 'Nomor WhatsApp Kosong',
@@ -782,13 +783,25 @@
                         itemsList += `${idx + 1}. *${item.name}*\n   ${item.quantity} pcs x Rp ${this.formatNumber(item.price)} = Rp ${subtotal}\n`;
                     });
 
-                    const pdfUrl = `${window.location.origin}/invoice/${this.lastTransactionNumber}/pdf`;
+                    // Ambil link download bertanda tangan digital (berlaku 24 jam)
+                    let pdfUrl = this.lastSignedInvoiceUrl;
+                    if (!pdfUrl) {
+                        try {
+                            const res = await fetch(`/invoice/${this.lastTransactionNumber}/get-link`);
+                            const json = await res.json();
+                            if (json.signed_url) {
+                                pdfUrl = json.signed_url;
+                            }
+                        } catch (e) {
+                            pdfUrl = `${window.location.origin}/invoice/${this.lastTransactionNumber}/download`;
+                        }
+                    }
 
                     let message = `*${shopName.toUpperCase()}*\n`;
                     if (shopAddress) message += `📍 _${shopAddress}_\n`;
                     if (shopPhone && shopPhone !== '-') message += `📞 _Telp: ${shopPhone}_\n`;
                     message += `================================\n`;
-                    message += `🧾 *STRUK PEMBELIAN RESMI*\n`;
+                    message += `🧾 *STRUK PEMBELIAN*\n`;
                     message += `No. Nota   : \`${this.lastTransactionNumber || '-'}\`\n`;
                     message += `Tanggal    : ${dateStr} WIB\n`;
                     message += `Pelanggan  : *${this.lastCustomerName || 'Pelanggan Umum'}*\n`;
@@ -800,7 +813,8 @@
                     message += `Metode Bayar  : ${(this.lastPaymentMethod || 'CASH').toUpperCase()}\n`;
                     message += `Status Bayar  : ✅ *LUNAS / SUKSES*\n`;
                     message += `================================\n`;
-                    message += `📄 *UNDUH FAKTUR RESMI (PDF):*\n${pdfUrl}\n`;
+                    message += `📄 *UNDUH FAKTUR (PDF):*\n${pdfUrl}\n`;
+                    message += `_(Tautan berlaku selama 24 jam)_\n`;
                     message += `================================\n`;
                     message += `_${this.shop.footer || 'Terima kasih telah berbelanja!'}_`;
 
@@ -927,6 +941,7 @@
                         this.lastItems = JSON.parse(JSON.stringify(this.cart));
                         this.lastCustomerName = this.customerName || 'Pelanggan Umum';
                         this.lastPaymentMethod = this.paymentMethod;
+                        this.lastSignedInvoiceUrl = data.signed_invoice_url || '';
                         this.customerPhone = '';
                         this.isPaymentModalOpen = false;
 

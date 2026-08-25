@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http; // Tambahan untuk Telegram
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str; 
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -110,10 +111,18 @@ class SaleController extends Controller
                 $this->sendTelegramCashNotification($sale);
             }
 
+            // Generate Signed URL untuk unduh faktur berlaku 24 jam
+            $signedInvoiceUrl = URL::temporarySignedRoute(
+                'invoice.public.signed',
+                now()->addHours(24),
+                ['transaction_number' => $sale->transaction_number]
+            );
+
             return response()->json([
-                'success'   => true,
-                'sale'      => $sale,
-                'qr_string' => $qrString 
+                'success'            => true,
+                'sale'               => $sale,
+                'qr_string'          => $qrString,
+                'signed_invoice_url' => $signedInvoiceUrl
             ]);
 
         } catch (\Exception $e) {

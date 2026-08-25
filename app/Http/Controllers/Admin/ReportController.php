@@ -9,6 +9,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
@@ -432,14 +433,51 @@ class ReportController extends Controller
     }
 
     /**
-     * Cetak Faktur PDF Publik via Nomor Invoice (untuk link di WhatsApp)
+     * Cetak Faktur PDF Publik via Nomor Invoice (Direct fallback)
      */
-    public function publicInvoicePdfByNumber($transactionNumber)
+    public function publicInvoicePdfByNumber(Request $request, $transactionNumber)
+    {
+        return $this->downloadSignedInvoice($request, $transactionNumber);
+    }
+
+    /**
+     * Generate Tautan Unduh Faktur Bertanda Tangan Digital (Kadaluarsa dalam 24 Jam)
+     */
+    public function getSignedInvoiceLink($transactionNumber)
+    {
+        $sale = Sale::where('transaction_number', $transactionNumber)->firstOrFail();
+        
+        $signedUrl = URL::temporarySignedRoute(
+            'invoice.public.signed',
+            now()->addHours(24),
+            ['transaction_number' => $sale->transaction_number]
+        );
+
+        return response()->json([
+            'success'    => true,
+            'signed_url' => $signedUrl,
+            'expires_at' => now()->addHours(24)->toIso8601String()
+        ]);
+    }
+
+    /**
+     * Unduh / Tampilkan Faktur PDF Pelanggan dengan Validasi Kadaluarsa 24 Jam
+     */
+    public function downloadSignedInvoice(Request $request, $transactionNumber)
     {
         $sale = Sale::with(['details.product', 'user'])
                     ->where('transaction_number', $transactionNumber)
                     ->firstOrFail();
+        
         $shop = Setting::pluck('value', 'key')->all();
+
+        // Jika diakses oleh Admin atau Kasir yang sedang login, izinkan selalu
+        if (!Auth::check()) {
+            // Jika diakses oleh pelanggan publik dari WhatsApp, wajib signature valid & belum lewat 24 jam
+            if (!$request->hasValidSignature()) {
+                return response()->view('reports.invoice_expired', compact('sale', 'shop'), 403);
+            }
+        }
 
         $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop'))
                   ->setPaper('a4', 'landscape');
