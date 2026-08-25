@@ -171,6 +171,12 @@
                                     @endif
 
                                     <div class="flex items-center gap-1 mt-1">
+                                        {{-- CETAK STRUK THERMAL LENGKAP --}}
+                                        <a href="{{ route('admin.orders.receipt-pdf', $order->id) }}" target="_blank"
+                                           class="p-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-xl text-[10px] font-black uppercase transition" title="Cetak Struk Thermal Lengkap (58/80mm)">
+                                            🧾 Struk
+                                        </a>
+
                                         {{-- CETAK LABEL RESI A6 --}}
                                         <a href="{{ route('admin.orders.shipping-label', $order->id) }}" target="_blank"
                                            class="p-2 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded-xl text-[10px] font-black uppercase transition" title="Cetak Label Resi A6">

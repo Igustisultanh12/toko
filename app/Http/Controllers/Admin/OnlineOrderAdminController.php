@@ -221,4 +221,64 @@ class OnlineOrderAdminController extends Controller
 
         return $pdf->stream("Label-Resi-{$order->order_number}.pdf");
     }
+
+    /**
+     * CETAK STRUK THERMAL PESANAN ONLINE (UNTUK KASIR/ADMIN)
+     */
+    public function printThermalReceipt($id)
+    {
+        $order = Order::with(['items.product', 'confirmedByUser'])->findOrFail($id);
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $logoBase64 = $this->getGrayscaleLogoBase64($shop['shop_logo'] ?? null);
+
+        $pdf = Pdf::loadView('online.print-receipt', compact('order', 'shop', 'logoBase64'))
+                  ->setPaper([0, 0, 164.41, 750], 'portrait'); 
+
+        return $pdf->stream("Struk-{$order->order_number}.pdf");
+    }
+
+    private function getGrayscaleLogoBase64($relativePath)
+    {
+        if (empty($relativePath)) return null;
+
+        $paths = [
+            storage_path('app/public/' . $relativePath),
+            storage_path('app/' . $relativePath),
+            public_path('storage/' . $relativePath),
+        ];
+
+        $fullPath = null;
+        foreach ($paths as $p) {
+            if (file_exists($p)) {
+                $fullPath = $p;
+                break;
+            }
+        }
+
+        if (!$fullPath) return null;
+
+        try {
+            $imageData = file_get_contents($fullPath);
+            if (!$imageData) return null;
+
+            if (extension_loaded('gd')) {
+                $image = @imagecreatefromstring($imageData);
+                if ($image) {
+                    imagefilter($image, IMG_FILTER_GRAYSCALE);
+                    imagefilter($image, IMG_FILTER_CONTRAST, -15);
+                    ob_start();
+                    imagepng($image);
+                    $grayscaleData = ob_get_clean();
+                    imagedestroy($image);
+                    return 'data:image/png;base64,' . base64_encode($grayscaleData);
+                }
+            }
+
+            $mime = mime_content_type($fullPath) ?: 'image/png';
+            return 'data:' . $mime . ';base64,' . base64_encode($imageData);
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 }

@@ -32,6 +32,7 @@ Route::get('/order/get-qris/{order_number}', [OnlineOrderController::class, 'get
 Route::get('/order/check-status/{order_number}', [OnlineOrderController::class, 'checkStatus'])->name('order.checkStatus');
 Route::post('/order/simulate-pay/{order_number}', [OnlineOrderController::class, 'simulatePay'])->name('order.simulatePay');
 Route::get('/order/receipt/{order_number}', [OnlineOrderController::class, 'receipt'])->name('order.receipt');
+Route::get('/order/receipt/{order_number}/pdf', [OnlineOrderController::class, 'printReceiptPdf'])->name('order.receipt.pdf');
 
 // Portal Publik Lacak Pesanan
 Route::get('/lacak', [OnlineOrderController::class, 'trackIndex'])->name('order.track.index');
@@ -143,6 +144,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/orders/{id}/complete', [OnlineOrderAdminController::class, 'completeOrder'])->name('orders.complete');
         Route::post('/orders/{id}/cancel', [OnlineOrderAdminController::class, 'cancelOrder'])->name('orders.cancel');
         Route::get('/orders/{id}/shipping-label', [OnlineOrderAdminController::class, 'printShippingLabel'])->name('orders.shipping-label');
+        Route::get('/orders/{id}/receipt-pdf', [OnlineOrderAdminController::class, 'printThermalReceipt'])->name('orders.receipt-pdf');
 
         // BUKU PANDUAN PENGGUNA (Bisa dibaca oleh Kasir & Admin)
         Route::get('/manual-guide', [ManualGuideController::class, 'index'])->name('manual.index');
