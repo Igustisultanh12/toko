@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/reports/pdf', [ReportController::class, 'exportPdf'])->name('reports.pdf');
         Route::get('/reports/excel', [ReportController::class, 'exportExcel'])->name('reports.excel');
         Route::get('/reports/print/daily', [ReportController::class, 'printDailyReport'])->name('reports.print.daily');
+        Route::get('/reports/invoice/{sale}/pdf', [ReportController::class, 'exportInvoicePdf'])->name('reports.invoice.pdf');
         
         // 2. LAPORAN KEUANGAN (ARUS KAS, OMSET, TUNAI & QRIS)
         Route::get('/reports/finance', [ReportController::class, 'financialReport'])->name('reports.finance');

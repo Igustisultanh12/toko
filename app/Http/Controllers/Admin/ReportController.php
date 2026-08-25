@@ -416,4 +416,18 @@ class ReportController extends Controller
             }
         }, 'Laporan_Keuangan_'.date('Ymd').'.xlsx');
     }
+
+    /**
+     * Cetak Faktur / Nota Transaksi Spesifik ke PDF (Format Surat Resmi)
+     */
+    public function exportInvoicePdf(Sale $sale)
+    {
+        $sale->load(['details.product', 'user']);
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop'))
+                  ->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Faktur_' . $sale->transaction_number . '.pdf');
+    }
 }

@@ -8,10 +8,12 @@
         <link rel="icon" href="{{ asset('storage/' . $shop['app_favicon']) }}">
     @endif
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .sidebar-gradient { background: linear-gradient(180deg, #4f46e5 0%, #3730a3 100%); }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="flex min-h-screen">
