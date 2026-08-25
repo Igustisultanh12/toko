@@ -17,8 +17,19 @@ class DokuService
     {
         $settings = Setting::pluck('value', 'key')->all();
 
-        $clientId = $settings['doku_client_id'] ?? env('DOKU_CLIENT_ID') ?? config('services.doku.client_id');
-        $secretKey = $settings['doku_secret_key'] ?? env('DOKU_SECRET_KEY') ?? config('services.doku.secret_key');
+        $clientId = $settings['doku_client_id'] 
+            ?? $settings['doku_mall_id'] 
+            ?? env('DOKU_CLIENT_ID') 
+            ?? env('DOKU_MALL_ID') 
+            ?? config('services.doku.client_id');
+
+        $secretKey = $settings['doku_secret_key'] 
+            ?? $settings['doku_shared_key'] 
+            ?? $settings['doku_api_key'] 
+            ?? env('DOKU_SECRET_KEY') 
+            ?? env('DOKU_SHARED_KEY') 
+            ?? env('DOKU_API_KEY') 
+            ?? config('services.doku.secret_key');
 
         // Deteksi mode produksi / sandbox
         $isProduction = filter_var($settings['doku_is_production'] ?? env('DOKU_IS_PRODUCTION') ?? config('services.doku.is_production', false), FILTER_VALIDATE_BOOLEAN);
@@ -30,8 +41,8 @@ class DokuService
         }
 
         return [
-            'client_id'  => trim($clientId),
-            'secret_key' => trim($secretKey),
+            'client_id'  => trim($clientId ?? ''),
+            'secret_key' => trim($secretKey ?? ''),
             'base_url'   => rtrim($baseUrl, '/'),
         ];
     }
