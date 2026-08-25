@@ -73,7 +73,7 @@
 
                     <div>
                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-wider block">Waktu Penandatanganan:</span>
-                        <p class="font-bold text-gray-700 mt-0.5">{{ $sale->created_at->translatedFormat('d F Y, H:i') }} WIB</p>
+                        <p class="font-bold text-gray-700 mt-0.5">{{ $signedAt ?? $sale->created_at->timezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') . ' WIB' }}</p>
                     </div>
 
                     <div>

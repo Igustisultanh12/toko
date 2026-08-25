@@ -23,11 +23,14 @@ class TteVerificationController extends Controller
         $signerTitle = $shop['cashier_officer_title'] ?? 'Petugas Kasir';
         $signerName = $sale->user->name ?? ($shop['cashier_officer_name'] ?? 'Petugas Kasir');
 
+        // Pastikan timezone Asia/Jakarta (WIB)
+        $signedAt = Carbon::parse($sale->created_at)->timezone('Asia/Jakarta')->locale('id')->translatedFormat('d F Y, H:i') . ' WIB';
+
         // Generate Digital Signature Hash (TTE)
         $rawSignatureData = $sale->transaction_number . '|' . $sale->total_amount . '|' . $sale->created_at . '|' . $signerName;
         $tteHash = strtoupper(hash('sha256', $rawSignatureData));
 
-        return view('reports.verify_tte', compact('sale', 'shop', 'signerTitle', 'signerName', 'tteHash'));
+        return view('reports.verify_tte', compact('sale', 'shop', 'signerTitle', 'signerName', 'signedAt', 'tteHash'));
     }
 
     /**
@@ -40,7 +43,9 @@ class TteVerificationController extends Controller
         $signerName = base64_decode($request->query('signer', '')) ?: 'Administrator Toko';
         $signerTitle = base64_decode($request->query('title', '')) ?: 'Petugas Kasir';
         $timestamp = (int) $request->query('timestamp', time());
-        $signedAt = Carbon::createFromTimestamp($timestamp)->translatedFormat('d F Y, H:i') . ' WIB';
+
+        // Format waktu eksplisit ke Asia/Jakarta (WIB)
+        $signedAt = Carbon::createFromTimestamp($timestamp, 'Asia/Jakarta')->locale('id')->translatedFormat('d F Y, H:i') . ' WIB';
 
         $docTitles = [
             'sales'   => 'Laporan Rekapitulasi Penjualan',
