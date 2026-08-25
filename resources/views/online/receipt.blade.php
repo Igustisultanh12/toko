@@ -198,19 +198,11 @@
 
     {{-- TOMBOL AKSI CETAK & LACAK --}}
     <div class="no-print space-y-3 pt-2">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href="{{ route('order.receipt.pdf', $order->order_number) }}" target="_blank"
-               class="py-3.5 bg-gray-900 hover:bg-black text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg transition flex items-center justify-center space-x-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>Unduh PDF Struk Thermal</span>
-            </a>
-            
-            <button onclick="window.print()" 
-                    class="py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg shadow-emerald-500/25 transition flex items-center justify-center space-x-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>Print Struk (Thermal 58/80mm)</span>
-            </button>
-        </div>
+        <a href="{{ route('order.receipt.pdf', $order->order_number) }}" target="_blank"
+           class="w-full py-3.5 bg-gray-900 hover:bg-black text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg transition flex items-center justify-center space-x-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Unduh PDF Struk Thermal</span>
+        </a>
 
         <a href="{{ route('order.track', $order->order_number) }}" 
            class="w-full py-4 bg-[#00AA13] hover:bg-[#00880F] text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg shadow-emerald-500/25 transition flex items-center justify-center space-x-2">
