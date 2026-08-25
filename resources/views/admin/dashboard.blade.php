@@ -1,194 +1,321 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | SIKANDA Premium POS</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+﻿@extends('layouts.admin')
 
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .sidebar-gradient { background: linear-gradient(180deg, #4f46e5 0%, #3730a3 100%); }
-        .stat-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .stat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05); }
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-    </style>
-</head>
-<body class="flex min-h-screen">
+@section('title', 'Dashboard')
+@section('header_title', 'Dashboard Ringkasan')
 
-    <aside class="w-72 sidebar-gradient text-white hidden lg:flex flex-col shadow-2xl">
-        <div class="p-8">
-            <h1 class="text-3xl font-black tracking-tighter uppercase">SIKANDA</h1>
-            <p class="text-[10px] text-indigo-200 uppercase tracking-widest font-bold mt-1">Sultan Web Engine</p>
-        </div>
+@section('content')
+<div class="space-y-8 max-w-7xl mx-auto pb-10">
 
-        <nav class="flex-grow px-4 space-y-2">
-            <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 p-4 {{ request()->routeIs('dashboard') ? 'bg-white/10 border border-white/10 shadow-sm' : 'hover:bg-white/5' }} rounded-2xl font-bold transition">
-                <svg class="w-5 h-5 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-width="2"/></svg>
-                <span>Dashboard</span>
-            </a>
-
-            <a href="{{ route('admin.products.index') }}" class="flex items-center space-x-3 p-4 hover:bg-white/5 rounded-2xl transition font-medium text-indigo-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-width="2"/></svg>
-                <span>Manajemen Produk</span>
-            </a>
-
-            <a href="{{ route('admin.reports.index') }}" class="flex items-center space-x-3 p-4 hover:bg-white/5 rounded-2xl transition font-medium text-indigo-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 2v-6m-8 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/></svg>
-                <span>Laporan Penjualan</span>
-            </a>
-
-            <a href="{{ route('admin.settings.index') }}" class="flex items-center space-x-3 p-4 {{ request()->routeIs('admin.settings.*') ? 'bg-white/10 border border-white/10 shadow-sm' : 'hover:bg-white/5' }} rounded-2xl transition font-medium text-indigo-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <span>Identitas Toko</span>
-            </a>
-
-            <a href="{{ route('cashier.pos.index') }}" class="flex items-center space-x-3 p-4 hover:bg-white/5 rounded-2xl transition font-medium text-indigo-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-width="2"/></svg>
-                <span>Buka Kasir (POS)</span>
-            </a>
-        </nav>
-
-        <div class="p-8 border-t border-white/10">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="flex items-center space-x-2 text-red-300 font-bold hover:text-red-100 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-width="2"/></svg>
-                    <span>Keluar Sistem</span>
-                </button>
-            </form>
-        </div>
-    </aside>
-
-    <main class="flex-grow flex flex-col h-screen overflow-hidden">
+    {{-- 1. GOPAY POCKET STYLE BANNER & QUICK ACTIONS --}}
+    <div class="bg-gradient-to-r from-[#00360D] via-[#005718] to-[#00880F] rounded-[2.5rem] p-6 sm:p-8 text-white shadow-xl shadow-emerald-950/20 relative overflow-hidden">
+        {{-- Background Glow Accent --}}
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00AA13]/30 rounded-full blur-3xl pointer-events-none"></div>
         
-        <header class="bg-white/80 backdrop-blur-md p-6 border-b flex justify-between items-center px-10 sticky top-0 z-10">
-            <div>
-                <h2 class="text-xl font-black text-gray-800 tracking-tighter uppercase">Admin Summary</h2>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Laporan Real-time</p>
-            </div>
-            <div class="flex items-center space-x-4">
-                <div class="text-right">
-                    <p class="text-sm font-black text-indigo-600 uppercase tracking-tighter leading-none">{{ Auth::user()->name }}</p>
-                    <p class="text-[10px] text-gray-400 font-bold mt-1 tracking-widest uppercase">Administrator</p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+            {{-- SALDO / OMZET UTAMA --}}
+            <div class="lg:col-span-6 space-y-3">
+                <div class="flex items-center space-x-2">
+                    <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-200">
+                        ⚡ Real-time Hari Ini
+                    </span>
+                    <span class="text-xs text-emerald-100 font-bold">{{ date('d F Y') }}</span>
                 </div>
-                <div class="w-12 h-12 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 font-black shadow-inner">
-                    {{ substr(Auth::user()->name, 0, 1) }}
-                </div>
-            </div>
-        </header>
-
-        <div class="flex-grow overflow-y-auto p-10 custom-scroll space-y-10">
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="stat-card bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
-                    <div class="w-10 h-10 bg-green-50 text-green-500 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2.5"/></svg>
-                    </div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Pendapatan Hari Ini</p>
-                    <h3 class="text-2xl font-black text-gray-900 tracking-tighter">Rp {{ number_format($pendapatanHariIni ?? 0, 0, ',', '.') }}</h3>
+                
+                <div>
+                    <p class="text-xs text-emerald-200 uppercase font-black tracking-wider">Total Pendapatan Toko</p>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mt-1">
+                        Rp {{ number_format($pendapatanHariIni ?? 0, 0, ',', '.') }}
+                    </h1>
                 </div>
 
-                <div class="stat-card bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
-                    <div class="w-10 h-10 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-width="2.5"/></svg>
-                    </div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Total Transaksi</p>
-                    <h3 class="text-3xl font-black text-gray-900 tracking-tighter">{{ $transaksiHariIni ?? 0 }}</h3>
-                </div>
-
-                <div class="stat-card bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
-                    <div class="w-10 h-10 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-width="2.5"/></svg>
-                    </div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Produk Terjual</p>
-                    <h3 class="text-3xl font-black text-gray-900 tracking-tighter">{{ $produkTerjualHariIni ?? 0 }}</h3>
-                </div>
-
-                <div class="stat-card bg-indigo-600 p-6 rounded-[2.5rem] shadow-xl shadow-indigo-200 text-white border-2 border-white/10">
-                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2.5"/></svg>
-                    </div>
-                    <p class="text-xs font-bold text-indigo-100 uppercase tracking-widest mb-1">Total Produk</p>
-                    <h3 class="text-3xl font-black tracking-tighter">{{ $totalProduk ?? 0 }}</h3>
+                <div class="flex items-center space-x-4 pt-1 text-xs text-emerald-100">
+                    <span class="flex items-center font-bold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-300 mr-1.5 animate-ping"></span>
+                        {{ $transaksiHariIni ?? 0 }} Transaksi Sukses
+                    </span>
+                    <span>•</span>
+                    <span class="font-bold">{{ $produkTerjualHariIni ?? 0 }} Item Terjual</span>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10">
-                <div class="lg:col-span-2 bg-white p-8 rounded-[3rem] shadow-sm border border-gray-100">
-                    <h4 class="font-black text-gray-800 text-lg mb-8 uppercase tracking-tighter">Analisis Revenue Mingguan</h4>
-                    <div class="h-80"><canvas id="salesChart"></canvas></div>
-                </div>
+            {{-- GOJEK QUICK ACTION SQUIRCLES --}}
+            <div class="lg:col-span-6">
+                <div class="grid grid-cols-4 gap-3 bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/15">
+                    {{-- AKSI 1: KASIR POS --}}
+                    <a href="{{ route('cashier.pos.index') }}" 
+                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-12 h-12 bg-white text-[#00880F] rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">Kasir POS</span>
+                    </a>
 
-                <div class="bg-white p-8 rounded-[3rem] shadow-sm border border-gray-100 flex flex-col">
-                    <h4 class="font-black text-gray-800 text-lg mb-8 uppercase tracking-tighter">History Terakhir</h4>
-                    <div class="space-y-6 flex-grow">
-                        @forelse($penjualanTerakhir ?? [] as $sale)
-                            <div class="flex justify-between items-center group transition-all">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 bg-gray-50 text-indigo-600 rounded-2xl flex items-center justify-center font-black group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                                        {{ substr($sale->customer->name ?? 'P', 0, 1) }}
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-black text-gray-800 leading-none mb-1">{{ $sale->customer->name ?? 'Pelanggan' }}</p>
-                                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">{{ $sale->created_at->diffForHumans() }}</p>
-                                    </div>
-                                </div>
-                                <span class="font-black text-indigo-600 tracking-tighter text-sm">+Rp {{ number_format($sale->total_amount, 0, ',', '.') }}</span>
-                            </div>
-                        @empty
-                            <div class="text-center py-10 italic text-gray-300">Belum ada transaksi</div>
-                        @endforelse
-                    </div>
+                    {{-- AKSI 2: TAMBAH PRODUK --}}
+                    <a href="{{ route('admin.products.create') }}" 
+                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-12 h-12 bg-[#00AED6] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 4v16m8-8H4"/></svg>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">+ Produk</span>
+                    </a>
+
+                    {{-- AKSI 3: LAPORAN PENJUALAN --}}
+                    <a href="{{ route('admin.reports.index') }}" 
+                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-12 h-12 bg-[#EE2737] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 17v-2m3 2v-4m3 2v-6m-8 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">Penjualan</span>
+                    </a>
+
+                    {{-- AKSI 4: KEUANGAN --}}
+                    <a href="{{ route('admin.reports.finance') }}" 
+                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-12 h-12 bg-[#FFB800] text-gray-900 rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">Keuangan</span>
+                    </a>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('salesChart').getContext('2d');
-            const rawData = '{!! $chartData ?? "{\"labels\":[], \"data\":[]}" !!}';
-            const salesData = JSON.parse(rawData);
+    {{-- 2. KARTU STATISTIK GRID --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {{-- KARTU 1 --}}
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-md hover:border-emerald-200 transition-all group">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-[11px] font-black text-gray-400 uppercase tracking-wider">Penjualan Hari Ini</span>
+                <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-[#00880F] flex items-center justify-center group-hover:bg-[#00AA13] group-hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+            </div>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight">Rp {{ number_format($pendapatanHariIni ?? 0, 0, ',', '.') }}</h3>
+            <p class="text-[10px] font-bold text-emerald-600 mt-1 uppercase">● Kas Masuk Tercatat</p>
+        </div>
 
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(79, 70, 229, 0.35)');
-            gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        {{-- KARTU 2 --}}
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-md hover:border-sky-200 transition-all group">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-[11px] font-black text-gray-400 uppercase tracking-wider">Total Transaksi</span>
+                <div class="w-10 h-10 rounded-2xl bg-sky-50 text-[#00AED6] flex items-center justify-center group-hover:bg-[#00AED6] group-hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                </div>
+            </div>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight">{{ $transaksiHariIni ?? 0 }} <span class="text-sm font-bold text-gray-400">Order</span></h3>
+            <p class="text-[10px] font-bold text-sky-600 mt-1 uppercase">● Nota & Invoice Selesai</p>
+        </div>
 
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: salesData.labels,
-                    datasets: [{
-                        label: 'Revenue',
-                        data: salesData.data,
-                        borderColor: '#4f46e5',
-                        backgroundColor: gradient,
-                        borderWidth: 4,
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 0,
-                        pointHoverRadius: 7,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.03)' }, ticks: { font: { weight: 'bold' } } },
-                        x: { grid: { display: false }, ticks: { font: { weight: 'bold' } } }
+        {{-- KARTU 3 --}}
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-md hover:border-amber-200 transition-all group">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-[11px] font-black text-gray-400 uppercase tracking-wider">Item Terjual</span>
+                <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#FA8B00] flex items-center justify-center group-hover:bg-[#FA8B00] group-hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                </div>
+            </div>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight">{{ $produkTerjualHariIni ?? 0 }} <span class="text-sm font-bold text-gray-400">Pcs</span></h3>
+            <p class="text-[10px] font-bold text-amber-600 mt-1 uppercase">● Volume Barang Keluar</p>
+        </div>
+
+        {{-- KARTU 4 --}}
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-md hover:border-emerald-200 transition-all group">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-[11px] font-black text-gray-400 uppercase tracking-wider">Katalog Produk</span>
+                <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-[#00880F] flex items-center justify-center group-hover:bg-[#00AA13] group-hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                </div>
+            </div>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight">{{ $totalProduk ?? 0 }} <span class="text-sm font-bold text-gray-400">SKU</span></h3>
+            <p class="text-[10px] font-bold text-emerald-600 mt-1 uppercase">● Siap Dijual di Kasir</p>
+        </div>
+    </div>
+
+    {{-- 3. GRAFIK & REVENUE BREAKDOWN --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {{-- GRAFIK ANALISIS 7 HARI TERAKHIR --}}
+        <div class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-[2.5rem] shadow-sm border border-gray-100">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                <div>
+                    <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Tren Pendapatan 7 Hari Terakhir</h3>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Performa grafik transaksi toko</p>
+                </div>
+                <span class="px-3 py-1 bg-emerald-50 text-[#00880F] font-black text-[10px] rounded-full uppercase">
+                    Aktif & Akurat
+                </span>
+            </div>
+            <div class="h-72">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+
+        {{-- PRODUK TERLARIS BULAN INI --}}
+        <div class="bg-white p-6 sm:p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                    <div>
+                        <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Top Produk Terlaris</h3>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Bulan {{ date('F Y') }}</p>
+                    </div>
+                    <span class="text-lg">🔥</span>
+                </div>
+
+                <div class="space-y-4">
+                    @forelse($produkTerlaris ?? [] as $index => $top)
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-50/80 hover:bg-emerald-50/50 transition">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-xl bg-white border border-gray-200 text-gray-800 font-black text-xs flex items-center justify-center shadow-sm">
+                                    {{ $index + 1 }}
+                                </div>
+                                <div>
+                                    <p class="text-xs font-black text-gray-800 leading-tight">{{ $top->name }}</p>
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase">Terjual Cepat</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 bg-[#00AA13] text-white rounded-full font-black text-xs">
+                                {{ $top->total_terjual }} pcs
+                            </span>
+                        </div>
+                    @empty
+                        <div class="text-center py-10 text-gray-400 text-xs italic">
+                            Belum ada produk terjual bulan ini.
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+
+            <a href="{{ route('admin.products.index') }}" 
+               class="w-full text-center mt-6 py-3 bg-gray-100 hover:bg-[#00AA13] hover:text-white text-gray-700 rounded-2xl font-black text-xs uppercase tracking-wider transition-all">
+                Kelola Stok Produk &rarr;
+            </a>
+        </div>
+    </div>
+
+    {{-- 4. RIWAYAT TRANSAKSI TERAKHIR --}}
+    <div class="bg-white p-6 sm:p-8 rounded-[2.5rem] shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+            <div>
+                <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Transaksi Terakhir Masuk</h3>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">5 Aktivitas kasir terbaru</p>
+            </div>
+            <a href="{{ route('admin.reports.index') }}" class="text-xs font-black text-[#00880F] hover:underline uppercase tracking-wider">
+                Lihat Semua &rarr;
+            </a>
+        </div>
+
+        <div class="divide-y divide-gray-100">
+            @forelse($penjualanTerakhir ?? [] as $sale)
+                <div class="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/60 rounded-2xl px-3 transition">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-emerald-50 text-[#00880F] flex items-center justify-center font-black text-sm border border-emerald-100 shrink-0">
+                            🧾
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-mono font-black text-xs text-gray-900">{{ $sale->transaction_number }}</span>
+                                <span class="px-2 py-0.5 rounded-md text-[9px] font-black uppercase {{ $sale->payment_method === 'qris' ? 'bg-indigo-50 text-indigo-700' : 'bg-emerald-50 text-emerald-700' }}">
+                                    {{ strtoupper($sale->payment_method) }}
+                                </span>
+                            </div>
+                            <p class="text-[11px] text-gray-500 font-medium mt-0.5">
+                                Pelanggan: <b class="text-gray-800">{{ $sale->customer_name ?? 'Pelanggan Umum' }}</b> • Kasir: {{ $sale->user->name ?? 'Kasir' }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between sm:justify-end sm:space-x-6">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">
+                            {{ $sale->created_at->diffForHumans() }}
+                        </span>
+                        <span class="text-base font-black text-emerald-600 tracking-tight">
+                            Rp {{ number_format($sale->total_amount, 0, ',', '.') }}
+                        </span>
+                    </div>
+                </div>
+            @empty
+                <div class="text-center py-10 text-gray-400 text-xs italic">
+                    Belum ada riwayat transaksi.
+                </div>
+            @endforelse
+        </div>
+    </div>
+
+</div>
+
+{{-- SCRIPT CHART.JS GOJEK GREEN THEME --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const rawData = {!! $chartData !!};
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    
+    // Gradient Gojek Green
+    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, 'rgba(0, 170, 19, 0.35)');
+    gradient.addColorStop(1, 'rgba(0, 170, 19, 0.0)');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: rawData.labels,
+            datasets: [{
+                label: 'Pendapatan (Rp)',
+                data: rawData.data,
+                borderColor: '#00AA13',
+                borderWidth: 3.5,
+                fill: true,
+                backgroundColor: gradient,
+                tension: 0.4,
+                pointBackgroundColor: '#00AA13',
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 2.5,
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#111827',
+                    titleFont: { family: 'Plus Jakarta Sans', weight: 'bold' },
+                    bodyFont: { family: 'Plus Jakarta Sans', weight: 'bold' },
+                    padding: 12,
+                    cornerRadius: 12,
+                    callbacks: {
+                        label: function(context) {
+                            return ' Rp ' + new Intl.NumberFormat('id-ID').format(context.raw);
+                        }
                     }
                 }
-            });
-        });
-    </script>
-</body>
-</html>
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#F3F4F6', drawBorder: false },
+                    ticks: {
+                        font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
+                        color: '#9CA3AF',
+                        callback: function(value) {
+                            if (value >= 1000000) return 'Rp ' + (value/1000000) + 'jt';
+                            if (value >= 1000) return 'Rp ' + (value/1000) + 'rb';
+                            return 'Rp ' + value;
+                        }
+                    }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: {
+                        font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
+                        color: '#9CA3AF'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+@endsection

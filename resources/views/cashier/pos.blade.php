@@ -83,247 +83,164 @@
 
         
 
-        {{-- HEADER --}}
+        {{-- HEADER GOJEK STYLE --}}
+        <header class="bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-6 py-3.5 flex justify-between items-center shadow-sm z-50">
+            <div class="flex items-center space-x-5">
+                <div class="flex items-center space-x-3">
+                    @if(!empty($shop['app_favicon']))
+                        <img src="{{ asset('storage/' . $shop['app_favicon']) }}" class="w-8 h-8 rounded-xl object-contain shadow-sm">
+                    @else
+                        <div class="w-8 h-8 rounded-xl bg-[#00AA13] flex items-center justify-center font-black text-white text-sm shadow-sm">
+                            {{ strtoupper(substr($shop['app_name'] ?? 'S', 0, 1)) }}
+                        </div>
+                    @endif
+                    <div>
+                        <h1 class="text-xl font-black text-[#00880F] tracking-tight uppercase leading-none">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
+                        <p class="text-[9px] text-gray-400 font-bold uppercase tracking-wider">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }}</p>
+                    </div>
+                </div>
 
-        <header class="glass-header border-b p-4 flex justify-between items-center shadow-sm z-50">
-
-            <div class="flex items-center space-x-6">
-
-                <h1 class="text-2xl font-black text-indigo-600 tracking-tighter uppercase leading-none">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
-
-                <div class="hidden md:flex items-center space-x-3 text-gray-400">
-
-                    <span class="text-xs font-bold text-gray-500 uppercase flex items-center bg-gray-100 px-3 py-1.5 rounded-full">
-
-                        <svg class="w-4 h-4 mr-2 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
-
+                <div class="hidden sm:flex items-center space-x-2">
+                    <span class="text-xs font-black text-emerald-800 uppercase flex items-center bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200/60">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
                         <span id="cashier-name">{{ Auth::user()->name }}</span>
-
                     </span>
 
+                    @if(Auth::user()->role === 'admin')
+                        <a href="{{ route('dashboard') }}" class="text-[10px] font-black uppercase text-gray-500 hover:text-emerald-700 bg-gray-100 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition">
+                            &larr; Dashboard Admin
+                        </a>
+                    @endif
                 </div>
-
             </div>
 
-
-
-            <div class="flex items-center space-x-4">
-
+            <div class="flex items-center space-x-3">
                 {{-- TOMBOL KONTROL SUARA MP3 --}}
-
                 <div class="flex items-center bg-gray-100 rounded-2xl p-1 space-x-1">
-
-                    <button @click="testVoice()" class="flex items-center space-x-1 px-3 py-1.5 bg-white rounded-xl shadow-sm hover:bg-indigo-50 transition-all text-indigo-600 border border-transparent active:scale-95">
-
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-
-                        <span class="text-[10px] font-black uppercase">Tes MP3</span>
-
+                    <button @click="testVoice()" class="flex items-center space-x-1 px-3 py-1.5 bg-white rounded-xl shadow-sm hover:bg-emerald-50 transition-all text-[#00880F] border border-transparent active:scale-95">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="text-[10px] font-black uppercase">Tes Suara</span>
                     </button>
 
-                    <button @click="toggleMute()" class="p-1.5 rounded-xl transition-all active:scale-90" :class="isMuted ? 'text-red-500 bg-red-50' : 'text-green-500 bg-green-50'">
-
+                    <button @click="toggleMute()" class="p-1.5 rounded-xl transition-all active:scale-90" :class="isMuted ? 'text-red-500 bg-red-50' : 'text-emerald-600 bg-emerald-50'">
                         <template x-if="!isMuted">
-
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H3a1 1 0 01-1-1V8a1 1 0 011-1h1.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.983 5.983 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.984 3.984 0 00-1.172-2.828 1 1 0 010-1.415z"/></svg>
-
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H3a1 1 0 01-1-1V8a1 1 0 011-1h1.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.983 5.983 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.984 3.984 0 00-1.172-2.828 1 1 0 010-1.415z"/></svg>
                         </template>
-
                         <template x-if="isMuted">
-
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M12.12 10l3.53 3.53a1 1 0 01-1.41 1.41L10.71 11.41l-3.53 3.53a1 1 0 01-1.41-1.41L9.29 10 5.76 6.47a1 1 0 011.41-1.41L10.71 8.59l3.53-3.53a1 1 0 011.41 1.41L12.12 10zM10 4.58l-3.71 3.71L5.59 7.59 10 3.17l4.41 4.42-1.41 1.41L10 5.29v-.71z" /></svg>
-
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.12 10l3.53 3.53a1 1 0 01-1.41 1.41L10.71 11.41l-3.53 3.53a1 1 0 01-1.41-1.41L9.29 10 5.76 6.47a1 1 0 011.41-1.41L10.71 8.59l3.53-3.53a1 1 0 011.41 1.41L12.12 10zM10 4.58l-3.71 3.71L5.59 7.59 10 3.17l4.41 4.42-1.41 1.41L10 5.29v-.71z" /></svg>
                         </template>
-
                     </button>
-
                 </div>
 
-
-
-                <div class="text-right pr-4 border-r hidden sm:block">
-
-                    <p class="font-black text-gray-800 text-sm" x-text="currentTime"></p>
-
+                <div class="text-right pr-3 border-r hidden sm:block">
+                    <p class="font-black text-gray-800 text-xs" x-text="currentTime"></p>
                 </div>
 
                 <form method="POST" action="{{ route('logout') }}">
-
                     @csrf
-
-                    <button type="submit" class="flex items-center space-x-2 text-red-500 hover:text-red-700 transition-all">
-
-                        <div class="bg-red-50 p-2 rounded-xl border border-red-100">
-
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-
-                        </div>
-
+                    <button type="submit" class="p-2 rounded-2xl bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-500 transition-all active:scale-90 border border-rose-100" title="Keluar">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-
                 </form>
-
             </div>
-
         </header>
 
-
-
-        {{-- MAIN --}}
-
-        <div class="flex flex-col lg:flex-row flex-grow overflow-hidden">
-
-            <div class="w-full lg:w-3/5 p-4 flex flex-col overflow-y-auto custom-scroll space-y-4">
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+        {{-- MAIN CONTENT --}}
+        <div class="flex flex-col lg:flex-row flex-grow overflow-hidden bg-[#F6F8F9]">
+            {{-- KOLOM KIRI: CARI, SCAN & DAFTAR ITEM --}}
+            <div class="w-full lg:w-3/5 p-4 sm:p-6 flex flex-col overflow-y-auto custom-scroll space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="relative" @click.away="searchResults = []">
-
                         <label class="block text-[10px] font-black text-gray-400 uppercase mb-1 ml-1">Cari Produk</label>
-
                         <input type="text" x-model="searchQuery" @input.debounce.300ms="searchProducts()" 
+                               class="w-full px-4 py-3.5 bg-white border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:ring-4 focus:ring-emerald-500/10 font-bold transition-all text-xs" placeholder="Ketik nama produk...">
 
-                               class="w-full p-4 bg-white shadow-sm rounded-2xl outline-none focus:ring-2 focus:ring-indigo-500 font-bold transition-all" placeholder="Nama item...">
-
-                        <div x-show="searchResults.length > 0" class="absolute z-[60] w-full mt-2 bg-white rounded-2xl shadow-2xl border overflow-hidden" x-cloak>
-
+                        <div x-show="searchResults.length > 0" class="absolute z-[60] w-full mt-2 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden" x-cloak>
                             <template x-for="p in searchResults" :key="p.id">
-
-                                <div @click="addToCart(p)" class="p-4 hover:bg-indigo-600 hover:text-white cursor-pointer flex justify-between items-center border-b">
-
-                                    <span class="font-bold uppercase" x-text="p.name"></span>
-
-                                    <span class="font-black" x-text="formatCurrency(p.price)"></span>
-
+                                <div @click="addToCart(p)" class="p-3.5 hover:bg-[#00AA13] hover:text-white cursor-pointer flex justify-between items-center border-b border-gray-50 transition-colors">
+                                    <span class="font-bold text-xs uppercase" x-text="p.name"></span>
+                                    <span class="font-black text-xs" x-text="formatCurrency(p.price)"></span>
                                 </div>
-
                             </template>
-
                         </div>
-
                     </div>
 
                     <div>
-
                         <label class="block text-[10px] font-black text-gray-400 uppercase mb-1 ml-1">Scanner Barcode</label>
-
-                        <div class="flex shadow-sm rounded-2xl overflow-hidden">
-
+                        <div class="flex shadow-sm rounded-2xl overflow-hidden border-2 border-gray-100 bg-white focus-within:border-[#00AA13]">
                             <input type="text" x-model="manualBarcode" x-ref="manualBarcode" @keydown.enter.prevent="scanBarcode()" 
-
-                                   class="flex-grow p-4 bg-white border-none outline-none font-mono font-bold text-indigo-600 uppercase">
-
-                            <button @click="toggleScanner()" class="bg-indigo-600 text-white px-6 hover:bg-indigo-700 transition-colors">
-
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke-width="2.5"/></svg>
-
+                                   class="flex-grow px-4 py-3 bg-white border-none outline-none font-mono font-bold text-[#00880F] uppercase text-xs" placeholder="Arahkan barcode...">
+                            <button @click="toggleScanner()" class="bg-[#00AA13] hover:bg-[#00880F] text-white px-5 transition-colors flex items-center justify-center">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke-width="2.5"/></svg>
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
-
-
-                <div class="bg-white rounded-[2rem] shadow-sm border overflow-hidden flex-grow flex flex-col cart-height">
-
+                {{-- TABEL KERANJANG BELANJA --}}
+                <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden flex-grow flex flex-col cart-height">
                     <div class="overflow-y-auto flex-grow custom-scroll">
-
-                        <table class="w-full text-sm">
-
-                            <thead class="bg-gray-50 border-b sticky top-0 z-10">
-
+                        <table class="w-full text-xs">
+                            <thead class="bg-gray-50/80 border-b border-gray-100 sticky top-0 z-10">
                                 <tr>
-
-                                    <th class="p-5 text-left font-black text-gray-400 uppercase text-[10px]">Item</th>
-
-                                    <th class="p-5 text-center font-black text-gray-400 uppercase text-[10px]">Qty</th>
-
-                                    <th class="p-5 text-right font-black text-gray-400 uppercase text-[10px]">Subtotal</th>
-
-                                    <th class="p-5"></th>
-
+                                    <th class="p-4 text-left font-black text-gray-400 uppercase text-[10px]">Item</th>
+                                    <th class="p-4 text-center font-black text-gray-400 uppercase text-[10px]">Qty</th>
+                                    <th class="p-4 text-right font-black text-gray-400 uppercase text-[10px]">Subtotal</th>
+                                    <th class="p-4"></th>
                                 </tr>
-
                             </thead>
-
                             <tbody class="divide-y divide-gray-50">
-
                                 <template x-if="cart.length === 0">
-
-                                    <tr><td colspan="4" class="p-20 text-center text-gray-300 font-bold uppercase italic text-sm">Belum ada item terpilih</td></tr>
-
+                                    <tr><td colspan="4" class="p-16 text-center text-gray-300 font-bold uppercase italic text-xs">Belum ada item terpilih</td></tr>
                                 </template>
-
                                 <template x-for="(item, index) in cart" :key="index">
-
-                                    <tr class="hover:bg-indigo-50/50 transition-colors">
-
-                                        <td class="p-5 font-black text-gray-800 uppercase" x-text="item.name"></td>
-
-                                        <td class="p-5 text-center">
-
-                                            <div class="inline-flex items-center space-x-2 bg-gray-50 p-1 rounded-xl">
-
-                                                <button @click="updateQty(index, -1)" class="w-8 h-8 bg-white rounded-lg font-bold shadow-sm">-</button>
-
-                                                <span class="font-black text-lg w-6 text-center text-indigo-600" x-text="item.quantity"></span>
-
-                                                <button @click="updateQty(index, 1)" class="w-8 h-8 bg-white rounded-lg font-bold shadow-sm">+</button>
-
+                                    <tr class="hover:bg-emerald-50/40 transition-colors">
+                                        <td class="p-4 font-black text-gray-800 uppercase" x-text="item.name"></td>
+                                        <td class="p-4 text-center">
+                                            <div class="inline-flex items-center space-x-1.5 bg-gray-50 p-1 rounded-xl border border-gray-100">
+                                                <button @click="updateQty(index, -1)" class="w-7 h-7 bg-white rounded-lg font-black text-gray-700 shadow-sm active:scale-90">-</button>
+                                                <span class="font-black text-sm w-6 text-center text-[#00880F]" x-text="item.quantity"></span>
+                                                <button @click="updateQty(index, 1)" class="w-7 h-7 bg-white rounded-lg font-black text-gray-700 shadow-sm active:scale-90">+</button>
                                             </div>
-
                                         </td>
-
-                                        <td class="p-5 text-right font-black text-indigo-600 text-lg" x-text="formatCurrency(item.price * item.quantity)"></td>
-
-                                        <td class="p-5 text-center"><button @click="removeItem(index)" class="text-red-300 hover:text-red-500 font-black text-xl">✕</button></td>
-
+                                        <td class="p-4 text-right font-black text-[#00880F] text-sm" x-text="formatCurrency(item.price * item.quantity)"></td>
+                                        <td class="p-4 text-center"><button @click="removeItem(index)" class="text-gray-300 hover:text-rose-500 font-black text-base">✕</button></td>
                                     </tr>
-
                                 </template>
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
-
             </div>
 
-
-
-            <div class="w-full lg:w-2/5 bg-white p-6 border-l shadow-2xl flex flex-col justify-between">
-
-                <div class="space-y-6">
-
-                    <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Ringkasan Tagihan</h2>
+            {{-- KOLOM KANAN: RINGKASAN TAGIHAN & PEMBAYARAN --}}
+            <div class="w-full lg:w-2/5 bg-white p-6 sm:p-8 border-l border-gray-100 shadow-2xl flex flex-col justify-between">
+                <div class="space-y-5">
+                    <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Ringkasan Pembayaran</h2>
 
                     {{-- INPUT NAMA PELANGGAN --}}
-                    <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                    <div class="bg-gray-50 p-4 rounded-3xl border border-gray-100">
                         <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 flex justify-between items-center">
                             <span>Nama Pelanggan</span>
-                            <span class="text-[9px] text-indigo-500 font-normal cursor-pointer hover:underline" @click="customerName = 'Pelanggan Umum'">Set Umum</span>
+                            <span class="text-[9px] text-[#00880F] font-black cursor-pointer hover:underline" @click="customerName = 'Pelanggan Umum'">Set Umum</span>
                         </label>
                         <input type="text" x-model="customerName" placeholder="Contoh: Pak Budi / Bu Siti" 
-                               class="w-full bg-white border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition-all">
+                               class="w-full bg-white border border-gray-200 rounded-2xl px-4 py-2.5 text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13] focus:ring-2 focus:ring-emerald-500/10 transition-all">
                     </div>
 
-                    <div class="bg-indigo-600 p-8 rounded-[2.5rem] shadow-xl shadow-indigo-100 text-white text-center">
-                        <p class="text-[10px] font-bold text-indigo-200 uppercase mb-1 tracking-widest leading-none">Total Bayar</p>
-                        <div class="text-5xl font-black tracking-tighter leading-none">
-                            <span class="text-xl mr-1 opacity-70">Rp</span><span x-text="formatNumber(total)"></span>
+                    {{-- TOTAL BAYAR GOPAY CARD STYLE --}}
+                    <div class="bg-gradient-to-r from-[#004D13] to-[#00880F] p-7 rounded-[2.5rem] shadow-xl shadow-emerald-950/15 text-white text-center">
+                        <p class="text-[10px] font-black text-emerald-200 uppercase mb-1 tracking-widest leading-none">Total Tagihan Belanja</p>
+                        <div class="text-4xl sm:text-5xl font-black tracking-tight leading-none my-2">
+                            <span class="text-lg mr-1 opacity-80">Rp</span><span x-text="formatNumber(total)"></span>
                         </div>
+                        <p class="text-[10px] text-emerald-100 font-bold uppercase tracking-wider" x-text="cart.length + ' Macam Produk'"></p>
                     </div>
                 </div>
 
                 <div class="mt-6">
                     <button @click="openPaymentModal()" :disabled="cart.length === 0" 
-                            class="w-full bg-indigo-600 text-white py-6 rounded-[1.5rem] text-xl font-black shadow-lg shadow-indigo-100 hover:bg-indigo-700 active:scale-95 disabled:bg-gray-200 transition-all uppercase tracking-widest text-sm">
+                            class="w-full bg-[#00AA13] hover:bg-[#00880F] text-white py-5 rounded-[2rem] text-sm font-black shadow-xl shadow-emerald-500/25 active:scale-95 disabled:bg-gray-200 disabled:shadow-none transition-all uppercase tracking-widest">
                         PROSES BAYAR (B)
                     </button>
                 </div>
@@ -331,62 +248,49 @@
         </div>
 
         {{-- MODAL PEMBAYARAN --}}
-        <div x-show="isPaymentModalOpen" class="fixed inset-0 bg-indigo-900/90 backdrop-blur-sm flex items-center justify-center z-[100] p-4" x-cloak x-transition>
-            <div @click.away="!isLoading && (isPaymentModalOpen = false)" class="bg-white rounded-[3rem] p-10 w-full max-w-lg shadow-2xl">
+        <div x-show="isPaymentModalOpen" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[100] p-4" x-cloak x-transition>
+            <div @click.away="!isLoading && (isPaymentModalOpen = false)" class="bg-white rounded-[3rem] p-8 sm:p-10 w-full max-w-lg shadow-2xl border border-gray-100">
                 <div class="text-center mb-6">
-                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Metode Pembayaran</p>
-                    <h2 class="text-4xl font-black text-indigo-600 mt-2" x-text="formatCurrency(total)"></h2>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Pilih Metode Pembayaran</p>
+                    <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mt-2" x-text="formatCurrency(total)"></h2>
                 </div>
 
                 {{-- NAMA PELANGGAN DI DALAM MODAL --}}
-                <div class="mb-5 text-left">
+                <div class="mb-4 text-left">
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nama Pelanggan</label>
                     <input type="text" x-model="customerName" placeholder="Pelanggan Umum"
-                           class="w-full text-sm font-bold px-4 py-3 bg-gray-50 border-2 border-indigo-100 rounded-2xl outline-none focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-50 transition-all">
+                           class="w-full text-xs font-bold px-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all">
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <button @click="paymentMethod = 'cash'" :class="paymentMethod === 'cash' ? 'bg-indigo-600 text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-400'" class="p-5 rounded-2xl font-black transition-all uppercase tracking-widest">TUNAI</button>
-                    <button @click="paymentMethod = 'qris'" :class="paymentMethod === 'qris' ? 'bg-indigo-600 text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-400'" class="p-5 rounded-2xl font-black transition-all text-xs tracking-widest uppercase leading-tight">QRIS / DOKU</button>
+                <div class="grid grid-cols-2 gap-3 mb-5">
+                    <button @click="paymentMethod = 'cash'" :class="paymentMethod === 'cash' ? 'bg-[#00AA13] text-white shadow-lg shadow-emerald-500/25' : 'bg-gray-100 text-gray-500'" class="p-4 rounded-2xl font-black transition-all uppercase tracking-wider text-xs">
+                        💵 TUNAI (CASH)
+                    </button>
+                    <button @click="paymentMethod = 'qris'" :class="paymentMethod === 'qris' ? 'bg-[#00AED6] text-white shadow-lg shadow-cyan-500/25' : 'bg-gray-100 text-gray-500'" class="p-4 rounded-2xl font-black transition-all uppercase tracking-wider text-xs">
+                        📱 QRIS / GOPAY
+                    </button>
                 </div>
 
                 <div x-show="paymentMethod === 'cash'" x-transition>
-                    <label class="block text-[10px] font-black text-gray-400 uppercase mb-2 ml-1 tracking-widest text-left">Uang Diterima</label>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest text-left">Uang Diterima dari Pelanggan</label>
                     <input type="number" x-model.number="amountPaid" x-ref="amountPaidInput"
-                           class="w-full text-4xl font-black p-6 bg-gray-50 border-2 border-indigo-100 rounded-3xl text-center outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all">
+                           class="w-full text-3xl font-black p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-center outline-none focus:border-[#00AA13] focus:bg-white transition-all" placeholder="0">
 
-                    
-
-                    <div x-show="amountPaid > 0" class="mt-4 p-4 rounded-2xl border-2 border-dashed border-indigo-200 text-center pulse-green" x-transition>
-
-                         <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest leading-none">Uang Kembali</p>
-
-                         <p class="text-3xl font-black text-indigo-600" x-text="formatCurrency(change)"></p>
-
+                    <div x-show="amountPaid > 0" class="mt-3 p-3.5 rounded-2xl border-2 border-dashed border-emerald-200 text-center bg-emerald-50/50" x-transition>
+                         <p class="text-[10px] font-black text-[#00880F] uppercase tracking-widest leading-none">Uang Kembalian</p>
+                         <p class="text-2xl font-black text-[#00880F] mt-1" x-text="formatCurrency(change)"></p>
                     </div>
-
                 </div>
 
-
-
-                <div class="mt-10 flex space-x-4">
-
-                    <button @click="isPaymentModalOpen = false" :disabled="isLoading" class="flex-1 py-5 font-black text-gray-400 uppercase text-xs tracking-widest">BATAL</button>
-
+                <div class="mt-8 flex space-x-3">
+                    <button @click="isPaymentModalOpen = false" :disabled="isLoading" class="flex-1 py-4 font-black text-gray-400 hover:text-gray-600 uppercase text-xs tracking-widest rounded-2xl bg-gray-50 transition">BATAL</button>
                     <button @click="completeTransaction()" :disabled="isLoading || (paymentMethod === 'cash' && amountPaid < total)" 
-
-                            class="flex-[2.5] bg-green-600 text-white py-5 rounded-[1.5rem] font-black text-lg uppercase shadow-lg hover:bg-green-700 transition-all flex justify-center items-center">
-
-                        <template x-if="isLoading"><div class="loader h-6 w-6 border-4"></div></template>
-
-                        <template x-if="!isLoading"><span>KONFIRMASI</span></template>
-
+                            class="flex-[2] bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 disabled:bg-gray-200 transition-all flex justify-center items-center">
+                        <template x-if="isLoading"><div class="loader h-5 w-5 border-3"></div></template>
+                        <template x-if="!isLoading"><span>SELESAIKAN TRANSAKSI</span></template>
                     </button>
-
                 </div>
-
             </div>
-
         </div>
 
 

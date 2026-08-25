@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Manajemen Akun Pengguna')
 @section('header_title', 'Manajemen Akun & Kasir')
@@ -23,22 +23,22 @@
 
     {{-- HEADER ACTION & STATS --}}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-indigo-600 p-6 rounded-[2rem] shadow-xl text-white">
-            <p class="text-[10px] font-bold text-indigo-200 uppercase tracking-widest mb-1">Total Akun Terdaftar</p>
-            <h3 class="text-3xl font-black">{{ $stats['total'] ?? 0 }} <span class="text-sm font-medium text-indigo-200">Pengguna</span></h3>
-            <p class="text-[10px] text-indigo-200 mt-1 font-medium">Hak akses sistem SIKANDA</p>
+        <div class="bg-gradient-to-r from-[#004D13] to-[#00880F] p-6 rounded-[2rem] shadow-xl text-white">
+            <p class="text-[10px] font-black text-emerald-200 uppercase tracking-widest mb-1">Total Akun Terdaftar</p>
+            <h3 class="text-3xl font-black">{{ $stats['total'] ?? 0 }} <span class="text-sm font-medium text-emerald-200">Pengguna</span></h3>
+            <p class="text-[10px] text-emerald-200 mt-1 font-bold">Hak akses sistem SIKANDA</p>
         </div>
 
         <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100">
             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Akun Kasir (POS)</p>
-            <h3 class="text-3xl font-black text-emerald-600">{{ $stats['cashiers'] ?? 0 }} <span class="text-xs text-gray-400">Petugas</span></h3>
-            <p class="text-[10px] text-gray-400 mt-1 font-medium">Akses operasional transaksi kasir</p>
+            <h3 class="text-3xl font-black text-[#00880F]">{{ $stats['cashiers'] ?? 0 }} <span class="text-xs text-gray-400">Petugas</span></h3>
+            <p class="text-[10px] text-emerald-600 mt-1 font-bold">● Akses Kasir Transaksi</p>
         </div>
 
         <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100">
             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Administrator</p>
-            <h3 class="text-3xl font-black text-indigo-900">{{ $stats['admins'] ?? 0 }} <span class="text-xs text-gray-400">Admin</span></h3>
-            <p class="text-[10px] text-gray-400 mt-1 font-medium">Akses penuh laporan & manajemen</p>
+            <h3 class="text-3xl font-black text-gray-900">{{ $stats['admins'] ?? 0 }} <span class="text-xs text-gray-400">Admin</span></h3>
+            <p class="text-[10px] text-sky-600 mt-1 font-bold">● Akses Penuh Sistem</p>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
             </div>
             
             <a href="{{ route('admin.users.create') }}" 
-               class="px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-indigo-100 transition-all flex items-center">
+               class="px-5 py-3 bg-[#00AA13] hover:bg-[#00880F] text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition-all flex items-center">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2.5"/></svg>
                 Tambah Akun Kasir / Admin
             </a>

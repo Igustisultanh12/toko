@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -9,80 +9,87 @@
     @endif
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(145deg, #002B0A 0%, #004D13 50%, #007A1C 100%);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 text-gray-800">
 
     <div class="w-full max-w-md">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-black text-white tracking-tighter mb-2">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
-            <p class="text-indigo-100 text-sm font-medium uppercase tracking-widest">{{ $shop['app_tagline'] ?? 'Sistem Kasir Modern Anda' }}</p>
+        {{-- HEADER LOGO --}}
+        <div class="text-center mb-6 space-y-2">
+            @if(!empty($shop['shop_logo']))
+                <img src="{{ asset('storage/' . $shop['shop_logo']) }}" class="h-16 mx-auto object-contain mb-2 drop-shadow-md">
+            @elseif(!empty($shop['app_favicon']))
+                <img src="{{ asset('storage/' . $shop['app_favicon']) }}" class="w-16 h-16 rounded-3xl mx-auto p-2 bg-white object-contain shadow-xl">
+            @else
+                <div class="w-16 h-16 rounded-3xl bg-[#00AA13] text-white font-black text-2xl flex items-center justify-center mx-auto shadow-xl border-2 border-emerald-300/40">
+                    {{ strtoupper(substr($shop['app_name'] ?? 'S', 0, 1)) }}
+                </div>
+            @endif
+            <h1 class="text-3xl font-black text-white tracking-tight uppercase">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
+            <p class="text-emerald-200 text-xs font-black uppercase tracking-widest">{{ $shop['app_tagline'] ?? 'Sistem Kasir Modern' }}</p>
         </div>
 
-        <div class="glass-effect rounded-[2rem] shadow-2xl p-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Selamat Datang</h2>
-            <p class="text-gray-500 text-sm mb-8">Silakan masuk untuk mengelola toko Anda.</p>
+        {{-- LOGIN CARD --}}
+        <div class="bg-white rounded-[2.5rem] shadow-2xl p-8 sm:p-10 border border-white/20">
+            <div class="mb-6">
+                <span class="px-3 py-1 bg-emerald-50 text-[#00880F] rounded-full text-[10px] font-black uppercase tracking-wider">
+                    🟢 Masuk Petugas Kasir & Admin
+                </span>
+                <h2 class="text-2xl font-black text-gray-900 tracking-tight mt-2">Selamat Datang</h2>
+                <p class="text-gray-400 text-xs font-medium">Silakan masuk dengan akun toko Anda.</p>
+            </div>
 
             @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
+                <div class="mb-4 p-3 bg-emerald-50 text-[#00880F] rounded-2xl font-bold text-xs">
                     {{ session('status') }}
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}" class="space-y-4">
                 @csrf
 
-                <div class="mb-5">
-                    <label for="email" class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Email Pengguna</label>
-                    <input id="email" type="email" name="email" :value="old('email')" required autofocus 
-                           class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all text-gray-700" 
+                <div>
+                    <label for="email" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Email Akun</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus 
+                           class="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all text-xs font-bold text-gray-800" 
                            placeholder="nama@toko.com">
                     @error('email')
-                        <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p>
+                        <p class="text-rose-500 text-[10px] font-bold mt-1 ml-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-2">
-                    <label for="password" class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Kata Sandi</label>
+                <div>
+                    <label for="password" class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Kata Sandi</label>
                     <input id="password" type="password" name="password" required autocomplete="current-password" 
-                           class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all text-gray-700" 
+                           class="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none focus:border-[#00AA13] focus:bg-white transition-all text-xs font-bold text-gray-800" 
                            placeholder="••••••••">
                     @error('password')
-                        <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p>
+                        <p class="text-rose-500 text-[10px] font-bold mt-1 ml-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="flex items-center justify-between mb-8 px-1">
+                <div class="flex items-center justify-between pt-1">
                     <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" name="remember" class="rounded-md border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
-                        <span class="ml-2 text-sm text-gray-500">Ingat saya</span>
+                        <input type="checkbox" name="remember" class="rounded-lg border-gray-300 text-[#00AA13] focus:ring-[#00AA13]">
+                        <span class="ml-2 text-xs font-bold text-gray-500">Ingat saya</span>
                     </label>
-                    @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition">Lupa sandi?</a>
-                    @endif
                 </div>
 
                 <button type="submit" 
-                        class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 active:scale-[0.98] transition-all">
-                    MASUK KE SISTEM
+                        class="w-full bg-[#00AA13] hover:bg-[#00880F] text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-500/25 active:scale-95 transition-all mt-2">
+                    Masuk ke Kasir
                 </button>
             </form>
 
-            <div class="mt-10 text-center border-t border-gray-100 pt-6">
-                <p class="text-gray-400 text-xs">SIKANDA Versi 2.0 &copy; 2026</p>
-                <p class="text-gray-400 text-[10px] mt-1 uppercase tracking-tighter">Powered by <span class="font-bold text-indigo-400">Sultan Web</span></p>
+            <div class="mt-8 text-center border-t border-gray-100 pt-4">
+                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }} POS</p>
             </div>
         </div>
     </div>
