@@ -1,6 +1,6 @@
 <div class="p-8">
-    <h1 class="text-3xl font-black tracking-tighter uppercase">SIKANDA</h1>
-    <p class="text-[10px] text-indigo-200 uppercase tracking-widest font-bold mt-1">Sultan Web Engine</p>
+    <h1 class="text-3xl font-black tracking-tighter uppercase">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
+    <p class="text-[10px] text-indigo-200 uppercase tracking-widest font-bold mt-1">{{ $shop['app_tagline'] ?? 'Sultan Web Engine' }}</p>
 </div>
 
 <nav class="flex-grow px-4 space-y-2">

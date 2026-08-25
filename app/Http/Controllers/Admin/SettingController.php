@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB; // Tambahkan baris ini
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
     /**
-     * Menampilkan Pusat Komando SIKANDA
+     * Menampilkan Pusat Komando & Pengaturan Sistem
      */
     public function index()
     {
@@ -21,42 +21,52 @@ class SettingController extends Controller
     }
 
     /**
-     * Update Identitas, Konfigurasi DOKU, & Fitur Suara
+     * Update Identitas Aplikasi, Toko, Favicon, DOKU, & Fitur Suara
      */
     public function update(Request $request)
     {
-        // 1. VALIDASI KETAT
+        // 1. VALIDASI
         $request->validate([
+            'app_name'              => 'nullable|string|max:100',
+            'app_tagline'           => 'nullable|string|max:150',
             'shop_name'             => 'required|string|max:100',
             'shop_phone'            => 'nullable|string|max:20',
-            'shop_logo'             => 'nullable|image|mimes:jpg,jpeg,png|max:1024',
-            'payment_success_sound' => 'nullable|mimes:mp3,wav,ogg|max:2048', // Max 2MB
+            'shop_address'          => 'nullable|string|max:500',
+            'app_favicon'           => 'nullable|mimes:ico,png,jpg,jpeg,svg|max:1024',
+            'shop_logo'             => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
+            'payment_success_sound' => 'nullable|mimes:mp3,wav,ogg|max:3072',
             'is_voice_enabled'      => 'nullable|in:0,1',
             'doku_client_id'        => 'nullable|string',
             'doku_secret_key'       => 'nullable|string',
             'doku_base_url'         => 'nullable|url',
+            'receipt_footer'        => 'nullable|string|max:200',
         ]);
 
         // Ambil semua data kecuali file dan token
-        $data = $request->except(['_token', '_method', 'shop_logo', 'payment_success_sound']);
+        $data = $request->except(['_token', '_method', 'app_favicon', 'shop_logo', 'payment_success_sound']);
 
-        // 2. LOGIKA TOGGLE SUARA (Handle Checkbox)
-        // Checkbox HTML tidak mengirim data jika tidak dicentang, jadi kita paksa manual
+        // 2. LOGIKA TOGGLE SUARA
         $data['is_voice_enabled'] = $request->has('is_voice_enabled') ? '1' : '0';
 
-        // 3. LOGIKA UPLOAD LOGO
+        // 3. LOGIKA UPLOAD FAVICON
+        if ($request->hasFile('app_favicon')) {
+            $this->deleteOldFile('app_favicon');
+            $data['app_favicon'] = $request->file('app_favicon')->store('favicons', 'public');
+        }
+
+        // 4. LOGIKA UPLOAD LOGO TOKO
         if ($request->hasFile('shop_logo')) {
             $this->deleteOldFile('shop_logo');
             $data['shop_logo'] = $request->file('shop_logo')->store('logos', 'public');
         }
 
-        // 4. LOGIKA UPLOAD MP3 (NOTIFIKASI SUARA)
+        // 5. LOGIKA UPLOAD MP3 NOTIFIKASI
         if ($request->hasFile('payment_success_sound')) {
             $this->deleteOldFile('payment_success_sound');
             $data['payment_success_sound'] = $request->file('payment_success_sound')->store('audio', 'public');
         }
 
-        // 5. EKSEKUSI PENYIMPANAN
+        // 6. EKSEKUSI PENYIMPANAN
         try {
             DB::beginTransaction();
             
@@ -69,10 +79,10 @@ class SettingController extends Controller
 
             DB::commit();
 
-            // Refresh sistem agar perubahan langsung terasa
+            // Refresh cache sistem agar perubahan langsung aktif di seluruh halaman
             Artisan::call('optimize:clear');
 
-            return back()->with('success', 'Pusat Komando Sultan Web Berhasil Diperbarui!');
+            return back()->with('success', 'Pengaturan Aplikasi & Identitas Toko Berhasil Diperbarui!');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Gagal Memperbarui: ' . $e->getMessage());
@@ -80,7 +90,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Helper: Menghapus file lama dari storage agar tidak menumpuk
+     * Helper: Menghapus file lama dari storage
      */
     private function deleteOldFile($key)
     {

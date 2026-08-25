@@ -8,7 +8,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <title>SIKANDA - Kasir Modern</title>
+    <title>{{ $shop['app_name'] ?? 'SIKANDA' }} - Kasir Modern</title>
+    @if(!empty($shop['app_favicon']))
+        <link rel="icon" href="{{ asset('storage/' . $shop['app_favicon']) }}">
+    @endif
 
     
 
@@ -86,7 +89,7 @@
 
             <div class="flex items-center space-x-6">
 
-                <h1 class="text-2xl font-black text-indigo-600 tracking-tighter uppercase leading-none">SIKANDA</h1>
+                <h1 class="text-2xl font-black text-indigo-600 tracking-tighter uppercase leading-none">{{ $shop['app_name'] ?? 'SIKANDA' }}</h1>
 
                 <div class="hidden md:flex items-center space-x-3 text-gray-400">
 
