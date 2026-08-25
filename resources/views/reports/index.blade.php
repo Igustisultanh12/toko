@@ -357,26 +357,42 @@
             </div>
 
             {{-- TOMBOL AKSI CETAK & WHATSAPP --}}
-            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-100">
-                <div class="flex flex-wrap items-center gap-2">
-                    {{-- CETAK FAKTUR PDF LANDSCAPE --}}
-                    <a :href="'/admin/reports/invoice/' + selectedTrx.id + '/pdf'" target="_blank"
-                       class="px-5 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-100 transition flex items-center">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5"/></svg>
-                        Cetak Faktur PDF
-                    </a>
+            <div class="space-y-3 pt-4 border-t border-gray-100">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                        {{-- CETAK FAKTUR PDF LANDSCAPE --}}
+                        <a :href="'/admin/reports/invoice/' + selectedTrx.id + '/pdf'" target="_blank"
+                           class="px-5 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-100 transition flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5"/></svg>
+                            Cetak Faktur PDF
+                        </a>
 
-                    {{-- CETAK STRUK THERMAL KASIR --}}
-                    <a :href="'/receipt/' + selectedTrx.id + '/print'" target="_blank"
-                       class="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-bold text-xs uppercase transition flex items-center">
-                        <svg class="w-4 h-4 mr-1.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-width="2"/></svg>
-                        Struk Thermal
-                    </a>
+                        {{-- CETAK STRUK THERMAL KASIR --}}
+                        <a :href="'/receipt/' + selectedTrx.id + '/print'" target="_blank"
+                           class="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-bold text-xs uppercase transition flex items-center">
+                            <svg class="w-4 h-4 mr-1.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-width="2"/></svg>
+                            Struk Thermal
+                        </a>
+                    </div>
+
+                    <button @click="isDetailModalOpen = false" class="px-6 py-3 bg-gray-900 text-white font-bold text-xs rounded-2xl uppercase hover:bg-black transition">
+                        Tutup
+                    </button>
                 </div>
 
-                <button @click="isDetailModalOpen = false" class="px-6 py-3 bg-gray-900 text-white font-bold text-xs rounded-2xl uppercase hover:bg-black transition">
-                    Tutup
-                </button>
+                {{-- KIRIM VIA WHATSAPP --}}
+                <div class="bg-green-50/80 p-3.5 rounded-2xl border border-green-200 text-left space-y-2">
+                    <label class="block text-[10px] font-black text-green-800 uppercase tracking-wider">Kirim Struk & Link Faktur PDF ke WhatsApp</label>
+                    <div class="flex gap-2">
+                        <input type="tel" x-model="waPhone" placeholder="08xxxxxxxxxx"
+                               class="flex-1 bg-white border border-green-300 rounded-xl px-3 py-2 text-xs font-bold text-gray-800 outline-none focus:ring-2 focus:ring-green-500">
+                        <button @click="sendWhatsAppReceipt()" 
+                                class="px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-black text-xs rounded-xl shadow transition flex items-center shrink-0">
+                            <svg class="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+                            Kirim WA
+                        </button>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -409,9 +425,15 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('salesReport', () => ({
         isDetailModalOpen: false,
         selectedTrx: {},
+        waPhone: '',
+        shopName: @json($shop['shop_name'] ?? 'TOKO ANANDA'),
+        shopAddress: @json($shop['shop_address'] ?? ''),
+        shopPhone: @json($shop['shop_phone'] ?? ''),
+        shopFooter: @json($shop['receipt_footer'] ?? 'Terima Kasih!'),
 
         openDetailModal(trx) {
             this.selectedTrx = trx;
+            this.waPhone = '';
             this.isDetailModalOpen = true;
         },
 
@@ -423,6 +445,52 @@ document.addEventListener('alpine:init', () => {
             if (!dateStr) return '-';
             const d = new Date(dateStr);
             return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) + ' - ' + d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+        },
+
+        sendWhatsAppReceipt() {
+            if (!this.waPhone || this.waPhone.trim() === '') {
+                alert('Silakan masukkan nomor WhatsApp tujuan.');
+                return;
+            }
+
+            let phone = this.waPhone.replace(/[^0-9]/g, '');
+            if (phone.startsWith('0')) {
+                phone = '62' + phone.substring(1);
+            } else if (!phone.startsWith('62')) {
+                phone = '62' + phone;
+            }
+
+            const trx = this.selectedTrx;
+            const pdfUrl = `${window.location.origin}/invoice/${trx.transaction_number}/pdf`;
+
+            let itemsList = '';
+            (trx.details || []).forEach((item, idx) => {
+                const sub = (item.price_at_transaction - (item.discount_at_transaction || 0)) * item.quantity;
+                itemsList += `${idx + 1}. *${item.product ? item.product.name : 'Produk'}*\n   ${item.quantity} pcs x Rp ${new Intl.NumberFormat('id-ID').format(item.price_at_transaction)} = Rp ${new Intl.NumberFormat('id-ID').format(sub)}\n`;
+            });
+
+            let message = `*${this.shopName.toUpperCase()}*\n`;
+            if (this.shopAddress) message += `📍 _${this.shopAddress}_\n`;
+            if (this.shopPhone && this.shopPhone !== '-') message += `📞 _Telp: ${this.shopPhone}_\n`;
+            message += `================================\n`;
+            message += `🧾 *STRUK PEMBELIAN RESMI*\n`;
+            message += `No. Nota   : \`${trx.transaction_number}\`\n`;
+            message += `Tanggal    : ${this.formatDate(trx.created_at)}\n`;
+            message += `Pelanggan  : *${trx.customer_name || 'Pelanggan Umum'}*\n`;
+            message += `Kasir      : ${trx.user ? trx.user.name : 'Kasir'}\n`;
+            message += `--------------------------------\n`;
+            message += `*DAFTAR BARANG:*\n${itemsList}`;
+            message += `--------------------------------\n`;
+            message += `💰 *TOTAL BELANJA : Rp ${new Intl.NumberFormat('id-ID').format(trx.total_amount)}*\n`;
+            message += `Metode Bayar  : ${trx.payment_method.toUpperCase()}\n`;
+            message += `Status Bayar  : ✅ *${trx.payment_status === 'success' ? 'LUNAS' : trx.payment_status.toUpperCase()}*\n`;
+            message += `================================\n`;
+            message += `📄 *UNDUH FAKTUR RESMI (PDF):*\n${pdfUrl}\n`;
+            message += `================================\n`;
+            message += `_${this.shopFooter}_`;
+
+            const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank');
         }
     }));
 });

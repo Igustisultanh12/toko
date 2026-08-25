@@ -22,9 +22,15 @@ Route::get('/', function () {
 Route::post('/doku/notification', [DokuNotificationController::class, 'handle'])->name('doku.notification');
 Route::post('/doku/inquiry', [DokuInquiryController::class, 'handle'])->name('doku.inquiry');
 
+/**
+ * 2. JALUR CETAK STRUK & FAKTUR PDF (PUBLIK / BISA DIAKSES PELANGGAN DARI LINK WA)
+ */
+Route::get('/receipt/{sale}/print', [SaleController::class, 'generateReceipt'])->name('receipt.print');
+Route::get('/receipt/{sale}/pdf', [ReportController::class, 'exportInvoicePdf'])->name('receipt.pdf');
+Route::get('/invoice/{transaction_number}/pdf', [ReportController::class, 'publicInvoicePdfByNumber'])->name('invoice.public.number');
 
 /**
- * 2. RUTE TERPROTEKSI (LOGIN WAJIB)
+ * 3. RUTE TERPROTEKSI (LOGIN WAJIB)
  */
 Route::middleware(['auth'])->group(function () {
     

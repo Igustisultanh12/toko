@@ -430,4 +430,20 @@ class ReportController extends Controller
 
         return $pdf->stream('Faktur_' . $sale->transaction_number . '.pdf');
     }
+
+    /**
+     * Cetak Faktur PDF Publik via Nomor Invoice (untuk link di WhatsApp)
+     */
+    public function publicInvoicePdfByNumber($transactionNumber)
+    {
+        $sale = Sale::with(['details.product', 'user'])
+                    ->where('transaction_number', $transactionNumber)
+                    ->firstOrFail();
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $pdf = Pdf::loadView('reports.invoice_pdf', compact('sale', 'shop'))
+                  ->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Faktur_' . $sale->transaction_number . '.pdf');
+    }
 }

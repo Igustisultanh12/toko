@@ -650,6 +650,8 @@
                         itemsList += `${idx + 1}. *${item.name}*\n   ${item.quantity} pcs x Rp ${this.formatNumber(item.price)} = Rp ${subtotal}\n`;
                     });
 
+                    const pdfUrl = `${window.location.origin}/invoice/${this.lastTransactionNumber}/pdf`;
+
                     let message = `*${shopName.toUpperCase()}*\n`;
                     if (shopAddress) message += `📍 _${shopAddress}_\n`;
                     if (shopPhone && shopPhone !== '-') message += `📞 _Telp: ${shopPhone}_\n`;
@@ -665,6 +667,8 @@
                     message += `💰 *TOTAL BELANJA : Rp ${this.formatNumber(this.lastTotal)}*\n`;
                     message += `Metode Bayar  : ${(this.lastPaymentMethod || 'CASH').toUpperCase()}\n`;
                     message += `Status Bayar  : ✅ *LUNAS / SUKSES*\n`;
+                    message += `================================\n`;
+                    message += `📄 *UNDUH FAKTUR RESMI (PDF):*\n${pdfUrl}\n`;
                     message += `================================\n`;
                     message += `_${this.shop.footer || 'Terima kasih telah berbelanja!'}_`;
 
