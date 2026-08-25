@@ -153,13 +153,20 @@ class ReportController extends Controller
     /**
      * Helper untuk generate nomor dokumen resmi format dinamis:
      * [KODE]-[METODE]/[TANGGAL]/[BULAN_ROMAWI]/[NAMA_APLIKASI]/[TAHUN]
+     * Tanggal otomatis mengikuti tanggal data laporan yang difilter (bukan tanggal saat diklik cetak).
      */
-    private function generateDocNumber(string $prefix, ?string $subType, array $shop)
+    private function generateDocNumber(string $prefix, ?string $subType, array $shop, $targetDate = null)
     {
-        $day = date('d');
-        $romanMonth = $this->getRomanMonth();
+        if ($targetDate) {
+            $carbonDate = is_string($targetDate) ? Carbon::parse($targetDate) : $targetDate;
+        } else {
+            $carbonDate = Carbon::now();
+        }
+
+        $day = $carbonDate->format('d');
+        $romanMonth = $this->getRomanMonth($carbonDate->month);
         $appName = preg_replace('/[^A-Za-z0-9]/', '', strtoupper($shop['app_name'] ?? 'SIKANDA')) ?: 'SIKANDA';
-        $year = date('Y');
+        $year = $carbonDate->format('Y');
 
         $sub = $subType ? strtoupper($subType) : 'ALL';
         return "{$prefix}-{$sub}/{$day}/{$romanMonth}/{$appName}/{$year}";
@@ -202,7 +209,8 @@ class ReportController extends Controller
         $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
         $totalQty = $transactions->sum(fn($s) => $s->details->sum('quantity'));
 
-        $docNumber = $this->generateDocNumber('LPK', 'JUAL', $shop);
+        $targetDate = !empty($filters['date']) ? $filters['date'] : ($transactions->first()->created_at ?? now());
+        $docNumber = $this->generateDocNumber('LPK', 'JUAL', $shop, $targetDate);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'sales', $docNumber);
 
         $pdf = Pdf::loadView('reports.pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalQty', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64', 'docNumber'))
@@ -358,7 +366,8 @@ class ReportController extends Controller
         $totalFee = round($totalGross * 0.007, 0);
         $totalNet = $totalGross - $totalFee;
 
-        $docNumber = $this->generateDocNumber('LKEU', 'QRIS', $shop);
+        $targetDate = $request->input('date') ?: ($transactions->first()->created_at ?? now());
+        $docNumber = $this->generateDocNumber('LKEU', 'QRIS', $shop, $targetDate);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'qris', $docNumber);
 
         $pdf = Pdf::loadView('reports.qris_pdf', compact('transactions', 'totalGross', 'totalFee', 'totalNet', 'shop', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64', 'docNumber'))->setPaper('a4', 'landscape');
@@ -478,9 +487,22 @@ class ReportController extends Controller
         $totalQrisNet = $totalQrisGross - $totalQrisFee;
         $totalNominal = $totalCash + $totalQrisNet;
 
+        $targetDate = null;
+        if (!empty($filters['date'])) {
+            $targetDate = $filters['date'];
+        } elseif (!empty($filters['month'])) {
+            $targetDate = Carbon::parse($filters['month'])->startOfMonth();
+        } elseif (!empty($filters['year'])) {
+            $targetDate = Carbon::createFromDate($filters['year'], 1, 1);
+        } elseif ($transactions->isNotEmpty()) {
+            $targetDate = $transactions->first()->created_at;
+        } else {
+            $targetDate = now();
+        }
+
         $method = strtolower($filters['payment_method'] ?? 'all');
         $subType = ($method === 'cash') ? 'TUNAI' : (($method === 'qris') ? 'QRIS' : 'KAS');
-        $docNumber = $this->generateDocNumber('LKEU', $subType, $shop);
+        $docNumber = $this->generateDocNumber('LKEU', $subType, $shop, $targetDate);
         [$signerName, $signerTitle, $verifyUrl, $tteQrBase64] = $this->getSignerData($shop, 'finance', $docNumber);
 
         $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQrisGross', 'totalQrisFee', 'totalQrisNet', 'signerName', 'signerTitle', 'verifyUrl', 'tteQrBase64', 'docNumber'))
