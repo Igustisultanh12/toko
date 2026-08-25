@@ -267,6 +267,38 @@ function adminOrderManager() {
     return {
         isShipModalOpen: false,
         selectedOrder: {},
+        lastOrderCount: {{ $counts['unconfirmed'] ?? 0 }},
+
+        init() {
+            // Polling realtime pesanan baru khusus di halaman orders setiap 4 detik
+            setInterval(async () => {
+                try {
+                    const res = await fetch("{{ route('orders.realtime-check') }}");
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.count > this.lastOrderCount) {
+                            this.lastOrderCount = data.count;
+                            if (typeof window.playNotificationSound === 'function') {
+                                window.playNotificationSound('order_new');
+                            }
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Pesanan Online Baru Masuk!',
+                                text: 'Ada pesanan online baru yang baru saja dibayar via QRIS.',
+                                confirmButtonText: 'Perbarui Halaman',
+                                confirmButtonColor: '#00AA13',
+                                showCancelButton: true,
+                                cancelButtonText: 'Nanti'
+                            }).then((res) => {
+                                if (res.isConfirmed) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    }
+                } catch(e) {}
+            }, 4000);
+        },
 
         openShipModal(order) {
             this.selectedOrder = order;

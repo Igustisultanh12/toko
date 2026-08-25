@@ -163,12 +163,26 @@ class OnlineOrderController extends Controller
             return response()->json(['status' => 'not_found'], 404);
         }
 
+        $level = match($order->status) {
+            'pending_payment' => 1,
+            'paid'            => 2,
+            'processing'      => 3,
+            'shipped'         => 4,
+            'completed'       => 5,
+            default           => 1,
+        };
+
         return response()->json([
-            'order_number'   => $order->order_number,
-            'payment_status' => $order->payment_status,
-            'status'         => $order->status,
-            'is_paid'        => ($order->payment_status === 'paid'),
-            'redirect_url'   => route('order.receipt', $order->order_number),
+            'order_number'    => $order->order_number,
+            'payment_status'  => $order->payment_status,
+            'status'          => $order->status,
+            'status_label'    => $order->status_label,
+            'status_badge'    => $order->status_badge,
+            'tracking_number' => $order->tracking_number,
+            'courier'         => $order->courier,
+            'level'           => $level,
+            'is_paid'         => ($order->payment_status === 'paid'),
+            'redirect_url'    => route('order.receipt', $order->order_number),
         ]);
     }
 

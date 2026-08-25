@@ -116,11 +116,15 @@ function qrisPayment(orderNumber) {
                             clearInterval(this.checkInterval);
                             clearInterval(this.timerInterval);
                             
+                            if (typeof window.playNotificationSound === 'function') {
+                                window.playNotificationSound('payment_success');
+                            }
+
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Pembayaran Diterima!',
-                                text: 'Pembayaran QRIS Anda berhasil diverifikasi.',
-                                timer: 2000,
+                                title: 'Pembayaran QRIS Lunas!',
+                                text: 'Pembayaran Anda berhasil diverifikasi. Mengalihkan ke struk pesanan...',
+                                timer: 2200,
                                 showConfirmButton: false
                             }).then(() => {
                                 window.location.href = data.redirect_url;

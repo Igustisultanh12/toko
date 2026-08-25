@@ -23,7 +23,7 @@
                 
                 <div>
                     <p class="text-xs text-emerald-200 uppercase font-black tracking-wider">Total Pendapatan Toko</p>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mt-1">
+                    <h1 id="live-pendapatan-banner" class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mt-1 transition-all duration-300">
                         Rp {{ number_format($pendapatanHariIni ?? 0, 0, ',', '.') }}
                     </h1>
                 </div>
@@ -31,10 +31,10 @@
                 <div class="flex items-center space-x-4 pt-1 text-xs text-emerald-100">
                     <span class="flex items-center font-bold">
                         <span class="w-2 h-2 rounded-full bg-emerald-300 mr-1.5 animate-ping"></span>
-                        {{ $transaksiHariIni ?? 0 }} Transaksi Sukses
+                        <span id="live-transaksi-banner">{{ $transaksiHariIni ?? 0 }}</span> Transaksi Sukses
                     </span>
                     <span>•</span>
-                    <span class="font-bold">{{ $produkTerjualHariIni ?? 0 }} Item Terjual</span>
+                    <span class="font-bold"><span id="live-terjual-banner">{{ $produkTerjualHariIni ?? 0 }}</span> Item Terjual</span>
                 </div>
             </div>
 
@@ -126,7 +126,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
             </div>
-            <h3 class="text-2xl font-black text-gray-900 tracking-tight">Rp {{ number_format($pendapatanHariIni ?? 0, 0, ',', '.') }}</h3>
+            <h3 id="live-pendapatan-card" class="text-2xl font-black text-gray-900 tracking-tight transition-all duration-300">Rp {{ number_format($pendapatanHariIni ?? 0, 0, ',', '.') }}</h3>
             <p class="text-[10px] font-bold text-emerald-600 mt-1 uppercase">● Kas Masuk Tercatat</p>
         </div>
 
@@ -138,7 +138,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                 </div>
             </div>
-            <h3 class="text-2xl font-black text-gray-900 tracking-tight">{{ $transaksiHariIni ?? 0 }} <span class="text-sm font-bold text-gray-400">Order</span></h3>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight"><span id="live-transaksi-card">{{ $transaksiHariIni ?? 0 }}</span> <span class="text-sm font-bold text-gray-400">Order</span></h3>
             <p class="text-[10px] font-bold text-sky-600 mt-1 uppercase">● Nota & Invoice Selesai</p>
         </div>
 
@@ -150,7 +150,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                 </div>
             </div>
-            <h3 class="text-2xl font-black text-gray-900 tracking-tight">{{ $produkTerjualHariIni ?? 0 }} <span class="text-sm font-bold text-gray-400">Pcs</span></h3>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight"><span id="live-terjual-card">{{ $produkTerjualHariIni ?? 0 }}</span> <span class="text-sm font-bold text-gray-400">Pcs</span></h3>
             <p class="text-[10px] font-bold text-amber-600 mt-1 uppercase">● Volume Barang Keluar</p>
         </div>
 
@@ -162,7 +162,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                 </div>
             </div>
-            <h3 class="text-2xl font-black text-gray-900 tracking-tight">{{ $totalProduk ?? 0 }} <span class="text-sm font-bold text-gray-400">SKU</span></h3>
+            <h3 class="text-2xl font-black text-gray-900 tracking-tight"><span id="live-produk-card">{{ $totalProduk ?? 0 }}</span> <span class="text-sm font-bold text-gray-400">SKU</span></h3>
             <p class="text-[10px] font-bold text-emerald-600 mt-1 uppercase">● Siap Dijual di Kasir</p>
         </div>
     </div>
@@ -232,14 +232,14 @@
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
             <div>
                 <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">Transaksi Terakhir Masuk</h3>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">5 Aktivitas kasir terbaru</p>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Aktivitas kasir & online store terbaru (Live Realtime)</p>
             </div>
             <a href="{{ route('admin.reports.index') }}" class="text-xs font-black text-[#00880F] hover:underline uppercase tracking-wider">
                 Lihat Semua &rarr;
             </a>
         </div>
 
-        <div class="divide-y divide-gray-100">
+        <div id="live-recent-transactions" class="divide-y divide-gray-100">
             @forelse($penjualanTerakhir ?? [] as $sale)
                 <div class="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/60 rounded-2xl px-3 transition">
                     <div class="flex items-center space-x-3.5">
@@ -351,6 +351,92 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
+
+    // REALTIME LIVE DASHBOARD UPDATER (SETIAP 4 DETIK)
+    let lastTransactionCount = {{ $transaksiHariIni ?? 0 }};
+
+    async function pollLiveDashboard() {
+        try {
+            const res = await fetch("{{ route('dashboard.live-stats') }}");
+            if (!res.ok) return;
+            const data = await res.json();
+
+            // Update Angka Omzet Banner & Card
+            const bannerOmzet = document.getElementById('live-pendapatan-banner');
+            const cardOmzet = document.getElementById('live-pendapatan-card');
+            if (bannerOmzet) bannerOmzet.innerText = data.formatted_pendapatan_hari_ini;
+            if (cardOmzet) cardOmzet.innerText = data.formatted_pendapatan_hari_ini;
+
+            // Update Transaksi Count
+            const bannerTrx = document.getElementById('live-transaksi-banner');
+            const cardTrx = document.getElementById('live-transaksi-card');
+            if (bannerTrx) bannerTrx.innerText = data.transaksi_hari_ini;
+            if (cardTrx) cardTrx.innerText = data.transaksi_hari_ini;
+
+            // Update Item Terjual
+            const bannerTerjual = document.getElementById('live-terjual-banner');
+            const cardTerjual = document.getElementById('live-terjual-card');
+            if (bannerTerjual) bannerTerjual.innerText = data.item_terjual_hari_ini;
+            if (cardTerjual) cardTerjual.innerText = data.item_terjual_hari_ini;
+
+            // Update Total Produk
+            const cardProduk = document.getElementById('live-produk-card');
+            if (cardProduk) cardProduk.innerText = data.total_produk;
+
+            // Jika ada transaksi baru yang masuk
+            if (data.transaksi_hari_ini > lastTransactionCount) {
+                lastTransactionCount = data.transaksi_hari_ini;
+                if (typeof window.playNotificationSound === 'function') {
+                    window.playNotificationSound('payment_success');
+                }
+
+                // Render ulang daftar transaksi terbaru secara live
+                const container = document.getElementById('live-recent-transactions');
+                if (container && data.transaksi_terakhir && data.transaksi_terakhir.length > 0) {
+                    let html = '';
+                    data.transaksi_terakhir.forEach(item => {
+                        const isOnline = item.type === 'online';
+                        const badgeBg = isOnline ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+                        const icon = isOnline ? '🛒' : '🧾';
+
+                        html += `
+                            <div class="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/60 rounded-2xl px-3 transition animate-pulse">
+                                <div class="flex items-center space-x-3.5">
+                                    <div class="w-11 h-11 rounded-2xl bg-emerald-50 text-[#00880F] flex items-center justify-center font-black text-sm border border-emerald-100 shrink-0">
+                                        ${icon}
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="font-mono font-black text-xs text-gray-900">${item.number}</span>
+                                            <span class="px-2 py-0.5 rounded-md text-[9px] font-black uppercase ${badgeBg}">
+                                                ${item.method}
+                                            </span>
+                                        </div>
+                                        <p class="text-[11px] text-gray-500 font-medium mt-0.5">
+                                            Pelanggan: <b class="text-gray-800">${item.customer}</b> • Sumber: ${item.staff}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between sm:justify-end sm:space-x-6">
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase">
+                                        ${item.time_human}
+                                    </span>
+                                    <span class="text-base font-black text-emerald-600 tracking-tight">
+                                        ${item.formatted_amount}
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    container.innerHTML = html;
+                }
+            }
+        } catch (e) {
+            console.log('Error polling dashboard stats:', e);
+        }
+    }
+
+    setInterval(pollLiveDashboard, 4000);
 });
 </script>
 @endsection
