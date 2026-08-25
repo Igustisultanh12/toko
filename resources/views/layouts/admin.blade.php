@@ -64,14 +64,14 @@
         }
     </style>
 </head>
-<body class="flex min-h-screen antialiased text-gray-800">
-    <aside class="w-72 sidebar-gojek text-white hidden lg:flex flex-col shadow-2xl shrink-0 z-30">
+<body class="flex min-h-screen antialiased text-gray-800 bg-[#F6F8F9]">
+    <aside class="w-72 sidebar-gojek text-white hidden lg:flex flex-col shadow-2xl shrink-0 sticky top-0 h-screen z-30">
         @include('partials.sidebar')
     </aside>
 
-    <main class="flex-grow flex flex-col h-screen overflow-hidden bg-[#F6F8F9]">
+    <div class="flex-1 flex flex-col min-w-0 min-h-screen">
         {{-- TOP HEADER --}}
-        <header class="bg-white/95 backdrop-blur-md px-8 py-4 border-b border-gray-100/80 flex justify-between items-center z-20 shrink-0 shadow-sm">
+        <header class="bg-white/95 backdrop-blur-md px-6 sm:px-8 py-4 border-b border-gray-100/80 flex justify-between items-center sticky top-0 z-20 shrink-0 shadow-sm">
             <div class="flex items-center space-x-3">
                 <div class="w-2.5 h-7 bg-emerald-500 rounded-full"></div>
                 <div>
@@ -108,19 +108,17 @@
         </header>
 
         {{-- PAGE CONTENT CONTAINER --}}
-        <div class="flex-grow overflow-y-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between">
-            <div class="flex-grow">
-                @yield('content')
-            </div>
+        <main class="flex-1 p-6 sm:p-8 md:p-10">
+            @yield('content')
+        </main>
 
-            {{-- FOOTER COPYRIGHT --}}
-            <footer class="mt-12 pt-6 pb-4 border-t border-gray-200/60 text-center">
-                <p class="text-[11px] font-bold text-gray-400">
-                    &copy; {{ date('Y') }} <span class="text-gray-700 font-black">I Gusti Sultan</span>. All rights reserved.
-                </p>
-            </footer>
-        </div>
-    </main>
+        {{-- FOOTER COPYRIGHT --}}
+        <footer class="mt-auto py-6 border-t border-gray-200/60 text-center bg-white">
+            <p class="text-[11px] font-bold text-gray-400">
+                &copy; {{ date('Y') }} <span class="text-gray-700 font-black">I Gusti Sultan</span>. All rights reserved.
+            </p>
+        </footer>
+    </div>
 
     {{-- GLOBAL SWEETALERT2 & AUDIO NOTIFICATION SCRIPTS --}}
     <script>

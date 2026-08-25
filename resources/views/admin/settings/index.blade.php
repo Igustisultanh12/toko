@@ -4,7 +4,7 @@
 @section('header_title', 'Pengaturan Toko & Konfigurasi')
 
 @section('content')
-<div class="max-w-6xl mx-auto pb-20 space-y-8">
+<div class="max-w-6xl mx-auto space-y-8 pb-10">
     
     {{-- NOTIFIKASI SUKSES --}}
     @if(session('success'))

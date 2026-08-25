@@ -126,22 +126,30 @@
 
     {{-- FLOATING CART & CHECKOUT DRAWER (MODAL) --}}
     <div x-show="isCartOpen" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-end" x-cloak x-transition>
-        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
-            
-            {{-- DRAWER HEADER --}}
-            <div>
-                <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-4">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-lg">🛒</span>
-                        <h3 class="font-black text-gray-900 uppercase text-sm">Keranjang Belanja Online</h3>
-                    </div>
-                    <button @click="isCartOpen = false" class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
-                        ✕
-                    </button>
-                </div>
+        {{-- Backdrop klik luar --}}
+        <div class="fixed inset-0" @click="isCartOpen = false"></div>
 
+        <div class="relative bg-white w-full max-w-md h-full shadow-2xl flex flex-col z-10">
+            
+            {{-- DRAWER HEADER (STICKY) --}}
+            <div class="flex justify-between items-center p-5 sm:p-6 border-b border-gray-100 bg-white shrink-0">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">🛒</span>
+                    <div>
+                        <h3 class="font-black text-gray-900 uppercase text-sm leading-none">Keranjang Belanja</h3>
+                        <p class="text-[10px] text-gray-400 font-bold mt-0.5" x-text="totalItems + ' Produk Dipilih'"></p>
+                    </div>
+                </div>
+                <button type="button" @click="isCartOpen = false" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 text-sm font-black transition">
+                    ✕
+                </button>
+            </div>
+
+            {{-- SCROLLABLE CONTENT BODY --}}
+            <div class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
+                
                 {{-- DAFTAR ITEM DI KERANJANG --}}
-                <div class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                <div class="space-y-3">
                     <template x-for="(item, index) in cart" :key="item.id">
                         <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-100 flex justify-between items-center">
                             <div class="flex items-center space-x-2.5 flex-1 pr-2">
@@ -162,85 +170,86 @@
                         </div>
                     </template>
 
-                    <div x-show="cart.length === 0" class="text-center py-8 text-gray-400 font-bold text-xs italic">
-                        Keranjang masih kosong. Pilih produk di atas.
+                    <div x-show="cart.length === 0" class="text-center py-12 text-gray-400 font-bold text-xs italic">
+                        Keranjang masih kosong. Pilih produk di katalog.
                     </div>
                 </div>
-            </div>
 
-            {{-- FORM CHECKOUT PENGIRIMAN --}}
-            <div x-show="cart.length > 0" class="pt-4 border-t border-gray-100 space-y-4">
-                <form method="POST" action="{{ route('order.checkout') }}" @submit="prepareCheckout($event)">
-                    @csrf
-                    
-                    {{-- Hidden items input --}}
-                    <template x-for="(item, idx) in cart" :key="idx">
-                        <div>
-                            <input type="hidden" :name="'items[' + idx + '][id]'" :value="item.id">
-                            <input type="hidden" :name="'items[' + idx + '][quantity]'" :value="item.quantity">
-                        </div>
-                    </template>
-
-                    <div class="space-y-3">
-                        <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Informasi Pengiriman Pembeli</h4>
+                {{-- FORM CHECKOUT PENGIRIMAN --}}
+                <div x-show="cart.length > 0" class="pt-4 border-t border-gray-100 space-y-4">
+                    <form id="checkoutForm" method="POST" action="{{ route('order.checkout') }}" @submit="prepareCheckout($event)">
+                        @csrf
                         
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-600 mb-1">Nama Lengkap Penerima <span class="text-rose-500">*</span></label>
-                            <input type="text" name="customer_name" required placeholder="Contoh: Ibu Rina Hartati"
-                                   class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
-                        </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-600 mb-1">No. WhatsApp / HP <span class="text-rose-500">*</span></label>
-                            <input type="tel" name="customer_phone" required placeholder="08xxxxxxxxxx"
-                                   class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
-                        </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-600 mb-1">Alamat Lengkap Pengiriman <span class="text-rose-500">*</span></label>
-                            <textarea name="customer_address" required rows="2" placeholder="Jl. Raya No..., RT/RW, Kelurahan, Kecamatan, Kota"
-                                      class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]"></textarea>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-2">
+                        {{-- Hidden items input --}}
+                        <template x-for="(item, idx) in cart" :key="idx">
                             <div>
-                                <label class="block text-[10px] font-bold text-gray-600 mb-1">Pilihan Ekspedisi <span class="text-rose-500">*</span></label>
-                                <select name="courier" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
-                                    <option value="J&T Express">J&T Express</option>
-                                    <option value="JNE Reguler">JNE Reguler</option>
-                                    <option value="SiCepat Express">SiCepat Express</option>
-                                    <option value="Kurir Toko / Ambil Sendiri">Kurir Toko / Ambil di Toko</option>
-                                </select>
+                                <input type="hidden" :name="'items[' + idx + '][id]'" :value="item.id">
+                                <input type="hidden" :name="'items[' + idx + '][quantity]'" :value="item.quantity">
                             </div>
+                        </template>
+
+                        <div class="space-y-3">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Informasi Pengiriman Pembeli</h4>
+                            
                             <div>
-                                <label class="block text-[10px] font-bold text-gray-600 mb-1">Catatan (Opsional)</label>
-                                <input type="text" name="customer_notes" placeholder="Titip di pos security..."
+                                <label class="block text-[10px] font-bold text-gray-600 mb-1">Nama Lengkap Penerima <span class="text-rose-500">*</span></label>
+                                <input type="text" name="customer_name" required placeholder="Contoh: Ibu Rina Hartati"
                                        class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
                             </div>
-                        </div>
-                    </div>
 
-                    {{-- RINGKASAN HARGA & TOMBOL BAYAR QRIS --}}
-                    <div class="mt-4 pt-3 border-t border-gray-100 space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-gray-500 uppercase">Total Pembayaran:</span>
-                            <span class="text-lg font-black text-[#00AA13]" x-text="formatRupiah(totalPrice)"></span>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-600 mb-1">No. WhatsApp / HP <span class="text-rose-500">*</span></label>
+                                <input type="tel" name="customer_phone" required placeholder="08xxxxxxxxxx"
+                                       class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-600 mb-1">Alamat Lengkap Pengiriman <span class="text-rose-500">*</span></label>
+                                <textarea name="customer_address" required rows="2" placeholder="Jl. Raya No..., RT/RW, Kelurahan, Kecamatan, Kota"
+                                          class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]"></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-600 mb-1">Pilihan Ekspedisi <span class="text-rose-500">*</span></label>
+                                    <select name="courier" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
+                                        <option value="J&T Express">J&T Express</option>
+                                        <option value="JNE Reguler">JNE Reguler</option>
+                                        <option value="SiCepat Express">SiCepat Express</option>
+                                        <option value="Kurir Toko / Ambil Sendiri">Kurir Toko / Ambil di Toko</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-600 mb-1">Catatan (Opsional)</label>
+                                    <input type="text" name="customer_notes" placeholder="Titip di pos security..."
+                                           class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-gray-800 outline-none focus:border-[#00AA13]">
+                                </div>
+                            </div>
                         </div>
 
                         {{-- WIDGET CLOUDFLARE TURNSTILE (JIKA AKTIF DI SETTING ADMIN) --}}
                         @if(\App\Services\TurnstileService::isEnabled())
-                            <div class="pt-1 pb-1 flex justify-center">
+                            <div class="pt-3 flex justify-center">
                                 <div class="cf-turnstile" data-sitekey="{{ \App\Services\TurnstileService::getSiteKey() }}" data-theme="light"></div>
                             </div>
                         @endif
 
-                        <button type="submit" 
-                                class="w-full py-4 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/25 transition flex items-center justify-center space-x-2">
-                            <span>💳 Buat Pesanan & Bayar QRIS</span>
-                        </button>
-                    </div>
+                    </form>
+                </div>
 
-                </form>
+            </div>
+
+            {{-- DRAWER FOOTER (STICKY BOTTOM - ALWAYS VISIBLE) --}}
+            <div x-show="cart.length > 0" class="p-5 sm:p-6 border-t border-gray-100 bg-white shrink-0 shadow-lg space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-500 uppercase">Total Pembayaran:</span>
+                    <span class="text-lg font-black text-[#00AA13]" x-text="formatRupiah(totalPrice)"></span>
+                </div>
+
+                <button type="submit" form="checkoutForm"
+                        class="w-full py-4 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/25 transition flex items-center justify-center space-x-2">
+                    <span>💳 Buat Pesanan & Bayar QRIS</span>
+                </button>
             </div>
 
         </div>
