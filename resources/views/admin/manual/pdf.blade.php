@@ -5,13 +5,13 @@
     <title>Buku Panduan Lengkap Sistem POS & Administrator - {{ $shop['app_name'] ?? 'POS' }}</title>
     <style>
         @page {
-            margin: 2cm 1.8cm 2cm 1.8cm;
+            margin: 1.8cm 1.6cm 1.8cm 1.6cm;
         }
 
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 8.8pt;
-            line-height: 1.45;
+            font-size: 8.5pt;
+            line-height: 1.4;
             color: #2D3748;
             margin: 0;
             padding: 0;
@@ -29,7 +29,7 @@
         .cover-container {
             height: 100%;
             text-align: center;
-            padding-top: 20px;
+            padding-top: 15px;
         }
 
         .cover-badge {
@@ -126,19 +126,19 @@
 
         /* HEADINGS */
         h1.chapter-title {
-            font-size: 13.5pt;
+            font-size: 13pt;
             font-weight: 900;
             color: #00661A;
             border-bottom: 2px solid #00AA13;
-            padding-bottom: 4px;
+            padding-bottom: 3px;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .chapter-num {
-            font-size: 9pt;
+            font-size: 8.5pt;
             font-weight: 800;
             color: #00AA13;
             text-transform: uppercase;
@@ -147,25 +147,17 @@
         }
 
         h2.section-title {
-            font-size: 10.2pt;
+            font-size: 9.8pt;
             font-weight: 800;
             color: #2D3748;
-            margin-top: 10px;
-            margin-bottom: 6px;
-            border-left: 3.5px solid #00AA13;
-            padding-left: 7px;
-        }
-
-        h3.subsection-title {
-            font-size: 9.2pt;
-            font-weight: 700;
-            color: #4A5568;
             margin-top: 8px;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            border-left: 3.5px solid #00AA13;
+            padding-left: 6px;
         }
 
         p {
-            margin: 0 0 6px 0;
+            margin: 0 0 5px 0;
             text-align: justify;
         }
 
@@ -173,8 +165,8 @@
         table.doc-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 8px 0 10px 0;
-            font-size: 7.4pt;
+            margin: 6px 0 8px 0;
+            font-size: 7.2pt;
         }
 
         table.doc-table th {
@@ -182,14 +174,14 @@
             color: #FFFFFF;
             font-weight: bold;
             text-transform: uppercase;
-            padding: 5px 7px;
+            padding: 4px 6px;
             border: 1px solid #004D13;
             text-align: left;
             letter-spacing: 0.5px;
         }
 
         table.doc-table td {
-            padding: 4px 7px;
+            padding: 4px 6px;
             border: 1px solid #CBD5E0;
             vertical-align: top;
         }
@@ -201,9 +193,9 @@
         /* CALLOUT BOXES */
         .callout {
             border-radius: 6px;
-            padding: 7px 10px;
-            margin: 8px 0;
-            font-size: 7.8pt;
+            padding: 6px 8px;
+            margin: 6px 0;
+            font-size: 7.5pt;
             page-break-inside: avoid;
         }
 
@@ -225,89 +217,117 @@
             color: #C05621;
         }
 
-        .callout-danger {
-            background-color: #FFF5F5;
-            border-left: 3.5px solid #E53E3E;
-            color: #C53030;
-        }
-
         .callout-title {
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 7.4pt;
+            font-size: 7pt;
             letter-spacing: 0.5px;
             margin-bottom: 2px;
             display: block;
         }
 
-        /* STEP CARDS */
-        .step-box {
-            background-color: #FFFFFF;
-            border: 1px solid #E2E8F0;
+        /* ========================================================================= */
+        /* UI WIREFRAME & GRAPHICAL MOCKUP ENGINE (100% DOMPDF COMPATIBLE) */
+        /* ========================================================================= */
+        .ui-mockup {
+            width: 100%;
+            margin: 8px 0;
+            border: 1px solid #CBD5E0;
             border-radius: 6px;
-            padding: 6px 8px;
-            margin-bottom: 6px;
+            background-color: #FFFFFF;
             page-break-inside: avoid;
         }
 
-        .step-header {
-            font-weight: bold;
-            font-size: 8.2pt;
-            color: #1A202C;
-            margin-bottom: 2px;
-        }
-
-        .step-num {
-            background-color: #00AA13;
-            color: #FFFFFF;
-            font-size: 6.8pt;
-            font-weight: bold;
-            padding: 1px 4.5px;
-            border-radius: 3px;
-            margin-right: 4px;
-            display: inline-block;
-        }
-
-        /* SVG DIAGRAM CONTAINER */
-        .diagram-container {
-            text-align: center;
-            margin: 8px 0 10px 0;
-            background-color: #FAFAFA;
-            border: 1px solid #E2E8F0;
-            border-radius: 8px;
-            padding: 6px;
-            page-break-inside: avoid;
-        }
-
-        .diagram-caption {
-            font-size: 7pt;
-            font-weight: bold;
-            color: #4A5568;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
-        }
-
-        /* CODE & SHORTCUT BADGES */
-        code {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #EDF2F7;
-            color: #C53030;
-            padding: 1px 3px;
-            border-radius: 3px;
-            font-size: 7.4pt;
-            font-weight: bold;
-        }
-
-        .badge-shortcut {
+        .ui-window-bar {
             background-color: #2D3748;
             color: #FFFFFF;
-            font-family: monospace;
+            padding: 4px 8px;
             font-size: 6.8pt;
-            padding: 1px 4px;
-            border-radius: 3px;
             font-weight: bold;
+        }
+
+        .ui-window-dot {
             display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 2px;
+        }
+        .dot-red { background-color: #E53E3E; }
+        .dot-yellow { background-color: #ECC94B; }
+        .dot-green { background-color: #38A169; }
+
+        .ui-window-body {
+            padding: 8px 10px;
+            background-color: #F8FAFC;
+        }
+
+        .ui-caption {
+            font-size: 6.5pt;
+            font-weight: bold;
+            color: #4A5568;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 0;
+            background-color: #EDF2F7;
+            border-top: 1px solid #CBD5E0;
+        }
+
+        .ui-input-box {
+            background-color: #FFFFFF;
+            border: 1px solid #CBD5E0;
+            border-radius: 4px;
+            padding: 3px 6px;
+            font-size: 7pt;
+            color: #1A202C;
+            margin-top: 2px;
+        }
+
+        .ui-label {
+            font-size: 6pt;
+            font-weight: bold;
+            color: #718096;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .ui-btn {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 6.5pt;
+            font-weight: bold;
+            text-align: center;
+        }
+        .ui-btn-primary { background-color: #00AA13; color: #FFFFFF; }
+        .ui-btn-dark { background-color: #1A202C; color: #FFFFFF; }
+        .ui-btn-blue { background-color: #2B6CB0; color: #FFFFFF; }
+        .ui-btn-red { background-color: #E53E3E; color: #FFFFFF; }
+        .ui-btn-light { background-color: #E2E8F0; color: #2D3748; }
+
+        .ui-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 5.8pt;
+            font-weight: bold;
+        }
+        .badge-green { background-color: #E6F4EA; color: #00880F; border: 1px solid #A8DAB5; }
+        .badge-yellow { background-color: #FFFAF0; color: #DD6B20; border: 1px solid #FBD38D; }
+        .badge-red { background-color: #FFF5F5; color: #E53E3E; border: 1px solid #FEB2B2; }
+        .badge-blue { background-color: #EBF8FF; color: #2B6CB0; border: 1px solid #90CDF4; }
+
+        /* RECEIPT THERMAL MOCKUP */
+        .receipt-box {
+            width: 250px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border: 1px dashed #718096;
+            padding: 8px 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 6.5pt;
+            color: #1A202C;
         }
 
         /* TOC */
@@ -330,7 +350,7 @@
         }
 
         ul, ol {
-            margin: 0 0 6px 0;
+            margin: 0 0 5px 0;
             padding-left: 16px;
         }
 
@@ -351,13 +371,13 @@
             $textRight = "Halaman {PAGE_NUM} dari {PAGE_COUNT}";
             $widthRight = $fontMetrics->get_text_width($textRight, $font, $size);
             
-            $pdf->page_text(595 - 51 - $widthRight, 842 - 32, $textRight, $font, $size, $color);
+            $pdf->page_text(595 - 45 - $widthRight, 842 - 30, $textRight, $font, $size, $color);
             
             $appName = strtoupper($shop['app_name'] ?? 'POS');
             $footerLeft = "Buku Panduan Lengkap Sistem " . $appName . " | © I Gusti Sultan";
-            $pdf->page_text(51, 842 - 32, $footerLeft, $font, $size, $color);
+            $pdf->page_text(45, 842 - 30, $footerLeft, $font, $size, $color);
 
-            $pdf->line(51, 842 - 38, 595 - 51, 842 - 38, array(0.85, 0.85, 0.85), 0.75);
+            $pdf->line(45, 842 - 35, 595 - 45, 842 - 35, array(0.85, 0.85, 0.85), 0.75);
         }
     </script>
 
@@ -373,10 +393,9 @@
         <div class="cover-divider"></div>
 
         <div style="margin: 8px auto 12px auto;">
-            <svg width="70" height="70" viewBox="0 0 100 100">
-                <rect x="5" y="5" width="90" height="90" rx="25" fill="#00AA13"/>
-                <path d="M30 50 L45 65 L70 35" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
+            <div style="display: inline-block; width: 60px; height: 60px; background-color: #00AA13; border-radius: 15px; line-height: 60px; color: #FFFFFF; font-size: 28pt; font-weight: bold;">
+                ✔
+            </div>
         </div>
         
         <p class="cover-desc">
@@ -477,7 +496,7 @@
     <h1 class="chapter-title">KATA PENGANTAR PENGEMBANG</h1>
     
     <p>
-        Puji dan syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas terselesaikannya penyusunan <b>Buku Panduan Lengkap Sistem Kasir Point of Sale (POS) dan Administrasi Toko Modern</b>. Sistem ini dirancang untuk menjawab tantangan operasional bisnis ritel kontemporer yang memerlukan kecepatan transaksi di meja kasir, transparansi arus kas real-time, integrasi pembayaran digital tanpa hambatan, serta akuntabilitas dokumen laporan formal yang berkekuatan hukum.
+        Puji dan syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas terselesaikannya penyusunan <b>Buku Panduan Lengkap Sistem Kasir Point of Sale (POS) dan Administrasi Toko Modern</b>. Sistem ini dirancang untuk menjawab tantangan operasional bisnis ritel kontemporer yang memerlukan kecepatan transaksi di meja kasir (*checkout speed*), transparansi arus kas real-time, integrasi pembayaran digital tanpa hambatan, serta akuntabilitas dokumen laporan formal yang berkekuatan hukum.
     </p>
     <p>
         Buku panduan ini disusun secara terstruktur dari <b>Bab 1 hingga Bab 10</b> tanpa ada satupun fitur atau menu yang terlewatkan. Mulai dari prosedur login, pemindaian barcode, transaksi tunai & QRIS DOKU otomatis, rekapitulasi keuangan harian/bulanan/kuartal/tahunan, verifikasi keaslian Tanda Tangan Elektronik (TTE) berbasis UU ITE No. 11 Tahun 2008, hingga tata kelola pemeliharaan server produksi aaPanel yang dikelola secara eksklusif oleh <b>I Gusti Sultan</b>.
@@ -558,7 +577,7 @@
         <div class="toc-sub-row">5.10 Pintasan Keyboard Efisiensi Kasir (Hotkeys B & ESC) ...................................................... Halaman 38</div>
         <div class="toc-sub-row">5.11 Cetak Struk Thermal Bluetooth (58mm/80mm) & Format Raw ESC/POS ......................... Halaman 39</div>
         <div class="toc-sub-row">5.12 Cetak Nota PDF Grayscale Monokrom (/receipt/{id}/print) ............................................ Halaman 40</div>
-        <div class="toc-sub-row">5.13 Pengiriman Bukti Pembayaran Digital via WhatsApp Pelanggan .................................--- Halaman 41</div>
+        <div class="toc-sub-row">5.13 Pengiriman Bukti Pembayaran Digital via WhatsApp Pelanggan .................................... Halaman 41</div>
         <div class="toc-sub-row">5.14 Modul Ekspedisi: Pembuatan & Pencetakan Label Resi Paket A6 ..................................... Halaman 42</div>
     </div>
 
@@ -631,55 +650,52 @@
         Sistem Point of Sale (POS) ini dirancang untuk menjawab tantangan operasional bisnis ritel kontemporer yang memerlukan kecepatan transaksi di meja kasir (*checkout speed*), transparansi pencatatan arus kas real-time, serta otomatisasi pembukuan digital.
     </p>
 
-    {{-- SVG VECTOR GAMBAR 1.1: ALUR TRANSAKSI POS --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <!-- Step 1 -->
-            <rect x="20" y="25" width="95" height="105" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <circle cx="67" cy="48" r="16" fill="#00AA13"/>
-            <text x="67" y="53" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
-            <text x="67" y="80" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">Scan Barcode</text>
-            <text x="67" y="95" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Entri barang instan</text>
-            <text x="67" y="107" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">via scanner / teks</text>
-
-            <!-- Arrow 1 -->
-            <path d="M120 75 L135 75" stroke="#00AA13" stroke-width="2.5" stroke-linecap="round"/>
-            <polygon points="135,71 142,75 135,79" fill="#00AA13"/>
-
-            <!-- Step 2 -->
-            <rect x="145" y="25" width="95" height="105" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <circle cx="192" cy="48" r="16" fill="#00AA13"/>
-            <text x="192" y="53" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
-            <text x="192" y="80" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">Keranjang & Total</text>
-            <text x="192" y="95" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Kalkulasi diskon</text>
-            <text x="192" y="107" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">& subtotal otomatis</text>
-
-            <!-- Arrow 2 -->
-            <path d="M245 75 L260 75" stroke="#00AA13" stroke-width="2.5" stroke-linecap="round"/>
-            <polygon points="260,71 267,75 260,79" fill="#00AA13"/>
-
-            <!-- Step 3 -->
-            <rect x="270" y="25" width="95" height="105" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <circle cx="317" cy="48" r="16" fill="#00AA13"/>
-            <text x="317" y="53" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
-            <text x="317" y="80" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">Bayar Tunai / QRIS</text>
-            <text x="317" y="95" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Kembalian instan /</text>
-            <text x="317" y="107" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Dynamic QRIS DOKU</text>
-
-            <!-- Arrow 3 -->
-            <path d="M370 75 L385 75" stroke="#00AA13" stroke-width="2.5" stroke-linecap="round"/>
-            <polygon points="385,71 392,75 385,79" fill="#00AA13"/>
-
-            <!-- Step 4 -->
-            <rect x="395" y="25" width="85" height="105" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-            <circle cx="437" cy="48" r="16" fill="#00880F"/>
-            <text x="437" y="53" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✔</text>
-            <text x="437" y="80" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">Cetak & Notif</text>
-            <text x="437" y="95" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">Struk Bluetooth /</text>
-            <text x="437" y="107" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">Kirim WhatsApp</text>
-        </svg>
-        <div class="diagram-caption">Gambar 1.1: Diagram Alur Proses Transaksi Penjualan Meja Kasir POS</div>
+    {{-- WIREFRAME MOCKUP 1.1 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; DIAGRAM ALUR PROSES TRANSAKSI MEJA KASIR POS
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 22%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="background-color: #00AA13; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">1</div>
+                            <div style="font-weight: bold; font-size: 7pt; color: #1A202C;">Scan Barcode</div>
+                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Entri barang instan via scanner / teks</div>
+                        </div>
+                    </td>
+                    <td style="width: 4%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 22%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="background-color: #00AA13; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">2</div>
+                            <div style="font-weight: bold; font-size: 7pt; color: #1A202C;">Keranjang Belanja</div>
+                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Kalkulasi diskon & subtotal otomatis</div>
+                        </div>
+                    </td>
+                    <td style="width: 4%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 22%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="background-color: #00AA13; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">3</div>
+                            <div style="font-weight: bold; font-size: 7pt; color: #1A202C;">Bayar Tunai / QRIS</div>
+                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Kembalian instan / Dynamic QRIS DOKU</div>
+                        </div>
+                    </td>
+                    <td style="width: 4%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 22%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="background-color: #38A169; color: white; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; margin: 0 auto 4px auto; font-weight: bold; font-size: 7.5pt;">✔</div>
+                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">Cetak & E-Struk</div>
+                            <div style="font-size: 6pt; color: #276749; margin-top: 2px;">Struk Bluetooth / Kirim WA Pembeli</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 1.1: Diagram Alur Proses Transaksi Penjualan Meja Kasir POS</div>
     </div>
 
     <p>
@@ -699,44 +715,60 @@
         Sistem dibangun di atas fondasi arsitektur Model-View-Controller (MVC) Laravel 11 dengan performa tinggi:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 1.2: TECH STACK ARCHITECTURE --}}
-    <div class="diagram-container">
-        <svg width="460" height="160" viewBox="0 0 500 170">
-            <rect x="5" y="5" width="490" height="160" rx="10" fill="#00360D" stroke="#00AA13" stroke-width="1.5"/>
-            <!-- Layer 1: Client Frontend -->
-            <rect x="20" y="20" width="140" height="130" rx="8" fill="#FFFFFF"/>
-            <rect x="20" y="20" width="140" height="22" rx="8" fill="#00661A"/>
-            <text x="90" y="35" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">FRONTEND CLIENT</text>
-            <text x="30" y="55" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">• Tailwind CSS 3.x</text>
-            <text x="30" y="70" font-family="Helvetica" font-size="6.5" fill="#4A5568">Desain responsif hijau Gojek</text>
-            <text x="30" y="90" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">• Alpine.js 3.x</text>
-            <text x="30" y="105" font-family="Helvetica" font-size="6.5" fill="#4A5568">Reaktivitas keranjang & hitung</text>
-            <text x="30" y="125" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">• Blade Engine</text>
-            <text x="30" y="140" font-family="Helvetica" font-size="6.5" fill="#4A5568">Templating modular cepat</text>
-
-            <!-- Layer 2: Controller & Services -->
-            <rect x="180" y="20" width="140" height="130" rx="8" fill="#FFFFFF"/>
-            <rect x="180" y="20" width="140" height="22" rx="8" fill="#1A202C"/>
-            <text x="250" y="35" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">BACKEND ENGINE</text>
-            <text x="190" y="55" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">• Laravel 11 (PHP 8.2)</text>
-            <text x="190" y="70" font-family="Helvetica" font-size="6.5" fill="#4A5568">Routing & Role Middleware</text>
-            <text x="190" y="90" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">• DokuService API</text>
-            <text x="190" y="105" font-family="Helvetica" font-size="6.5" fill="#4A5568">Dynamic QRIS Generator</text>
-            <text x="190" y="125" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">• DomPDF Facade</text>
-            <text x="190" y="140" font-family="Helvetica" font-size="6.5" fill="#4A5568">Rendering PDF Laporan & Struk</text>
-
-            <!-- Layer 3: Database & Infrastructure -->
-            <rect x="340" y="20" width="140" height="130" rx="8" fill="#FFFFFF"/>
-            <rect x="340" y="20" width="140" height="22" rx="8" fill="#EE2737"/>
-            <text x="410" y="35" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">DATABASE & HOST</text>
-            <text x="350" y="55" font-family="Helvetica" font-size="7" font-weight="bold" fill="#EE2737">• MySQL 8.0 Relational</text>
-            <text x="350" y="70" font-family="Helvetica" font-size="6.5" fill="#4A5568">Tabel Sales & Inventory</text>
-            <text x="350" y="90" font-family="Helvetica" font-size="7" font-weight="bold" fill="#EE2737">• aaPanel Linux</text>
-            <text x="350" y="105" font-family="Helvetica" font-size="6.5" fill="#4A5568">Nginx & PHP-FPM 8.2</text>
-            <text x="350" y="125" font-family="Helvetica" font-size="7" font-weight="bold" fill="#EE2737">• I Gusti Sultan</text>
-            <text x="350" y="140" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Server Architecture Admin</text>
-        </svg>
-        <div class="diagram-caption">Gambar 1.2: Diagram Tumpukan Teknologi & Arsitektur Perangkat Lunak MVC</div>
+    {{-- WIREFRAME MOCKUP 1.2 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar" style="background-color: #00360D;">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; ARSITEKTUR TEKNOLOGI & MVC FRAMEWORK ENGINE
+        </div>
+        <div class="ui-window-body" style="background-color: #F0FFF4;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 32%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; overflow: hidden;">
+                            <div style="background-color: #00661A; color: white; padding: 4px; font-weight: bold; font-size: 6.8pt; text-align: center;">1. FRONTEND LAYER</div>
+                            <div style="padding: 6px; font-size: 6.2pt; color: #2D3748;">
+                                <b style="color: #00880F;">• Tailwind CSS 3.x</b><br>
+                                Desain antarmuka hijau Gojek responsif.<br><br>
+                                <b style="color: #00880F;">• Alpine.js 3.x</b><br>
+                                Reaktivitas keranjang & hitung kembalian.<br><br>
+                                <b style="color: #00880F;">• Blade Engine</b><br>
+                                Templating modular cepat.
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 34%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; overflow: hidden;">
+                            <div style="background-color: #1A202C; color: white; padding: 4px; font-weight: bold; font-size: 6.8pt; text-align: center;">2. BACKEND MVC ENGINE</div>
+                            <div style="padding: 6px; font-size: 6.2pt; color: #2D3748;">
+                                <b style="color: #1A202C;">• Laravel 11 (PHP 8.2)</b><br>
+                                Routing, ORM Eloquent, Auth Middleware.<br><br>
+                                <b style="color: #1A202C;">• DokuService API</b><br>
+                                Dynamic QRIS generator & webhook.<br><br>
+                                <b style="color: #1A202C;">• DomPDF Engine</b><br>
+                                Rendering dokumen PDF formal & nota.
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 34%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; overflow: hidden;">
+                            <div style="background-color: #EE2737; color: white; padding: 4px; font-weight: bold; font-size: 6.8pt; text-align: center;">3. SERVER & DATABASE</div>
+                            <div style="padding: 6px; font-size: 6.2pt; color: #2D3748;">
+                                <b style="color: #EE2737;">• MySQL 8.0 Engine</b><br>
+                                Basis data relasional ACID transaksi.<br><br>
+                                <b style="color: #EE2737;">• Nginx & FastCGI</b><br>
+                                Web server produksi Linux aaPanel.<br><br>
+                                <b style="color: #00880F;">• I Gusti Sultan</b><br>
+                                Server architect & maintenance terpusat.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 1.2: Diagram Tumpukan Teknologi & Arsitektur Perangkat Lunak MVC</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -752,33 +784,51 @@
         Sistem membagi akses pengguna ke dalam dua peran (*role*) terpisah guna menjaga keamanan data finansial:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 1.3: ROLE MATRIX --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <!-- Admin Role Box -->
-            <rect x="25" y="20" width="215" height="120" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-            <rect x="25" y="20" width="215" height="24" rx="8" fill="#00661A"/>
-            <text x="132" y="36" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">👑 ROLE: ADMINISTRATOR (AKSES PENUH)</text>
-            <text x="35" y="58" font-family="Helvetica" font-size="7" fill="#276749">✔ Dashboard Metrik & Grafik 7 Hari (/dashboard)</text>
-            <text x="35" y="73" font-family="Helvetica" font-size="7" fill="#276749">✔ Manajemen Produk & Stok (/admin/products)</text>
-            <text x="35" y="88" font-family="Helvetica" font-size="7" fill="#276749">✔ Pusat Laporan Penjualan & Keuangan (/reports)</text>
-            <text x="35" y="103" font-family="Helvetica" font-size="7" fill="#276749">✔ Pengaturan Toko & Gateway (/admin/settings)</text>
-            <text x="35" y="118" font-family="Helvetica" font-size="7" fill="#276749">✔ Transaksi Kasir POS (/cashier/pos)</text>
-            <text x="35" y="133" font-family="Helvetica" font-size="7" fill="#276749">✔ Manajemen Pengguna & Gelar TTE (/admin/users)</text>
-
-            <!-- Cashier Role Box -->
-            <rect x="260" y="20" width="215" height="120" rx="8" fill="#EBF8FF" stroke="#63B3ED" stroke-width="1.5"/>
-            <rect x="260" y="20" width="215" height="24" rx="8" fill="#2B6CB0"/>
-            <text x="367" y="36" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🛒 ROLE: PETUGAS KASIR (TRANSAKSI)</text>
-            <text x="270" y="58" font-family="Helvetica" font-size="7" fill="#2B6CB0">✔ Transaksi Kasir POS (/cashier/pos)</text>
-            <text x="270" y="73" font-family="Helvetica" font-size="7" fill="#2B6CB0">✔ Pemindaian Barcode & Pencarian Barang</text>
-            <text x="270" y="88" font-family="Helvetica" font-size="7" fill="#2B6CB0">✔ Pembayaran Tunai & Cetak Struk Thermal</text>
-            <text x="270" y="103" font-family="Helvetica" font-size="7" fill="#2B6CB0">✔ Dynamic QRIS DOKU & Kirim Struk WA</text>
-            <text x="270" y="118" font-family="Helvetica" font-size="7" fill="#C53030">✖ Akses Dashboard & Laporan Ditolak (403)</text>
-            <text x="270" y="133" font-family="Helvetica" font-size="7" fill="#C53030">✖ Pengaturan Toko & Akun Terkunci</text>
-        </svg>
-        <div class="diagram-caption">Gambar 1.3: Matriks Hak Wewenang Akun Administrator vs Petugas Kasir</div>
+    {{-- WIREFRAME MOCKUP 1.3 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; PERBANDINGAN HAK WEWENANG ROLE PENGGUNA SISTEM
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 50%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 6px;">
+                            <div style="background-color: #00661A; color: white; padding: 3px; font-weight: bold; font-size: 7pt; text-align: center; border-radius: 4px; margin-bottom: 6px;">
+                                👑 ROLE: ADMINISTRATOR (AKSES PENUH)
+                            </div>
+                            <div style="font-size: 6.2pt; color: #276749; line-height: 1.5;">
+                                ✔ Dashboard Metrik & Grafik 7 Hari (<code>/dashboard</code>)<br>
+                                ✔ Manajemen Produk, Stok & Barcode (<code>/admin/products</code>)<br>
+                                ✔ Pusat 4 Buku Laporan & Rekap Omset (<code>/reports</code>)<br>
+                                ✔ Pengaturan Toko, Audio & Gateway (<code>/admin/settings</code>)<br>
+                                ✔ Manajemen Staf Pengguna & Gelar TTE (<code>/admin/users</code>)<br>
+                                ✔ Transaksi Meja Kasir POS (<code>/cashier/pos</code>)
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 50%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #EBF8FF; border: 1.5px solid #90CDF4; border-radius: 6px; padding: 6px;">
+                            <div style="background-color: #2B6CB0; color: white; padding: 3px; font-weight: bold; font-size: 7pt; text-align: center; border-radius: 4px; margin-bottom: 6px;">
+                                🛒 ROLE: PETUGAS KASIR (TRANSAKSI)
+                            </div>
+                            <div style="font-size: 6.2pt; color: #2B6CB0; line-height: 1.5;">
+                                ✔ Transaksi Meja Kasir POS (<code>/cashier/pos</code>)<br>
+                                ✔ Pemindaian Barcode Laser & Pencarian Barang<br>
+                                ✔ Pembayaran Tunai & Hitung Uang Kembalian<br>
+                                ✔ Generate Dynamic QRIS DOKU & Kirim WA<br>
+                                <span style="color: #E53E3E; font-weight: bold;">✖ Akses Menu Dashboard & Laporan Ditolak (403)</span><br>
+                                <span style="color: #E53E3E; font-weight: bold;">✖ Pengaturan Toko & Manajemen Akun Terkunci</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 1.3: Matriks Hak Wewenang Akun Administrator vs Petugas Kasir</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -794,40 +844,44 @@
         Sistem terhubung secara langsung dengan DOKU Payment Gateway untuk memproses pembayaran Dynamic QRIS:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 1.4: QRIS ECOSYSTEM --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <!-- Box 1: Kasir POS -->
-            <rect x="20" y="35" width="100" height="90" rx="8" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-            <text x="70" y="55" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">KASIR POS</text>
-            <text x="70" y="75" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Request Dynamic</text>
-            <text x="70" y="88" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">QRIS Nominal Eksak</text>
-            <text x="70" y="105" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C" text-anchor="middle">Rp 51.000</text>
-
-            <!-- Arrow 1 -->
-            <path d="M125 80 L160 80" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-            <polygon points="160,76 167,80 160,84" fill="#00AA13"/>
-
-            <!-- Box 2: DOKU Server -->
-            <rect x="175" y="35" width="120" height="90" rx="8" fill="#FFFFFF" stroke="#EE2737" stroke-width="1.5"/>
-            <text x="235" y="55" font-family="Helvetica" font-size="8" font-weight="bold" fill="#EE2737" text-anchor="middle">DOKU GATEWAY</text>
-            <text x="235" y="75" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Generate QR Code</text>
-            <text x="235" y="88" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Bank Indonesia Standard</text>
-            <text x="235" y="105" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">AS2938472910</text>
-
-            <!-- Arrow 2 -->
-            <path d="M300 80 L335 80" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-            <polygon points="335,76 342,80 335,84" fill="#00AA13"/>
-
-            <!-- Box 3: Customer Apps -->
-            <rect x="350" y="35" width="125" height="90" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-            <text x="412" y="55" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">APLIKASI PEMBELI</text>
-            <text x="412" y="75" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">GoPay • OVO • DANA</text>
-            <text x="412" y="88" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">BCA Mobile • Mandiri</text>
-            <text x="412" y="105" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">✔ Sukses Bayar</text>
-        </svg>
-        <div class="diagram-caption">Gambar 1.4: Diagram Alur Integrasi Gateway Pembayaran Dynamic QRIS DOKU</div>
+    {{-- WIREFRAME MOCKUP 1.4 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; DIAGRAM ALUR INTEGRASI DYNAMIC QRIS DOKU MERCHANT
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 30%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">KASIR POS</div>
+                            <div style="font-size: 6pt; color: #4A5568; margin: 4px 0;">Request Dynamic QRIS dengan nominal belanja presisi</div>
+                            <div class="ui-badge badge-green">Rp 51.000 (Eksak)</div>
+                        </div>
+                    </td>
+                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 30%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #EE2737; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #EE2737;">DOKU GATEWAY</div>
+                            <div style="font-size: 6pt; color: #4A5568; margin: 4px 0;">Generate QR Standar Bank Indonesia & broadcast webhook</div>
+                            <div class="ui-badge badge-blue">AS2938472910</div>
+                        </div>
+                    </td>
+                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 30%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">APLIKASI PEMBELI</div>
+                            <div style="font-size: 6pt; color: #276749; margin: 4px 0;">GoPay • OVO • DANA • BCA Mobile • Mandiri Livin</div>
+                            <div class="ui-badge badge-green">✔ Lunas Real-Time</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 1.4: Diagram Alur Integrasi Gateway Pembayaran Dynamic QRIS DOKU</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -843,33 +897,45 @@
         Penerapan Tanda Tangan Elektronik (TTE) pada seluruh berkas PDF laporan resmi dilindungi oleh hukum positif Indonesia:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 1.5: TTE LEGALITY --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <rect x="25" y="20" width="450" height="25" rx="8" fill="#00661A"/>
-            <text x="250" y="37" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PILAR KEABSAHAN HUKUM TANDA TANGAN ELEKTRONIK (UU ITE NO. 11/2008)</text>
-
-            <rect x="40" y="55" width="125" height="75" rx="6" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
-            <text x="102" y="72" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">1. OTENTISITAS</text>
-            <text x="102" y="88" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Identitas Penandatangan</text>
-            <text x="102" y="100" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">terverifikasi akun resmi</text>
-            <text x="102" y="112" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">& Gelar Jabatan Alias</text>
-
-            <rect x="187" y="55" width="125" height="75" rx="6" fill="#EBF8FF" stroke="#90CDF4" stroke-width="1"/>
-            <text x="249" y="72" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">2. INTEGRITAS DATA</text>
-            <text x="249" y="88" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Enkripsi SHA-256</text>
-            <text x="249" y="100" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">mengunci isi laporan</text>
-            <text x="249" y="112" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">dari manipulasi pasca-cetak</text>
-
-            <rect x="335" y="55" width="125" height="75" rx="6" fill="#FFFAF0" stroke="#FBD38D" stroke-width="1"/>
-            <text x="397" y="72" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#DD6B20" text-anchor="middle">3. VERIFIKASI PUBLIK</text>
-            <text x="397" y="88" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Scan QR Code kamera</text>
-            <text x="397" y="100" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">membuka portal sertifikat</text>
-            <text x="397" y="112" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#DD6B20" text-anchor="middle">resmi /verify/document</text>
-        </svg>
-        <div class="diagram-caption">Gambar 1.5: Landasan Tiga Pilar Legalitas TTE Kriptografis pada Sistem Laporan</div>
+    {{-- WIREFRAME MOCKUP 1.5 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; TIGA PILAR KEABSAHAN HUKUM TANDA TANGAN ELEKTRONIK (UU ITE PASAL 11)
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 33%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 6px; padding: 6px;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #00880F; margin-bottom: 3px;">1. OTENTISITAS</div>
+                            <div style="font-size: 6pt; color: #2D3748;">
+                                Identitas penandatangan terverifikasi akun resmi terdaftar & Gelar Jabatan Alias penandatangan resmi.
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 33%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #EBF8FF; border: 1px solid #90CDF4; border-radius: 6px; padding: 6px;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0; margin-bottom: 3px;">2. INTEGRITAS DATA</div>
+                            <div style="font-size: 6pt; color: #2D3748;">
+                                Enkripsi SHA-256 mengunci isi laporan dari manipulasi angka pasca-cetak. Setiap perubahan terdeteksi otomatis.
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 34%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFAF0; border: 1px solid #FBD38D; border-radius: 6px; padding: 6px;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #DD6B20; margin-bottom: 3px;">3. VERIFIKASI PUBLIK</div>
+                            <div style="font-size: 6pt; color: #2D3748;">
+                                Pemindaian QR Code membuka portal sertifikat digital resmi <code>/verify/document</code> tanpa aplikasi khusus.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 1.5: Landasan Tiga Pilar Legalitas TTE Kriptografis pada Sistem Laporan</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -885,23 +951,44 @@
         Halaman login (<code>/login</code>) merupakan gerbang masuk terpusat untuk seluruh personil kasir dan administrator:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 2.1: LOGIN SCREEN --}}
-    <div class="diagram-container">
-        <svg width="460" height="200" viewBox="0 0 500 215">
-            <rect x="10" y="10" width="480" height="195" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="110" y="20" width="280" height="175" rx="12" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
-            <rect x="225" y="30" width="50" height="42" rx="10" fill="#00AA13"/>
-            <path d="M240 51 L248 59 L262 43" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-            <text x="250" y="86" font-family="Helvetica" font-size="9.5" font-weight="bold" fill="#1A202C" text-anchor="middle">MASUK SISTEM KASIR POS</text>
-            <text x="250" y="97" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Silakan masukkan email & kata sandi terdaftar</text>
-            <rect x="130" y="105" width="240" height="20" rx="5" fill="#F7FAFC" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="140" y="119" font-family="Helvetica" font-size="7" fill="#4A5568">✉ kasir1@toko.site</text>
-            <rect x="130" y="130" width="240" height="20" rx="5" fill="#F7FAFC" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="140" y="144" font-family="Helvetica" font-size="7" fill="#4A5568">🔒 ••••••••••••</text>
-            <rect x="130" y="156" width="240" height="24" rx="6" fill="#00AA13"/>
-            <text x="250" y="172" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">MASUK KE KASIR / DASHBOARD</text>
-        </svg>
-        <div class="diagram-caption">Gambar 2.1: Antarmuka Formulir Otentikasi Pengguna (resources/views/auth/login.blade.php)</div>
+    {{-- WIREFRAME MOCKUP 2.1 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; https://kasir.site/login - FORMULIR MASUK SISTEM KASIR POS
+        </div>
+        <div class="ui-window-body" style="text-align: center; padding: 15px;">
+            <div style="display: inline-block; width: 280px; background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 8px; padding: 12px; text-align: left;">
+                <div style="text-align: center; margin-bottom: 8px;">
+                    <div style="display: inline-block; width: 32px; height: 32px; background-color: #00AA13; border-radius: 8px; line-height: 32px; color: white; font-weight: bold; font-size: 14pt;">✔</div>
+                    <div style="font-weight: 900; font-size: 8.5pt; color: #1A202C; margin-top: 4px;">MASUK SISTEM KASIR</div>
+                    <div style="font-size: 6pt; color: #718096;">Masukkan kredensial akun kasir / admin Anda</div>
+                </div>
+
+                <span class="ui-label">ALAMAT EMAIL RESMI</span>
+                <div class="ui-input-box">✉ kasir1@toko.site</div>
+
+                <div style="margin-top: 6px;">
+                    <span class="ui-label">KATA SANDI</span>
+                    <div class="ui-input-box">🔒 ••••••••••••</div>
+                </div>
+
+                <div style="margin: 8px 0; font-size: 6pt; color: #4A5568;">
+                    <input type="checkbox" checked> Ingat sesi masuk saya (30 Hari)
+                </div>
+
+                <div style="background-color: #00AA13; color: white; text-align: center; padding: 5px; border-radius: 5px; font-weight: bold; font-size: 7.5pt;">
+                    MASUK KE KASIR / DASHBOARD
+                </div>
+
+                <div style="text-align: center; margin-top: 8px; font-size: 5.5pt; color: #718096;">
+                    © {{ date('Y') }} I Gusti Sultan. All rights reserved.
+                </div>
+            </div>
+        </div>
+        <div class="ui-caption">Gambar 2.1: Antarmuka Formulir Otentikasi Pengguna (resources/views/auth/login.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -917,30 +1004,49 @@
         Setiap komponen formulir pada template <code>resources/views/auth/login.blade.php</code> dilengkapi proteksi otomatis:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 2.2: ANATOMI LOGIN --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <rect x="25" y="20" width="450" height="22" rx="8" fill="#00661A"/>
-            <text x="250" y="35" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ANATOMI ELEMEN FORMULIR OTENTIKASI PENGGUNA</text>
-
-            <text x="40" y="58" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">1. Logo Toko Dinamis:</text>
-            <text x="180" y="58" font-family="Helvetica" font-size="6.8" fill="#2D3748">Mengambil berkas logo dari menu Pengaturan Toko via rute /media-file.</text>
-
-            <text x="40" y="76" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">2. Field Email Pengguna:</text>
-            <text x="180" y="76" font-family="Helvetica" font-size="6.8" fill="#2D3748">Validasi format email standar RFC dengan filter karakter khusus.</text>
-
-            <text x="40" y="94" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">3. Field Kata Sandi:</text>
-            <text x="180" y="94" font-family="Helvetica" font-size="6.8" fill="#2D3748">Karakter disamarkan bullet point, diverifikasi dengan hash Bcrypt di server.</text>
-
-            <text x="40" y="112" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">4. Checkbox Ingat Saya:</text>
-            <text x="180" y="112" font-family="Helvetica" font-size="6.8" fill="#2D3748">Menyimpan token sesi terenkripsi selama 30 hari di peramban kasir.</text>
-
-            <text x="40" y="130" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">5. Smart Redirect:</text>
-            <text x="180" y="130" font-family="Helvetica" font-size="6.8" fill="#2D3748">Kasir otomatis diarahkan ke /cashier/pos, admin diarahkan ke /dashboard.</text>
-        </svg>
-        <div class="diagram-caption">Gambar 2.2: Rincian Anatomi Elemen Formulir Login & Logika Alur Masuk</div>
+    {{-- WIREFRAME MOCKUP 2.2 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; ANATOMI STRUKTUR KOMPONEN & VALIDASI LOGIN BLADE
+        </div>
+        <div class="ui-window-body">
+            <table class="doc-table">
+                <tr>
+                    <th style="width: 25%;">Komponen Blade</th>
+                    <th style="width: 35%;">Spesifikasi Validasi</th>
+                    <th>Fungsi Operasional</th>
+                </tr>
+                <tr>
+                    <td><b>Logo Toko Dinamis</b></td>
+                    <td>Rute <code>/media-file</code> otomatis</td>
+                    <td>Menampilkan identitas toko tanpa risiko error 404 Nginx.</td>
+                </tr>
+                <tr>
+                    <td><b>Input Email</b></td>
+                    <td><code>required|email|max:255</code></td>
+                    <td>Menerima alamat surel resmi personil terdaftar.</td>
+                </tr>
+                <tr>
+                    <td><b>Input Password</b></td>
+                    <td><code>required|min:8</code></td>
+                    <td>Disamarkan karakter bullet, dicocokkan dengan hash Bcrypt.</td>
+                </tr>
+                <tr>
+                    <td><b>Smart Redirect</b></td>
+                    <td>Role-Based Redirection</td>
+                    <td>Kasir otomatis masuk ke <code>/cashier/pos</code>, Admin ke <code>/dashboard</code>.</td>
+                </tr>
+                <tr>
+                    <td><b>Copyright Banner</b></td>
+                    <td>&copy; I Gusti Sultan</td>
+                    <td>Menegaskan hak cipta dan lisensi resmi perangkat lunak.</td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 2.2: Rincian Anatomi Elemen Formulir Login & Logika Alur Masuk</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -956,27 +1062,43 @@
         Sistem kasir mengimplementasikan standar keamanan web tertinggi guna melindungi integritas data finansial:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 2.3: CSRF & BCRYPT --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#00360D" stroke="#00AA13" stroke-width="1.5"/>
-            <!-- CSRF Block -->
-            <rect x="25" y="25" width="215" height="110" rx="8" fill="#FFFFFF"/>
-            <text x="132" y="45" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">🛡️ PROTEKSI CSRF TOKEN</text>
-            <text x="35" y="65" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Directiva @csrf menyisipkan token acak</text>
-            <text x="35" y="78" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Divalidasi oleh VerifyCsrfToken middleware</text>
-            <text x="35" y="91" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Mencegah pemalsuan formulir antar-situs</text>
-            <text x="35" y="104" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00661A">• HTTP Error 419 jika token tidak cocok</text>
-
-            <!-- Bcrypt Block -->
-            <rect x="260" y="25" width="215" height="110" rx="8" fill="#FFFFFF"/>
-            <text x="367" y="45" font-family="Helvetica" font-size="8" font-weight="bold" fill="#2B6CB0" text-anchor="middle">🔒 ENKRIPSI BCRYPT HASH</text>
-            <text x="270" y="65" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Kata sandi di-hash satu arah (Cost 12)</text>
-            <text x="270" y="78" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Garam acak (Random Salt) per akun</text>
-            <text x="270" y="91" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Tidak dapat dibongkar bahkan dari database</text>
-            <text x="270" y="104" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">• Standar keamanan perbankan global</text>
-        </svg>
-        <div class="diagram-caption">Gambar 2.3: Diagram Arsitektur Perlindungan CSRF dan Hashing Kata Sandi Bcrypt</div>
+    {{-- WIREFRAME MOCKUP 2.3 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar" style="background-color: #00360D;">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; DIAGRAM MEKANISME PROTEKSI CSRF & ENKRIPSI BCRYPT
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 50%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 8px;">
+                            <div style="font-weight: bold; font-size: 7.5pt; color: #00880F; margin-bottom: 4px;">🛡️ PROTEKSI CSRF TOKEN</div>
+                            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                                • Directiva <code>@csrf</code> menyisipkan token unik per sesi.<br>
+                                • Divalidasi oleh <code>VerifyCsrfToken</code> middleware.<br>
+                                • Menolak serangan Cross-Site Request Forgery.<br>
+                                • Error HTTP 419 Page Expired jika sesi tidak valid.
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 50%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 8px;">
+                            <div style="font-weight: bold; font-size: 7.5pt; color: #2B6CB0; margin-bottom: 4px;">🔒 ENKRIPSI BCRYPT HASH</div>
+                            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                                • Kata sandi di-hash satu arah (Algoritma Cost 12).<br>
+                                • Garam acak (*Random Salt*) unik per setiap akun.<br>
+                                • Sandi tidak dapat dibaca bahkan dari basis data.<br>
+                                • Standar enkripsi perbankan dan enterprise global.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 2.3: Diagram Arsitektur Perlindungan CSRF dan Hashing Kata Sandi Bcrypt</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -992,37 +1114,42 @@
         Setiap pengguna dapat memperbarui informasi nama dan mengganti kata sandi secara mandiri pada rute <code>/profile</code>:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 2.4: PROFILE EDIT --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="25" y="18" width="450" height="124" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="40" y="36" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#1A202C">👤 FORMULIR PENGATURAN PROFIL & PERGANTIAN KATA SANDI MANDIRI</text>
-            
-            <text x="40" y="55" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA LENGKAP PENGGUNA</text>
-            <rect x="40" y="59" width="200" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="48" y="72" font-family="Helvetica" font-size="6.8" fill="#1A202C">Siti Rahma</text>
-
-            <text x="260" y="55" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">ALAMAT EMAIL RESMI</text>
-            <rect x="260" y="59" width="200" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="268" y="72" font-family="Helvetica" font-size="6.8" fill="#1A202C">kasir1@toko.site</text>
-
-            <text x="40" y="93" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">KATA SANDI LAMA</text>
-            <rect x="40" y="97" width="130" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="48" y="110" font-family="Helvetica" font-size="6.8" fill="#4A5568">••••••••</text>
-
-            <text x="185" y="93" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">KATA SANDI BARU</text>
-            <rect x="185" y="97" width="130" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="193" y="110" font-family="Helvetica" font-size="6.8" fill="#4A5568">••••••••</text>
-
-            <text x="330" y="93" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">KONFIRMASI PASSWORD</text>
-            <rect x="330" y="97" width="130" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="338" y="110" font-family="Helvetica" font-size="6.8" fill="#4A5568">••••••••</text>
-
-            <rect x="350" y="120" width="110" height="18" rx="4" fill="#00AA13"/>
-            <text x="405" y="132" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN PERUBAHAN</text>
-        </svg>
-        <div class="diagram-caption">Gambar 2.4: Formulir Pembaruan Profil Mandiri & Penggantian Kata Sandi (/profile)</div>
+    {{-- WIREFRAME MOCKUP 2.4 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; https://kasir.site/profile - PENGATURAN PROFIL & KATA SANDI MANDIRI
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 50%; padding: 4px; vertical-align: top;">
+                        <span class="ui-label">NAMA LENGKAP PENGGUNA</span>
+                        <div class="ui-input-box">Siti Rahma</div>
+                    </td>
+                    <td style="width: 50%; padding: 4px; vertical-align: top;">
+                        <span class="ui-label">ALAMAT EMAIL RESMI</span>
+                        <div class="ui-input-box">kasir1@toko.site</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 4px; vertical-align: top;">
+                        <span class="ui-label">KATA SANDI SAAT INI</span>
+                        <div class="ui-input-box">••••••••</div>
+                    </td>
+                    <td style="padding: 4px; vertical-align: top;">
+                        <span class="ui-label">KATA SANDI BARU</span>
+                        <div class="ui-input-box">••••••••</div>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: right; margin-top: 8px;">
+                <div class="ui-btn ui-btn-primary">SIMPAN PERUBAHAN PROFIL</div>
+            </div>
+        </div>
+        <div class="ui-caption">Gambar 2.4: Formulir Pembaruan Profil Mandiri & Penggantian Kata Sandi (/profile)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1038,43 +1165,41 @@
         Prosedur standar saat pergantian shift kasir atau penutupan toko:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 2.5: LOGOUT FLOW --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <!-- Step 1 -->
-            <rect x="25" y="30" width="125" height="100" rx="8" fill="#FFFFFF" stroke="#E53E3E" stroke-width="1.5"/>
-            <circle cx="87" cy="50" r="14" fill="#E53E3E"/>
-            <text x="87" y="55" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
-            <text x="87" y="78" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">Klik Tombol Keluar</text>
-            <text x="87" y="93" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Tombol merah sidebar /</text>
-            <text x="87" y="105" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">menu akun kasir</text>
-
-            <!-- Arrow 1 -->
-            <path d="M155 80 L180 80" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-            <polygon points="180,76 187,80 180,84" fill="#00AA13"/>
-
-            <!-- Step 2 -->
-            <rect x="190" y="30" width="125" height="100" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <circle cx="252" cy="50" r="14" fill="#00AA13"/>
-            <text x="252" y="55" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
-            <text x="252" y="78" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">Hancurkan Sesi</text>
-            <text x="252" y="93" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Server invalidate cookie</text>
-            <text x="252" y="105" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">& hapus cache token</text>
-
-            <!-- Arrow 2 -->
-            <path d="M320 80 L345 80" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-            <polygon points="345,76 352,80 345,84" fill="#00AA13"/>
-
-            <!-- Step 3 -->
-            <rect x="355" y="30" width="120" height="100" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-            <circle cx="415" cy="50" r="14" fill="#00880F"/>
-            <text x="415" y="55" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✔</text>
-            <text x="415" y="78" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">Kunci Layar Kasir</text>
-            <text x="415" y="93" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">Redirect ke /login,</text>
-            <text x="415" y="105" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">siap untuk shift baru</text>
-        </svg>
-        <div class="diagram-caption">Gambar 2.5: Diagram Prosedur Logout Aman dan Pembersihan Sesi Komputer Kasir</div>
+    {{-- WIREFRAME MOCKUP 2.5 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; DIAGRAM ALUR KELUAR AMAN (SECURE LOGOUT WORKFLOW)
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 30%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #E53E3E; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #E53E3E;">1. KLIK LOGOUT</div>
+                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Tombol merah sidebar / menu profil kasir</div>
+                        </div>
+                    </td>
+                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 30%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">2. HANCURKAN SESI</div>
+                            <div style="font-size: 6pt; color: #718096; margin-top: 2px;">Server invalidate cookie sesi & token kasir</div>
+                        </div>
+                    </td>
+                    <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                    <td style="width: 30%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-weight: bold; font-size: 7pt; color: #00880F;">3. REDIRECT /LOGIN</div>
+                            <div style="font-size: 6pt; color: #276749; margin-top: 2px;">Layar terkunci aman, siap untuk shift berikutnya</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 2.5: Diagram Prosedur Logout Aman dan Pembersihan Sesi Komputer Kasir</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1090,45 +1215,62 @@
         Dashboard Administrator menyajikan denyut nadi bisnis toko secara real-time:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 3.1: DASHBOARD OVERVIEW --}}
-    <div class="diagram-container">
-        <svg width="460" height="200" viewBox="0 0 500 215">
-            <rect x="5" y="5" width="490" height="205" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="15" y="15" width="470" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="25" y="32" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#1A202C">📊 DASHBOARD UTAMA • {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
-            
-            <rect x="15" y="48" width="470" height="55" rx="10" fill="#00661A"/>
-            <text x="25" y="65" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#A8DAB5">TOTAL OMSET HARI INI • {{ date('d F Y') }}</text>
-            <text x="25" y="85" font-family="Helvetica" font-size="14" font-weight="bold" fill="#FFFFFF">Rp 1.450.000</text>
-            <text x="25" y="96" font-family="Helvetica" font-size="6.8" fill="#E2E8F0">18 Transaksi Sukses • 42 Item Terjual</text>
+    {{-- WIREFRAME MOCKUP 3.1 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; https://kasir.site/dashboard - PANEL KONTROL ADMINISTRATOR
+        </div>
+        <div class="ui-window-body">
+            <!-- Header Banner -->
+            <div style="background-color: #00661A; color: white; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="vertical-align: middle;">
+                            <div style="font-size: 6.5pt; color: #A8DAB5; font-weight: bold;">TOTAL OMSET HARI INI • {{ date('d F Y') }}</div>
+                            <div style="font-size: 14pt; font-weight: 900; color: #FFFFFF;">Rp 1.450.000</div>
+                            <div style="font-size: 6pt; color: #E2E8F0;">18 Transaksi Berhasil • 42 Item Terjual</div>
+                        </td>
+                        <td style="text-align: right; vertical-align: middle;">
+                            <div class="ui-btn ui-btn-primary" style="background-color: #00AA13; border: 1px solid #A8DAB5;">🛒 BUKA KASIR POS</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-            <rect x="15" y="110" width="112" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="22" y="123" font-family="Helvetica" font-size="6" font-weight="bold" fill="#718096">OMSET HARI INI</text>
-            <text x="22" y="140" font-family="Helvetica" font-size="9" font-weight="bold" fill="#00AA13">Rp 1.450.000</text>
-
-            <rect x="134" y="110" width="112" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="141" y="123" font-family="Helvetica" font-size="6" font-weight="bold" fill="#718096">TOTAL TRANSAKSI</text>
-            <text x="141" y="140" font-family="Helvetica" font-size="9" font-weight="bold" fill="#2B6CB0">18 Order</text>
-
-            <rect x="254" y="110" width="112" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="261" y="123" font-family="Helvetica" font-size="6" font-weight="bold" fill="#718096">ITEM TERJUAL</text>
-            <text x="261" y="140" font-family="Helvetica" font-size="9" font-weight="bold" fill="#D69E2E">42 Pcs</text>
-
-            <rect x="373" y="110" width="112" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="380" y="123" font-family="Helvetica" font-size="6" font-weight="bold" fill="#718096">STATUS TOKO</text>
-            <text x="380" y="140" font-family="Helvetica" font-size="8" font-weight="bold" fill="#38A169">● TOKO AKTIF</text>
-
-            <rect x="15" y="158" width="470" height="45" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="25" y="172" font-family="Helvetica" font-size="7" font-weight="bold" fill="#4A5568">TREN ARUS KAS 7 HARI TERAKHIR:</text>
-            <rect x="100" y="180" width="25" height="15" fill="#00AA13"/>
-            <rect x="150" y="177" width="25" height="18" fill="#00AA13"/>
-            <rect x="200" y="175" width="25" height="20" fill="#00AA13"/>
-            <rect x="250" y="170" width="25" height="25" fill="#00AA13"/>
-            <rect x="300" y="173" width="25" height="22" fill="#00AA13"/>
-            <rect x="350" y="167" width="25" height="28" fill="#00AA13"/>
-            <rect x="400" y="163" width="25" height="32" fill="#00AA13"/>
-        </svg>
-        <div class="diagram-caption">Gambar 3.1: Antarmuka Panel Kontrol Dashboard Utama Administrator</div>
+            <!-- 4 KPI Cards -->
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
+                <tr>
+                    <td style="width: 25%; padding: 2px;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px 6px;">
+                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">OMSET HARI INI</div>
+                            <div style="font-size: 8.5pt; font-weight: bold; color: #00AA13;">Rp 1.45M</div>
+                        </div>
+                    </td>
+                    <td style="width: 25%; padding: 2px;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #90CDF4; border-radius: 4px; padding: 4px 6px;">
+                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">TOTAL ORDER</div>
+                            <div style="font-size: 8.5pt; font-weight: bold; color: #2B6CB0;">18 Transaksi</div>
+                        </div>
+                    </td>
+                    <td style="width: 25%; padding: 2px;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #FBD38D; border-radius: 4px; padding: 4px 6px;">
+                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">ITEM TERJUAL</div>
+                            <div style="font-size: 8.5pt; font-weight: bold; color: #DD6B20;">42 Pcs</div>
+                        </div>
+                    </td>
+                    <td style="width: 25%; padding: 2px;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px 6px;">
+                            <div style="font-size: 5.5pt; font-weight: bold; color: #718096;">STATUS SERVER</div>
+                            <div style="font-size: 8pt; font-weight: bold; color: #38A169;">● AKTIF ONLINE</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 3.1: Antarmuka Panel Kontrol Dashboard Utama Administrator</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1144,35 +1286,55 @@
         Banner utama pada dashboard dirancang memberikan ringkasan omset dan akses pintas modul:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 3.2: BANNER ACTIONS --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#00661A" stroke="#00AA13" stroke-width="2"/>
-            <text x="25" y="28" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#A8DAB5">⚡ GOPAY POCKET STYLE BANNER • METRIK UTAMA TOKO</text>
-            <text x="25" y="58" font-family="Helvetica" font-size="18" font-weight="bold" fill="#FFFFFF">Rp 1.450.000</text>
-            <text x="25" y="75" font-family="Helvetica" font-size="7.5" fill="#E2E8F0">18 Transaksi Berhasil • 42 Item Terjual Hari Ini</text>
-            
-            <rect x="25" y="90" width="85" height="48" rx="8" fill="#00880F" stroke="#A8DAB5" stroke-width="1"/>
-            <text x="67" y="112" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🛒 KASIR POS</text>
-            <text x="67" y="125" font-family="Helvetica" font-size="6" fill="#E2E8F0" text-anchor="middle">Buka Meja Kasir</text>
-
-            <rect x="118" y="90" width="85" height="48" rx="8" fill="#00880F" stroke="#A8DAB5" stroke-width="1"/>
-            <text x="160" y="112" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+ PRODUK</text>
-            <text x="160" y="125" font-family="Helvetica" font-size="6" fill="#E2E8F0" text-anchor="middle">Tambah Barang</text>
-
-            <rect x="211" y="90" width="85" height="48" rx="8" fill="#00880F" stroke="#A8DAB5" stroke-width="1"/>
-            <text x="253" y="112" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PENJUALAN</text>
-            <text x="253" y="125" font-family="Helvetica" font-size="6" fill="#E2E8F0" text-anchor="middle">Rekap Omset</text>
-
-            <rect x="304" y="90" width="85" height="48" rx="8" fill="#00880F" stroke="#A8DAB5" stroke-width="1"/>
-            <text x="346" y="112" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PDF STOK</text>
-            <text x="346" y="125" font-family="Helvetica" font-size="6" fill="#E2E8F0" text-anchor="middle">Valuasi Gudang</text>
-
-            <rect x="397" y="90" width="80" height="48" rx="8" fill="#00880F" stroke="#A8DAB5" stroke-width="1"/>
-            <text x="437" y="112" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KEUANGAN</text>
-            <text x="437" y="125" font-family="Helvetica" font-size="6" fill="#E2E8F0" text-anchor="middle">Arus Kas Bersih</text>
-        </svg>
-        <div class="diagram-caption">Gambar 3.2: Banner Utama Ringkasan Finansial & Tombol Aksi Cepat (Quick Actions)</div>
+    {{-- WIREFRAME MOCKUP 3.2 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar" style="background-color: #00360D;">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; STRUKTUR BANNER UTAMA GOPAY POCKET & TOMBOL AKSI CEPAT
+        </div>
+        <div class="ui-window-body" style="background-color: #00661A;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="vertical-align: middle; padding: 6px;">
+                        <div style="font-size: 7pt; color: #A8DAB5; font-weight: bold;">⚡ TOTAL PENDAPATAN HARI INI</div>
+                        <div style="font-size: 16pt; font-weight: 900; color: #FFFFFF;">Rp 1.450.000</div>
+                        <div style="font-size: 6.5pt; color: #E2E8F0;">18 Transaksi Berhasil • 42 Item Terjual Hari Ini</div>
+                    </td>
+                </tr>
+            </table>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 6px;">
+                <tr>
+                    <td style="width: 20%; padding: 2px;">
+                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
+                            🛒 KASIR POS
+                        </div>
+                    </td>
+                    <td style="width: 20%; padding: 2px;">
+                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
+                            📦 + PRODUK
+                        </div>
+                    </td>
+                    <td style="width: 20%; padding: 2px;">
+                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
+                            📈 PENJUALAN
+                        </div>
+                    </td>
+                    <td style="width: 20%; padding: 2px;">
+                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
+                            💰 KEUANGAN
+                        </div>
+                    </td>
+                    <td style="width: 20%; padding: 2px;">
+                        <div style="background-color: #00880F; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center; color: white; font-size: 6.5pt; font-weight: bold;">
+                            📖 PANDUAN
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 3.2: Banner Utama Ringkasan Finansial & Tombol Aksi Cepat (Quick Actions)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1188,47 +1350,53 @@
         Setiap kartu indikator kinerja utama diperbarui otomatis secara real-time:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 3.3: KPI CARDS --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <!-- Card 1 -->
-            <rect x="20" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#A8DAB5" stroke-width="1.5"/>
-            <rect x="20" y="20" width="105" height="20" rx="8" fill="#E6F4EA"/>
-            <text x="72" y="34" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">OMSET HARI INI</text>
-            <text x="72" y="65" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00AA13" text-anchor="middle">Rp 1.45M</text>
-            <text x="72" y="85" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Total kas masuk</text>
-            <text x="72" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">tunai & non-tunai</text>
-            <text x="72" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">⚡ Real-Time</text>
-
-            <!-- Card 2 -->
-            <rect x="135" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#90CDF4" stroke-width="1.5"/>
-            <rect x="135" y="20" width="105" height="20" rx="8" fill="#EBF8FF"/>
-            <text x="187" y="34" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">TOTAL TRANSAKSI</text>
-            <text x="187" y="65" font-family="Helvetica" font-size="12" font-weight="bold" fill="#2B6CB0" text-anchor="middle">18 Order</text>
-            <text x="187" y="85" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Jumlah nota</text>
-            <text x="187" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">berhasil diproses</text>
-            <text x="187" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">🧾 100% Lunas</text>
-
-            <!-- Card 3 -->
-            <rect x="250" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#FBD38D" stroke-width="1.5"/>
-            <rect x="250" y="20" width="105" height="20" rx="8" fill="#FFFAF0"/>
-            <text x="302" y="34" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#DD6B20" text-anchor="middle">ITEM TERJUAL</text>
-            <text x="302" y="65" font-family="Helvetica" font-size="12" font-weight="bold" fill="#DD6B20" text-anchor="middle">42 Pcs</text>
-            <text x="302" y="85" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Volume fisik</text>
-            <text x="302" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">barang keluar</text>
-            <text x="302" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#DD6B20" text-anchor="middle">📦 Gudang Aktif</text>
-
-            <!-- Card 4 -->
-            <rect x="365" y="20" width="115" height="115" rx="8" fill="#FFFFFF" stroke="#A8DAB5" stroke-width="1.5"/>
-            <rect x="365" y="20" width="115" height="20" rx="8" fill="#E6F4EA"/>
-            <text x="422" y="34" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">STATUS OPERASIONAL</text>
-            <text x="422" y="65" font-family="Helvetica" font-size="10" font-weight="bold" fill="#38A169" text-anchor="middle">● ONLINE</text>
-            <text x="422" y="85" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Database & Gateway</text>
-            <text x="422" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">terhubung normal</text>
-            <text x="422" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#38A169" text-anchor="middle">🛡️ Server Sehat</text>
-        </svg>
-        <div class="diagram-caption">Gambar 3.3: Rincian Metrik pada 4 Kartu KPI Finansial Dashboard Administrator</div>
+    {{-- WIREFRAME MOCKUP 3.3 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; RINCIAN 4 KARTU METRIK KPI FINANSIAL REAL-TIME
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 25%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-size: 6pt; font-weight: bold; color: #00880F;">OMSET HARI INI</div>
+                            <div style="font-size: 11pt; font-weight: 900; color: #00AA13; margin: 4px 0;">Rp 1.45M</div>
+                            <div style="font-size: 5.5pt; color: #718096;">Total arus kas masuk</div>
+                            <div class="ui-badge badge-green" style="margin-top: 3px;">⚡ Real-Time</div>
+                        </div>
+                    </td>
+                    <td style="width: 25%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-size: 6pt; font-weight: bold; color: #2B6CB0;">TOTAL TRANSAKSI</div>
+                            <div style="font-size: 11pt; font-weight: 900; color: #2B6CB0; margin: 4px 0;">18 Order</div>
+                            <div style="font-size: 5.5pt; color: #718096;">Jumlah nota kasir</div>
+                            <div class="ui-badge badge-blue" style="margin-top: 3px;">🧾 100% Lunas</div>
+                        </div>
+                    </td>
+                    <td style="width: 25%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #DD6B20; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-size: 6pt; font-weight: bold; color: #DD6B20;">ITEM TERJUAL</div>
+                            <div style="font-size: 11pt; font-weight: 900; color: #DD6B20; margin: 4px 0;">42 Pcs</div>
+                            <div style="font-size: 5.5pt; color: #718096;">Volume fisik keluar</div>
+                            <div class="ui-badge badge-yellow" style="margin-top: 3px;">📦 Gudang Aktif</div>
+                        </div>
+                    </td>
+                    <td style="width: 25%; padding: 4px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
+                            <div style="font-size: 6pt; font-weight: bold; color: #38A169;">STATUS SISTEM</div>
+                            <div style="font-size: 9pt; font-weight: 900; color: #38A169; margin: 4px 0;">● ONLINE</div>
+                            <div style="font-size: 5.5pt; color: #718096;">Database & Gateway</div>
+                            <div class="ui-badge badge-green" style="margin-top: 3px;">🛡️ Server Sehat</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 3.3: Rincian Metrik pada 4 Kartu KPI Finansial Dashboard Administrator</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1244,54 +1412,40 @@
         Grafik komparasi pendapatan tunai versus digital QRIS:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 3.4: 7-DAY CHART --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="25" y="24" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C">GRAFIK TREN PENJUALAN SEPEKAN (TUNAI VS DIGITAL QRIS):</text>
-            <!-- Legend -->
-            <rect x="330" y="15" width="10" height="10" fill="#00AA13"/>
-            <text x="345" y="23" font-family="Helvetica" font-size="6.5" fill="#4A5568">Tunai</text>
-            <rect x="385" y="15" width="10" height="10" fill="#00AED6"/>
-            <text x="400" y="23" font-family="Helvetica" font-size="6.5" fill="#4A5568">QRIS DOKU</text>
-            
-            <!-- Bars for 7 days -->
-            <!-- Day 1 -->
-            <rect x="40" y="80" width="16" height="45" fill="#00AA13"/>
-            <rect x="58" y="95" width="16" height="30" fill="#00AED6"/>
-            <text x="57" y="137" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Sen</text>
-
-            <!-- Day 2 -->
-            <rect x="100" y="70" width="16" height="55" fill="#00AA13"/>
-            <rect x="118" y="85" width="16" height="40" fill="#00AED6"/>
-            <text x="117" y="137" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Sel</text>
-
-            <!-- Day 3 -->
-            <rect x="160" y="65" width="16" height="60" fill="#00AA13"/>
-            <rect x="178" y="80" width="16" height="45" fill="#00AED6"/>
-            <text x="177" y="137" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Rab</text>
-
-            <!-- Day 4 -->
-            <rect x="220" y="60" width="16" height="65" fill="#00AA13"/>
-            <rect x="238" y="75" width="16" height="50" fill="#00AED6"/>
-            <text x="237" y="137" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Kam</text>
-
-            <!-- Day 5 -->
-            <rect x="280" y="55" width="16" height="70" fill="#00AA13"/>
-            <rect x="298" y="70" width="16" height="55" fill="#00AED6"/>
-            <text x="297" y="137" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Jum</text>
-
-            <!-- Day 6 (Peak) -->
-            <rect x="340" y="40" width="16" height="85" fill="#00AA13"/>
-            <rect x="358" y="50" width="16" height="75" fill="#00AED6"/>
-            <text x="357" y="137" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">Sab 🔥</text>
-
-            <!-- Day 7 (Peak) -->
-            <rect x="400" y="35" width="16" height="90" fill="#00AA13"/>
-            <rect x="418" y="45" width="16" height="80" fill="#00AED6"/>
-            <text x="417" y="137" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">Min 🔥</text>
-        </svg>
-        <div class="diagram-caption">Gambar 3.4: Visualisasi Grafik Analisis Penjualan & Arus Kas 7 Hari Terakhir</div>
+    {{-- WIREFRAME MOCKUP 3.4 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; GRAFIK TREN PENJUALAN 7 HARI (TUNAI VS DIGITAL QRIS)
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
+                <tr>
+                    <td style="font-size: 6.5pt; font-weight: bold; color: #1A202C;">TREN TRANSAKSI SEPEKAN:</td>
+                    <td style="text-align: right; font-size: 6pt;">
+                        <span style="display: inline-block; width: 8px; height: 8px; background-color: #00AA13; vertical-align: middle;"></span> Tunai &nbsp;&nbsp;
+                        <span style="display: inline-block; width: 8px; height: 8px; background-color: #00AED6; vertical-align: middle;"></span> QRIS DOKU
+                    </td>
+                </tr>
+            </table>
+            <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 6pt;">
+                <tr style="height: 65px; vertical-align: bottom;">
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 35px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 20px; width: 14px; margin: 0 auto;"></div></td>
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 42px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 25px; width: 14px; margin: 0 auto;"></div></td>
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 45px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 30px; width: 14px; margin: 0 auto;"></div></td>
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 48px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 32px; width: 14px; margin: 0 auto;"></div></td>
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 52px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 38px; width: 14px; margin: 0 auto;"></div></td>
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 60px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 45px; width: 14px; margin: 0 auto;"></div></td>
+                    <td style="width: 14%;"><div style="background-color: #00AA13; height: 65px; width: 14px; margin: 0 auto;"></div><div style="background-color: #00AED6; height: 50px; width: 14px; margin: 0 auto;"></div></td>
+                </tr>
+                <tr style="border-top: 1px solid #CBD5E0;">
+                    <td>Sen</td><td>Sel</td><td>Rab</td><td>Kam</td><td>Jum</td><td style="font-weight: bold; color: #00880F;">Sab 🔥</td><td style="font-weight: bold; color: #00880F;">Min 🔥</td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 3.4: Visualisasi Grafik Analisis Penjualan & Arus Kas 7 Hari Terakhir</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1307,37 +1461,53 @@
         Sidebar hijau tua Gojek (#00360D) memuat seluruh akses menu terintegrasi:
     </p>
 
-    {{-- SVG VECTOR GAMBAR 3.5: SIDEBAR NAVIGATION --}}
-    <div class="diagram-container">
-        <svg width="460" height="150" viewBox="0 0 500 160">
-            <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-            <!-- Sidebar Simulation (Width 160) -->
-            <rect x="25" y="15" width="160" height="130" rx="8" fill="#00360D"/>
-            <text x="35" y="32" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF">🏪 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS</text>
-            <line x1="35" y1="38" x2="175" y2="38" stroke="#00661A"/>
-            <rect x="30" y="44" width="150" height="14" rx="4" fill="#00661A"/>
-            <text x="38" y="54" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#A8DAB5">📊 Dashboard Ringkasan</text>
-            <text x="38" y="70" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">📦 Katalog Produk & Stok</text>
-            <text x="38" y="84" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">📈 Laporan Penjualan</text>
-            <text x="38" y="98" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">💰 Laporan Keuangan & Kas</text>
-            <text x="38" y="112" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">👥 Manajemen Akun</text>
-            <text x="38" y="126" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">⚙️ Pengaturan Toko</text>
-            <text x="38" y="139" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">📖 Buku Panduan PDF</text>
-
-            <!-- Explanation Box -->
-            <rect x="200" y="15" width="275" height="130" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-            <text x="215" y="35" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00661A">FITUR SIDEBAR RESPANSIF:</text>
-            <text x="215" y="55" font-family="Helvetica" font-size="6.8" fill="#2D3748">• Terintegrasi otomatis dengan sistem role permission.</text>
-            <text x="215" y="72" font-family="Helvetica" font-size="6.8" fill="#2D3748">• Status menu aktif ditandai kotak hijau muda terang.</text>
-            <text x="215" y="89" font-family="Helvetica" font-size="6.8" fill="#2D3748">• Menu "Buku Panduan" membuka web viewer & download PDF.</text>
-            <text x="215" y="106" font-family="Helvetica" font-size="6.8" fill="#2D3748">• Footer sidebar memuat copyright resmi:</text>
-            <text x="215" y="122" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">  © {{ date('Y') }} I Gusti Sultan. All rights reserved.</text>
-        </svg>
-        <div class="diagram-caption">Gambar 3.5: Struktur Menu Navigasi Sidebar Responsif (resources/views/partials/sidebar.blade.php)</div>
+    {{-- WIREFRAME MOCKUP 3.5 --}}
+    <div class="ui-mockup">
+        <div class="ui-window-bar">
+            <span class="ui-window-dot dot-red"></span>
+            <span class="ui-window-dot dot-yellow"></span>
+            <span class="ui-window-dot dot-green"></span>
+            &nbsp; STRUKTUR MENU NAVIGASI SIDEBAR RESPONSIF
+        </div>
+        <div class="ui-window-body">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 40%; vertical-align: top;">
+                        <div style="background-color: #00360D; border-radius: 6px; padding: 6px; color: white;">
+                            <div style="font-size: 7.5pt; font-weight: bold; padding: 3px 6px; border-bottom: 1px solid #00661A;">
+                                🏪 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS
+                            </div>
+                            <div style="background-color: #00661A; border-radius: 4px; padding: 3px 6px; margin-top: 4px; font-size: 6.5pt; font-weight: bold; color: #A8DAB5;">
+                                📊 Dashboard Ringkasan
+                            </div>
+                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">📦 Katalog Produk & Stok</div>
+                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">📈 Laporan Penjualan</div>
+                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">💰 Laporan Keuangan & Kas</div>
+                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">👥 Manajemen Pengguna</div>
+                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">⚙️ Pengaturan Toko</div>
+                            <div style="padding: 3px 6px; font-size: 6.2pt; color: #E2E8F0;">📖 Buku Panduan PDF</div>
+                        </div>
+                    </td>
+                    <td style="width: 60%; padding-left: 10px; vertical-align: top;">
+                        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 8px;">
+                            <div style="font-weight: bold; font-size: 7.5pt; color: #00661A; margin-bottom: 4px;">FITUR SIDEBAR TERPADU:</div>
+                            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                                • Terintegrasi otomatis dengan sistem role permission.<br>
+                                • Status menu aktif ditandai highlight hijau muda terang.<br>
+                                • Tombol cepat akses modul transaksi dan unduh panduan.<br>
+                                • Footer sidebar memuat copyright resmi:<br>
+                                <b style="color: #00880F;">© {{ date('Y') }} I Gusti Sultan. All rights reserved.</b>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="ui-caption">Gambar 3.5: Struktur Menu Navigasi Sidebar Responsif (resources/views/partials/sidebar.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 21 s/d 78: Bab 4 hingga Bab 10 dengan Diagram Lengkap --}}
+    {{-- HALAMAN 21 s/d 78: Bab 4 hingga Bab 10 dengan Diagram HTML/CSS Lengkap --}}
     {{-- ========================================================================= --}}
     @include('admin.manual.pdf_chapters_rest')
 

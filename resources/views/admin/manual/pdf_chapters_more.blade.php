@@ -11,27 +11,45 @@
     Kotak input kasir mendukung pemindaian instan dengan laser barcode scanner maupun ketikan keyboard:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="132" y="38" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">📡 PEMINDAIAN BARCODE LASER</text>
-        <text x="35" y="58" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Arahkan scanner ke barcode produk</text>
-        <text x="35" y="72" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Scanner otomatis menekan 'ENTER'</text>
-        <text x="35" y="86" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Barang langsung masuk keranjang</text>
-        <text x="35" y="100" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Scan berulang menambah kuantitas (+1)</text>
-        <text x="35" y="118" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">⚡ Kecepatan: &lt; 0.2 detik</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#3182CE" stroke-width="1.5"/>
-        <text x="367" y="38" font-family="Helvetica" font-size="8" font-weight="bold" fill="#2B6CB0" text-anchor="middle">⌨️ PENCARIAN TEKS / NAMA BARANG</text>
-        <text x="270" y="58" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Ketik minimal 2 huruf nama barang</text>
-        <text x="270" y="72" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Dropdown pencarian muncul otomatis</text>
-        <text x="270" y="86" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Klik atau tekan Panah Bawah + ENTER</text>
-        <text x="270" y="100" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Ideal untuk barang tanpa label barcode</text>
-        <text x="270" y="118" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">🔍 Pencarian Pintar Fuzzy Matching</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.4: Perbandingan Alur Input Barang Melalui Barcode Scanner vs Pencarian Teks</div>
+{{-- WIREFRAME MOCKUP 5.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; METODE INPUT BARANG MEJA KASIR
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F; margin-bottom: 3px;">📡 PEMINDAIAN BARCODE LASER</div>
+                        <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                            • Arahkan scanner ke barcode kemasan produk.<br>
+                            • Alat otomatis mengirim data + simulasi tombol ENTER.<br>
+                            • Barang langsung masuk keranjang kasir.<br>
+                            • Scan berulang otomatis menambah kuantitas (+1).<br>
+                            <b style="color: #00880F;">⚡ Kecepatan Respon: &lt; 0.2 detik</b>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0; margin-bottom: 3px;">⌨️ PENCARIAN TEKS / NAMA BARANG</div>
+                        <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                            • Ketik minimal 2 huruf nama barang.<br>
+                            • Dropdown saran produk muncul seketika.<br>
+                            • Pilih dengan panah bawah keyboard + ENTER.<br>
+                            • Solusi untuk produk tanpa label barcode fisik.<br>
+                            <b style="color: #2B6CB0;">🔍 Pencarian Fuzzy Matching Cerdas</b>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.4: Perbandingan Alur Input Barang Melalui Barcode Scanner vs Pencarian Teks</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -47,36 +65,49 @@
     Struktur tabel keranjang belanja interaktif dengan Alpine.js:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.5 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="20" fill="#00661A"/>
-        <text x="35" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">NAMA PRODUK</text>
-        <text x="200" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">HARGA SATUAN</text>
-        <text x="290" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">KUANTITAS (QTY)</text>
-        <text x="400" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">SUBTOTAL</text>
-
-        <!-- Item Row 1 -->
-        <rect x="25" y="40" width="450" height="30" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="58" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Minyak Goreng Bimoli 2L</text>
-        <text x="200" y="58" font-family="Helvetica" font-size="7" fill="#4A5568">Rp 38.000</text>
-        <!-- Qty Controls -->
-        <rect x="290" y="46" width="18" height="18" rx="3" fill="#EDF2F7"/>
-        <text x="299" y="58" font-family="Helvetica" font-size="9" font-weight="bold" fill="#4A5568" text-anchor="middle">-</text>
-        <rect x="312" y="46" width="24" height="18" rx="3" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="324" y="58" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">2</text>
-        <rect x="340" y="46" width="18" height="18" rx="3" fill="#EDF2F7"/>
-        <text x="349" y="58" font-family="Helvetica" font-size="9" font-weight="bold" fill="#4A5568" text-anchor="middle">+</text>
-        <text x="440" y="58" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="end">Rp 76.000</text>
-
-        <!-- Total Row -->
-        <rect x="25" y="85" width="450" height="40" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
-        <text x="35" y="108" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00661A">TOTAL RINGKASAN BELANJA:</text>
-        <text x="450" y="110" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00880F" text-anchor="end">Rp 76.000</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.5: Tata Letak Keranjang Belanja dengan Kontrol Kuantitas Interaktif</div>
+{{-- WIREFRAME MOCKUP 5.5 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ANATOMI TABEL KERANJANG BELANJA KASIR
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <th>NAMA PRODUK</th>
+                <th>HARGA SATUAN</th>
+                <th style="text-align: center;">KUANTITAS (QTY)</th>
+                <th style="text-align: right;">SUBTOTAL</th>
+            </tr>
+            <tr>
+                <td><b>Minyak Goreng Bimoli 2L</b></td>
+                <td>Rp 38.000</td>
+                <td style="text-align: center;">
+                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">-</span>
+                    <b>2</b>
+                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">+</span>
+                </td>
+                <td style="text-align: right; font-weight: bold; color: #00880F;">Rp 76.000</td>
+            </tr>
+            <tr>
+                <td><b>Kopi Susu Aren 250ml</b></td>
+                <td>Rp 18.000</td>
+                <td style="text-align: center;">
+                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">-</span>
+                    <b>1</b>
+                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">+</span>
+                </td>
+                <td style="text-align: right; font-weight: bold; color: #00880F;">Rp 18.000</td>
+            </tr>
+            <tr style="background-color: #F0FFF4;">
+                <td colspan="3" style="font-weight: bold; color: #00661A;">TOTAL BELANJA KERANJANG</td>
+                <td style="text-align: right; font-weight: 900; font-size: 8pt; color: #00AA13;">Rp 94.000</td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.5: Tata Letak Keranjang Belanja dengan Kontrol Kuantitas Interaktif</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -92,27 +123,43 @@
     Pencatatan data pembeli untuk personalisasi nota dan pengiriman struk digital:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.6 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="132" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#4A5568" text-anchor="middle">👤 PELANGGAN UMUM (DEFAULT)</text>
-        <text x="35" y="58" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Kolom terisi otomatis "Pelanggan Umum"</text>
-        <text x="35" y="72" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Kasir tidak perlu mengetik nama pembeli</text>
-        <text x="35" y="86" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Menghemat waktu antrean kasir ramai</text>
-        <text x="35" y="100" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Struk tercetak dengan pembeli 'Umum'</text>
-        <text x="35" y="118" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00AA13">⚡ Mode Cepat Transaksi</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="367" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">👑 MEMBER / NAMA KHUSUS</text>
-        <text x="270" y="58" font-family="Helvetica" font-size="6.8" fill="#276749">• Masukkan nama pembeli (cth: Ibu Dewi)</text>
-        <text x="270" y="72" font-family="Helvetica" font-size="6.8" fill="#276749">• Masukkan nomor WA untuk kirim e-struk</text>
-        <text x="270" y="86" font-family="Helvetica" font-size="6.8" fill="#276749">• Nama tercetak di struk & sertifikat TTE</text>
-        <text x="270" y="100" font-family="Helvetica" font-size="6.8" fill="#276749">• Terhubung dengan modul label resi A6</text>
-        <text x="270" y="118" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">📦 Pengiriman & Loyalty</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.6: Perbandingan Mode Pembeli Umum vs Pelanggan Khusus / Member</div>
+{{-- WIREFRAME MOCKUP 5.6 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PILIHAN TIPE IDENTITAS PEMBELI DI MEJA KASIR
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #4A5568; margin-bottom: 3px;">👤 PELANGGAN UMUM (DEFAULT)</div>
+                        <div style="font-size: 6.2pt; color: #718096; line-height: 1.5;">
+                            • Terisi otomatis tanpa perlu ketikan kasir.<br>
+                            • Mengakomodasi antrean transaksi cepat.<br>
+                            • Struk dicetak untuk pembeli umum.<br>
+                            <span class="ui-badge badge-green">⚡ Mode Cepat Kasir</span>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F; margin-bottom: 3px;">👑 MEMBER / NAMA KHUSUS</div>
+                        <div style="font-size: 6.2pt; color: #276749; line-height: 1.5;">
+                            • Masukkan nama pelanggan (cth: Ibu Dewi).<br>
+                            • Masukkan nomor WhatsApp untuk kirim e-struk.<br>
+                            • Nama tertera di sertifikat verifikasi TTE.<br>
+                            <span class="ui-badge badge-blue">📦 Terintegrasi Modul Resi A6</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.6: Perbandingan Mode Pembeli Umum vs Pelanggan Khusus / Member</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -128,35 +175,51 @@
     Dialog popup pembayaran tunai dengan tombol nominal uang pas dan pecahan cepat:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.7 --}}
-<div class="diagram-container">
-    <svg width="460" height="170" viewBox="0 0 500 180">
-        <rect x="5" y="5" width="490" height="170" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="80" y="15" width="340" height="150" rx="10" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
-        <rect x="80" y="15" width="340" height="25" rx="10" fill="#00661A"/>
-        <text x="250" y="32" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PEMBAYARAN TUNAI (CASH)</text>
+{{-- WIREFRAME MOCKUP 5.7 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; MODAL DIALOG PEMBAYARAN TUNAI & KALKULASI KEMBALIAN
+    </div>
+    <div class="ui-window-body" style="text-align: center; padding: 10px;">
+        <div style="display: inline-block; width: 320px; background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 10px; text-align: left;">
+            <div style="font-size: 7.5pt; font-weight: 900; color: #1A202C; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; margin-bottom: 6px;">
+                💵 FORM PEMBAYARAN TUNAI
+            </div>
 
-        <text x="100" y="55" font-family="Helvetica" font-size="7" fill="#718096">Total Tagihan: <tspan font-weight="bold" fill="#1A202C">Rp 51.000</tspan></text>
-        <text x="100" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00AA13">UANG DITERIMA:</text>
-        <rect x="100" y="76" width="300" height="22" rx="4" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="110" y="91" font-family="Helvetica" font-size="9" font-weight="bold" fill="#00880F">Rp 100.000</text>
+            <table style="width: 100%; border-collapse: collapse; font-size: 7pt; margin-bottom: 6px;">
+                <tr>
+                    <td style="color: #718096;">Total Tagihan:</td>
+                    <td style="text-align: right; font-weight: bold; color: #1A202C;">Rp 51.000</td>
+                </tr>
+            </table>
 
-        <!-- Quick Cash Buttons -->
-        <rect x="100" y="103" width="70" height="16" rx="3" fill="#EDF2F7"/>
-        <text x="135" y="114" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Uang Pas</text>
-        <rect x="175" y="103" width="70" height="16" rx="3" fill="#EDF2F7"/>
-        <text x="210" y="114" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Rp 60.000</text>
-        <rect x="250" y="103" width="70" height="16" rx="3" fill="#EDF2F7"/>
-        <text x="285" y="114" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Rp 100.000</text>
-        <rect x="325" y="103" width="75" height="16" rx="3" fill="#EDF2F7"/>
-        <text x="362" y="114" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Rp 200.000</text>
+            <span class="ui-label">UANG DITERIMA DARI PELANGGAN</span>
+            <div class="ui-input-box" style="border: 1.5px solid #00AA13; font-size: 9pt; font-weight: bold; color: #00880F;">
+                Rp 100.000
+            </div>
 
-        <!-- Change Box -->
-        <rect x="100" y="124" width="300" height="32" rx="6" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
-        <text x="110" y="137" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#276749">KEMBALIAN PELANGGAN:</text>
-        <text x="110" y="150" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00880F">Rp 49.000</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.7: Antarmuka Dialog Pembayaran Tunai & Kalkulasi Uang Kembalian Instan</div>
+            <!-- Quick Cash Buttons -->
+            <div style="margin: 6px 0;">
+                <span class="ui-btn ui-btn-light" style="font-size: 6pt;">Uang Pas</span>
+                <span class="ui-btn ui-btn-light" style="font-size: 6pt;">Rp 60.000</span>
+                <span class="ui-btn ui-btn-light" style="font-size: 6pt; background-color: #E6F4EA; color: #00880F; font-weight: bold;">Rp 100.000</span>
+                <span class="ui-btn ui-btn-light" style="font-size: 6pt;">Rp 200.000</span>
+            </div>
+
+            <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 4px; padding: 6px; margin: 6px 0;">
+                <div style="font-size: 6pt; color: #276749; font-weight: bold;">UANG KEMBALIAN PELANGGAN:</div>
+                <div style="font-size: 12pt; font-weight: 900; color: #00AA13;">Rp 49.000</div>
+            </div>
+
+            <div style="background-color: #00AA13; color: white; text-align: center; padding: 5px; border-radius: 4px; font-weight: bold; font-size: 7.5pt;">
+                ✔ SELESAIKAN & CETAK STRUK (ENTER)
+            </div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 5.7: Antarmuka Dialog Pembayaran Tunai & Kalkulasi Uang Kembalian Instan</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -172,29 +235,36 @@
     Tampilan modal QRIS dinamis yang muncul di layar kasir dengan hitung mundur:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.8 --}}
-<div class="diagram-container">
-    <svg width="460" height="180" viewBox="0 0 500 195">
-        <rect x="5" y="5" width="490" height="185" rx="10" fill="#00360D" stroke="#00AA13" stroke-width="1.5"/>
-        <rect x="120" y="15" width="260" height="165" rx="10" fill="#FFFFFF"/>
-        <rect x="120" y="15" width="260" height="24" rx="10" fill="#00661A"/>
-        <text x="250" y="31" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">DYNAMIC QRIS DOKU MERCHANT</text>
-        
-        <text x="250" y="50" font-family="Helvetica" font-size="7" fill="#718096" text-anchor="middle">Scan dengan GoPay / OVO / Dana / BCA</text>
-        <text x="250" y="65" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00AA13" text-anchor="middle">Rp 51.000</text>
-        
-        <!-- QR Code Simulation -->
-        <rect x="205" y="75" width="90" height="65" rx="4" fill="#F7FAFC" stroke="#00AA13" stroke-width="1.5"/>
-        <rect x="215" y="82" width="18" height="18" fill="#1A202C"/>
-        <rect x="267" y="82" width="18" height="18" fill="#1A202C"/>
-        <rect x="215" y="112" width="18" height="18" fill="#1A202C"/>
-        <text x="250" y="105" font-family="monospace" font-size="6" fill="#718096" text-anchor="middle">QR CODE</text>
+{{-- WIREFRAME MOCKUP 5.8 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00360D;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; MODAL DIALOG PEMBAYARAN DYNAMIC QRIS DOKU MERCHANT
+    </div>
+    <div class="ui-window-body" style="text-align: center; padding: 10px;">
+        <div style="display: inline-block; width: 260px; background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 10px;">
+            <div style="font-size: 7.5pt; font-weight: 900; color: #00661A;">DYNAMIC QRIS DOKU</div>
+            <div style="font-size: 6pt; color: #718096; margin-bottom: 4px;">Pindai QRIS menggunakan GoPay, OVO, Dana, BCA, Mandiri</div>
+            
+            <div style="font-size: 12pt; font-weight: 900; color: #00AA13; margin: 4px 0;">Rp 51.000</div>
 
-        <!-- Timer -->
-        <rect x="150" y="148" width="200" height="18" rx="4" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
-        <text x="250" y="160" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#E53E3E" text-anchor="middle">⏱️ Batas Waktu: 04:52 Menit (Auto-Check)</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.8: Modal Pembayaran Dynamic QRIS DOKU Real-Time dengan Countdown Timer</div>
+            <!-- QR Simulation Box -->
+            <div style="width: 100px; height: 100px; margin: 6px auto; background-color: #F7FAFC; border: 2px solid #00AA13; border-radius: 6px; line-height: 100px; font-size: 8pt; font-family: monospace; font-weight: bold; color: #1A202C;">
+                [ KODE QRIS ]
+            </div>
+
+            <div style="background-color: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 4px; padding: 3px; font-size: 6pt; font-weight: bold; color: #E53E3E;">
+                ⏱️ Batas Waktu Bayar: 04:52 Menit
+            </div>
+
+            <div style="font-size: 5.5pt; color: #718096; margin-top: 4px;">
+                Sistem otomatis memverifikasi webhook DOKU tanpa tekan tombol
+            </div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 5.8: Modal Pembayaran Dynamic QRIS DOKU Real-Time dengan Countdown Timer</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -210,21 +280,37 @@
     Mekanisme pemutaran suara bel kasir saat webhook DOKU atau pembayaran tunai selesai:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.9 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <circle cx="80" cy="80" r="40" fill="#E6F4EA" stroke="#00AA13" stroke-width="2"/>
-        <text x="80" y="87" font-family="Helvetica" font-size="28" fill="#00AA13" text-anchor="middle">🔔</text>
-        
-        <rect x="150" y="25" width="320" height="110" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="165" y="48" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#00661A">FITUR AUDIO BEL KASIR (SOUND CHIME):</text>
-        <text x="165" y="68" font-family="Helvetica" font-size="7" fill="#2D3748">• Bunyi "Ting! Pembayaran Berhasil Diterima".</text>
-        <text x="165" y="84" font-family="Helvetica" font-size="7" fill="#2D3748">• Memberikan konfirmasi audio instan tanpa perlu menatap layar.</text>
-        <text x="165" y="100" font-family="Helvetica" font-size="7" fill="#2D3748">• Mencegah penipuan struk palsu dari pembeli nakal.</text>
-        <text x="165" y="116" font-family="Helvetica" font-size="7" fill="#2D3748">• Suara dapat diunggah mandiri di menu Pengaturan Toko.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.9: Alur Notifikasi Asisten Suara Bel Kasir Otomatis Saat Transaksi Berhasil</div>
+{{-- WIREFRAME MOCKUP 5.9 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ALUR KERJA ASISTEN SUARA BEL NOTIFIKASI KASIR
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 25%; text-align: center; vertical-align: middle;">
+                    <div style="display: inline-block; width: 50px; height: 50px; background-color: #E6F4EA; border: 2px solid #00AA13; border-radius: 50%; line-height: 50px; font-size: 20pt;">
+                        🔔
+                    </div>
+                </td>
+                <td style="width: 75%; padding-left: 10px; vertical-align: top;">
+                    <div style="font-weight: bold; font-size: 7.5pt; color: #00661A; margin-bottom: 3px;">
+                        FITUR ASISTEN SUARA BEL KASIR (SOUND CHIME):
+                    </div>
+                    <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                        • Bunyi bel konfirmasi otomatis saat pembayaran tunai / QRIS tuntas.<br>
+                        • Kasir tidak perlu selalu memandangi monitor saat toko ramai.<br>
+                        • Mencegah kecurangan screenshot struk palsu dari pembeli.<br>
+                        • Berkas audio dapat diunggah (.mp3/.wav) di Pengaturan Toko.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.9: Alur Notifikasi Asisten Suara Bel Kasir Otomatis Saat Transaksi Berhasil</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -240,32 +326,42 @@
     Tabel tombol pintas untuk mempercepat transaksi kasir tanpa sentuhan mouse:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.10 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="135" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="67" y="32" width="50" height="35" rx="6" fill="#1A202C"/>
-        <text x="92" y="56" font-family="Helvetica" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B</text>
-        <text x="92" y="85" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">PROSES BAYAR</text>
-        <text x="92" y="100" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Membuka modal dialog</text>
-        <text x="92" y="112" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">pembayaran kasir</text>
-
-        <rect x="182" y="20" width="135" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="224" y="32" width="50" height="35" rx="6" fill="#1A202C"/>
-        <text x="249" y="55" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ESC</text>
-        <text x="249" y="85" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#E53E3E" text-anchor="middle">BATAL / TUTUP</text>
-        <text x="249" y="100" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Menutup dialog popup</text>
-        <text x="249" y="112" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">atau reset keranjang</text>
-
-        <rect x="340" y="20" width="135" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="375" y="32" width="65" height="35" rx="6" fill="#1A202C"/>
-        <text x="407" y="55" font-family="Helvetica" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ENTER</text>
-        <text x="407" y="85" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">KONFIRMASI</text>
-        <text x="407" y="100" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Finalisasi transaksi &</text>
-        <text x="407" y="112" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">cetak struk langsung</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.10: Tiga Tombol Pintasan Keyboard Utama untuk Mempercepat Transaksi Kasir</div>
+{{-- WIREFRAME MOCKUP 5.10 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; TIGA TOMBOL PINTASAN KEYBOARD UTAMA MEJA KASIR
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #CBD5E0; border-radius: 6px; padding: 8px;">
+                        <div style="display: inline-block; background-color: #1A202C; color: white; border-radius: 4px; width: 30px; height: 26px; line-height: 26px; font-weight: 900; font-size: 11pt; margin-bottom: 4px;">B</div>
+                        <div style="font-size: 6.8pt; font-weight: bold; color: #00880F;">PROSES BAYAR</div>
+                        <div style="font-size: 5.8pt; color: #718096;">Membuka dialog popup pembayaran kasir</div>
+                    </div>
+                </td>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #CBD5E0; border-radius: 6px; padding: 8px;">
+                        <div style="display: inline-block; background-color: #1A202C; color: white; border-radius: 4px; width: 35px; height: 26px; line-height: 26px; font-weight: 900; font-size: 9pt; margin-bottom: 4px;">ESC</div>
+                        <div style="font-size: 6.8pt; font-weight: bold; color: #E53E3E;">BATAL / TUTUP</div>
+                        <div style="font-size: 5.8pt; color: #718096;">Menutup modal popup atau reset keranjang</div>
+                    </div>
+                </td>
+                <td style="width: 34%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #CBD5E0; border-radius: 6px; padding: 8px;">
+                        <div style="display: inline-block; background-color: #1A202C; color: white; border-radius: 4px; width: 45px; height: 26px; line-height: 26px; font-weight: 900; font-size: 8pt; margin-bottom: 4px;">ENTER</div>
+                        <div style="font-size: 6.8pt; font-weight: bold; color: #2B6CB0;">KONFIRMASI</div>
+                        <div style="font-size: 5.8pt; color: #718096;">Finalisasi transaksi & cetak struk langsung</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.10: Tiga Tombol Pintasan Keyboard Utama untuk Mempercepat Transaksi Kasir</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -281,36 +377,48 @@
     Format teks cetak langsung ke printer mini bluetooth kasir 58mm/80mm:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.11 --}}
-<div class="diagram-container">
-    <svg width="460" height="180" viewBox="0 0 500 195">
-        <rect x="5" y="5" width="490" height="185" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="140" y="12" width="220" height="170" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="250" y="28" font-family="monospace" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
-        <text x="250" y="38" font-family="monospace" font-size="6" fill="#718096" text-anchor="middle">{{ $shop['shop_address'] ?? 'Jalan Raya Utama No. 77' }}</text>
-        <text x="250" y="47" font-family="monospace" font-size="6" fill="#718096" text-anchor="middle">Telp: {{ $shop['shop_phone'] ?? '081234567890' }}</text>
-        <text x="250" y="56" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="middle">--------------------------------</text>
-        
-        <text x="150" y="66" font-family="monospace" font-size="6" fill="#1A202C">No : INV-20260826-0001</text>
-        <text x="150" y="75" font-family="monospace" font-size="6" fill="#1A202C">Kasir: Siti Rahma • TUNAI</text>
-        <text x="250" y="84" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="middle">--------------------------------</text>
-        
-        <text x="150" y="94" font-family="monospace" font-size="6" fill="#1A202C">Minyak Bimoli 2L</text>
-        <text x="150" y="103" font-family="monospace" font-size="6" fill="#718096">2 x 38.000</text>
-        <text x="350" y="103" font-family="monospace" font-size="6" font-weight="bold" fill="#1A202C" text-anchor="end">76.000</text>
-        <text x="250" y="113" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="middle">--------------------------------</text>
-        
-        <text x="150" y="123" font-family="monospace" font-size="6" font-weight="bold" fill="#1A202C">TOTAL :</text>
-        <text x="350" y="123" font-family="monospace" font-size="7" font-weight="bold" fill="#1A202C" text-anchor="end">Rp 76.000</text>
-        <text x="150" y="133" font-family="monospace" font-size="6" fill="#1A202C">BAYAR (TUNAI) :</text>
-        <text x="350" y="133" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="end">100.000</text>
-        <text x="150" y="143" font-family="monospace" font-size="6" fill="#1A202C">KEMBALIAN :</text>
-        <text x="350" y="143" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="end">24.000</text>
-
-        <text x="250" y="158" font-family="monospace" font-size="5.5" fill="#718096" text-anchor="middle">Terima Kasih Atas Kunjungan Anda</text>
-        <text x="250" y="167" font-family="monospace" font-size="5" fill="#718096" text-anchor="middle">Barang yang dibeli tidak dapat ditukar</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.11: Format Layout Cetak Struk Kasir Thermal Bluetooth 58mm / 80mm</div>
+{{-- WIREFRAME MOCKUP 5.11 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; SIMULASI CETAK STRUK THERMAL BLUETOOTH 58MM / 80MM
+    </div>
+    <div class="ui-window-body" style="text-align: center; padding: 10px;">
+        <div class="receipt-box">
+            <div style="font-weight: bold; font-size: 7.5pt; text-align: center;">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</div>
+            <div style="font-size: 5.5pt; text-align: center; color: #718096;">{{ $shop['shop_address'] ?? 'Jalan Raya Utama No. 77' }}</div>
+            <div style="font-size: 5.5pt; text-align: center; color: #718096;">Telp: {{ $shop['shop_phone'] ?? '081234567890' }}</div>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 6pt;">
+                <tr><td>No: INV-20260826-0001</td><td style="text-align: right;">TUNAI</td></tr>
+                <tr><td>Kasir: Siti Rahma</td><td style="text-align: right;">{{ date('d/m/Y') }}</td></tr>
+            </table>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 6pt;">
+                <tr>
+                    <td colspan="2">Minyak Goreng Bimoli 2L</td>
+                </tr>
+                <tr>
+                    <td>2 x 38.000</td>
+                    <td style="text-align: right; font-weight: bold;">76.000</td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.2pt;">
+                <tr><td><b>TOTAL :</b></td><td style="text-align: right; font-weight: bold;">Rp 76.000</td></tr>
+                <tr><td>BAYAR :</td><td style="text-align: right;">Rp 100.000</td></tr>
+                <tr><td>KEMBALIAN :</td><td style="text-align: right;">Rp 24.000</td></tr>
+            </table>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            <div style="font-size: 5.5pt; text-align: center; color: #718096;">Terima Kasih Atas Kunjungan Anda</div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 5.11: Format Layout Cetak Struk Kasir Thermal Bluetooth 58mm / 80mm</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -326,43 +434,62 @@
     Tampilan cetak nota PDF A4/A5 resmi dengan stempel Tanda Tangan Elektronik:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.12 --}}
-<div class="diagram-container">
-    <svg width="460" height="170" viewBox="0 0 500 180">
-        <rect x="5" y="5" width="490" height="170" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="50" y="15" width="400" height="150" rx="6" fill="#FFFFFF" stroke="#1A202C" stroke-width="1"/>
-        <!-- Header -->
-        <text x="65" y="32" font-family="Helvetica" font-size="9" font-weight="bold" fill="#1A202C">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
-        <text x="65" y="42" font-family="Helvetica" font-size="6" fill="#4A5568">{{ $shop['shop_address'] ?? 'Jalan Raya Utama No. 77' }}</text>
-        
-        <text x="435" y="32" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="end">FAKTUR PENJUALAN</text>
-        <text x="435" y="42" font-family="Helvetica" font-size="6" fill="#4A5568" text-anchor="end">INV/20260826/0001</text>
-        <line x1="65" y1="48" x2="435" y2="48" stroke="#1A202C" stroke-width="1"/>
+{{-- WIREFRAME MOCKUP 5.12 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMAT NOTA FAKTUR PENJUALAN PDF RESMI
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #FFFFFF; border: 1px solid #1A202C; border-radius: 4px; padding: 8px;">
+            <table style="width: 100%; border-collapse: collapse; border-bottom: 1px solid #1A202C; padding-bottom: 4px; margin-bottom: 4px;">
+                <tr>
+                    <td>
+                        <b style="font-size: 8pt; color: #1A202C;">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</b><br>
+                        <span style="font-size: 5.8pt; color: #4A5568;">{{ $shop['shop_address'] ?? 'Jalan Raya Utama No. 77' }}</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <b style="font-size: 7.5pt; color: #1A202C;">FAKTUR PENJUALAN</b><br>
+                        <span style="font-size: 5.8pt; color: #4A5568;">No: INV-20260826-0001</span>
+                    </td>
+                </tr>
+            </table>
 
-        <!-- Table -->
-        <text x="65" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">PRODUK</text>
-        <text x="250" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">HARGA</text>
-        <text x="320" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">QTY</text>
-        <text x="435" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C" text-anchor="end">TOTAL</text>
-        <line x1="65" y1="64" x2="435" y2="64" stroke="#CBD5E0" stroke-width="0.5"/>
+            <table class="doc-table" style="margin: 4px 0;">
+                <tr>
+                    <th>PRODUK</th>
+                    <th>HARGA</th>
+                    <th>QTY</th>
+                    <th style="text-align: right;">TOTAL</th>
+                </tr>
+                <tr>
+                    <td>Minyak Goreng Bimoli 2L</td>
+                    <td>38.000</td>
+                    <td>2</td>
+                    <td style="text-align: right; font-weight: bold;">76.000</td>
+                </tr>
+            </table>
 
-        <text x="65" y="78" font-family="Helvetica" font-size="6.5" fill="#1A202C">Minyak Goreng Bimoli 2L</text>
-        <text x="250" y="78" font-family="Helvetica" font-size="6.5" fill="#1A202C">38.000</text>
-        <text x="320" y="78" font-family="Helvetica" font-size="6.5" fill="#1A202C">2</text>
-        <text x="435" y="78" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C" text-anchor="end">76.000</text>
-
-        <!-- Total Box -->
-        <rect x="250" y="90" width="185" height="22" fill="#F7FAFC" stroke="#1A202C" stroke-width="0.5"/>
-        <text x="260" y="104" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">TOTAL DIBAYAR:</text>
-        <text x="425" y="104" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="end">Rp 76.000</text>
-
-        <!-- TTE Stamp -->
-        <rect x="65" y="95" width="110" height="35" rx="4" fill="#F8FAFC" stroke="#718096" stroke-width="0.5"/>
-        <text x="70" y="107" font-family="Helvetica" font-size="5.5" font-weight="bold" fill="#1A202C">TERTANDA DIGITAL (TTE)</text>
-        <text x="70" y="117" font-family="Helvetica" font-size="5" fill="#4A5568">Oleh: Siti Rahma (Kasir)</text>
-        <text x="70" y="125" font-family="Helvetica" font-size="4.5" fill="#718096">Hash: SHA256-VALID-2026</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.12: Tata Letak Dokumen Nota Struk PDF Monokrom Resmi dengan Tanda Tangan Digital</div>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 4px;">
+                <tr>
+                    <td style="width: 50%; vertical-align: top;">
+                        <div style="border: 0.5px solid #718096; border-radius: 3px; padding: 3px; width: 140px; font-size: 5pt;">
+                            <b>TERTANDA DIGITAL (TTE)</b><br>
+                            Kasir: Siti Rahma<br>
+                            Hash: SHA256-VALID-2026
+                        </div>
+                    </td>
+                    <td style="width: 50%; text-align: right; vertical-align: top;">
+                        <b style="font-size: 7.5pt; color: #1A202C;">TOTAL: Rp 76.000</b><br>
+                        <span style="font-size: 6pt; color: #4A5568;">Status: Lunas Tunai</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 5.12: Tata Letak Dokumen Nota Struk PDF Monokrom Resmi dengan Tanda Tangan Digital</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -378,33 +505,44 @@
     Pengiriman tautan faktur elektronik langsung ke nomor WhatsApp pembeli:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.13 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="150" height="120" rx="8" fill="#00360D"/>
-        <text x="100" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KASIR POS</text>
-        <text x="100" y="60" font-family="Helvetica" font-size="6.5" fill="#A8DAB5" text-anchor="middle">Input Nomor WA:</text>
-        <rect x="40" y="68" width="120" height="18" rx="4" fill="#FFFFFF"/>
-        <text x="100" y="80" font-family="Helvetica" font-size="6.5" fill="#1A202C" text-anchor="middle">081298765432</text>
-        <rect x="40" y="95" width="120" height="20" rx="4" fill="#00AA13"/>
-        <text x="100" y="108" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KIRIM STRUK (WA)</text>
-
-        <!-- Arrow -->
-        <path d="M185 80 L220 80" stroke="#00AA13" stroke-width="2.5" stroke-linecap="round"/>
-        <polygon points="220,76 227,80 220,84" fill="#00AA13"/>
-
-        <!-- WhatsApp Chat Simulation -->
-        <rect x="235" y="20" width="240" height="120" rx="8" fill="#E6F4EA" stroke="#68D391" stroke-width="1.5"/>
-        <rect x="245" y="30" width="220" height="100" rx="6" fill="#FFFFFF"/>
-        <text x="255" y="45" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00661A">💬 BUKTI PEMBAYARAN ELEKTRONIK</text>
-        <text x="255" y="60" font-family="Helvetica" font-size="6.5" fill="#2D3748">Halo Kak, Terima kasih telah berbelanja di</text>
-        <text x="255" y="72" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">{{ $shop['shop_name'] ?? 'Toko Berkah' }}.</text>
-        <text x="255" y="87" font-family="Helvetica" font-size="6.5" fill="#2D3748">Berikut tautan e-faktur resmi Anda:</text>
-        <text x="255" y="100" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0">https://kasir.site/receipt/verify/INV001</text>
-        <text x="255" y="115" font-family="Helvetica" font-size="5.5" fill="#718096">Tautan berlaku 24 jam bertanda tangan digital.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.13: Alur Pengiriman Bukti Pembayaran Digital Otomatis ke WhatsApp Pembeli</div>
+{{-- WIREFRAME MOCKUP 5.13 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ALUR PENGIRIMAN STRUK DIGITAL VIA WHATSAPP
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 40%; padding-right: 6px; vertical-align: top;">
+                    <div style="background-color: #00360D; border-radius: 6px; padding: 8px; color: white;">
+                        <div style="font-size: 7pt; font-weight: bold; color: #A8DAB5;">KASIR POS</div>
+                        <span class="ui-label" style="color: #E2E8F0; margin-top: 4px;">NO. WA PEMBELI:</span>
+                        <div style="background: white; border-radius: 4px; padding: 2px 4px; color: #1A202C; font-size: 6.5pt; margin-top: 2px;">
+                            081298765432
+                        </div>
+                        <div class="ui-btn ui-btn-primary" style="margin-top: 6px; width: 90%;">
+                            KIRIM STRUK (WA)
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 60%; vertical-align: top;">
+                    <div style="background-color: #E6F4EA; border: 1px solid #68D391; border-radius: 6px; padding: 6px;">
+                        <div style="background-color: #FFFFFF; border-radius: 4px; padding: 6px; font-size: 6.2pt; color: #2D3748; line-height: 1.4;">
+                            <b style="color: #00661A;">💬 BUKTI TRANSAKSI ELEKTRONIK</b><br>
+                            Halo Kak, Terima kasih telah berbelanja di <b>{{ $shop['shop_name'] ?? 'Toko Berkah' }}</b>.<br><br>
+                            Berikut tautan e-faktur resmi Anda:<br>
+                            <span style="color: #2B6CB0; font-weight: bold;">https://kasir.site/receipt/verify/INV001</span><br>
+                            <span style="font-size: 5.5pt; color: #718096;">(Berlaku 24 jam bertanda tangan digital TTE)</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.13: Alur Pengiriman Bukti Pembayaran Digital Otomatis ke WhatsApp Pembeli</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -420,41 +558,57 @@
     Format standar cetak label paket ekspedisi JNE, J&T, SiCepat, Shopee Xpress:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.14 --}}
-<div class="diagram-container">
-    <svg width="460" height="170" viewBox="0 0 500 180">
-        <rect x="5" y="5" width="490" height="170" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="60" y="12" width="380" height="155" rx="6" fill="#FFFFFF" stroke="#1A202C" stroke-width="1.5"/>
-        <!-- Header -->
-        <rect x="60" y="12" width="380" height="24" rx="6" fill="#1A202C"/>
-        <text x="75" y="28" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF">LABEL PENGIRIMAN PAKET (STANDARD A6)</text>
-        <rect x="360" y="16" width="70" height="16" rx="3" fill="#EE2737"/>
-        <text x="395" y="27" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">J&T / JNE</text>
+{{-- WIREFRAME MOCKUP 5.14 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMAT LABEL RESI EKSPEDISI PENGIRIMAN STANDAR A6
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #FFFFFF; border: 1.5px solid #1A202C; border-radius: 4px; padding: 6px;">
+            <table style="width: 100%; border-collapse: collapse; background-color: #1A202C; color: white; padding: 3px 6px; margin-bottom: 4px;">
+                <tr>
+                    <td style="font-size: 7pt; font-weight: bold; padding: 3px;">LABEL PENGIRIMAN PAKET (A6)</td>
+                    <td style="text-align: right; padding: 3px;"><span style="background-color: #EE2737; padding: 1px 6px; border-radius: 2px; font-size: 6pt; font-weight: bold;">J&T / JNE</span></td>
+                </tr>
+            </table>
 
-        <!-- TO Box -->
-        <rect x="75" y="44" width="200" height="60" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="85" y="58" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">PENERIMA (TO):</text>
-        <text x="85" y="70" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00661A">Bapak Ahmad Santoso</text>
-        <text x="85" y="82" font-family="Helvetica" font-size="6" fill="#4A5568">Jl. Pemuda No. 45, RT 02/05, Surabaya</text>
-        <text x="85" y="94" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">Telp: 081234567890</text>
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.2pt; margin-bottom: 4px;">
+                <tr>
+                    <td style="width: 60%; border: 0.5px solid #CBD5E0; padding: 4px; vertical-align: top;">
+                        <span class="ui-label">PENERIMA (TO):</span>
+                        <b style="font-size: 7pt; color: #00661A;">Bapak Ahmad Santoso</b><br>
+                        Jl. Pemuda No. 45, RT 02/05, Surabaya<br>
+                        <b>Telp: 081234567890</b>
+                    </td>
+                    <td style="width: 40%; border: 0.5px solid #CBD5E0; padding: 4px; vertical-align: top;">
+                        <span class="ui-label">PENGIRIM (FROM):</span>
+                        <b>{{ $shop['shop_name'] ?? 'Toko Berkah' }}</b><br>
+                        {{ $shop['shop_address'] ?? 'Jember' }}<br>
+                        Telp: {{ $shop['shop_phone'] ?? '081234567890' }}
+                    </td>
+                </tr>
+            </table>
 
-        <!-- FROM Box -->
-        <rect x="285" y="44" width="145" height="60" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="295" y="58" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">PENGIRIM (FROM):</text>
-        <text x="295" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">{{ $shop['shop_name'] ?? 'Toko Berkah' }}</text>
-        <text x="295" y="82" font-family="Helvetica" font-size="6" fill="#4A5568">{{ $shop['shop_address'] ?? 'Jember' }}</text>
-        <text x="295" y="94" font-family="Helvetica" font-size="6.5" fill="#1A202C">Telp: {{ $shop['shop_phone'] ?? '081234567890' }}</text>
-
-        <!-- Barcode & Fragile -->
-        <rect x="75" y="112" width="200" height="45" rx="4" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="85" y="125" font-family="Helvetica" font-size="6" font-weight="bold" fill="#718096">NO RESI: JP8928374928</text>
-        <text x="185" y="145" font-family="monospace" font-size="10" font-weight="bold" fill="#1A202C" text-anchor="middle">||| | |||| || |||| |||</text>
-
-        <rect x="285" y="112" width="145" height="45" rx="4" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
-        <text x="357" y="130" font-family="Helvetica" font-size="8" font-weight="bold" fill="#E53E3E" text-anchor="middle">⚠️ FRAGILE / MUDAH PECAH</text>
-        <text x="357" y="145" font-family="Helvetica" font-size="6" fill="#C53030" text-anchor="middle">JANGAN DIBANTING / DITINDIH</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.14: Tata Letak Format Cetak Label Resi Pengiriman Paket Standar Ukuran A6</div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 60%; border: 0.5px solid #CBD5E0; padding: 4px;">
+                        <span style="font-size: 5.5pt; color: #718096; font-weight: bold;">NO RESI: JP8928374928</span><br>
+                        <div style="font-family: monospace; font-size: 9pt; font-weight: bold; letter-spacing: 2px; text-align: center; margin-top: 2px;">
+                            ||| | |||| || |||| |||
+                        </div>
+                    </td>
+                    <td style="width: 40%; border: 0.5px solid #FEB2B2; background-color: #FFF5F5; padding: 4px; text-align: center;">
+                        <b style="font-size: 6.8pt; color: #E53E3E;">⚠️ FRAGILE / PECAH BELAH</b><br>
+                        <span style="font-size: 5.5pt; color: #C53030;">JANGAN DIBANTING</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 5.14: Tata Letak Format Cetak Label Resi Pengiriman Paket Standar Ukuran A6</div>
 </div>
 
 {{-- ========================================================================= --}}

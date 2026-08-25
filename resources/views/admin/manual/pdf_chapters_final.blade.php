@@ -11,47 +11,49 @@
     Sistem menyajikan 4 pilar buku laporan terpadu dengan ekspor PDF/Excel bertanda tangan digital:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <!-- Report 1 -->
-        <rect x="20" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <circle cx="72" cy="45" r="14" fill="#00AA13"/>
-        <text x="72" y="50" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
-        <text x="72" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C" text-anchor="middle">PENJUALAN</text>
-        <text x="72" y="86" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Rekap order harian,</text>
-        <text x="72" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">bulanan & kasir</text>
-        <text x="72" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">LPK-Report</text>
-
-        <!-- Report 2 -->
-        <rect x="135" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <circle cx="187" cy="45" r="14" fill="#2B6CB0"/>
-        <text x="187" y="50" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
-        <text x="187" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C" text-anchor="middle">KEUANGAN & KAS</text>
-        <text x="187" y="86" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Arus kas tunai vs</text>
-        <text x="187" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">netto QRIS (0.7%)</text>
-        <text x="187" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">LKEU-Report</text>
-
-        <!-- Report 3 -->
-        <rect x="250" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <circle cx="302" cy="45" r="14" fill="#00AED6"/>
-        <text x="302" y="50" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
-        <text x="302" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C" text-anchor="middle">MONITORING QRIS</text>
-        <text x="302" y="86" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Audit transaksi DOKU,</text>
-        <text x="302" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">settlement & fee</text>
-        <text x="302" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00AED6" text-anchor="middle">LQRS-Report</text>
-
-        <!-- Report 4 -->
-        <rect x="365" y="20" width="115" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <circle cx="422" cy="45" r="14" fill="#DD6B20"/>
-        <text x="422" y="50" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4</text>
-        <text x="422" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C" text-anchor="middle">STOK & VALUASI</text>
-        <text x="422" y="86" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">Total aset barang &</text>
-        <text x="422" y="97" font-family="Helvetica" font-size="6.2" fill="#718096" text-anchor="middle">kondisi gudang</text>
-        <text x="422" y="115" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#DD6B20" text-anchor="middle">LSTK-Report</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.1: Empat Pilar Modul Pelaporan Terpadu Sistem POS</div>
+{{-- WIREFRAME MOCKUP 6.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; EMPAT PILAR BUKU LAPORAN BISNIS TERPADU
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F;">1. PENJUALAN</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Rekap order harian, bulanan & kasir</div>
+                        <span class="ui-badge badge-green">LPK-Report</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0;">2. KEUANGAN & KAS</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Arus kas tunai vs netto QRIS (0.7%)</div>
+                        <span class="ui-badge badge-blue">LKEU-Report</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AED6; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00AED6;">3. MONITOR QRIS</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Audit transaksi DOKU & settlement</div>
+                        <span class="ui-badge badge-blue">LQRS-Report</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #DD6B20; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #DD6B20;">4. STOK & VALUASI</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Total aset barang & kondisi gudang</div>
+                        <span class="ui-badge badge-yellow">LSTK-Report</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 6.1: Empat Pilar Modul Pelaporan Terpadu Sistem POS</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -67,38 +69,53 @@
     Filter fleksibel untuk menganalisis performa omset penjualan ritel:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.2 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="18" width="450" height="35" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="35" y="32" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">DARI TANGGAL:</text>
-        <rect x="35" y="35" width="90" height="14" rx="3" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="42" y="45" font-family="Helvetica" font-size="6.5" fill="#1A202C">01/08/2026</text>
+{{-- WIREFRAME MOCKUP 6.2 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FILTER LAPORAN PENJUALAN & REKAPITULASI OMSET
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
+            <tr>
+                <td style="width: 25%; padding: 2px;">
+                    <span class="ui-label">DARI TANGGAL</span>
+                    <div class="ui-input-box">01/08/2026</div>
+                </td>
+                <td style="width: 25%; padding: 2px;">
+                    <span class="ui-label">SAMPAI TANGGAL</span>
+                    <div class="ui-input-box">31/08/2026</div>
+                </td>
+                <td style="width: 25%; padding: 2px;">
+                    <span class="ui-label">METODE BAYAR</span>
+                    <div class="ui-input-box">Semua Metode</div>
+                </td>
+                <td style="width: 25%; padding: 2px; vertical-align: bottom;">
+                    <span class="ui-btn ui-btn-primary">FILTER</span>
+                    <span class="ui-btn ui-btn-red">PDF TTE 📄</span>
+                </td>
+            </tr>
+        </table>
 
-        <text x="135" y="32" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">SAMPAI TANGGAL:</text>
-        <rect x="135" y="35" width="90" height="14" rx="3" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="142" y="45" font-family="Helvetica" font-size="6.5" fill="#1A202C">31/08/2026</text>
-
-        <text x="235" y="32" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">METODE BAYAR:</text>
-        <rect x="235" y="35" width="90" height="14" rx="3" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="242" y="45" font-family="Helvetica" font-size="6.5" fill="#1A202C">Semua Metode</text>
-
-        <rect x="340" y="30" width="60" height="18" rx="4" fill="#00AA13"/>
-        <text x="370" y="42" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">FILTER</text>
-
-        <rect x="405" y="30" width="65" height="18" rx="4" fill="#EE2737"/>
-        <text x="437" y="42" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PDF TTE 📄</text>
-
-        <!-- Summary Bar -->
-        <rect x="25" y="60" width="450" height="80" rx="6" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
-        <text x="35" y="80" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00661A">REKAPITULASI PENJUALAN BULAN AGUSTUS 2026:</text>
-        <text x="35" y="100" font-family="Helvetica" font-size="7" fill="#2D3748">Total Transaksi Selesai : <tspan font-weight="bold" fill="#1A202C">142 Transaksi</tspan></text>
-        <text x="35" y="115" font-family="Helvetica" font-size="7" fill="#2D3748">Total Item Terjual : <tspan font-weight="bold" fill="#1A202C">512 Unit</tspan></text>
-        <text x="260" y="100" font-family="Helvetica" font-size="7" fill="#2D3748">Total Omset Kotor : <tspan font-weight="bold" fill="#00AA13">Rp 12.850.000</tspan></text>
-        <text x="260" y="115" font-family="Helvetica" font-size="7" fill="#2D3748">Status Rekonsiliasi : <tspan font-weight="bold" fill="#00880F">✔ 100% Cocok</tspan></text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.2: Antarmuka Filter Laporan Penjualan & Panel Ringkasan Periode</div>
+        <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 4px; padding: 6px;">
+            <div style="font-weight: bold; font-size: 7pt; color: #00661A; margin-bottom: 3px;">
+                REKAPITULASI PENJUALAN BULAN AGUSTUS 2026:
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.2pt;">
+                <tr>
+                    <td>Total Transaksi Selesai: <b>142 Transaksi</b></td>
+                    <td>Total Omset Kotor: <b style="color: #00AA13;">Rp 12.850.000</b></td>
+                </tr>
+                <tr>
+                    <td>Total Item Terjual: <b>512 Unit</b></td>
+                    <td>Status Rekonsiliasi: <b style="color: #00880F;">✔ 100% Cocok</b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 6.2: Antarmuka Filter Laporan Penjualan & Panel Ringkasan Periode</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -114,25 +131,43 @@
     Struktur pemisahan uang laci fisik kasir dengan uang digital di rekening bank:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="132" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">💵 KAS TUNAI DI LACI (CASH)</text>
-        <text x="132" y="65" font-family="Helvetica" font-size="14" font-weight="bold" fill="#00AA13" text-anchor="middle">Rp 8.500.000</text>
-        <text x="35" y="88" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Uang fisik dalam laci kasir</text>
-        <text x="35" y="102" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Dihitung saat penutupan shift</text>
-        <text x="35" y="116" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Bebas potongan fee MDR 0%</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#00AED6" stroke-width="1.5"/>
-        <text x="367" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00AED6" text-anchor="middle">💳 KAS DIGITAL QRIS (BANK NET)</text>
-        <text x="367" y="65" font-family="Helvetica" font-size="14" font-weight="bold" fill="#00AED6" text-anchor="middle">Rp 4.319.550</text>
-        <text x="270" y="88" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Bruto QRIS: Rp 4.350.000</text>
-        <text x="270" y="102" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Potongan MDR 0.7%: -Rp 30.450</text>
-        <text x="270" y="116" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">• Masuk ke rekening settlement bank</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.3: Pemisahan Akuntabel Antara Kas Fisik Laci dan Kas Digital Perbankan</div>
+{{-- WIREFRAME MOCKUP 6.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PEMISAHAN REKONSILIASI KAS TUNAI VS KAS DIGITAL BANK
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6.5pt; font-weight: bold; color: #00880F;">💵 KAS FISIK DI LACI (TUNAI)</div>
+                        <div style="font-size: 13pt; font-weight: 900; color: #00AA13; margin: 4px 0;">Rp 8.500.000</div>
+                        <div style="font-size: 6pt; color: #4A5568; line-height: 1.4;">
+                            • Uang fisik riil dalam laci kasir toko.<br>
+                            • Dihitung saat serah terima & tutup shift.<br>
+                            • Bebas potongan biaya fee (0% MDR).
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AED6; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6.5pt; font-weight: bold; color: #00AED6;">💳 KAS DIGITAL QRIS (BANK NET)</div>
+                        <div style="font-size: 13pt; font-weight: 900; color: #00AED6; margin: 4px 0;">Rp 4.319.550</div>
+                        <div style="font-size: 6pt; color: #4A5568; line-height: 1.4;">
+                            • Bruto QRIS: Rp 4.350.000.<br>
+                            • Potongan MDR 0.7%: &minus;Rp 30.450.<br>
+                            • Masuk ke rekening settlement bank toko.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 6.3: Pemisahan Akuntabel Antara Kas Fisik Laci dan Kas Digital Perbankan</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -148,37 +183,44 @@
     Kalkulasi otomatis biaya transaksi Merchant Discount Rate (MDR) Bank Indonesia:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="135" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="92" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#718096" text-anchor="middle">NILAI TRANSAKSI BRUTO</text>
-        <text x="92" y="65" font-family="Helvetica" font-size="11" font-weight="bold" fill="#1A202C" text-anchor="middle">Rp 100.000</text>
-        <text x="92" y="85" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Nominal yang dibayar</text>
-        <text x="92" y="98" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">oleh pelanggan QRIS</text>
-
-        <!-- Minus -->
-        <circle cx="180" cy="77" r="12" fill="#EE2737"/>
-        <text x="180" y="82" font-family="Helvetica" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">-</text>
-
-        <rect x="200" y="20" width="135" height="115" rx="8" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
-        <text x="267" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#E53E3E" text-anchor="middle">BIAYA MDR DOKU (0.7%)</text>
-        <text x="267" y="65" font-family="Helvetica" font-size="12" font-weight="bold" fill="#E53E3E" text-anchor="middle">Rp 700</text>
-        <text x="267" y="85" font-family="Helvetica" font-size="6.5" fill="#C53030" text-anchor="middle">Fee resmi gateway</text>
-        <text x="267" y="98" font-family="Helvetica" font-size="6.5" fill="#C53030" text-anchor="middle">Bank Indonesia QRIS</text>
-
-        <!-- Equals -->
-        <circle cx="355" cy="77" r="12" fill="#00AA13"/>
-        <text x="355" y="82" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">=</text>
-
-        <rect x="375" y="20" width="105" height="115" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="427" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">PENDAPATAN BERSIH</text>
-        <text x="427" y="65" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00AA13" text-anchor="middle">Rp 99.300</text>
-        <text x="427" y="85" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">Dana bersih masuk</text>
-        <text x="427" y="98" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">ke rekening toko</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.4: Skema Kalkulasi Pemotongan Biaya MDR QRIS DOKU 0.7% Otomatis</div>
+{{-- WIREFRAME MOCKUP 6.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; SKEMA KALKULASI PEMOTONGAN BIAYA MDR DOKU 0.7%
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #718096;">NOMINAL BRUTO</div>
+                        <div style="font-size: 11pt; font-weight: 900; color: #1A202C; margin: 4px 0;">Rp 100.000</div>
+                        <div style="font-size: 5.5pt; color: #718096;">Dibayar oleh pelanggan</div>
+                    </div>
+                </td>
+                <td style="width: 5%; font-size: 12pt; font-weight: bold; color: #E53E3E;">&minus;</td>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #E53E3E;">MDR DOKU (0.7%)</div>
+                        <div style="font-size: 11pt; font-weight: 900; color: #E53E3E; margin: 4px 0;">&minus; Rp 700</div>
+                        <div style="font-size: 5.5pt; color: #C53030;">Fee resmi gateway</div>
+                    </div>
+                </td>
+                <td style="width: 5%; font-size: 12pt; font-weight: bold; color: #00AA13;">=</td>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #00880F;">DANA NETTO BANK</div>
+                        <div style="font-size: 11pt; font-weight: 900; color: #00AA13; margin: 4px 0;">Rp 99.300</div>
+                        <div style="font-size: 5.5pt; color: #276749;">Masuk ke rekening</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 6.4: Skema Kalkulasi Pemotongan Biaya MDR QRIS DOKU 0.7% Otomatis</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -194,40 +236,45 @@
     Tabel pemantauan status transaksi QRIS dan ID referensi perbankan:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.5 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="20" fill="#00AED6"/>
-        <text x="35" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">WAKTU / INVOICE</text>
-        <text x="170" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">NOMINAL BRUTO</text>
-        <text x="280" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">MDR 0.7%</text>
-        <text x="360" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">NETTO REKENING</text>
-        <text x="445" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="end">STATUS</text>
-
-        <!-- Row 1 -->
-        <rect x="25" y="40" width="450" height="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="54" font-family="Helvetica" font-size="6.5" fill="#1A202C">10:15 • INV-001</text>
-        <text x="170" y="54" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">Rp 51.000</text>
-        <text x="280" y="54" font-family="Helvetica" font-size="6.5" fill="#E53E3E">-Rp 357</text>
-        <text x="360" y="54" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Rp 50.643</text>
-        <text x="445" y="54" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00AA13" text-anchor="end">PAID ✔</text>
-
-        <!-- Row 2 -->
-        <rect x="25" y="62" width="450" height="22" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="76" font-family="Helvetica" font-size="6.5" fill="#1A202C">11:30 • INV-004</text>
-        <text x="170" y="76" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C">Rp 120.000</text>
-        <text x="280" y="76" font-family="Helvetica" font-size="6.5" fill="#E53E3E">-Rp 840</text>
-        <text x="360" y="76" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Rp 119.160</text>
-        <text x="445" y="76" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00AA13" text-anchor="end">PAID ✔</text>
-
-        <!-- Total -->
-        <rect x="25" y="84" width="450" height="40" fill="#EBF8FF" stroke="#90CDF4" stroke-width="1"/>
-        <text x="35" y="108" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0">TOTAL REKAPITULASI QRIS DOKU:</text>
-        <text x="445" y="108" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#2B6CB0" text-anchor="end">Netto: Rp 169.803</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.5: Tabel Laporan Audit Transaksi Digital QRIS & Verifikasi Settlement DOKU</div>
+{{-- WIREFRAME MOCKUP 6.5 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; TABEL AUDIT TRANSAKSI DIGITAL QRIS DOKU MERCHANT
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <th>INVOICE / WAKTU</th>
+                <th>BRUTO</th>
+                <th>MDR 0.7%</th>
+                <th>NETTO REKENING</th>
+                <th style="text-align: center;">STATUS</th>
+            </tr>
+            <tr>
+                <td><b>INV-001</b> • 10:15 WIB</td>
+                <td>Rp 51.000</td>
+                <td style="color: #E53E3E;">&minus;Rp 357</td>
+                <td><b style="color: #00880F;">Rp 50.643</b></td>
+                <td style="text-align: center;"><span class="ui-badge badge-green">PAID ✔</span></td>
+            </tr>
+            <tr>
+                <td><b>INV-004</b> • 11:30 WIB</td>
+                <td>Rp 120.000</td>
+                <td style="color: #E53E3E;">&minus;Rp 840</td>
+                <td><b style="color: #00880F;">Rp 119.160</b></td>
+                <td style="text-align: center;"><span class="ui-badge badge-green">PAID ✔</span></td>
+            </tr>
+            <tr style="background-color: #EBF8FF;">
+                <td colspan="3"><b>TOTAL SETTLEMENT REKENING</b></td>
+                <td><b style="color: #2B6CB0; font-size: 7.5pt;">Rp 169.803</b></td>
+                <td style="text-align: center;"><span class="ui-badge badge-blue">TERVERIFIKASI</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 6.5: Tabel Laporan Audit Transaksi Digital QRIS & Verifikasi Settlement DOKU</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -243,32 +290,48 @@
     Kalkulasi nilai total kekayaan barang dagangan yang berada di gudang:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.6 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="45" rx="8" fill="#00360D"/>
-        <text x="40" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#A8DAB5">TOTAL VALUASI ASET GUDANG AKTIF:</text>
-        <text x="40" y="55" font-family="Helvetica" font-size="13" font-weight="bold" fill="#FFFFFF">Rp 48.750.000</text>
-        <text x="300" y="48" font-family="Helvetica" font-size="7.5" fill="#E2E8F0">340 Macam Produk • 1.840 Unit Total</text>
+{{-- WIREFRAME MOCKUP 6.6 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; RINGKASAN VALUASI KEKAYAAN ASET GUDANG AKTIF
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #00360D; color: white; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px;">
+            <div style="font-size: 6.5pt; color: #A8DAB5; font-weight: bold;">TOTAL VALUASI ASET GUDANG AKTIF:</div>
+            <div style="font-size: 15pt; font-weight: 900; color: #FFFFFF;">Rp 48.750.000</div>
+            <div style="font-size: 6pt; color: #E2E8F0;">340 Macam Produk • 1.840 Unit Total Fisik</div>
+        </div>
 
-        <!-- Breakdown by Status -->
-        <rect x="25" y="75" width="140" height="65" rx="6" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
-        <text x="95" y="93" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F" text-anchor="middle">STOK AMAN (&gt;5)</text>
-        <text x="95" y="112" font-family="Helvetica" font-size="10" font-weight="bold" fill="#00AA13" text-anchor="middle">312 Produk</text>
-        <text x="95" y="128" font-family="Helvetica" font-size="6" fill="#276749" text-anchor="middle">Valuasi: Rp 45.2M</text>
-
-        <rect x="180" y="75" width="140" height="65" rx="6" fill="#FFFAF0" stroke="#FBD38D" stroke-width="1"/>
-        <text x="250" y="93" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#DD6B20" text-anchor="middle">STOK MENIPIS (1-5)</text>
-        <text x="250" y="112" font-family="Helvetica" font-size="10" font-weight="bold" fill="#DD6B20" text-anchor="middle">24 Produk</text>
-        <text x="250" y="128" font-family="Helvetica" font-size="6" fill="#C05621" text-anchor="middle">Valuasi: Rp 3.55M</text>
-
-        <rect x="335" y="75" width="140" height="65" rx="6" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
-        <text x="405" y="93" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#E53E3E" text-anchor="middle">STOK HABIS (0)</text>
-        <text x="405" y="112" font-family="Helvetica" font-size="10" font-weight="bold" fill="#E53E3E" text-anchor="middle">4 Produk</text>
-        <text x="405" y="128" font-family="Helvetica" font-size="6" fill="#C53030" text-anchor="middle">Perlu Pengadaan Segera</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.6: Ringkasan Laporan Valuasi Aset Inventaris Barang Dagangan Toko</div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 33%; padding: 2px;">
+                    <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; text-align: center;">
+                        <span class="ui-badge badge-green">STOK AMAN</span>
+                        <div style="font-size: 8pt; font-weight: bold; color: #00880F; margin: 2px 0;">312 Produk</div>
+                        <div style="font-size: 5.5pt; color: #276749;">Valuasi: Rp 45.2M</div>
+                    </div>
+                </td>
+                <td style="width: 33%; padding: 2px;">
+                    <div style="background-color: #FFFAF0; border: 1px solid #FBD38D; border-radius: 4px; padding: 4px; text-align: center;">
+                        <span class="ui-badge badge-yellow">STOK MENIPIS</span>
+                        <div style="font-size: 8pt; font-weight: bold; color: #DD6B20; margin: 2px 0;">24 Produk</div>
+                        <div style="font-size: 5.5pt; color: #C05621;">Valuasi: Rp 3.55M</div>
+                    </div>
+                </td>
+                <td style="width: 34%; padding: 2px;">
+                    <div style="background-color: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 4px; padding: 4px; text-align: center;">
+                        <span class="ui-badge badge-red">STOK HABIS</span>
+                        <div style="font-size: 8pt; font-weight: bold; color: #E53E3E; margin: 2px 0;">4 Produk</div>
+                        <div style="font-size: 5.5pt; color: #C53030;">Perlu Re-Order</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 6.6: Ringkasan Laporan Valuasi Aset Inventaris Barang Dagangan Toko</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -284,32 +347,44 @@
     Format struk mini rekonsiliasi kasir saat pergantian shift:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.7 --}}
-<div class="diagram-container">
-    <svg width="460" height="180" viewBox="0 0 500 195">
-        <rect x="5" y="5" width="490" height="185" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="140" y="12" width="220" height="170" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="250" y="28" font-family="monospace" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">*** TUTUP KASIR HARIAN ***</text>
-        <text x="250" y="38" font-family="monospace" font-size="6" fill="#718096" text-anchor="middle">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
-        <text x="250" y="47" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="middle">--------------------------------</text>
-        
-        <text x="150" y="58" font-family="monospace" font-size="6" fill="#1A202C">Tanggal : {{ date('d/m/Y H:i') }}</text>
-        <text x="150" y="67" font-family="monospace" font-size="6" fill="#1A202C">Kasir   : Siti Rahma</text>
-        <text x="150" y="76" font-family="monospace" font-size="6" fill="#1A202C">Shift   : Siang (08:00 - 16:00)</text>
-        <text x="250" y="85" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="middle">--------------------------------</text>
-        
-        <text x="150" y="96" font-family="monospace" font-size="6" fill="#1A202C">Kas Masuk Tunai  : Rp 1.100.000</text>
-        <text x="150" y="106" font-family="monospace" font-size="6" fill="#1A202C">QRIS DOKU Bruto  : Rp   350.000</text>
-        <text x="150" y="116" font-family="monospace" font-size="6" fill="#1A202C">Potongan MDR 0.7%: -Rp    2.450</text>
-        <text x="250" y="126" font-family="monospace" font-size="6" fill="#1A202C" text-anchor="middle">--------------------------------</text>
-        
-        <text x="150" y="137" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1A202C">TOTAL OMSET : Rp 1.450.000</text>
-        <text x="150" y="147" font-family="monospace" font-size="6.5" font-weight="bold" fill="#00880F">FISIK LACI  : Rp 1.100.000</text>
-        <text x="150" y="157" font-family="monospace" font-size="6.5" font-weight="bold" fill="#00AED6">BANK NETTO  : Rp   347.550</text>
-
-        <text x="250" y="172" font-family="monospace" font-size="5.5" fill="#718096" text-anchor="middle">Disahkan oleh Supervisor Kasir</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.7: Format Struk Ringkasan Penutupan Kasir Harian (Daily Closing Slip)</div>
+{{-- WIREFRAME MOCKUP 6.7 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMAT STRUK REKONSILIASI TUTUP KASIR (CLOSING SLIP)
+    </div>
+    <div class="ui-window-body" style="text-align: center; padding: 10px;">
+        <div class="receipt-box">
+            <div style="font-weight: bold; font-size: 7.5pt; text-align: center;">*** TUTUP KASIR HARIAN ***</div>
+            <div style="font-size: 6pt; text-align: center; color: #718096;">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</div>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 6pt;">
+                <tr><td>Tanggal : {{ date('d/m/Y H:i') }}</td></tr>
+                <tr><td>Kasir   : Siti Rahma</td></tr>
+                <tr><td>Shift   : Siang (08:00 - 16:00)</td></tr>
+            </table>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 6pt;">
+                <tr><td>Kas Tunai Masuk  :</td><td style="text-align: right;">Rp 1.100.000</td></tr>
+                <tr><td>QRIS DOKU Bruto  :</td><td style="text-align: right;">Rp   350.000</td></tr>
+                <tr><td>MDR DOKU 0.7%    :</td><td style="text-align: right; color: #E53E3E;">-Rp     2.450</td></tr>
+            </table>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.2pt;">
+                <tr><td><b>TOTAL OMSET :</b></td><td style="text-align: right; font-weight: bold;">Rp 1.450.000</td></tr>
+                <tr><td><b>FISIK LACI  :</b></td><td style="text-align: right; font-weight: bold; color: #00880F;">Rp 1.100.000</td></tr>
+                <tr><td><b>BANK NETTO  :</b></td><td style="text-align: right; font-weight: bold; color: #00AED6;">Rp   347.550</td></tr>
+            </table>
+            <div style="text-align: center; margin: 3px 0;">--------------------------------</div>
+            <div style="font-size: 5.5pt; text-align: center; color: #718096;">Disahkan oleh Supervisor Kasir</div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 6.7: Format Struk Ringkasan Penutupan Kasir Harian (Daily Closing Slip)</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -325,36 +400,57 @@
     Format tata letak horizontal A4 Landscape yang dioptimalkan untuk rapat manajerial:
 </p>
 
-{{-- SVG VECTOR GAMBAR 6.8 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="125" rx="8" fill="#FFFFFF" stroke="#1A202C" stroke-width="1"/>
-        <rect x="25" y="15" width="450" height="20" rx="8" fill="#00661A"/>
-        <text x="35" y="28" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }} • LAPORAN KEUANGAN & ARUS KAS (A4 LANDSCAPE)</text>
-        <text x="465" y="28" font-family="Helvetica" font-size="6.5" fill="#E2E8F0" text-anchor="end">No: LKEU/{{ date('m/d/Y') }}/001</text>
+{{-- WIREFRAME MOCKUP 6.8 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; DOKUMEN RESMI LAPORAN KEUANGAN PDF LANDSCAPE
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #FFFFFF; border: 1px solid #1A202C; border-radius: 4px; padding: 6px;">
+            <table style="width: 100%; border-collapse: collapse; background-color: #00661A; color: white; padding: 4px 6px;">
+                <tr>
+                    <td style="font-size: 6.8pt; font-weight: bold; padding: 3px;">
+                        {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }} • LAPORAN KEUANGAN & ARUS KAS
+                    </td>
+                    <td style="text-align: right; font-size: 6pt; padding: 3px;">
+                        No: LKEU/08/26/2026/001
+                    </td>
+                </tr>
+            </table>
 
-        <!-- Mini Table -->
-        <rect x="35" y="42" width="430" height="50" rx="4" fill="#F8FAFC" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="45" y="56" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C">NO INVOICE</text>
-        <text x="140" y="56" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C">TANGGAL</text>
-        <text x="220" y="56" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C">PELANGGAN</text>
-        <text x="310" y="56" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C">METODE</text>
-        <text x="455" y="56" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C" text-anchor="end">NETTO</text>
-        <line x1="45" y1="60" x2="455" y2="60" stroke="#CBD5E0" stroke-width="0.5"/>
-        <text x="45" y="74" font-family="Helvetica" font-size="6" fill="#4A5568">INV-20260826-0001</text>
-        <text x="140" y="74" font-family="Helvetica" font-size="6" fill="#4A5568">26/08/2026</text>
-        <text x="220" y="74" font-family="Helvetica" font-size="6" fill="#4A5568">Pelanggan Umum</text>
-        <text x="310" y="74" font-family="Helvetica" font-size="6" fill="#00880F">TUNAI</text>
-        <text x="455" y="74" font-family="Helvetica" font-size="6" font-weight="bold" fill="#00AA13" text-anchor="end">Rp 76.000</text>
+            <table class="doc-table" style="margin: 4px 0;">
+                <tr>
+                    <th>NO INVOICE</th>
+                    <th>TANGGAL</th>
+                    <th>PELANGGAN</th>
+                    <th>METODE</th>
+                    <th style="text-align: right;">NETTO</th>
+                </tr>
+                <tr>
+                    <td>INV-20260826-0001</td>
+                    <td>26/08/2026</td>
+                    <td>Pelanggan Umum</td>
+                    <td><span class="ui-badge badge-green">TUNAI</span></td>
+                    <td style="text-align: right; font-weight: bold;">Rp 76.000</td>
+                </tr>
+            </table>
 
-        <!-- Signature Block -->
-        <rect x="330" y="98" width="135" height="35" rx="4" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="0.5"/>
-        <text x="397" y="109" font-family="Helvetica" font-size="5.5" font-weight="bold" fill="#00661A" text-anchor="middle">DISAHKAN SECARA DIGITAL (TTE)</text>
-        <text x="397" y="119" font-family="Helvetica" font-size="5" fill="#2D3748" text-anchor="middle">Kepala Bagian Keuangan</text>
-        <text x="397" y="127" font-family="Helvetica" font-size="4.5" fill="#718096" text-anchor="middle">Hash Kriptografi SHA-256 Valid</text>
-    </svg>
-    <div class="diagram-caption">Gambar 6.8: Standar Format Cetak Ekspor PDF Landscape Laporan Resmi Perusahaan</div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 60%;"></td>
+                    <td style="width: 40%; text-align: center; border: 0.5px solid #A8DAB5; background-color: #F0FFF4; padding: 4px; border-radius: 3px;">
+                        <span style="font-size: 5.5pt; font-weight: bold; color: #00661A;">DISAHKAN DIGITAL (TTE)</span><br>
+                        <b style="font-size: 6.5pt; color: #1A202C;">Budi Santoso, S.E.</b><br>
+                        <span style="font-size: 5pt; color: #718096;">Kepala Bagian Keuangan</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 6.8: Standar Format Cetak Ekspor PDF Landscape Laporan Resmi Perusahaan</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -370,24 +466,39 @@
     Tanda Tangan Elektronik (TTE) pada sistem kasir ini memenuhi seluruh syarat hukum formal:
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="24" rx="8" fill="#00661A"/>
-        <text x="250" y="36" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SYARAT SAHNYA TANDA TANGAN ELEKTRONIK (PASAL 11 UU ITE NO. 11/2008)</text>
-
-        <text x="40" y="58" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">a. Pembuatan TTE Terkait Hanya Pada Penandatangan:</text>
-        <text x="40" y="70" font-family="Helvetica" font-size="6.8" fill="#2D3748">Hanya user login terotentikasi yang dapat menghasilkan hash stempel dokumen.</text>
-
-        <text x="40" y="86" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">b. Kuasa Sepenuhnya Berada Pada Penandatangan:</text>
-        <text x="40" y="98" font-family="Helvetica" font-size="6.8" fill="#2D3748">Kunci sesi dan kredensial terlindungi oleh enkripsi hash Bcrypt.</text>
-
-        <text x="40" y="114" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">c. Perubahan Pasca-Penandatanganan Terdeteksi:</text>
-        <text x="40" y="126" font-family="Helvetica" font-size="6.8" fill="#2D3748">Setiap manipulasi data akan langsung menggagalkan hash verifikasi SHA-256.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.1: Pemenuhan Asas Hukum UU ITE No. 11/2008 pada Modul TTE Dokumen</div>
+{{-- WIREFRAME MOCKUP 7.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; KERANGKA KEPATUHAN HUKUM PASAL 11 UU ITE NO. 11/2008
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <th style="width: 30%;">Klausul UU ITE</th>
+                <th>Penerapan Teknis Sistem Kasir</th>
+            </tr>
+            <tr>
+                <td><b>Kerahasiaan Pembuatan</b></td>
+                <td>Hanya akun terotentikasi sah yang dapat menandatangani dokumen via sesi aman.</td>
+            </tr>
+            <tr>
+                <td><b>Kuasa Penandatangan</b></td>
+                <td>Kredensial dilindungi enkripsi hash Bcrypt dan token CSRF unik per sesi.</td>
+            </tr>
+            <tr>
+                <td><b>Deteksi Perubahan</b></td>
+                <td>Kriptografi SHA-256 membatalkan validitas jika terjadi manipulasi data.</td>
+            </tr>
+            <tr>
+                <td><b>Verifikasi Publik</b></td>
+                <td>QR Code membuka sertifikat digital resmi di portal <code>/verify/document</code>.</td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 7.1: Pemenuhan Asas Hukum UU ITE No. 11/2008 pada Modul TTE Dokumen</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -403,39 +514,47 @@
     Proses pembentukan signature digital dokumen laporan dan struk belanja:
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.2 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#00360D" stroke="#00AA13" stroke-width="1.5"/>
-        <rect x="20" y="25" width="130" height="110" rx="8" fill="#FFFFFF"/>
-        <text x="85" y="45" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00661A" text-anchor="middle">DATA LAPORAN</text>
-        <text x="30" y="65" font-family="Helvetica" font-size="6.5" fill="#4A5568">• No: LKEU/08/26/2026</text>
-        <text x="30" y="78" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Total: Rp 1.450.000</text>
-        <text x="30" y="91" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Tanggal: 26/08/2026</text>
-        <text x="30" y="104" font-family="Helvetica" font-size="6.5" fill="#4A5568">• User: Siti Rahma</text>
-
-        <!-- Arrow -->
-        <path d="M160 80 L195 80" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="195,76 202,80 195,84" fill="#FFFFFF"/>
-
-        <rect x="210" y="25" width="120" height="110" rx="8" fill="#FFFFFF"/>
-        <text x="270" y="45" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">HASHING ENGINE</text>
-        <circle cx="270" cy="75" r="18" fill="#2B6CB0"/>
-        <text x="270" y="80" font-family="Helvetica" font-size="14" fill="#FFFFFF" text-anchor="middle">🔒</text>
-        <text x="270" y="110" font-family="Helvetica" font-size="7" font-weight="bold" fill="#2B6CB0" text-anchor="middle">SHA-256 Enkripsi</text>
-        <text x="270" y="122" font-family="Helvetica" font-size="5.5" fill="#718096" text-anchor="middle">+ APP_KEY Secret</text>
-
-        <!-- Arrow -->
-        <path d="M340 80 L375 80" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="375,76 382,80 375,84" fill="#FFFFFF"/>
-
-        <rect x="385" y="25" width="100" height="110" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="435" y="45" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">DIGITAL QR TTE</text>
-        <rect x="410" y="55" width="50" height="50" fill="#1A202C"/>
-        <text x="435" y="83" font-family="monospace" font-size="5" fill="#FFFFFF" text-anchor="middle">QR TTE</text>
-        <text x="435" y="120" font-family="Helvetica" font-size="6" font-weight="bold" fill="#00880F" text-anchor="middle">Tervalidasi ✔</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.2: Alur Pembentukan Hash Kriptografi SHA-256 dan Stempel QR Code TTE</div>
+{{-- WIREFRAME MOCKUP 7.2 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00360D;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ALUR PEMBENTUKAN HASH KRIPTOGRAFI SHA-256
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 6.8pt; color: #00661A;">1. DATA DOKUMEN</div>
+                        <div style="font-size: 5.8pt; color: #4A5568; line-height: 1.4; margin-top: 2px;">
+                            • No: LKEU/08/26/2026<br>
+                            • Total: Rp 1.450.000<br>
+                            • User: Siti Rahma
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 6.8pt; color: #2B6CB0;">2. SHA-256 ENGINE</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Hashing 256-bit + APP_KEY salt</div>
+                        <span class="ui-badge badge-blue">Hash Kunci</span>
+                    </div>
+                </td>
+                <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 6.8pt; color: #00880F;">3. QR CODE TTE</div>
+                        <div style="font-size: 5.8pt; color: #276749; margin: 3px 0;">Stempel sah berkekuatan hukum</div>
+                        <span class="ui-badge badge-green">Tervalidasi ✔</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 7.2: Alur Pembentukan Hash Kriptografi SHA-256 dan Stempel QR Code TTE</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -451,35 +570,53 @@
     Rumus penomoran dokumen laporan resmi toko berdasarkan tanggal periode laporan:
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="40" rx="8" fill="#00661A"/>
-        <text x="250" y="44" font-family="monospace" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">LKEU / 08 / 05 / 2026 / 001</text>
-        
-        <!-- Explanations -->
-        <rect x="25" y="70" width="105" height="70" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="77" y="88" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">KODE BUKU</text>
-        <text x="77" y="105" font-family="monospace" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">LKEU / LPK</text>
-        <text x="77" y="122" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">Jenis Buku Laporan</text>
+{{-- WIREFRAME MOCKUP 7.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ANATOMI STRUKTUR NOMOR DOKUMEN LAPORAN DINAMIS
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #00661A; color: white; border-radius: 6px; padding: 8px; text-align: center; font-family: monospace; font-size: 11pt; font-weight: 900; margin-bottom: 8px;">
+            LKEU / 08 / 05 / 2026 / 001
+        </div>
 
-        <rect x="140" y="70" width="105" height="70" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="192" y="88" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">BULAN PERIODE</text>
-        <text x="192" y="105" font-family="monospace" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">08 (Agustus)</text>
-        <text x="192" y="122" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">Bulan Data Laporan</text>
-
-        <rect x="255" y="70" width="105" height="70" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="307" y="88" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">TANGGAL LAPORAN</text>
-        <text x="307" y="105" font-family="monospace" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">05 (Tgl Data)</text>
-        <text x="307" y="122" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">Bukan Tgl Dicetak</text>
-
-        <rect x="370" y="70" width="105" height="70" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="422" y="88" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">TAHUN & URUT</text>
-        <text x="422" y="105" font-family="monospace" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">2026 / 001</text>
-        <text x="422" y="122" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">Tahun & No Urut</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.3: Format Anatomi Nomor Dokumen Laporan Dinamis Berbasis Tanggal Periode</div>
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr>
+                <td style="width: 25%; padding: 2px;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 4px; padding: 4px;">
+                        <span class="ui-label">KODE BUKU</span>
+                        <b style="font-size: 7pt; color: #00880F;">LKEU / LPK</b><br>
+                        <span style="font-size: 5.5pt; color: #718096;">Jenis Buku Laporan</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 2px;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 4px; padding: 4px;">
+                        <span class="ui-label">BULAN DATA</span>
+                        <b style="font-size: 7pt; color: #00880F;">08 (Agustus)</b><br>
+                        <span style="font-size: 5.5pt; color: #718096;">Bulan Periode Data</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 2px;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 4px; padding: 4px;">
+                        <span class="ui-label">TANGGAL DATA</span>
+                        <b style="font-size: 7pt; color: #00880F;">05 (Tgl Data)</b><br>
+                        <span style="font-size: 5.5pt; color: #718096;">Bukan Tgl Cetak</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 2px;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 4px; padding: 4px;">
+                        <span class="ui-label">TAHUN & URUT</span>
+                        <b style="font-size: 7pt; color: #00880F;">2026 / 001</b><br>
+                        <span style="font-size: 5.5pt; color: #718096;">Tahun & Urut Dokumen</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 7.3: Format Anatomi Nomor Dokumen Laporan Dinamis Berbasis Tanggal Periode</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -495,30 +632,40 @@
     Hubungan profil akun pengguna dengan identitas tanda tangan pada dokumen PDF:
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="132" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">PROFIL PENGGUNA SISTEM</text>
-        <text x="35" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">Nama Akun: <tspan font-weight="bold" fill="#1A202C">Budi Santoso, S.E.</tspan></text>
-        <text x="35" y="75" font-family="Helvetica" font-size="6.8" fill="#4A5568">Email: <tspan fill="#1A202C">budi@toko.site</tspan></text>
-        <text x="35" y="90" font-family="Helvetica" font-size="6.8" fill="#4A5568">Role: <tspan font-weight="bold" fill="#00880F">Administrator</tspan></text>
-        <text x="35" y="105" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">Alias TTE: Kepala Bagian Keuangan</text>
-
-        <!-- Arrow -->
-        <path d="M245 80 L265 80" stroke="#00AA13" stroke-width="2.5" stroke-linecap="round"/>
-        <polygon points="265,76 272,80 265,84" fill="#00AA13"/>
-
-        <rect x="275" y="20" width="200" height="120" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="375" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00661A" text-anchor="middle">STEMPEL DOKUMEN PDF</text>
-        <rect x="300" y="50" width="150" height="80" rx="6" fill="#FFFFFF" stroke="#A8DAB5" stroke-width="1"/>
-        <text x="375" y="68" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">DITANDATANGANI DIGITAL</text>
-        <text x="375" y="85" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">Budi Santoso, S.E.</text>
-        <text x="375" y="98" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Kepala Bagian Keuangan</text>
-        <text x="375" y="115" font-family="Helvetica" font-size="5.5" fill="#718096" text-anchor="middle">Verifikasi: /verify/document</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.4: Pemetaan Profil Akun dan Gelar Jabatan Resmi pada Stempel TTE Laporan</div>
+{{-- WIREFRAME MOCKUP 7.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PEMETAAN PROFIL AKUN KE STEMPEL TANDA TANGAN DIGITAL
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #1A202C; margin-bottom: 4px;">PROFIL PENGGUNA RESMI</div>
+                        <div style="font-size: 6.2pt; color: #4A5568; line-height: 1.4;">
+                            • Nama: <b>Budi Santoso, S.E.</b><br>
+                            • Email: budi@toko.site<br>
+                            • Role: <span class="ui-badge badge-green">Administrator</span><br>
+                            • Kolom Alias TTD: <b>Kepala Bagian Keuangan</b>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #00880F;">DITANDATANGANI DIGITAL (TTE)</div>
+                        <div style="font-size: 8pt; font-weight: 900; color: #1A202C; margin: 3px 0;">Budi Santoso, S.E.</div>
+                        <div style="font-size: 6.2pt; color: #4A5568;">Kepala Bagian Keuangan</div>
+                        <div style="font-size: 5pt; color: #718096; margin-top: 2px;">Verifikasi: /verify/document</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 7.4: Pemetaan Profil Akun dan Gelar Jabatan Resmi pada Stempel TTE Laporan</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -534,29 +681,35 @@
     Laman web publik verifikasi sertifikat digital saat QR Code pada laporan dipindai:
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.5 --}}
-<div class="diagram-container">
-    <svg width="460" height="190" viewBox="0 0 500 205">
-        <rect x="5" y="5" width="490" height="195" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="50" y="15" width="400" height="175" rx="10" fill="#FFFFFF" stroke="#68D391" stroke-width="1.5"/>
-        <!-- Header -->
-        <rect x="50" y="15" width="400" height="26" rx="10" fill="#00661A"/>
-        <text x="250" y="32" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SERTIFIKAT RESMI VERIFIKASI TANDA TANGAN ELEKTRONIK</text>
+{{-- WIREFRAME MOCKUP 7.5 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/verify/document - SERTIFIKAT DIGITAL RESMI
+    </div>
+    <div class="ui-window-body" style="text-align: center; padding: 10px;">
+        <div style="display: inline-block; width: 340px; background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 8px; padding: 10px; text-align: left;">
+            <div style="text-align: center; border-bottom: 1px solid #E2E8F0; padding-bottom: 6px; margin-bottom: 6px;">
+                <span class="ui-badge badge-green" style="font-size: 7.5pt; padding: 2px 10px;">✔ DOKUMEN ASLI & VALID</span>
+                <div style="font-size: 8pt; font-weight: 900; color: #00661A; margin-top: 4px;">SERTIFIKAT TANDA TANGAN ELEKTRONIK</div>
+            </div>
 
-        <!-- Badge Valid -->
-        <rect x="185" y="50" width="130" height="22" rx="11" fill="#E6F4EA" stroke="#A8DAB5" stroke-width="1"/>
-        <text x="250" y="65" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">✔ DOKUMEN ASLI & VALID</text>
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.5pt;">
+                <tr><td style="color: #718096; width: 35%;">No Dokumen</td><td>: <b>LKEU/08/26/2026/001</b></td></tr>
+                <tr><td style="color: #718096;">Jenis Dokumen</td><td>: Laporan Keuangan & Arus Kas</td></tr>
+                <tr><td style="color: #718096;">Penandatangan</td><td>: <b style="color: #00880F;">Budi Santoso, S.E. (Kepala Keuangan)</b></td></tr>
+                <tr><td style="color: #718096;">Waktu TTE</td><td>: 26 Agustus 2026, 17:00:15 WIB</td></tr>
+                <tr><td style="color: #718096;">Hash SHA-256</td><td style="font-family: monospace; color: #2B6CB0;">: 7f83b1657ff1fc53b92dc181...</td></tr>
+            </table>
 
-        <text x="70" y="90" font-family="Helvetica" font-size="6.8" fill="#718096">Nomor Dokumen : <tspan font-weight="bold" fill="#1A202C">LKEU/08/26/2026/001</tspan></text>
-        <text x="70" y="105" font-family="Helvetica" font-size="6.8" fill="#718096">Jenis Dokumen  : <tspan font-weight="bold" fill="#1A202C">Laporan Keuangan & Arus Kas</tspan></text>
-        <text x="70" y="120" font-family="Helvetica" font-size="6.8" fill="#718096">Penandatangan  : <tspan font-weight="bold" fill="#00880F">Budi Santoso, S.E. (Kepala Keuangan)</tspan></text>
-        <text x="70" y="135" font-family="Helvetica" font-size="6.8" fill="#718096">Waktu TTE      : <tspan font-weight="bold" fill="#1A202C">26 Agustus 2026, 17:00:15 WIB</tspan></text>
-        <text x="70" y="150" font-family="Helvetica" font-size="6.8" fill="#718096">Hash SHA-256   : <tspan font-family="monospace" fill="#2B6CB0">7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1f</tspan></text>
-
-        <rect x="70" y="162" width="360" height="20" rx="4" fill="#F0FFF4"/>
-        <text x="250" y="176" font-family="Helvetica" font-size="6" font-weight="bold" fill="#276749" text-anchor="middle">Keabsahan diakui secara hukum berdasarkan UU ITE No. 11 Tahun 2008 Pasal 11</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.5: Sertifikat Digital Portal Publik Verifikasi Keabsahan Laporan (/verify/document)</div>
+            <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px; margin-top: 6px; font-size: 5.5pt; color: #276749; text-align: center;">
+                Keabsahan diakui secara hukum berdasarkan UU ITE No. 11 Tahun 2008 Pasal 11
+            </div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 7.5: Sertifikat Digital Portal Publik Verifikasi Keabsahan Laporan (/verify/document)</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -572,24 +725,32 @@
     Halaman pembuktian keaslian transaksi belanja saat pembeli memindai QR invoice:
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.6 --}}
-<div class="diagram-container">
-    <svg width="460" height="170" viewBox="0 0 500 180">
-        <rect x="5" y="5" width="490" height="170" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="80" y="15" width="340" height="150" rx="10" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="80" y="15" width="340" height="24" rx="10" fill="#00360D"/>
-        <text x="250" y="31" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">VERIFIKASI TRANSAKSI RESMI KASIR</text>
-
-        <text x="100" y="55" font-family="Helvetica" font-size="7" fill="#718096">Toko: <tspan font-weight="bold" fill="#1A202C">{{ $shop['shop_name'] ?? 'Toko Berkah' }}</tspan></text>
-        <text x="100" y="70" font-family="Helvetica" font-size="7" fill="#718096">Nomor Invoice: <tspan font-weight="bold" fill="#00880F">INV-20260826-0001</tspan></text>
-        <text x="100" y="85" font-family="Helvetica" font-size="7" fill="#718096">Total Belanja: <tspan font-weight="bold" fill="#1A202C">Rp 76.000 (Lunas Tunai)</tspan></text>
-        <text x="100" y="100" font-family="Helvetica" font-size="7" fill="#718096">Kasir Bertugas: <tspan font-weight="bold" fill="#1A202C">Siti Rahma</tspan></text>
-        <text x="100" y="115" font-family="Helvetica" font-size="7" fill="#718096">Waktu Transaksi: <tspan fill="#1A202C">26/08/2026 14:30 WIB</tspan></text>
-
-        <rect x="100" y="128" width="300" height="24" rx="4" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
-        <text x="250" y="144" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">✔ TRANSAKSI SAH & TERCATAT DALAM SERVER RESMI</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.6: Laman Publik Verifikasi Faktur Struk Belanja Pelanggan (/verify/tte/{trx})</div>
+{{-- WIREFRAME MOCKUP 7.6 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/verify/tte/INV-001 - VERIFIKASI TRANSAKSI RESMI KASIR
+    </div>
+    <div class="ui-window-body" style="text-align: center; padding: 10px;">
+        <div style="display: inline-block; width: 320px; background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 10px; text-align: left;">
+            <div style="font-size: 7.5pt; font-weight: 900; color: #00661A; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; margin-bottom: 6px;">
+                BUKTI PEMBAYARAN SAH KASIR
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.5pt;">
+                <tr><td style="color: #718096; width: 35%;">Toko</td><td>: <b>{{ $shop['shop_name'] ?? 'Toko Berkah' }}</b></td></tr>
+                <tr><td style="color: #718096;">Nomor Invoice</td><td>: <b style="color: #00880F;">INV-20260826-0001</b></td></tr>
+                <tr><td style="color: #718096;">Total Belanja</td><td>: <b>Rp 76.000 (Lunas)</b></td></tr>
+                <tr><td style="color: #718096;">Kasir Bertugas</td><td>: Siti Rahma</td></tr>
+                <tr><td style="color: #718096;">Waktu Belanja</td><td>: 26/08/2026 14:30 WIB</td></tr>
+            </table>
+            <div style="background-color: #F0FFF4; border: 1px solid #68D391; border-radius: 4px; padding: 4px; margin-top: 6px; font-size: 6pt; font-weight: bold; color: #00880F; text-align: center;">
+                ✔ TRANSAKSI SAH TERCATAT DALAM SERVER RESMI
+            </div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 7.6: Laman Publik Verifikasi Faktur Struk Belanja Pelanggan (/verify/tte/{trx})</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -605,27 +766,43 @@
     Perlindungan privasi belanja pelanggan dengan sistem URL sementara bertanda tangan (*Signed URL*):
 </p>
 
-{{-- SVG VECTOR GAMBAR 7.7 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="132" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">⏱️ SEBELUM 24 JAM (AKTIF)</text>
-        <text x="35" y="58" font-family="Helvetica" font-size="6.8" fill="#276749">• Tautan WhatsApp dapat dibuka bebas</text>
-        <text x="35" y="72" font-family="Helvetica" font-size="6.8" fill="#276749">• Pelanggan dapat mengunduh nota PDF</text>
-        <text x="35" y="86" font-family="Helvetica" font-size="6.8" fill="#276749">• Rincian barang belanja tampil lengkap</text>
-        <text x="35" y="100" font-family="Helvetica" font-size="6.8" fill="#276749">• Tanda tangan digital TTE aktif</text>
-        <text x="35" y="118" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">✔ Akses Diterima (HTTP 200)</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1.5"/>
-        <text x="367" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#E53E3E" text-anchor="middle">🔒 SETELAH 24 JAM (KADALUARSA)</text>
-        <text x="270" y="58" font-family="Helvetica" font-size="6.8" fill="#C53030">• Tautan otomatis diblokir sistem</text>
-        <text x="270" y="72" font-family="Helvetica" font-size="6.8" fill="#C53030">• Mencegah kebocoran data belanja lama</text>
-        <text x="270" y="86" font-family="Helvetica" font-size="6.8" fill="#C53030">• Halaman menampilkan peringatan aman</text>
-        <text x="270" y="100" font-family="Helvetica" font-size="6.8" fill="#C53030">• Data di database tetap aman & abadi</text>
-        <text x="270" y="118" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#E53E3E">✖ Akses Kadaluarsa (HTTP 403)</text>
-    </svg>
-    <div class="diagram-caption">Gambar 7.7: Mekanisme Kedaluwarsa Tautan Faktur WhatsApp 24 Jam demi Keamanan Data</div>
+{{-- WIREFRAME MOCKUP 7.7 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; MEKANISME PROTEKSI URL KEDALUWARSA 24 JAM
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F; margin-bottom: 3px;">⏱️ SEBELUM 24 JAM (AKTIF)</div>
+                        <div style="font-size: 6.2pt; color: #276749; line-height: 1.4;">
+                            • Tautan WhatsApp dapat diakses bebas pembeli.<br>
+                            • Unduh berkas nota PDF lengkap.<br>
+                            • Tanda tangan digital TTE terverifikasi.<br>
+                            <span class="ui-badge badge-green">✔ Status: Aktif (HTTP 200)</span>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFF5F5; border: 1.5px solid #FEB2B2; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #E53E3E; margin-bottom: 3px;">🔒 SETELAH 24 JAM (EXPIRED)</div>
+                        <div style="font-size: 6.2pt; color: #C53030; line-height: 1.4;">
+                            • Tautan otomatis terkunci oleh signed security.<br>
+                            • Melindungi privasi histori belanja pembeli.<br>
+                            • Data di database toko tetap tersimpan abadi.<br>
+                            <span class="ui-badge badge-red">✖ Status: Terkunci (HTTP 403)</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 7.7: Mekanisme Kedaluwarsa Tautan Faktur WhatsApp 24 Jam demi Keamanan Data</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -641,35 +818,49 @@
     Pusat kendali seluruh konfigurasi bisnis, audio kasir, bot Telegram, dan DOKU gateway:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="20" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="72" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">1. IDENTITAS TOKO</text>
-        <text x="72" y="60" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">Nama usaha, alamat,</text>
-        <text x="72" y="72" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">telepon & upload logo</text>
-        <text x="72" y="110" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">Branding Toko</text>
-
-        <rect x="135" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="187" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#2B6CB0" text-anchor="middle">2. AUDIO KASIR</text>
-        <text x="187" y="60" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">Upload berkas MP3/WAV</text>
-        <text x="187" y="72" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">suara bel transaksi</text>
-        <text x="187" y="110" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">Audio Chime</text>
-
-        <rect x="250" y="20" width="105" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="302" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#EE2737" text-anchor="middle">3. DOKU GATEWAY</text>
-        <text x="302" y="60" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">Client ID, Secret Key</text>
-        <text x="302" y="72" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">& Sandbox/Prod switch</text>
-        <text x="302" y="110" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#EE2737" text-anchor="middle">Dynamic QRIS</text>
-
-        <rect x="365" y="20" width="115" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="422" y="38" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00AED6" text-anchor="middle">4. TELEGRAM BOT</text>
-        <text x="422" y="60" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">Bot Token, Chat ID</text>
-        <text x="422" y="72" font-family="Helvetica" font-size="6.2" fill="#4A5568" text-anchor="middle">notifikasi omset harian</text>
-        <text x="422" y="110" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00AED6" text-anchor="middle">Alert Telegram</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.1: Struktur Panel Pengaturan Sistem Terpadu (resources/views/admin/settings/index.blade.php)</div>
+{{-- WIREFRAME MOCKUP 8.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/admin/settings - PUSAT PENGATURAN TERPADU
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F;">1. IDENTITAS TOKO</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Nama usaha, alamat, logo & telepon</div>
+                        <span class="ui-badge badge-green">Branding Toko</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0;">2. AUDIO KASIR</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Upload berkas MP3/WAV suara bel</div>
+                        <span class="ui-badge badge-blue">Audio Chime</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #EE2737;">3. DOKU GATEWAY</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Client ID, Secret & Sandbox switch</div>
+                        <span class="ui-badge badge-red">Dynamic QRIS</span>
+                    </div>
+                </td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00AED6;">4. BOT TELEGRAM</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin: 3px 0;">Token bot & chat ID alert omset</div>
+                        <span class="ui-badge badge-blue">Alert Telegram</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 8.1: Struktur Panel Pengaturan Sistem Terpadu (resources/views/admin/settings/index.blade.php)</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -685,29 +876,38 @@
     Semua teks identitas toko bersifat dinamis dan dapat diganti kapan saja:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.2 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="130" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="40" y="34" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C">FORM IDENTITAS USAHA & TOKO</text>
-        
-        <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA TOKO RESMI (*)</text>
-        <rect x="40" y="56" width="200" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="68" font-family="Helvetica" font-size="6.8" fill="#1A202C">{{ $shop['shop_name'] ?? 'Toko Berkah' }}</text>
-
-        <text x="260" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NOMOR TELEPON / WA (*)</text>
-        <rect x="260" y="56" width="200" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="268" y="68" font-family="Helvetica" font-size="6.8" fill="#1A202C">{{ $shop['shop_phone'] ?? '081234567890' }}</text>
-
-        <text x="40" y="88" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">ALAMAT LENGKAP TOKO (*)</text>
-        <rect x="40" y="92" width="420" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="104" font-family="Helvetica" font-size="6.8" fill="#1A202C">{{ $shop['shop_address'] ?? 'Jalan Raya Utama No. 77, Jember' }}</text>
-
-        <rect x="360" y="118" width="100" height="20" rx="4" fill="#00AA13"/>
-        <text x="410" y="131" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN IDENTITAS</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.2: Formulir Konfigurasi Identitas Toko, Nomor Kontak, dan Alamat Usaha</div>
+{{-- WIREFRAME MOCKUP 8.2 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMULIR IDENTITAS USAHA & TOKO
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 3px;">
+                    <span class="ui-label">NAMA TOKO RESMI (*)</span>
+                    <div class="ui-input-box">{{ $shop['shop_name'] ?? 'Toko Berkah' }}</div>
+                </td>
+                <td style="width: 50%; padding: 3px;">
+                    <span class="ui-label">NOMOR TELEPON / WA (*)</span>
+                    <div class="ui-input-box">{{ $shop['shop_phone'] ?? '081234567890' }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 3px;">
+                    <span class="ui-label">ALAMAT LENGKAP TOKO (*)</span>
+                    <div class="ui-input-box">{{ $shop['shop_address'] ?? 'Jalan Raya Utama No. 77, Jember' }}</div>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: right; margin-top: 6px;">
+            <span class="ui-btn ui-btn-primary">SIMPAN PERUBAHAN IDENTITAS</span>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 8.2: Formulir Konfigurasi Identitas Toko, Nomor Kontak, dan Alamat Usaha</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -723,25 +923,35 @@
     Kustomisasi nama sistem pada header browser dan kode unik faktur kasir:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="132" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">🏷️ NAMA APLIKASI (APP_NAME)</text>
-        <text x="35" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Mengganti teks brand pada sidebar</text>
-        <text x="35" y="74" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Menjadi judul pada tab peramban</text>
-        <text x="35" y="88" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Tercetak pada cover buku panduan</text>
-        <text x="35" y="105" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00AA13">Nilai: '{{ $shop['app_name'] ?? 'SIKANDA' }} POS'</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="367" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">🔢 PREFIX NOMOR INVOICE</text>
-        <text x="270" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Awalan kode nomor transaksi</text>
-        <text x="270" y="74" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Membedakan cabang toko / mesin kasir</text>
-        <text x="270" y="88" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Cth: INV, TRX, POS, SLN</text>
-        <text x="270" y="105" font-family="Helvetica" font-size="7" font-weight="bold" fill="#2B6CB0">Format: INV-YYYYMMDD-0001</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.3: Pengaturan Branding Nama Aplikasi dan Prefix Faktur Penjualan</div>
+{{-- WIREFRAME MOCKUP 8.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PENGATURAN BRANDING SISTEM & PREFIX FAKTUR
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <span class="ui-label">NAMA APLIKASI (APP_NAME)</span>
+                        <div class="ui-input-box" style="font-weight: bold; color: #00880F;">{{ $shop['app_name'] ?? 'SIKANDA' }} POS</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin-top: 2px;">Tampil di tab browser, sidebar & header buku panduan</div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <span class="ui-label">PREFIX NOMOR INVOICE</span>
+                        <div class="ui-input-box" style="font-weight: bold; color: #2B6CB0; font-family: monospace;">INV</div>
+                        <div style="font-size: 5.8pt; color: #718096; margin-top: 2px;">Format: INV-YYYYMMDD-0001</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 8.3: Pengaturan Branding Nama Aplikasi dan Prefix Faktur Penjualan</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -757,24 +967,27 @@
     Unggah berkas suara khusus (.mp3/.wav) untuk asisten audio meja kasir:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="40" y="38" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C">UNGGAH SUARA BEL TRANSAKSI KASIR (SOUND EFFECT)</text>
-        
-        <rect x="40" y="50" width="420" height="40" rx="6" fill="#F7FAFC" stroke="#00AA13" stroke-width="1" stroke-dasharray="4,4"/>
-        <text x="250" y="70" font-family="Helvetica" font-size="7" fill="#00880F" text-anchor="middle">📁 Klik untuk memilih berkas audio (.mp3, .wav) maksimal 2MB</text>
-        <text x="250" y="82" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">Berkas saat ini: chimes_bell_success.mp3</text>
-
-        <rect x="40" y="102" width="100" height="22" rx="4" fill="#00880F"/>
-        <text x="90" y="116" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">▶ TES SUARA</text>
-
-        <rect x="340" y="102" width="120" height="22" rx="4" fill="#00AA13"/>
-        <text x="400" y="116" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN AUDIO</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.4: Antarmuka Pengunggahan dan Pengujian Suara Bel Notifikasi Kasir</div>
+{{-- WIREFRAME MOCKUP 8.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMULIR PENGUNGGAHAN AUDIO BEL KASIR (SOUND CHIME)
+    </div>
+    <div class="ui-window-body">
+        <div style="border: 1.5px dashed #00AA13; background-color: #F0FFF4; border-radius: 6px; padding: 8px; text-align: center; margin-bottom: 6px;">
+            <div style="font-size: 7pt; font-weight: bold; color: #00880F;">📁 PILIH BERKAS AUDIO BARU (.MP3 / .WAV)</div>
+            <div style="font-size: 5.8pt; color: #718096;">Maksimal 2 MB • Berkas saat ini: <code>bell_chimes_success.mp3</code></div>
+        </div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td><span class="ui-btn ui-btn-primary">▶ TES PUTAR AUDIO</span></td>
+                <td style="text-align: right;"><span class="ui-btn ui-btn-primary">SIMPAN AUDIO</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 8.4: Antarmuka Pengunggahan dan Pengujian Suara Bel Notifikasi Kasir</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -790,29 +1003,40 @@
     Penghubung sistem kasir dengan server pembayaran DOKU Merchant:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.5 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="130" rx="8" fill="#FFFFFF" stroke="#EE2737" stroke-width="1"/>
-        <text x="40" y="34" font-family="Helvetica" font-size="8" font-weight="bold" fill="#EE2737">KREDENSIAL DOKU PAYMENT GATEWAY</text>
-
-        <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">DOKU CLIENT ID (*)</text>
-        <rect x="40" y="56" width="420" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="67" font-family="monospace" font-size="6.5" fill="#1A202C">MALL-ID-829103984712</text>
-
-        <text x="40" y="82" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">DOKU SECRET KEY (*)</text>
-        <rect x="40" y="86" width="420" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="97" font-family="monospace" font-size="6.5" fill="#1A202C">SK-live-8928374982374928374928374</text>
-
-        <text x="40" y="112" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">MODE LINGKUNGAN:</text>
-        <rect x="40" y="116" width="80" height="18" rx="4" fill="#00AA13"/>
-        <text x="80" y="128" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">● PRODUCTION</text>
-
-        <rect x="360" y="116" width="100" height="18" rx="4" fill="#EE2737"/>
-        <text x="410" y="128" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN GATEWAY</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.5: Formulir Konfigurasi API Kredensial Gateway Pembayaran QRIS DOKU</div>
+{{-- WIREFRAME MOCKUP 8.5 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #EE2737;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; KREDENSIAL API DOKU PAYMENT GATEWAY
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td colspan="2" style="padding: 2px;">
+                    <span class="ui-label">DOKU CLIENT ID (*)</span>
+                    <div class="ui-input-box" style="font-family: monospace;">MALL-ID-829103984712</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 2px;">
+                    <span class="ui-label">DOKU SECRET KEY (*)</span>
+                    <div class="ui-input-box" style="font-family: monospace;">SK-live-8928374982374928374928374</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 2px;">
+                    <span class="ui-label">MODE LINGKUNGAN</span>
+                    <div class="ui-input-box" style="font-weight: bold; color: #00880F;">● PRODUCTION (LIVE)</div>
+                </td>
+                <td style="padding: 2px; text-align: right; vertical-align: bottom;">
+                    <span class="ui-btn ui-btn-red">SIMPAN KREDENSIAL</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 8.5: Formulir Konfigurasi API Kredensial Gateway Pembayaran QRIS DOKU</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -828,28 +1052,35 @@
     Pengiriman otomatis laporan omset ke grup Telegram pemilik usaha:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.6 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="130" rx="8" fill="#FFFFFF" stroke="#00AED6" stroke-width="1"/>
-        <text x="40" y="34" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00AED6">INTEGRASI TELEGRAM BOT ALERT</text>
-
-        <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">TELEGRAM BOT TOKEN</text>
-        <rect x="40" y="56" width="420" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="67" font-family="monospace" font-size="6.5" fill="#1A202C">718293847:AAFe793284jshdfkjsdhf938472938</text>
-
-        <text x="40" y="82" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">CHAT ID / GRUP ID TUJUAN</text>
-        <rect x="40" y="86" width="420" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="97" font-family="monospace" font-size="6.5" fill="#1A202C">-1009283749283 (Grup Manajemen Toko)</text>
-
-        <rect x="40" y="114" width="100" height="20" rx="4" fill="#00AED6"/>
-        <text x="90" y="127" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">📨 TES NOTIFIKASI</text>
-
-        <rect x="360" y="114" width="100" height="20" rx="4" fill="#00AA13"/>
-        <text x="410" y="127" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN BOT</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.6: Formulir Konfigurasi Token Bot Telegram dan Pengujian Notifikasi Real-Time</div>
+{{-- WIREFRAME MOCKUP 8.6 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00AED6;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; INTEGRASI TELEGRAM BOT ALERT NOTIFIKASI
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td colspan="2" style="padding: 2px;">
+                    <span class="ui-label">TELEGRAM BOT TOKEN</span>
+                    <div class="ui-input-box" style="font-family: monospace;">718293847:AAFe793284jshdfkjsdhf938472938</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 2px;">
+                    <span class="ui-label">CHAT ID / GRUP ID TUJUAN</span>
+                    <div class="ui-input-box" style="font-family: monospace;">-1009283749283 (Grup Manajemen Toko)</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 2px;"><span class="ui-btn ui-btn-blue">📨 TES NOTIFIKASI</span></td>
+                <td style="padding: 2px; text-align: right;"><span class="ui-btn ui-btn-primary">SIMPAN BOT</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 8.6: Formulir Konfigurasi Token Bot Telegram dan Pengujian Notifikasi Real-Time</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -865,25 +1096,28 @@
     Kustomisasi pesan ucapan terima kasih dan syarat retur barang pada struk:
 </p>
 
-{{-- SVG VECTOR GAMBAR 8.7 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="130" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="40" y="34" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C">CATATAN KAKI (FOOTER) STRUK KASIR THERMAL</text>
+{{-- WIREFRAME MOCKUP 8.7 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PENGATURAN PESAN CATATAN KAKI (FOOTER) STRUK KASIR
+    </div>
+    <div class="ui-window-body">
+        <span class="ui-label">PESAN FOOTER BARIS 1 (UCAPAN TERIMA KASIH)</span>
+        <div class="ui-input-box">Terima Kasih Telah Berbelanja di Toko Kami!</div>
 
-        <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">PESAN FOOTER BARIS 1</text>
-        <rect x="40" y="56" width="420" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="67" font-family="Helvetica" font-size="6.5" fill="#1A202C">Terima Kasih Telah Berbelanja di Toko Kami!</text>
+        <div style="margin-top: 4px;">
+            <span class="ui-label">PESAN FOOTER BARIS 2 (KEBIJAKAN RETUR)</span>
+            <div class="ui-input-box">Barang yang sudah dibeli tidak dapat ditukar/dikembalikan.</div>
+        </div>
 
-        <text x="40" y="82" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">PESAN FOOTER BARIS 2 (KEBIJAKAN RETUR)</text>
-        <rect x="40" y="86" width="420" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="97" font-family="Helvetica" font-size="6.5" fill="#1A202C">Barang yang sudah dibeli tidak dapat ditukar/dikembalikan.</text>
-
-        <rect x="350" y="114" width="110" height="20" rx="4" fill="#00AA13"/>
-        <text x="405" y="127" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN FOOTER</text>
-    </svg>
-    <div class="diagram-caption">Gambar 8.7: Formulir Pengaturan Pesan Catatan Kaki Struk Belanja Kasir</div>
+        <div style="text-align: right; margin-top: 6px;">
+            <span class="ui-btn ui-btn-primary">SIMPAN PESAN FOOTER</span>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 8.7: Formulir Pengaturan Pesan Catatan Kaki Struk Belanja Kasir</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -899,35 +1133,40 @@
     Tabel daftar seluruh staf kasir dan administrator terdaftar di sistem:
 </p>
 
-{{-- SVG VECTOR GAMBAR 9.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="20" fill="#00661A"/>
-        <text x="35" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">NAMA PENGGUNA</text>
-        <text x="170" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">EMAIL RESMI</text>
-        <text x="280" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">PERAN (ROLE)</text>
-        <text x="360" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">ALIAS GELAR TTE</text>
-        <text x="445" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="end">AKSI</text>
-
-        <!-- User 1 -->
-        <rect x="25" y="40" width="450" height="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="55" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#1A202C">Budi Santoso, S.E.</text>
-        <text x="170" y="55" font-family="Helvetica" font-size="6.8" fill="#4A5568">budi@toko.site</text>
-        <text x="280" y="55" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">ADMIN</text>
-        <text x="360" y="55" font-family="Helvetica" font-size="6.8" fill="#2B6CB0">Kepala Keuangan</text>
-        <text x="445" y="55" font-family="Helvetica" font-size="6.5" fill="#00AA13" text-anchor="end">Edit | Hapus</text>
-
-        <!-- User 2 -->
-        <rect x="25" y="64" width="450" height="24" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="79" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#1A202C">Siti Rahma</text>
-        <text x="170" y="79" font-family="Helvetica" font-size="6.8" fill="#4A5568">kasir1@toko.site</text>
-        <text x="280" y="79" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">KASIR</text>
-        <text x="360" y="79" font-family="Helvetica" font-size="6.8" fill="#4A5568">Petugas Kasir Shift 1</text>
-        <text x="445" y="79" font-family="Helvetica" font-size="6.5" fill="#00AA13" text-anchor="end">Edit | Hapus</text>
-    </svg>
-    <div class="diagram-caption">Gambar 9.1: Antarmuka Tabel Manajemen Pengguna Sistem (/admin/users)</div>
+{{-- WIREFRAME MOCKUP 9.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/admin/users - DAFTAR PENGGUNA & HAK AKSES
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <th>NAMA PENGGUNA</th>
+                <th>EMAIL</th>
+                <th>PERAN</th>
+                <th>ALIAS GELAR TTD</th>
+                <th>AKSI</th>
+            </tr>
+            <tr>
+                <td><b>Budi Santoso, S.E.</b></td>
+                <td>budi@toko.site</td>
+                <td><span class="ui-badge badge-green">ADMIN</span></td>
+                <td><b>Kepala Keuangan</b></td>
+                <td><span style="color: #2B6CB0; font-size: 6pt;">Edit | Hapus</span></td>
+            </tr>
+            <tr>
+                <td><b>Siti Rahma</b></td>
+                <td>kasir1@toko.site</td>
+                <td><span class="ui-badge badge-blue">KASIR</span></td>
+                <td>Petugas Kasir Shift 1</td>
+                <td><span style="color: #2B6CB0; font-size: 6pt;">Edit | Hapus</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 9.1: Antarmuka Tabel Manajemen Pengguna Sistem (/admin/users)</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -943,33 +1182,42 @@
     Formulir penambahan personil toko baru dengan alokasi hak wewenang:
 </p>
 
-{{-- SVG VECTOR GAMBAR 9.2 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="130" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="40" y="34" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C">FORM TAMBAH PENGGUNA BARU</text>
-
-        <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA LENGKAP (*)</text>
-        <rect x="40" y="56" width="200" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="67" font-family="Helvetica" font-size="6.5" fill="#1A202C">Dewi Lestari</text>
-
-        <text x="260" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">EMAIL RESMI (*)</text>
-        <rect x="260" y="56" width="200" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="268" y="67" font-family="Helvetica" font-size="6.5" fill="#1A202C">dewi@toko.site</text>
-
-        <text x="40" y="82" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">PERAN (ROLE) (*)</text>
-        <rect x="40" y="86" width="200" height="16" rx="4" fill="#EBF8FF" stroke="#90CDF4" stroke-width="1"/>
-        <text x="48" y="97" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0">Kasir (Cashier Only)</text>
-
-        <text x="260" y="82" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">KATA SANDI AWAL (*)</text>
-        <rect x="260" y="86" width="200" height="16" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="268" y="97" font-family="Helvetica" font-size="6.5" fill="#4A5568">••••••••••••</text>
-
-        <rect x="350" y="112" width="110" height="20" rx="4" fill="#00AA13"/>
-        <text x="405" y="125" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN AKUN</text>
-    </svg>
-    <div class="diagram-caption">Gambar 9.2: Formulir Pendaftaran Akun Staf Baru dan Penetapan Hak Wewenang</div>
+{{-- WIREFRAME MOCKUP 9.2 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMULIR TAMBAH PENGGUNA BARU
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 2px;">
+                    <span class="ui-label">NAMA LENGKAP (*)</span>
+                    <div class="ui-input-box">Dewi Lestari</div>
+                </td>
+                <td style="width: 50%; padding: 2px;">
+                    <span class="ui-label">EMAIL RESMI (*)</span>
+                    <div class="ui-input-box">dewi@toko.site</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 2px;">
+                    <span class="ui-label">PERAN (ROLE) (*)</span>
+                    <div class="ui-input-box" style="font-weight: bold; color: #2B6CB0;">Kasir (Cashier Only)</div>
+                </td>
+                <td style="padding: 2px;">
+                    <span class="ui-label">KATA SANDI AWAL (*)</span>
+                    <div class="ui-input-box">••••••••••••</div>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: right; margin-top: 6px;">
+            <span class="ui-btn ui-btn-primary">SIMPAN PENGGUNA BARU</span>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 9.2: Formulir Pendaftaran Akun Staf Baru dan Penetapan Hak Wewenang</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -985,19 +1233,28 @@
     Pemberian gelar resmi penandatangan laporan perusahaan:
 </p>
 
-{{-- SVG VECTOR GAMBAR 9.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="40" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00661A">KOLOM "ALIAS / GELAR JABATAN TTD" PADA MANAJEMEN PENGGUNA</text>
-        <text x="40" y="60" font-family="Helvetica" font-size="7" fill="#2D3748">• Kolom ini menentukan teks jabatan yang tertera di bawah tanda tangan digital.</text>
-        <text x="40" y="75" font-family="Helvetica" font-size="7" fill="#2D3748">• Contoh gelar jabatan resmi: <tspan font-weight="bold" fill="#00880F">"Kepala Bagian Keuangan", "Store Manager", "Supervisor Kasir"</tspan>.</text>
-        <text x="40" y="90" font-family="Helvetica" font-size="7" fill="#2D3748">• Jika dikosongkan, sistem otomatis memakai fallback nama role pengguna.</text>
-        <text x="40" y="105" font-family="Helvetica" font-size="7" fill="#2D3748">• Menjadikan seluruh dokumen laporan PDF memiliki keabsahan manajerial formal.</text>
-        <text x="40" y="125" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00AA13">✔ Terintegrasi Penuh ke Seluruh Ekspor Laporan Keuangan</text>
-    </svg>
-    <div class="diagram-caption">Gambar 9.3: Penjelasan Fungsi Kolom Alias Gelar Jabatan pada Sertifikasi Dokumen Formal</div>
+{{-- WIREFRAME MOCKUP 9.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PENJELASAN FUNGSI KOLOM ALIAS GELAR JABATAN TTD
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 6px; padding: 8px;">
+            <div style="font-weight: bold; font-size: 7pt; color: #00661A; margin-bottom: 4px;">
+                FUNGSI KOLOM "ALIAS / GELAR JABATAN TTD":
+            </div>
+            <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                • Menentukan jabatan resmi yang dicetak di bawah nama pada stempel digital PDF.<br>
+                • Contoh: <b style="color: #00880F;">"Kepala Bagian Keuangan", "Store Manager", "Auditor Internal"</b>.<br>
+                • Jika dikosongkan, sistem otomatis memakai fallback nama role (Administrator / Kasir).<br>
+                • Menjamin keabsahan manajerial seluruh dokumen laporan bisnis perusahaan.
+            </div>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 9.3: Penjelasan Fungsi Kolom Alias Gelar Jabatan pada Sertifikasi Dokumen Formal</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1013,25 +1270,41 @@
     Prosedur reset kata sandi kasir yang lupa password oleh Administrator:
 </p>
 
-{{-- SVG VECTOR GAMBAR 9.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#3182CE" stroke-width="1.5"/>
-        <text x="132" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">🔑 RESET KATA SANDI ADMIN</text>
-        <text x="35" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Admin membuka menu /admin/users</text>
-        <text x="35" y="75" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Klik tombol 'Edit' pada nama staf</text>
-        <text x="35" y="90" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Masukkan password baru (min 8 char)</text>
-        <text x="35" y="105" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">• Password langsung di-hash Bcrypt</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="367" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">🛡️ KEAMANAN KREDENSIAL</text>
-        <text x="270" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Staf diwajibkan ganti password saat login</text>
-        <text x="270" y="75" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Sesi perangkat kasir lama otomatis gugur</text>
-        <text x="270" y="90" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Audit log pencatatan user aktif</text>
-        <text x="270" y="105" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">• Perlindungan akun anti-pembajakan</text>
-    </svg>
-    <div class="diagram-caption">Gambar 9.4: Alur Penggantian Kata Sandi dan Pemulihan Akun Pengguna oleh Admin</div>
+{{-- WIREFRAME MOCKUP 9.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ALUR RESET KATA SANDI OLEH ADMINISTRATOR
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0; margin-bottom: 3px;">🔑 RESET PASSWORD ADMIN</div>
+                        <div style="font-size: 6.2pt; color: #4A5568; line-height: 1.4;">
+                            • Buka menu <code>/admin/users</code> &rarr; Klik 'Edit'.<br>
+                            • Masukkan kata sandi baru (min 8 karakter).<br>
+                            • Sistem otomatis meng-hash ulang dengan Bcrypt.
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1px solid #A8DAB5; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F; margin-bottom: 3px;">🛡️ KEAMANAN KREDENSIAL</div>
+                        <div style="font-size: 6.2pt; color: #276749; line-height: 1.4;">
+                            • Sesi perangkat lama otomatis digugurkan.<br>
+                            • Pengguna langsung dapat login dengan sandi baru.<br>
+                            • Perlindungan anti-pembajakan akun kasir.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 9.4: Alur Penggantian Kata Sandi dan Pemulihan Akun Pengguna oleh Admin</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1047,33 +1320,42 @@
     Seluruh infrastruktur server, instalasi, dan pemeliharaan dikelola eksklusif oleh <b>I Gusti Sultan</b>:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#00360D" stroke="#00AA13" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF"/>
-        <rect x="25" y="20" width="450" height="24" rx="8" fill="#00661A"/>
-        <text x="250" y="36" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">INFRASTRUKTUR SERVER PRODUKSI • DIKELOLA PENUH OLEH I GUSTI SULTAN</text>
-
-        <rect x="40" y="55" width="125" height="75" rx="6" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
-        <text x="102" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">1. SERVER HOST</text>
-        <text x="102" y="88" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">aaPanel Linux</text>
-        <text x="102" y="100" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Nginx & PHP 8.2 FPM</text>
-        <text x="102" y="114" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">Uptime: 99.98%</text>
-
-        <rect x="187" y="55" width="125" height="75" rx="6" fill="#EBF8FF" stroke="#90CDF4" stroke-width="1"/>
-        <text x="249" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#2B6CB0" text-anchor="middle">2. STORAGE ENGINE</text>
-        <text x="249" y="88" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Dedicated /media-file</text>
-        <text x="249" y="100" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Streaming Anti-404</text>
-        <text x="249" y="114" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">Zero-Broken Image</text>
-
-        <rect x="335" y="55" width="125" height="75" rx="6" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
-        <text x="397" y="72" font-family="Helvetica" font-size="7" font-weight="bold" fill="#E53E3E" text-anchor="middle">3. DISASTER RECOVERY</text>
-        <text x="397" y="88" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Backup Database Harian</text>
-        <text x="397" y="100" font-family="Helvetica" font-size="6.5" fill="#2D3748" text-anchor="middle">Git Repo Deployment</text>
-        <text x="397" y="114" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#E53E3E" text-anchor="middle">Managed: I Gusti Sultan</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.1: Arsitektur Infrastruktur Server Produksi yang Dikelola oleh I Gusti Sultan</div>
+{{-- WIREFRAME MOCKUP 10.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00360D;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ARSITEKTUR SERVER PRODUKSI • DIKELOLA OLEH I GUSTI SULTAN
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F;">1. SERVER HOST</div>
+                        <div style="font-size: 5.8pt; color: #4A5568; margin: 3px 0;">aaPanel Linux Host, Nginx & PHP 8.2 FPM</div>
+                        <span class="ui-badge badge-green">Uptime 99.98%</span>
+                    </div>
+                </td>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0;">2. MEDIA ENGINE</div>
+                        <div style="font-size: 5.8pt; color: #4A5568; margin: 3px 0;">Dedicated <code>/media-file</code> streaming</div>
+                        <span class="ui-badge badge-blue">Zero-Broken Image</span>
+                    </div>
+                </td>
+                <td style="width: 34%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #EE2737; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #EE2737;">3. BACKUP RECOVERY</div>
+                        <div style="font-size: 5.8pt; color: #4A5568; margin: 3px 0;">Pencadangan database harian otomatis</div>
+                        <span class="ui-badge badge-red">Managed by Sultan</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 10.1: Arsitektur Infrastruktur Server Produksi yang Dikelola oleh I Gusti Sultan</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1089,38 +1371,44 @@
     Rute khusus Laravel yang mengalirkan gambar dan audio tanpa terpengaruh symlink Nginx:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.2 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="120" height="110" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="85" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">BROWSER KASIR</text>
-        <text x="35" y="60" font-family="Helvetica" font-size="6.5" fill="#718096">Meminta logo toko:</text>
-        <text x="35" y="75" font-family="monospace" font-size="6" fill="#2B6CB0">/media-file/logo.png</text>
-        <text x="35" y="100" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Permintaan HTTP</text>
-
-        <!-- Arrow -->
-        <path d="M150 75 L185 75" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="185,71 192,75 185,79" fill="#00AA13"/>
-
-        <rect x="195" y="20" width="140" height="110" rx="8" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="265" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">STREAMING CONTROLLER</text>
-        <text x="205" y="60" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Validasi mime-type gambar</text>
-        <text x="205" y="75" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Cache-Control 30 Hari</text>
-        <text x="205" y="90" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Binary stream response</text>
-        <text x="205" y="105" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00661A">Anti 404 Symlink Error</text>
-
-        <!-- Arrow -->
-        <path d="M340 75 L375 75" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="375,71 382,75 375,79" fill="#00AA13"/>
-
-        <rect x="385" y="20" width="95" height="110" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="432" y="40" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">FILE SYSTEM</text>
-        <text x="395" y="60" font-family="Helvetica" font-size="6.5" fill="#276749">storage/app/</text>
-        <text x="395" y="75" font-family="Helvetica" font-size="6.5" fill="#276749">public/logos/</text>
-        <text x="395" y="105" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">✔ Terbaca 100%</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.2: Mekanisme Dedicated Media Streaming Controller Pengaman Berkas Media Toko</div>
+{{-- WIREFRAME MOCKUP 10.2 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ALUR MEDIA STREAMING ENGINE ANTI-404
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 6.8pt; color: #1A202C;">BROWSER KASIR</div>
+                        <div style="font-size: 5.5pt; color: #718096; font-family: monospace; margin: 3px 0;">/media-file/logo.png</div>
+                        <span class="ui-badge badge-blue">HTTP Request</span>
+                    </div>
+                </td>
+                <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                <td style="width: 35%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 6.8pt; color: #00880F;">MEDIA CONTROLLER</div>
+                        <div style="font-size: 5.5pt; color: #4A5568; margin: 3px 0;">Binary streaming & Cache-Control 30 Hari</div>
+                        <span class="ui-badge badge-green">Anti 404 Symlink</span>
+                    </div>
+                </td>
+                <td style="width: 5%; text-align: center; font-size: 10pt; color: #00AA13; font-weight: bold;">➔</td>
+                <td style="width: 25%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1px solid #68D391; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 6.8pt; color: #00880F;">STORAGE</div>
+                        <div style="font-size: 5.5pt; color: #276749; margin: 3px 0;">storage/app/public</div>
+                        <span class="ui-badge badge-green">✔ Terbaca 100%</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 10.2: Mekanisme Dedicated Media Streaming Controller Pengaman Berkas Media Toko</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1136,22 +1424,25 @@
     Struktur direktori penyimpanan berkas publik pada server Linux:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="20" fill="#1A202C"/>
-        <text x="35" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">STRUKTUR FILE SYSTEM & HAK AKSES LINUX (CHMOD 755 / CHOWN WWW:WWW)</text>
-
-        <text x="40" y="58" font-family="monospace" font-size="6.8" fill="#00880F">/www/wwwroot/kasir.site/</text>
-        <text x="60" y="72" font-family="monospace" font-size="6.8" fill="#4A5568">├── public/storage &rarr; ../storage/app/public (Symlink)</text>
-        <text x="60" y="86" font-family="monospace" font-size="6.8" fill="#4A5568">├── storage/app/public/logos/ (Logo Toko)</text>
-        <text x="60" y="100" font-family="monospace" font-size="6.8" fill="#4A5568">├── storage/app/public/audio/ (Bel Kasir MP3)</text>
-        <text x="60" y="114" font-family="monospace" font-size="6.8" fill="#4A5568">└── storage/logs/laravel.log (Log Monitoring Error)</text>
-        <text x="40" y="130" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0">Perintah Pemulihan: php artisan storage:link</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.3: Diagram Pohon Direktori Penyimpanan Berkas Media dan Symlink Storage</div>
+{{-- WIREFRAME MOCKUP 10.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; POHON STRUKTUR FILE SYSTEM LINUX AAPANEL
+    </div>
+    <div class="ui-window-body" style="font-family: monospace; font-size: 6.2pt; line-height: 1.5; color: #1A202C;">
+        <b style="color: #00880F;">/www/wwwroot/kasir.site/</b><br>
+        ├── public/storage &rarr; ../storage/app/public (Symlink)<br>
+        ├── storage/app/public/logos/ (Logo Toko Dinamis)<br>
+        ├── storage/app/public/audio/ (Audio Bel Kasir MP3/WAV)<br>
+        └── storage/logs/laravel.log (Log Monitoring Error)<br><br>
+        <span style="font-family: sans-serif; font-weight: bold; color: #2B6CB0;">
+            Hak Akses: CHMOD 755 &bull; Pemilik: chown -R www:www /www/wwwroot/kasir.site
+        </span>
+    </div>
+    <div class="ui-caption">Gambar 10.3: Diagram Pohon Direktori Penyimpanan Berkas Media dan Symlink Storage</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1167,22 +1458,25 @@
     Blok konfigurasi Nginx untuk performa maksimal dan routing Laravel:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#1A202C" stroke="#4A5568" stroke-width="1.5"/>
-        <text x="25" y="24" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#68D391">KONFIGURASI NGINX SERVER BLOCK (/etc/nginx/sites-available/kasir.site):</text>
-        <text x="25" y="42" font-family="monospace" font-size="6.2" fill="#E2E8F0">server {</text>
-        <text x="45" y="54" font-family="monospace" font-size="6.2" fill="#CBD5E0">listen 80; listen 443 ssl http2;</text>
-        <text x="45" y="66" font-family="monospace" font-size="6.2" fill="#CBD5E0">server_name botnomor.my.id kasir.site;</text>
-        <text x="45" y="78" font-family="monospace" font-size="6.2" fill="#CBD5E0">root /www/wwwroot/kasir.site/public;</text>
-        <text x="45" y="90" font-family="monospace" font-size="6.2" fill="#CBD5E0">location / { try_files $uri $uri/ /index.php?$query_string; }</text>
-        <text x="45" y="102" font-family="monospace" font-size="6.2" fill="#CBD5E0">location ~ \.php$ { fastcgi_pass unix:/tmp/php-cgi-82.sock; }</text>
-        <text x="45" y="114" font-family="monospace" font-size="6.2" fill="#CBD5E0">client_max_body_size 50M;</text>
-        <text x="25" y="126" font-family="monospace" font-size="6.2" fill="#E2E8F0">}</text>
-        <text x="25" y="142" font-family="Helvetica" font-size="6" font-weight="bold" fill="#68D391">Dikelola dan Dikonfigurasi Penuh oleh I Gusti Sultan</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.4: Snippet Konfigurasi Nginx Web Server untuk Routing Laravel 11</div>
+{{-- WIREFRAME MOCKUP 10.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #1A202C;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; KONFIGURASI NGINX SERVER BLOCK (/etc/nginx/sites-available/kasir.site)
+    </div>
+    <div class="ui-window-body" style="background-color: #2D3748; color: #E2E8F0; font-family: monospace; font-size: 5.8pt; line-height: 1.4;">
+        server {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;listen 80; listen 443 ssl http2;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;server_name botnomor.my.id kasir.site;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;root /www/wwwroot/kasir.site/public;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;location / { try_files $uri $uri/ /index.php?$query_string; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;location ~ \.php$ { fastcgi_pass unix:/tmp/php-cgi-82.sock; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;client_max_body_size 50M;<br>
+        }
+    </div>
+    <div class="ui-caption">Gambar 10.4: Snippet Konfigurasi Nginx Web Server untuk Routing Laravel 11</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1198,22 +1492,21 @@
     Pemantauan log kesehatan aplikasi secara berkala:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.5 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#1A202C"/>
-        <text x="35" y="36" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#68D391">LOG MONITORING REAL-TIME (storage/logs/laravel.log):</text>
-        
-        <text x="35" y="56" font-family="monospace" font-size="6" fill="#A0AEC0">[2026-08-26 10:15:02] production.INFO: QRIS Created: TRX-INV001 Rp 51,000</text>
-        <text x="35" y="70" font-family="monospace" font-size="6" fill="#68D391">[2026-08-26 10:15:20] production.INFO: Webhook DOKU SUCCESS: TRX-INV001 PAID</text>
-        <text x="35" y="84" font-family="monospace" font-size="6" fill="#A0AEC0">[2026-08-26 14:00:10] production.INFO: Report LKEU PDF Generated with TTE Hash</text>
-        <text x="35" y="98" font-family="monospace" font-size="6" fill="#63B3ED">[2026-08-26 17:00:00] production.INFO: Daily Auto-Backup MySQL Completed: 24.5 MB</text>
-        
-        <rect x="35" y="112" width="430" height="18" rx="4" fill="#00360D"/>
-        <text x="250" y="124" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#A8DAB5" text-anchor="middle">STATUS KESEHATAN SERVER: 100% OPERASIONAL NORMAL</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.5: Pemantauan Berkas Log Aktivitas dan Status Kesehatan Server Laravel</div>
+{{-- WIREFRAME MOCKUP 10.5 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #1A202C;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; LOG MONITORING REAL-TIME (storage/logs/laravel.log)
+    </div>
+    <div class="ui-window-body" style="background-color: #1A202C; color: #A0AEC0; font-family: monospace; font-size: 5.5pt; line-height: 1.4;">
+        [2026-08-26 10:15:02] production.INFO: QRIS Created: TRX-INV001 Rp 51,000<br>
+        <span style="color: #68D391;">[2026-08-26 10:15:20] production.INFO: Webhook DOKU SUCCESS: TRX-INV001 PAID</span><br>
+        [2026-08-26 14:00:10] production.INFO: Report LKEU PDF Generated with TTE Hash<br>
+        <span style="color: #63B3ED;">[2026-08-26 17:00:00] production.INFO: Daily Auto-Backup MySQL Completed: 24.5 MB</span>
+    </div>
+    <div class="ui-caption">Gambar 10.5: Pemantauan Berkas Log Aktivitas dan Status Kesehatan Server Laravel</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1229,40 +1522,42 @@
     Skema perlindungan data toko dari ancaman kerusakan perangkat keras:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.6 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="130" height="115" rx="8" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="90" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">1. CRON JOB 00:00</text>
-        <text x="35" y="60" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Otomatis setiap tengah malam</text>
-        <text x="35" y="74" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Ekspor seluruh tabel database</text>
-        <text x="35" y="88" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Kompresi berkas .sql.gz</text>
-        <text x="35" y="105" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">mysqldump Otomatis</text>
-
-        <!-- Arrow -->
-        <path d="M160 80 L185 80" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="185,76 192,80 185,84" fill="#00AA13"/>
-
-        <rect x="195" y="20" width="130" height="115" rx="8" fill="#FFFFFF" stroke="#2B6CB0" stroke-width="1.5"/>
-        <text x="260" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#2B6CB0" text-anchor="middle">2. STORAGE AMAN</text>
-        <text x="205" y="60" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Disimpan di partisi terisolasi</text>
-        <text x="205" y="74" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Rotasi berkas retensi 30 hari</text>
-        <text x="205" y="88" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Enkripsi berkas cadangan</text>
-        <text x="205" y="105" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0">Offsite Backup</text>
-
-        <!-- Arrow -->
-        <path d="M330 80 L355 80" stroke="#00AA13" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="355,76 362,80 355,84" fill="#00AA13"/>
-
-        <rect x="365" y="20" width="110" height="115" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="420" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">3. RECOVERY</text>
-        <text x="375" y="60" font-family="Helvetica" font-size="6.5" fill="#276749">• Pemulihan &lt; 5 menit</text>
-        <text x="375" y="74" font-family="Helvetica" font-size="6.5" fill="#276749">• Nol kehilangan data</text>
-        <text x="375" y="88" font-family="Helvetica" font-size="6.5" fill="#276749">• Dikelola langsung oleh:</text>
-        <text x="375" y="105" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">I Gusti Sultan</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.6: Skema Pencadangan Database Harian Otomatis dan Prosedur Pemulihan Bencana</div>
+{{-- WIREFRAME MOCKUP 10.6 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; SKEMA PENCADANGAN DATABASE HARIAN & PEMULIHAN BENCANA
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #00AA13; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F;">1. CRON JOB 00:00</div>
+                        <div style="font-size: 5.8pt; color: #4A5568; margin: 3px 0;">Ekspor database MySQL otomatis tengah malam</div>
+                        <span class="ui-badge badge-green">mysqldump</span>
+                    </div>
+                </td>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0;">2. STORAGE AMAN</div>
+                        <div style="font-size: 5.8pt; color: #4A5568; margin: 3px 0;">Partisi terisolasi & retensi 30 hari</div>
+                        <span class="ui-badge badge-blue">Offsite Backup</span>
+                    </div>
+                </td>
+                <td style="width: 34%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #38A169; border-radius: 6px; padding: 6px; text-align: center;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #00880F;">3. RECOVERY</div>
+                        <div style="font-size: 5.8pt; color: #276749; margin: 3px 0;">Pemulihan &lt; 5 menit oleh I Gusti Sultan</div>
+                        <span class="ui-badge badge-green">Zero-Data Loss</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 10.6: Skema Pencadangan Database Harian Otomatis dan Prosedur Pemulihan Bencana</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1278,21 +1573,23 @@
     Alur pembaruan kode produksi di server kasir:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.7 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#1A202C"/>
-        <text x="35" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#68D391">PERINTAH RESMI DEPLOY SERVER OLEH I GUSTI SULTAN:</text>
-
-        <rect x="35" y="48" width="430" height="60" rx="6" fill="#00360D" stroke="#00AA13" stroke-width="1"/>
-        <text x="45" y="64" font-family="monospace" font-size="6.8" fill="#FFFFFF">cd /www/wwwroot/kasir.site</text>
-        <text x="45" y="78" font-family="monospace" font-size="6.8" fill="#68D391">git pull origin main</text>
-        <text x="45" y="92" font-family="monospace" font-size="6.8" fill="#CBD5E0">php artisan view:clear &amp;&amp; php artisan route:clear</text>
-
-        <text x="35" y="125" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#68D391">Hasil: Sistem langsung termutakhirkan tanpa downtime operasional toko.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.7: Standar Operasional Prosedur Deployment Pembaruan Sistem di Server aaPanel</div>
+{{-- WIREFRAME MOCKUP 10.7 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #1A202C;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; TERMINAL SOP DEPLOYMENT UPDATE DI SERVER AAPANEL
+    </div>
+    <div class="ui-window-body" style="background-color: #00360D; color: #FFFFFF; font-family: monospace; font-size: 6.2pt; line-height: 1.5;">
+        <span style="color: #A8DAB5;"># Masuk ke folder root aplikasi</span><br>
+        cd /www/wwwroot/kasir.site<br><br>
+        <span style="color: #A8DAB5;"># Tarik pembaruan kode terbaru dari repositori Git</span><br>
+        <b style="color: #68D391;">git pull origin main</b><br><br>
+        <span style="color: #A8DAB5;"># Bersihkan cache view dan route</span><br>
+        php artisan view:clear && php artisan route:clear
+    </div>
+    <div class="ui-caption">Gambar 10.7: Standar Operasional Prosedur Deployment Pembaruan Sistem di Server aaPanel</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1308,35 +1605,39 @@
     Tabel pertolongan pertama saat menghadapi kendala teknis di toko:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.8 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="20" fill="#00661A"/>
-        <text x="35" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">KENDALA OPERASIONAL</text>
-        <text x="200" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">PENYEBAB UTAMA</text>
-        <text x="340" y="34" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF">SOLUSI CEPAT</text>
-
-        <!-- Row 1 -->
-        <rect x="25" y="40" width="450" height="26" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="55" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#E53E3E">Struk Bluetooth Tidak Keluar</text>
-        <text x="200" y="55" font-family="Helvetica" font-size="6.5" fill="#4A5568">Bluetooth printer terputus</text>
-        <text x="340" y="55" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Nyalakan ulang Bluetooth &amp; re-pair</text>
-
-        <!-- Row 2 -->
-        <rect x="25" y="66" width="450" height="26" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="81" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#E53E3E">QRIS Tidak Mau Terbuka</text>
-        <text x="200" y="81" font-family="Helvetica" font-size="6.5" fill="#4A5568">Koneksi internet toko drop</text>
-        <text x="340" y="81" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Alihkan ke pembayaran TUNAI</text>
-
-        <!-- Row 3 -->
-        <rect x="25" y="92" width="450" height="26" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="107" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#E53E3E">Logo Tidak Tampil</text>
-        <text x="200" y="107" font-family="Helvetica" font-size="6.5" fill="#4A5568">Symlink file hilang</text>
-        <text x="340" y="107" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Hubungi I Gusti Sultan (Clear Cache)</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.8: Matriks Identifikasi Masalah dan Solusi Cepat Operasional Kasir</div>
+{{-- WIREFRAME MOCKUP 10.8 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; MATRIKS PANDUAN PEMECAHAN MASALAH CEPAT (FAQ)
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <th style="width: 32%;">KENDALA</th>
+                <th style="width: 33%;">PENYEBAB</th>
+                <th>SOLUSI CEPAT</th>
+            </tr>
+            <tr>
+                <td><b style="color: #E53E3E;">Struk Tidak Keluar</b></td>
+                <td>Bluetooth printer terputus</td>
+                <td>Nyalakan ulang Bluetooth printer & re-pair di menu kasir.</td>
+            </tr>
+            <tr>
+                <td><b style="color: #E53E3E;">QRIS Tidak Terbuka</b></td>
+                <td>Koneksi internet drop</td>
+                <td>Gunakan pembayaran TUNAI sementara sampai koneksi pulih.</td>
+            </tr>
+            <tr>
+                <td><b style="color: #E53E3E;">Logo Tidak Tampil</b></td>
+                <td>Symlink berkas terputus</td>
+                <td>Hubungi I Gusti Sultan untuk eksekusi <code>php artisan storage:link</code>.</td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 10.8: Matriks Identifikasi Masalah dan Solusi Cepat Operasional Kasir</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1352,31 +1653,37 @@
     Kamus istilah penting yang digunakan di seluruh buku panduan ini:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.9 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="35" y="38" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">• POS (Point of Sale):</text>
-        <text x="35" y="48" font-family="Helvetica" font-size="6.2" fill="#4A5568">Perangkat lunak kasir pencatat transaksi langsung.</text>
-
-        <text x="35" y="62" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">• QRIS (Quick Response Indonesian Standard):</text>
-        <text x="35" y="72" font-family="Helvetica" font-size="6.2" fill="#4A5568">Standar kode QR pembayaran nasional Bank Indonesia.</text>
-
-        <text x="35" y="86" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">• MDR (Merchant Discount Rate):</text>
-        <text x="35" y="96" font-family="Helvetica" font-size="6.2" fill="#4A5568">Biaya pemrosesan transaksi QRIS (0.7%).</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="270" y="38" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">• TTE (Tanda Tangan Elektronik):</text>
-        <text x="270" y="48" font-family="Helvetica" font-size="6.2" fill="#4A5568">Tanda tangan digital berkekuatan hukum (UU ITE).</text>
-
-        <text x="270" y="62" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">• SHA-256 Hash:</text>
-        <text x="270" y="72" font-family="Helvetica" font-size="6.2" fill="#4A5568">Algoritma kriptografi 256-bit pengunci keaslian data.</text>
-
-        <text x="270" y="86" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">• Webhook:</text>
-        <text x="270" y="96" font-family="Helvetica" font-size="6.2" fill="#4A5568">Sinyal HTTP otomatis dari gateway saat pembayaran sukses.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.9: Glosarium Istilah Teknis Sistem POS, Finansial, dan Kriptografi</div>
+{{-- WIREFRAME MOCKUP 10.9 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; KAMUS ISTILAH SISTEM POS, FINANSIAL & KRIPTOGRAFI
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; font-size: 6.2pt;">
+            <tr>
+                <td style="width: 50%; padding: 3px; vertical-align: top;">
+                    <b style="color: #00880F;">• POS (Point of Sale):</b><br>
+                    Perangkat lunak kasir pencatat transaksi langsung.<br><br>
+                    <b style="color: #00880F;">• QRIS:</b><br>
+                    Standar kode QR pembayaran nasional Bank Indonesia.<br><br>
+                    <b style="color: #00880F;">• MDR (0.7%):</b><br>
+                    Biaya pemrosesan transaksi QRIS merchant.
+                </td>
+                <td style="width: 50%; padding: 3px; vertical-align: top;">
+                    <b style="color: #2B6CB0;">• TTE (Tanda Tangan Elektronik):</b><br>
+                    Tanda tangan digital berkekuatan hukum (UU ITE).<br><br>
+                    <b style="color: #2B6CB0;">• SHA-256 Hash:</b><br>
+                    Algoritma enkripsi 256-bit pengunci data laporan.<br><br>
+                    <b style="color: #2B6CB0;">• Webhook:</b><br>
+                    Sinyal notifikasi instan dari gateway perbankan.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 10.9: Glosarium Istilah Teknis Sistem POS, Finansial, dan Kriptografi</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1392,26 +1699,35 @@
     Saluran komunikasi darurat untuk eskalasi kendala server dan pemeliharaan sistem:
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.10 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#00360D" stroke="#00AA13" stroke-width="2"/>
-        <text x="250" y="32" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SALURAN DUKUNGAN TEKNIS UTAMA • I GUSTI SULTAN</text>
-
-        <rect x="25" y="45" width="450" height="90" rx="8" fill="#FFFFFF"/>
-        <text x="40" y="65" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">Lead Architect &amp; Server Maintainer :</text>
-        <text x="240" y="65" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C">I Gusti Sultan</text>
-
-        <text x="40" y="82" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">Layanan Pemeliharaan Server :</text>
-        <text x="240" y="82" font-family="Helvetica" font-size="7.5" fill="#1A202C">Pemantauan 24/7, Backup Harian &amp; Update Rutin</text>
-
-        <text x="40" y="99" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">Repositori Kode Sumber :</text>
-        <text x="240" y="99" font-family="monospace" font-size="7" fill="#2B6CB0">https://github.com/Igustisultanh12/toko.git</text>
-
-        <text x="40" y="116" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">Status Dukungan :</text>
-        <text x="240" y="116" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#38A169">● AKTIF &amp; TERJAMIN PENUH</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.10: Lembar Kontak Resmi Pemelihara Server & Pengembang Perangkat Lunak</div>
+{{-- WIREFRAME MOCKUP 10.10 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00360D;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; SALURAN DUKUNGAN TEKNIS UTAMA • I GUSTI SULTAN
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <td style="width: 40%;"><b>Lead Architect & Server Maintainer</b></td>
+                <td><b style="color: #00880F;">I Gusti Sultan</b></td>
+            </tr>
+            <tr>
+                <td><b>Layanan Pemeliharaan Server</b></td>
+                <td>Pemantauan 24/7, Backup Database Harian & Update Rutin</td>
+            </tr>
+            <tr>
+                <td><b>Repositori Kode Sumber</b></td>
+                <td><code>https://github.com/Igustisultanh12/toko.git</code></td>
+            </tr>
+            <tr>
+                <td><b>Status Jaminan Dukungan</b></td>
+                <td><span class="ui-badge badge-green">● AKTIF & TERJAMIN PENUH</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 10.10: Lembar Kontak Resmi Pemelihara Server & Pengembang Perangkat Lunak</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -1430,21 +1746,31 @@
     Seluruh arsitektur perangkat lunak, sistem keamanan otentikasi, enkripsi transaksi QRIS DOKU, modul sertifikasi Tanda Tangan Elektronik (TTE), serta pemeliharaan server aaPanel Linux, Nginx, dan pencadangan database harian <b>dikelola dan dipelihara secara berkesinambungan oleh I Gusti Sultan</b> demi menjamin stabilitas dan kecepatan sistem usaha Anda setiap hari.
 </p>
 
-{{-- SVG VECTOR GAMBAR 10.11: PENUTUP BADGE --}}
-<div class="diagram-container">
-    <svg width="460" height="130" viewBox="0 0 500 140">
-        <rect x="5" y="5" width="490" height="130" rx="10" fill="#E6F4EA" stroke="#A8DAB5" stroke-width="1.5"/>
-        <circle cx="250" cy="45" r="22" fill="#00AA13"/>
-        <path d="M240 45 L247 52 L262 38" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="250" y="82" font-family="Helvetica" font-size="9" font-weight="bold" fill="#00661A" text-anchor="middle">SISTEM KASIR &amp; SERVER BEROPERASI PENUH SECARA AMAN</text>
-        <text x="250" y="98" font-family="Helvetica" font-size="7" fill="#2D3748" text-anchor="middle">Hak Cipta Perangkat Lunak &amp; Seluruh Perawatan Server Dikelola Penuh oleh</text>
-        <text x="250" y="114" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">I GUSTI SULTAN</text>
-    </svg>
-    <div class="diagram-caption">Gambar 10.11: Sertifikasi Komitmen Layanan dan Pemeliharaan Server Terpusat</div>
+{{-- WIREFRAME MOCKUP 10.11 --}}
+<div class="ui-mockup" style="margin-top: 15px;">
+    <div class="ui-window-bar" style="background-color: #00661A;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; SERTIFIKASI KOMITMEN LAYANAN & PEMELIHARAAN SERVER
+    </div>
+    <div class="ui-window-body" style="background-color: #F0FFF4; text-align: center; padding: 12px;">
+        <div style="display: inline-block; width: 40px; height: 40px; background-color: #00AA13; border-radius: 50%; line-height: 40px; color: white; font-weight: bold; font-size: 18pt; margin-bottom: 4px;">
+            ✔
+        </div>
+        <div style="font-weight: 900; font-size: 8.5pt; color: #00661A;">SISTEM KASIR & SERVER BEROPERASI PENUH SECARA AMAN</div>
+        <div style="font-size: 6.8pt; color: #2D3748; margin-top: 2px;">
+            Hak Cipta Perangkat Lunak & Seluruh Perawatan Server Dikelola Penuh oleh:
+        </div>
+        <div style="font-size: 9pt; font-weight: 900; color: #00880F; margin-top: 3px;">
+            I GUSTI SULTAN
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 10.11: Sertifikasi Komitmen Layanan dan Pemeliharaan Server Terpusat</div>
 </div>
 
 <div style="margin-top: 25px; text-align: center;">
-    <p style="font-size: 7.5pt; color: #718096; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+    <p style="font-size: 7.2pt; color: #718096; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
         &copy; {{ date('Y') }} {{ strtoupper($shop['app_name'] ?? 'SIKANDA POS') }} &bull; Dikelola oleh I Gusti Sultan. All rights reserved.
     </p>
 </div>

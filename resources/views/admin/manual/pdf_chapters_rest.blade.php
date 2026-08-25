@@ -11,29 +11,69 @@
     Modul Manajemen Produk (<code>/admin/products</code>) mengelola basis data seluruh komoditas toko dengan kontrol stok real-time:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="20" y="20" width="460" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="20" y="20" width="460" height="22" fill="#00661A"/>
-        <text x="250" y="35" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KATALOG MASTER INVENTARIS PRODUK & STATUS PERGUDANGAN</text>
-        <text x="30" y="60" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">1. Nama Barang & Barcode:</text>
-        <text x="170" y="60" font-family="Helvetica" font-size="6.8" fill="#2D3748">Diindeks unik untuk pencarian instan scanner kasir.</text>
-        <text x="30" y="78" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">2. Harga Jual & Diskon:</text>
-        <text x="170" y="78" font-family="Helvetica" font-size="6.8" fill="#2D3748">Penetapan harga eceran kasir dan diskon promosi %.</text>
-        <text x="30" y="96" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">3. Ambang Batas Stok:</text>
-        <text x="170" y="96" font-family="Helvetica" font-size="6.8" fill="#2D3748">Hijau (Aman &gt; 5), Kuning (Menipis &le; 5), Merah (Habis 0).</text>
-        <text x="30" y="114" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">4. Ekspor Rekap Stok:</text>
-        <text x="170" y="114" font-family="Helvetica" font-size="6.8" fill="#2D3748">Unduh dokumen PDF/Excel valuasi aset barang gudang.</text>
-        <text x="30" y="132" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">5. Impor Massal:</text>
-        <text x="170" y="132" font-family="Helvetica" font-size="6.8" fill="#2D3748">Mendaftarkan ratusan produk sekaligus via spreadsheet Excel.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.1: Struktur Manajemen Master Produk & Status Inventaris Gudang</div>
+{{-- WIREFRAME MOCKUP 4.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/admin/products - KATALOG MASTER PRODUK & STOK GUDANG
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
+            <tr>
+                <td>
+                    <span class="ui-btn ui-btn-primary">+ TAMBAH PRODUK BARU</span>
+                    <span class="ui-btn ui-btn-light">📥 IMPOR EXCEL</span>
+                </td>
+                <td style="text-align: right;">
+                    <div style="display: inline-block; background: white; border: 1px solid #CBD5E0; padding: 2px 6px; border-radius: 4px; font-size: 6.5pt;">
+                        🔍 Cari barcode / nama...
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="doc-table" style="margin: 0;">
+            <tr>
+                <th>PRODUK / SKU</th>
+                <th>BARCODE</th>
+                <th>HARGA JUAL</th>
+                <th>STOK</th>
+                <th>STATUS</th>
+                <th>AKSI</th>
+            </tr>
+            <tr>
+                <td><b>Minyak Bimoli 2L</b></td>
+                <td><code>8992753102</code></td>
+                <td><b style="color: #00880F;">Rp 38.000</b></td>
+                <td><b>24 Unit</b></td>
+                <td><span class="ui-badge badge-green">AMAN</span></td>
+                <td><span style="color: #2B6CB0; font-size: 6pt;">Edit | Hapus</span></td>
+            </tr>
+            <tr>
+                <td><b>Beras Pandan Wangi 5kg</b></td>
+                <td><code>8991002001</code></td>
+                <td><b style="color: #00880F;">Rp 85.000</b></td>
+                <td><b>4 Unit</b></td>
+                <td><span class="ui-badge badge-yellow">MENIPIS</span></td>
+                <td><span style="color: #2B6CB0; font-size: 6pt;">Edit | Hapus</span></td>
+            </tr>
+            <tr>
+                <td><b>Gula Gulaku 1kg</b></td>
+                <td><code>8993004003</code></td>
+                <td><b style="color: #00880F;">Rp 17.500</b></td>
+                <td><b>0 Unit</b></td>
+                <td><span class="ui-badge badge-red">HABIS</span></td>
+                <td><span style="color: #2B6CB0; font-size: 6pt;">Edit | Hapus</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 4.1: Antarmuka Katalog Master Produk & Indikator Status Stok (admin/products/index.blade.php)</div>
 </div>
 
 {{-- ========================================================================= --}}
-{{-- HALAMAN 22: BAB 4.2 + GAMBAR PENCARIAN & SCANNER --}}
+{{-- HALAMAN 22: BAB 4.2 + GAMBAR PANCARIAN CEPAT --}}
 {{-- ========================================================================= --}}
 <div class="page-break"></div>
 
@@ -45,25 +85,46 @@
     Tabel produk dilengkapi filter cerdas yang dapat mencari berdasarkan nama maupun barcode:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.2 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="28" rx="6" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="35" y="38" font-family="Helvetica" font-size="8" fill="#2D3748">🔍 Minyak Bimoli</text>
-        <rect x="380" y="24" width="85" height="20" rx="4" fill="#00AA13"/>
-        <text x="422" y="37" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">CARI PRODUK</text>
-        <!-- Result Box -->
-        <rect x="25" y="58" width="450" height="85" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="58" width="450" height="18" fill="#00661A"/>
-        <text x="35" y="70" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">HASIL PENCARIAN DITEMUKAN (1 PRODUK):</text>
-        <text x="35" y="92" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C">Minyak Goreng Bimoli 2 Liter Pouch</text>
-        <text x="35" y="105" font-family="monospace" font-size="6.8" fill="#718096">Barcode: 8992753102941 • Satuan: Pouch • Stok: 12 Pcs</text>
-        <text x="35" y="122" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F">Harga Jual Kasir: Rp 38.000 / Pouch</text>
-        <rect x="390" y="95" width="70" height="22" rx="4" fill="#00AA13"/>
-        <text x="425" y="109" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">EDIT BARANG</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.2: Visualisasi Filter Pencarian Cepat Produk Berdasarkan Teks & Barcode</div>
+{{-- WIREFRAME MOCKUP 4.2 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FITUR FILTER PENCARIAN CEPAT & SCANNER BARCODE
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 6px;">
+            <tr>
+                <td style="width: 75%; padding-right: 6px;">
+                    <span class="ui-label">KATA KUNCI PENCARIAN (NAMA / BARCODE)</span>
+                    <div class="ui-input-box" style="border: 1.5px solid #00AA13;">🔍 Minyak Bimoli</div>
+                </td>
+                <td style="width: 25%; vertical-align: bottom;">
+                    <div class="ui-btn ui-btn-primary" style="width: 80%;">CARI BARANG</div>
+                </td>
+            </tr>
+        </table>
+
+        <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+            <div style="font-size: 6.5pt; font-weight: bold; color: #00661A; border-bottom: 1px solid #E2E8F0; padding-bottom: 3px; margin-bottom: 4px;">
+                HASIL PENCARIAN DITEMUKAN (1 PRODUK COCOK):
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 6.5pt;">
+                <tr>
+                    <td>
+                        <b style="font-size: 7.5pt; color: #1A202C;">Minyak Goreng Bimoli 2 Liter Pouch</b><br>
+                        <span style="color: #718096; font-family: monospace;">Barcode: 8992753102941 • Satuan: Pouch</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <span style="font-size: 8.5pt; font-weight: bold; color: #00880F;">Rp 38.000</span><br>
+                        <span class="ui-badge badge-green">Stok: 24 Pcs</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 4.2: Filter Pencarian Cepat Produk Berdasarkan Teks & Barcode</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -79,35 +140,60 @@
     Formulir penambahan produk baru dilengkapi generator barcode EAN-13 otomatis:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="170" viewBox="0 0 500 180">
-        <rect x="5" y="5" width="490" height="170" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="15" width="450" height="150" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="40" y="32" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#1A202C">FORMULIR DATA PRODUK BARU</text>
-        <!-- Inputs -->
-        <text x="40" y="48" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA BARANG (*)</text>
-        <rect x="40" y="52" width="420" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="64" font-family="Helvetica" font-size="6.8" fill="#1A202C">Kopi Susu Aren Botol 250ml</text>
-
-        <text x="40" y="82" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">BARCODE / SKU</text>
-        <rect x="40" y="86" width="350" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="48" y="98" font-family="monospace" font-size="6.8" fill="#1A202C">8992753102941</text>
-        <rect x="400" y="86" width="60" height="18" rx="4" fill="#E6F4EA"/>
-        <text x="430" y="98" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">AUTO ⚡</text>
-
-        <text x="40" y="116" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">HARGA JUAL (RP) (*)</text>
-        <rect x="40" y="120" width="200" height="18" rx="4" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
-        <text x="48" y="132" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">Rp 18.000</text>
-
-        <text x="260" y="116" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">STOK FISIK (*)</text>
-        <rect x="260" y="120" width="200" height="18" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="268" y="132" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">50 Unit</text>
-
-        <rect x="360" y="145" width="100" height="18" rx="4" fill="#00AA13"/>
-        <text x="410" y="157" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN PRODUK</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.3: Formulir Tambah Produk Baru dengan Tombol Generator Barcode Otomatis</div>
+{{-- WIREFRAME MOCKUP 4.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/admin/products/create - FORMULIR PRODUK BARU
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td colspan="2" style="padding: 3px;">
+                    <span class="ui-label">NAMA PRODUK / BARANG (*)</span>
+                    <div class="ui-input-box">Kopi Susu Aren Botol 250ml</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 3px;">
+                    <span class="ui-label">KODE BARCODE / SKU (UNIK)</span>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="width: 80%;"><div class="ui-input-box" style="font-family: monospace;">8992753102941</div></td>
+                            <td style="width: 20%; padding-left: 4px;"><div class="ui-btn ui-btn-primary" style="width: 80%;">AUTO ⚡</div></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%; padding: 3px;">
+                    <span class="ui-label">HARGA JUAL KASIR (RP) (*)</span>
+                    <div class="ui-input-box" style="font-weight: bold; color: #00880F;">Rp 18.000</div>
+                </td>
+                <td style="width: 50%; padding: 3px;">
+                    <span class="ui-label">STOK FISIK AWAL (*)</span>
+                    <div class="ui-input-box">50 Unit</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 3px;">
+                    <span class="ui-label">DISKON PROMO (%)</span>
+                    <div class="ui-input-box">0% (Tanpa Diskon)</div>
+                </td>
+                <td style="padding: 3px;">
+                    <span class="ui-label">KETERANGAN / SATUAN</span>
+                    <div class="ui-input-box">Botol / Pcs</div>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: right; margin-top: 6px;">
+            <span class="ui-btn ui-btn-light">BATAL</span>
+            <span class="ui-btn ui-btn-primary">SIMPAN PRODUK</span>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 4.3: Formulir Tambah Produk Baru dengan Tombol Generator Barcode Otomatis (admin/products/create.blade.php)</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -123,37 +209,44 @@
     Logika penetapan harga dan kalkulasi diskon otomatis pada keranjang belanja kasir:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.4 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="135" height="115" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <text x="92" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#718096" text-anchor="middle">HARGA REGULER</text>
-        <text x="92" y="65" font-family="Helvetica" font-size="11" font-weight="bold" fill="#1A202C" text-anchor="middle">Rp 50.000</text>
-        <text x="92" y="85" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">Harga jual dasar</text>
-        <text x="92" y="98" font-family="Helvetica" font-size="6.5" fill="#718096" text-anchor="middle">sebelum diskon</text>
-
-        <!-- Minus Icon -->
-        <circle cx="180" cy="77" r="12" fill="#EE2737"/>
-        <text x="180" y="82" font-family="Helvetica" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">-</text>
-
-        <rect x="200" y="20" width="135" height="115" rx="8" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
-        <text x="267" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#E53E3E" text-anchor="middle">DISKON PROMO (%)</text>
-        <text x="267" y="65" font-family="Helvetica" font-size="12" font-weight="bold" fill="#E53E3E" text-anchor="middle">10% OFF</text>
-        <text x="267" y="85" font-family="Helvetica" font-size="6.5" fill="#C53030" text-anchor="middle">Potongan otomatis:</text>
-        <text x="267" y="98" font-family="Helvetica" font-size="7" font-weight="bold" fill="#E53E3E" text-anchor="middle">Rp 5.000</text>
-
-        <!-- Equals Icon -->
-        <circle cx="355" cy="77" r="12" fill="#00AA13"/>
-        <text x="355" y="82" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">=</text>
-
-        <rect x="375" y="20" width="105" height="115" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <text x="427" y="38" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F" text-anchor="middle">HARGA KASIR</text>
-        <text x="427" y="65" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00AA13" text-anchor="middle">Rp 45.000</text>
-        <text x="427" y="85" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">Harga final yang</text>
-        <text x="427" y="98" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">dicetak pada nota</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.4: Diagram Alur Kalkulasi Diskon Promo Produk Otomatis di Kasir</div>
+{{-- WIREFRAME MOCKUP 4.4 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; ALUR KALKULASI HARGA JUAL & POTONGAN DISKON PROMOSI
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #718096;">HARGA REGULER</div>
+                        <div style="font-size: 11pt; font-weight: 900; color: #1A202C; margin: 4px 0;">Rp 50.000</div>
+                        <div style="font-size: 5.5pt; color: #718096;">Harga dasar katalog</div>
+                    </div>
+                </td>
+                <td style="width: 5%; font-size: 12pt; font-weight: bold; color: #E53E3E;">&minus;</td>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #E53E3E;">DISKON PROMO (10%)</div>
+                        <div style="font-size: 11pt; font-weight: 900; color: #E53E3E; margin: 4px 0;">&minus; Rp 5.000</div>
+                        <div style="font-size: 5.5pt; color: #C53030;">Potongan otomatis</div>
+                    </div>
+                </td>
+                <td style="width: 5%; font-size: 12pt; font-weight: bold; color: #00AA13;">=</td>
+                <td style="width: 30%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 8px;">
+                        <div style="font-size: 6pt; font-weight: bold; color: #00880F;">HARGA KASIR (NETTO)</div>
+                        <div style="font-size: 11pt; font-weight: 900; color: #00AA13; margin: 4px 0;">Rp 45.000</div>
+                        <div style="font-size: 5.5pt; color: #276749;">Tercetak pada nota</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 4.4: Diagram Alur Kalkulasi Diskon Promo Produk Otomatis di Kasir</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -169,38 +262,42 @@
     Klasifikasi ketersediaan barang di gudang dan tindakan pencegahan overselling:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.5 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <!-- Safe Stock -->
-        <rect x="25" y="25" width="135" height="110" rx="8" fill="#F0FFF4" stroke="#68D391" stroke-width="1.5"/>
-        <circle cx="92" cy="48" r="14" fill="#00AA13"/>
-        <text x="92" y="53" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✔</text>
-        <text x="92" y="75" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">STOK AMAN</text>
-        <text x="92" y="92" font-family="Helvetica" font-size="6.8" fill="#276749" text-anchor="middle">Jumlah: &gt; 5 Unit</text>
-        <text x="92" y="105" font-family="Helvetica" font-size="6.5" fill="#276749" text-anchor="middle">Bebas dijual di kasir</text>
-        <text x="92" y="118" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">Badge Hijau</text>
-
-        <!-- Low Stock -->
-        <rect x="182" y="25" width="135" height="110" rx="8" fill="#FFFAF0" stroke="#FBD38D" stroke-width="1.5"/>
-        <circle cx="249" cy="48" r="14" fill="#DD6B20"/>
-        <text x="249" y="53" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">⚠️</text>
-        <text x="249" y="75" font-family="Helvetica" font-size="8" font-weight="bold" fill="#DD6B20" text-anchor="middle">STOK MENIPIS</text>
-        <text x="249" y="92" font-family="Helvetica" font-size="6.8" fill="#C05621" text-anchor="middle">Jumlah: 1 s/d 5 Unit</text>
-        <text x="249" y="105" font-family="Helvetica" font-size="6.5" fill="#C05621" text-anchor="middle">Sinyal re-order gudang</text>
-        <text x="249" y="118" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#DD6B20" text-anchor="middle">Badge Kuning</text>
-
-        <!-- Out of Stock -->
-        <rect x="340" y="25" width="135" height="110" rx="8" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1.5"/>
-        <circle cx="407" cy="48" r="14" fill="#E53E3E"/>
-        <text x="407" y="53" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✖</text>
-        <text x="407" y="75" font-family="Helvetica" font-size="8" font-weight="bold" fill="#E53E3E" text-anchor="middle">STOK HABIS</text>
-        <text x="407" y="92" font-family="Helvetica" font-size="6.8" fill="#C53030" text-anchor="middle">Jumlah: 0 Unit</text>
-        <text x="407" y="105" font-family="Helvetica" font-size="6.5" fill="#C53030" text-anchor="middle">Terkunci dari kasir</text>
-        <text x="407" y="118" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#E53E3E" text-anchor="middle">Badge Merah</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.5: Visualisasi Tiga Tingkat Status Ketersediaan Stok Produk</div>
+{{-- WIREFRAME MOCKUP 4.5 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; TIGA TINGKAT STATUS INDIKATOR KETERSEDIAAN STOK GUDANG
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #F0FFF4; border: 1.5px solid #68D391; border-radius: 6px; padding: 6px; text-align: center;">
+                        <span class="ui-badge badge-green" style="font-size: 7pt; padding: 2px 8px;">✔ STOK AMAN</span>
+                        <div style="font-size: 9pt; font-weight: bold; color: #00880F; margin: 4px 0;">&gt; 5 Unit</div>
+                        <div style="font-size: 5.8pt; color: #276749;">Kondisi prima, bebas ditransaksikan di meja kasir.</div>
+                    </div>
+                </td>
+                <td style="width: 33%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFAF0; border: 1.5px solid #FBD38D; border-radius: 6px; padding: 6px; text-align: center;">
+                        <span class="ui-badge badge-yellow" style="font-size: 7pt; padding: 2px 8px;">⚠️ STOK MENIPIS</span>
+                        <div style="font-size: 9pt; font-weight: bold; color: #DD6B20; margin: 4px 0;">1 s/d 5 Unit</div>
+                        <div style="font-size: 5.8pt; color: #C05621;">Sinyal peringatan untuk segera melakukan pengadaan ulang.</div>
+                    </div>
+                </td>
+                <td style="width: 34%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFF5F5; border: 1.5px solid #FEB2B2; border-radius: 6px; padding: 6px; text-align: center;">
+                        <span class="ui-badge badge-red" style="font-size: 7pt; padding: 2px 8px;">✖ STOK HABIS</span>
+                        <div style="font-size: 9pt; font-weight: bold; color: #E53E3E; margin: 4px 0;">0 Unit</div>
+                        <div style="font-size: 5.8pt; color: #C53030;">Terkunci otomatis dari sistem kasir (anti-minus).</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 4.5: Visualisasi Tiga Tingkat Status Ketersediaan Stok Produk</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -216,29 +313,35 @@
     Petugas gudang dapat menambah stok barang masuk tanpa membuka form edit:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.6 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#E6F4EA" stroke="#A8DAB5" stroke-width="1.5"/>
-        <text x="25" y="30" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#00661A">⚡ SCAN / TAMBAH STOK CEPAT LANGSUNG DARI KATALOG:</text>
-        <!-- Inputs Bar -->
-        <rect x="25" y="45" width="230" height="24" rx="6" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="35" y="61" font-family="monospace" font-size="7.5" fill="#1A202C">8992753102941 (Bimoli 2L)</text>
-
-        <rect x="265" y="45" width="75" height="24" rx="6" fill="#FFFFFF" stroke="#00AA13" stroke-width="1.5"/>
-        <text x="302" y="61" font-family="Helvetica" font-size="8" font-weight="bold" fill="#00880F" text-anchor="middle">+ 24 Unit</text>
-
-        <rect x="350" y="45" width="125" height="24" rx="6" fill="#00AA13"/>
-        <text x="412" y="61" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">TAMBAH STOK (ENTER)</text>
-
-        <!-- Response Alert Box -->
-        <rect x="25" y="85" width="450" height="50" rx="6" fill="#FFFFFF" stroke="#68D391" stroke-width="1"/>
-        <circle cx="45" cy="110" r="10" fill="#00AA13"/>
-        <text x="45" y="114" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✔</text>
-        <text x="65" y="105" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">SUKSES: Stok Produk Berhasil Ditambahkan Instan via AJAX</text>
-        <text x="65" y="118" font-family="Helvetica" font-size="6.8" fill="#2D3748">Produk: 'Minyak Goreng Bimoli 2L' • Ditambahkan: +24 • Total Stok Sekarang: 36 Pcs.</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.6: Alur Kerja Penambahan Stok Cepat Melalui Pemindaian Barcode Gudang</div>
+{{-- WIREFRAME MOCKUP 4.6 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00360D;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FITUR INPUT / UPDATE STOK CEPAT LANGSUNG DARI KATALOG
+    </div>
+    <div class="ui-window-body" style="background-color: #E6F4EA;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 3px;">
+                    <span class="ui-label">SCAN BARCODE PRODUK</span>
+                    <div class="ui-input-box" style="font-family: monospace; border: 1.5px solid #00AA13;">8992753102941 (Bimoli 2L)</div>
+                </td>
+                <td style="width: 25%; padding: 3px;">
+                    <span class="ui-label">JUMLAH MASUK</span>
+                    <div class="ui-input-box" style="font-weight: bold; color: #00880F; border: 1.5px solid #00AA13;">+ 24 Unit</div>
+                </td>
+                <td style="width: 25%; padding: 3px; vertical-align: bottom;">
+                    <div class="ui-btn ui-btn-primary" style="width: 90%;">TAMBAH (ENTER)</div>
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #FFFFFF; border: 1px solid #A8DAB5; border-radius: 4px; padding: 4px 6px; margin-top: 6px; font-size: 6.2pt; color: #00661A;">
+            ✔ <b>SUKSES:</b> Stok 'Minyak Goreng Bimoli 2L' berhasil ditambah +24 unit. Total stok sekarang: <b>36 Unit</b>.
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 4.6: Alur Kerja Penambahan Stok Cepat Melalui Pemindaian Barcode Gudang</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -254,43 +357,46 @@
     Struktur tabel spreadsheet Excel yang diterima oleh mesin pengimpor:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.7 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="20" width="450" height="20" fill="#00661A"/>
-        <text x="35" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">KOLOM A: nama (*)</text>
-        <text x="160" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">KOLOM B: barcode</text>
-        <text x="280" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">KOLOM C: harga (*)</text>
-        <text x="390" y="34" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">KOLOM D: stok (*)</text>
-
-        <!-- Row 1 -->
-        <rect x="25" y="40" width="450" height="20" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="54" font-family="Helvetica" font-size="6.8" fill="#1A202C">Beras Pandan Wangi 5kg</text>
-        <text x="160" y="54" font-family="monospace" font-size="6.8" fill="#4A5568">8991002001</text>
-        <text x="280" y="54" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">85000</text>
-        <text x="390" y="54" font-family="Helvetica" font-size="6.8" fill="#1A202C">50</text>
-
-        <!-- Row 2 -->
-        <rect x="25" y="60" width="450" height="20" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="74" font-family="Helvetica" font-size="6.8" fill="#1A202C">Minyak Sania 2L</text>
-        <text x="160" y="74" font-family="monospace" font-size="6.8" fill="#4A5568">8992003002</text>
-        <text x="280" y="74" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">37500</text>
-        <text x="390" y="74" font-family="Helvetica" font-size="6.8" fill="#1A202C">24</text>
-
-        <!-- Row 3 -->
-        <rect x="25" y="80" width="450" height="20" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
-        <text x="35" y="94" font-family="Helvetica" font-size="6.8" fill="#1A202C">Gula Pasir Gulaku 1kg</text>
-        <text x="160" y="94" font-family="monospace" font-size="6.8" fill="#4A5568">8993004003</text>
-        <text x="280" y="94" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#00880F">17500</text>
-        <text x="390" y="94" font-family="Helvetica" font-size="6.8" fill="#1A202C">100</text>
-
-        <!-- Upload Button simulation -->
-        <rect x="320" y="108" width="145" height="22" rx="5" fill="#00AA13"/>
-        <text x="392" y="122" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">UNGGAH BERKAS EXCEL</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.7: Format Struktur Tabel Spreadsheet Excel untuk Impor Data Produk Massal</div>
+{{-- WIREFRAME MOCKUP 4.7 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; FORMAT STRUKTUR TEMPLATE SPREADSHEET EXCEL IMPOR MASSAL
+    </div>
+    <div class="ui-window-body">
+        <table class="doc-table" style="margin: 0 0 6px 0;">
+            <tr>
+                <th style="background-color: #276749;">KOLOM A: nama (*)</th>
+                <th style="background-color: #276749;">KOLOM B: barcode</th>
+                <th style="background-color: #276749;">KOLOM C: harga (*)</th>
+                <th style="background-color: #276749;">KOLOM D: stok (*)</th>
+            </tr>
+            <tr>
+                <td>Beras Pandan Wangi 5kg</td>
+                <td><code>8991002001</code></td>
+                <td><b>85000</b></td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Minyak Sania 2L</td>
+                <td><code>8992003002</code></td>
+                <td><b>37500</b></td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td>Gula Pasir Gulaku 1kg</td>
+                <td><code>8993004003</code></td>
+                <td><b>17500</b></td>
+                <td>100</td>
+            </tr>
+        </table>
+        <div style="text-align: right;">
+            <span class="ui-btn ui-btn-primary">📁 UNGGAH BERKAS SPREADSHEET EXCEL (.XLSX)</span>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 4.7: Format Struktur Tabel Spreadsheet Excel untuk Impor Data Produk Massal</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -306,25 +412,41 @@
     Perlindungan data historis transaksi saat produk dihapus atau diedit:
 </p>
 
-{{-- SVG VECTOR GAMBAR 4.8 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="215" height="120" rx="8" fill="#FFFFFF" stroke="#3182CE" stroke-width="1.5"/>
-        <text x="132" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#2B6CB0" text-anchor="middle">📝 EDIT DATA BARANG</text>
-        <text x="35" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Perubahan nama / harga / barcode</text>
-        <text x="35" y="75" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Langsung aktif di kasir real-time</text>
-        <text x="35" y="90" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Tidak merusak transaksi masa lalu</text>
-        <text x="35" y="105" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#2B6CB0">• Snapshot price tetap tersimpan</text>
-
-        <rect x="260" y="20" width="215" height="120" rx="8" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1.5"/>
-        <text x="367" y="40" font-family="Helvetica" font-size="8" font-weight="bold" fill="#E53E3E" text-anchor="middle">🗑️ PENGHAPUSAN AMAN (SAFE DELETE)</text>
-        <text x="270" y="60" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Produk tanpa transaksi &rarr; Dihapus permanen</text>
-        <text x="270" y="75" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Produk bertransaksi &rarr; Relasi terjaga</text>
-        <text x="270" y="90" font-family="Helvetica" font-size="6.8" fill="#4A5568">• Laporan audit keuangan tetap valid</text>
-        <text x="270" y="105" font-family="Helvetica" font-size="6.8" font-weight="bold" fill="#E53E3E">• Integritas basis data 100% aman</text>
-    </svg>
-    <div class="diagram-caption">Gambar 4.8: Diagram Mekanisme Snapshot Pricing dan Integritas Penghapusan Barang</div>
+{{-- WIREFRAME MOCKUP 4.8 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; DIAGRAM MEKANISME PERLINDUNGAN RIWAYAT TRANSAKSI
+    </div>
+    <div class="ui-window-body">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #2B6CB0; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #2B6CB0; margin-bottom: 4px;">📝 PEMBARUAN DATA BARANG</div>
+                        <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                            • Perubahan nama, harga, atau diskon langsung aktif di kasir.<br>
+                            • Transaksi masa lalu tetap menyimpan snapshot harga beli asli.<br>
+                            • Laporan pembukuan historis tidak berubah nilainya.
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 50%; padding: 4px; vertical-align: top;">
+                    <div style="background-color: #FFFFFF; border: 1.5px solid #E53E3E; border-radius: 6px; padding: 6px;">
+                        <div style="font-weight: bold; font-size: 7pt; color: #E53E3E; margin-bottom: 4px;">🗑️ PENGHAPUSAN AMAN (SAFE DELETE)</div>
+                        <div style="font-size: 6.2pt; color: #2D3748; line-height: 1.5;">
+                            • Barang tanpa riwayat transaksi dihapus secara permanen.<br>
+                            • Barang bertransaksi diproteksi agar relasi audit tetap sah.<br>
+                            • Menjamin integritas database MySQL 100% konsisten.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 4.8: Diagram Mekanisme Snapshot Pricing dan Integritas Penghapusan Barang</div>
 </div>
 
 {{-- ========================================================================= --}}
@@ -340,39 +462,81 @@
     Antarmuka kasir dirancang dengan tata letak dua panel terpisah (*split-pane layout*):
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.1 --}}
-<div class="diagram-container">
-    <svg width="460" height="190" viewBox="0 0 500 205">
-        <rect x="5" y="5" width="490" height="195" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="15" y="15" width="470" height="25" rx="6" fill="#00360D"/>
-        <text x="25" y="31" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF">🛒 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS • {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
-        
-        <!-- Left Cart -->
-        <rect x="15" y="46" width="280" height="145" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
-        <rect x="25" y="54" width="260" height="20" rx="4" fill="#F7FAFC" stroke="#00AA13" stroke-width="1"/>
-        <text x="35" y="67" font-family="Helvetica" font-size="7" fill="#718096">🔍 Scan Barcode / Ketik Nama Produk...</text>
-        <!-- Item -->
-        <rect x="25" y="80" width="260" height="24" rx="4" fill="#F8FAFC"/>
-        <text x="32" y="95" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Kopi Susu Aren 250ml</text>
-        <text x="200" y="95" font-family="Helvetica" font-size="7" fill="#4A5568">2 x 18.000</text>
-        <text x="275" y="95" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="end">36.000</text>
+{{-- WIREFRAME MOCKUP 5.1 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar" style="background-color: #00360D;">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; https://kasir.site/cashier/pos - LAYAR KASIR POINT OF SALE (POS)
+    </div>
+    <div class="ui-window-body" style="padding: 6px;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <!-- Left: Shopping Cart -->
+                <td style="width: 60%; vertical-align: top; padding-right: 6px;">
+                    <div style="background-color: #FFFFFF; border: 1px solid #CBD5E0; border-radius: 6px; padding: 6px;">
+                        <div class="ui-input-box" style="border: 1.5px solid #00AA13; margin-bottom: 6px;">
+                            🔍 Scan Barcode / Ketik Nama Barang...
+                        </div>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 6.5pt;">
+                            <tr style="border-bottom: 1px solid #CBD5E0; padding: 4px 0;">
+                                <td style="padding: 3px 0;">
+                                    <b>Kopi Susu Aren 250ml</b><br>
+                                    <span style="color: #718096;">@ Rp 18.000</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">-</span>
+                                    <b>2</b>
+                                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">+</span>
+                                </td>
+                                <td style="text-align: right; font-weight: bold; color: #00880F;">
+                                    Rp 36.000
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #CBD5E0; padding: 4px 0;">
+                                <td style="padding: 3px 0;">
+                                    <b>Roti Tawar Gandum</b><br>
+                                    <span style="color: #718096;">@ Rp 15.000</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">-</span>
+                                    <b>1</b>
+                                    <span class="ui-btn ui-btn-light" style="padding: 1px 4px;">+</span>
+                                </td>
+                                <td style="text-align: right; font-weight: bold; color: #00880F;">
+                                    Rp 15.000
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <!-- Right: Payment Pocket -->
+                <td style="width: 40%; vertical-align: top;">
+                    <div style="background-color: #00661A; border-radius: 6px; padding: 8px; color: white;">
+                        <span class="ui-label" style="color: #A8DAB5;">NAMA PELANGGAN</span>
+                        <div style="background: white; border-radius: 4px; padding: 2px 4px; color: #1A202C; font-size: 6.5pt; margin: 2px 0 6px 0;">
+                            Pelanggan Umum
+                        </div>
 
-        <!-- Right Pay Pocket -->
-        <rect x="305" y="46" width="180" height="145" rx="8" fill="#00661A"/>
-        <text x="315" y="64" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#A8DAB5">NAMA PELANGGAN:</text>
-        <rect x="315" y="68" width="160" height="16" rx="4" fill="#FFFFFF"/>
-        <text x="322" y="80" font-family="Helvetica" font-size="6.5" fill="#4A5568">Pelanggan Umum</text>
-        <rect x="315" y="90" width="160" height="45" rx="6" fill="#004D13"/>
-        <text x="322" y="103" font-family="Helvetica" font-size="6" font-weight="bold" fill="#A8DAB5">TOTAL TAGIHAN</text>
-        <text x="322" y="122" font-family="Helvetica" font-size="12" font-weight="bold" fill="#FFFFFF">Rp 51.000</text>
-        <rect x="315" y="142" width="160" height="26" rx="6" fill="#00AA13"/>
-        <text x="395" y="159" font-family="Helvetica" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PROSES BAYAR (B)</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.1: Tata Letak Dua Panel Meja Kasir POS (resources/views/cashier/pos.blade.php)</div>
+                        <div style="background-color: #004D13; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
+                            <div style="font-size: 6pt; color: #A8DAB5; font-weight: bold;">TOTAL TAGIHAN</div>
+                            <div style="font-size: 14pt; font-weight: 900; color: #FFFFFF;">Rp 51.000</div>
+                        </div>
+
+                        <div style="background-color: #00AA13; text-align: center; padding: 6px; border-radius: 4px; font-weight: 900; font-size: 7.5pt; color: white;">
+                            PROSES BAYAR (B)
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ui-caption">Gambar 5.1: Tata Letak Kasir POS Split-Pane Dua Panel (resources/views/cashier/pos.blade.php)</div>
 </div>
 
 {{-- ========================================================================= --}}
-{{-- HALAMAN 30: BAB 5.2 + GAMBAR POS SPLIT PANE --}}
+{{-- HALAMAN 30: BAB 5.2 + GAMBAR HEADER COMPARISON --}}
 {{-- ========================================================================= --}}
 <div class="page-break"></div>
 
@@ -384,25 +548,46 @@
     Perbedaan tampilan header kasir untuk Administrator dan Petugas Kasir:
 </p>
 
-{{-- SVG VECTOR GAMBAR 5.3 --}}
-<div class="diagram-container">
-    <svg width="460" height="150" viewBox="0 0 500 160">
-        <rect x="5" y="5" width="490" height="150" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <rect x="25" y="20" width="450" height="50" rx="8" fill="#00360D"/>
-        <text x="35" y="42" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF">TAMPILAN ADMIN DI KASIR:</text>
-        <rect x="320" y="28" width="145" height="24" rx="5" fill="#1A202C"/>
-        <text x="392" y="43" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">← DASHBOARD ADMIN</text>
+{{-- WIREFRAME MOCKUP 5.3 --}}
+<div class="ui-mockup">
+    <div class="ui-window-bar">
+        <span class="ui-window-dot dot-red"></span>
+        <span class="ui-window-dot dot-yellow"></span>
+        <span class="ui-window-dot dot-green"></span>
+        &nbsp; PERBANDINGAN TAMPILAN HEADER NAVIGASI KASIR
+    </div>
+    <div class="ui-window-body">
+        <div style="background-color: #00360D; border-radius: 6px; padding: 6px 10px; margin-bottom: 8px; color: white;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="font-size: 7pt; font-weight: bold;">
+                        🏪 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS • (TAMPILAN LOGIN ADMINISTRATOR)
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="ui-btn ui-btn-dark">← DASHBOARD ADMIN</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-        <rect x="25" y="85" width="450" height="50" rx="8" fill="#00360D"/>
-        <text x="35" y="107" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF">TAMPILAN KASIR BIASA:</text>
-        <text x="320" y="112" font-family="Helvetica" font-size="7" fill="#A8DAB5">Kasir: Siti Rahma (Shift Pagi)</text>
-        <rect x="420" y="98" width="45" height="20" rx="4" fill="#E53E3E"/>
-        <text x="442" y="111" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KELUAR</text>
-    </svg>
-    <div class="diagram-caption">Gambar 5.3: Perbedaan Tampilan Navigasi Header Layar Kasir Berdasarkan Hak Akses Role</div>
+        <div style="background-color: #00360D; border-radius: 6px; padding: 6px 10px; color: white;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="font-size: 7pt; font-weight: bold;">
+                        🏪 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS • (TAMPILAN LOGIN PETUGAS KASIR)
+                    </td>
+                    <td style="text-align: right;">
+                        <span style="font-size: 6.5pt; color: #A8DAB5; margin-right: 6px;">Kasir: Siti Rahma</span>
+                        <span class="ui-btn ui-btn-red">KELUAR</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-caption">Gambar 5.3: Perbedaan Tampilan Navigasi Header Layar Kasir Berdasarkan Hak Akses Role</div>
 </div>
 
 {{-- ========================================================================= --}}
-{{-- HALAMAN 31 s/d 78: Lanjutan Seluruh Bab dengan Diagram SVG Lengkap --}}
+{{-- HALAMAN 31 s/d 78: Lanjutan Seluruh Bab dengan Diagram HTML/CSS Lengkap --}}
 {{-- ========================================================================= --}}
 @include('admin.manual.pdf_chapters_more')
