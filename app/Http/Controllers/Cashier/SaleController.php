@@ -65,7 +65,7 @@ class SaleController extends Controller
         DB::beginTransaction();
         try {
             // 1. Generate Nomor Transaksi
-            $transactionNumber = "AND-" . now()->format('Ymd') . "-" . strtoupper(Str::random(5));
+            $transactionNumber = "INV-" . now()->format('Ymd') . "-" . strtoupper(Str::random(5));
 
             // 2. Simpan Data Utama
             $sale = Sale::create([
