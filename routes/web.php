@@ -13,19 +13,40 @@ use App\Http\Controllers\DokuNotificationController;
 use App\Http\Controllers\DokuInquiryController;
 use App\Http\Controllers\TteVerificationController;
 
+use App\Http\Controllers\OnlineOrderController;
+use App\Http\Controllers\Admin\OnlineOrderAdminController;
+
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('order.index'); // Default homepage membuka Toko Online Publik
 });
 
 /**
- * 1. JALUR WEBHOOK DOKU (WAJIB DI LUAR AUTH)
+ * 1. JALUR PESANAN ONLINE PUBLIK & PELACAKAN RESI (GUEST / TANPA LOGIN)
+ */
+Route::get('/order', [OnlineOrderController::class, 'index'])->name('order.index');
+Route::get('/toko', [OnlineOrderController::class, 'index'])->name('order.storefront');
+Route::get('/pesan-online', [OnlineOrderController::class, 'index'])->name('order.online');
+Route::post('/order/checkout', [OnlineOrderController::class, 'store'])->name('order.checkout');
+Route::get('/order/pay/{order_number}', [OnlineOrderController::class, 'pay'])->name('order.pay');
+Route::get('/order/check-status/{order_number}', [OnlineOrderController::class, 'checkStatus'])->name('order.checkStatus');
+Route::post('/order/simulate-pay/{order_number}', [OnlineOrderController::class, 'simulatePay'])->name('order.simulatePay');
+Route::get('/order/receipt/{order_number}', [OnlineOrderController::class, 'receipt'])->name('order.receipt');
+
+// Portal Publik Lacak Pesanan
+Route::get('/lacak', [OnlineOrderController::class, 'trackIndex'])->name('order.track.index');
+Route::get('/lacak/{order_number}', [OnlineOrderController::class, 'track'])->name('order.track');
+Route::get('/track', [OnlineOrderController::class, 'trackIndex'])->name('order.track.alias');
+Route::get('/track/{order_number}', [OnlineOrderController::class, 'track'])->name('order.track.direct');
+
+/**
+ * 2. JALUR WEBHOOK DOKU (WAJIB DI LUAR AUTH)
  * Jalur ini akan ditembak oleh Server DOKU setelah pelanggan bayar.
  */
 Route::post('/doku/notification', [DokuNotificationController::class, 'handle'])->name('doku.notification');
 Route::post('/doku/inquiry', [DokuInquiryController::class, 'handle'])->name('doku.inquiry');
 
 /**
- * 2. JALUR CETAK STRUK, FAKTUR & LABEL PENGIRIMAN PAKET (PUBLIK / BISA DIAKSES VIA LINK WA)
+ * 3. JALUR CETAK STRUK, FAKTUR & LABEL PENGIRIMAN PAKET (PUBLIK / BISA DIAKSES VIA LINK WA)
  */
 Route::get('/receipt/{sale}/print', [SaleController::class, 'generateReceipt'])->name('receipt.print');
 Route::get('/receipt/{sale}/pdf', [ReportController::class, 'exportInvoicePdf'])->name('receipt.pdf');
@@ -112,6 +133,15 @@ Route::middleware(['auth'])->group(function () {
 
     // --- GRUP ADMIN ---
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        // MANAJEMEN PESANAN ONLINE (KONFIRMASI, INPUT RESI, LACAK)
+        Route::get('/orders', [OnlineOrderAdminController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{id}', [OnlineOrderAdminController::class, 'show'])->name('orders.show');
+        Route::post('/orders/{id}/confirm', [OnlineOrderAdminController::class, 'confirmOrder'])->name('orders.confirm');
+        Route::post('/orders/{id}/ship', [OnlineOrderAdminController::class, 'shipOrder'])->name('orders.ship');
+        Route::post('/orders/{id}/complete', [OnlineOrderAdminController::class, 'completeOrder'])->name('orders.complete');
+        Route::post('/orders/{id}/cancel', [OnlineOrderAdminController::class, 'cancelOrder'])->name('orders.cancel');
+        Route::get('/orders/{id}/shipping-label', [OnlineOrderAdminController::class, 'printShippingLabel'])->name('orders.shipping-label');
+
         Route::post('/products/quick-stock', [ProductController::class, 'quickStockUpdate'])->name('products.quick-stock');
         Route::get('/products/import', [ProductController::class, 'showImportForm'])->name('products.import.show');
         Route::post('/products/import', [ProductController::class, 'import'])->name('products.import.store');
@@ -160,7 +190,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pos/check-status/{sale}', [SaleController::class, 'checkStatus'])->name('pos.checkStatus');
         
         Route::get('/receipt/{sale}/print', [SaleController::class, 'generateReceipt'])->name('receipt.print');
+
+        // Kasir juga bisa melihat dan memproses pesanan online
+        Route::get('/orders', [OnlineOrderAdminController::class, 'index'])->name('orders.index');
+        Route::post('/orders/{id}/confirm', [OnlineOrderAdminController::class, 'confirmOrder'])->name('orders.confirm');
+        Route::post('/orders/{id}/ship', [OnlineOrderAdminController::class, 'shipOrder'])->name('orders.ship');
     });
+
+    // API Polling Realtime Notifikasi Pesanan Online untuk Kasir & Admin
+    Route::get('/api/online-orders/realtime-check', [OnlineOrderAdminController::class, 'checkNewOrders'])->name('orders.realtime-check');
 });
 
 require __DIR__.'/auth.php';

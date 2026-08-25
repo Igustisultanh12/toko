@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Label Pengiriman Paket - {{ $sale->transaction_number }}</title>
+    <title>Label Pengiriman Paket - {{ $order->order_number ?? ($sale->transaction_number ?? 'RESI') }}</title>
     <style>
         @page {
             size: a6 portrait;
@@ -147,12 +147,12 @@
             <table>
                 <tr>
                     <td width="60%" valign="middle">
-                        <span class="shop-title">{{ $shop['shop_name'] ?? 'TOKO' }}</span><br>
-                        <span style="font-size: 7.5pt; color: #333; font-weight: bold;">TELP: {{ $shop['shop_phone'] ?? '-' }}</span>
+                        <span class="shop-title">{{ $shop['shop_name'] ?? ($sender['name'] ?? 'TOKO') }}</span><br>
+                        <span style="font-size: 7.5pt; color: #333; font-weight: bold;">TELP: {{ $shop['shop_phone'] ?? ($sender['phone'] ?? '-') }}</span>
                     </td>
                     <td width="40%" align="right" valign="middle">
                         <span class="badge-shipping">LABEL PENGIRIMAN</span><br>
-                        <span style="font-family: monospace; font-size: 8.5pt; font-weight: 900;">{{ $sale->transaction_number }}</span>
+                        <span style="font-family: monospace; font-size: 8.5pt; font-weight: 900;">{{ $order->order_number ?? ($sale->transaction_number ?? ($trackingNumber ?? '-')) }}</span>
                     </td>
                 </tr>
             </table>
@@ -161,27 +161,27 @@
         {{-- KOTAK PENERIMA (TUJUAN) - BESAR & JELAS --}}
         <div class="to-box">
             <div class="section-title">KEPADA / PENERIMA (TO):</div>
-            <div class="recipient-name">{{ $recipientName ?: 'Pelanggan Umum' }}</div>
+            <div class="recipient-name">{{ $recipient['name'] ?? ($recipientName ?? ($order->customer_name ?? ($sale->customer_name ?? 'Pelanggan Umum'))) }}</div>
             <div class="recipient-phone">
-                <span class="tag-label">NO. TELP / WA</span> {{ $recipientPhone ?: ($sale->customer_phone ?? '-') }}
+                <span class="tag-label">NO. TELP / WA</span> {{ $recipient['phone'] ?? ($recipientPhone ?? ($order->customer_phone ?? ($sale->customer_phone ?? '-'))) }}
             </div>
             <div class="recipient-address">
-                <span class="tag-label">ALAMAT</span> {{ $recipientAddress ?: 'Alamat belum diisi / Ambil di Tempat' }}
+                <span class="tag-label">ALAMAT</span> {{ $recipient['address'] ?? ($recipientAddress ?? ($order->customer_address ?? 'Alamat belum diisi / Ambil di Tempat')) }}
             </div>
             <div style="margin-top: 4px;">
-                <span class="courier-badge">EKSPEDISI: {{ strtoupper($courier ?: 'REGULER') }}</span>
+                <span class="courier-badge">EKSPEDISI: {{ strtoupper($courier ?? ($order->courier ?? 'REGULER')) }}</span>
             </div>
         </div>
 
         {{-- KOTAK PENGIRIM (DARI) --}}
         <div class="section-box">
             <div class="section-title">DARI / PENGIRIM (FROM):</div>
-            <div class="sender-name">{{ $senderName ?: ($shop['shop_name'] ?? '') }}</div>
+            <div class="sender-name">{{ $sender['name'] ?? ($senderName ?? ($shop['shop_name'] ?? '')) }}</div>
             <div style="font-size: 8pt; font-weight: bold; margin-top: 1px;">
-                <span class="tag-label">NO. TELP</span> {{ $senderPhone ?: ($shop['shop_phone'] ?? '-') }}
+                <span class="tag-label">NO. TELP</span> {{ $sender['phone'] ?? ($senderPhone ?? ($shop['shop_phone'] ?? '-')) }}
             </div>
             <div style="font-size: 7.5pt; color: #222; margin-top: 2px;">
-                <span class="tag-label">ALAMAT</span> {{ $senderAddress ?: ($shop['shop_address'] ?? 'Jember, Jawa Timur') }}
+                <span class="tag-label">ALAMAT</span> {{ $sender['address'] ?? ($senderAddress ?? ($shop['shop_address'] ?? 'Jember, Jawa Timur')) }}
             </div>
         </div>
 
@@ -197,13 +197,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php $totalQty = 0; @endphp
-                    @forelse($sale->details as $idx => $item)
-                    @php $totalQty += $item->quantity; @endphp
+                    @php 
+                        $totalQty = 0; 
+                        $itemList = $items ?? ($order->items ?? ($sale->details ?? []));
+                    @endphp
+                    @forelse($itemList as $idx => $item)
+                    @php 
+                        $qty = $item->quantity ?? 1;
+                        $totalQty += $qty; 
+                        $pName = $item->product_name ?? ($item->product->name ?? 'Produk');
+                    @endphp
                     <tr>
                         <td align="center">{{ $idx + 1 }}</td>
-                        <td>{{ $item->product->name ?? 'Produk' }}</td>
-                        <td align="center"><b>{{ $item->quantity }} pcs</b></td>
+                        <td>{{ $pName }}</td>
+                        <td align="center"><b>{{ $qty }} pcs</b></td>
                     </tr>
                     @empty
                     <tr>
@@ -222,11 +229,11 @@
 
         {{-- CATATAN KHUSUS / INSTRUKSI PENGIRIMAN --}}
         <div class="notes-box">
-            <b>[PERHATIAN]:</b> {{ $notes ?: 'FRAGILE - JANGAN DIBANTING / DITINDIH' }}
+            <b>[PERHATIAN]:</b> {{ $notes ?? ($order->customer_notes ?? 'FRAGILE - JANGAN DIBANTING / DITINDIH') }}
         </div>
 
         <div class="footer-note">
-            TGL CETAK: {{ $sale->created_at->format('d/m/Y H:i') }} WIB | DICETAK OTOMATIS SISTEM {{ $shop['app_name'] ?? 'SIKANDA' }}
+            TGL CETAK: {{ isset($order) ? $order->created_at->format('d/m/Y H:i') : (isset($sale) ? $sale->created_at->format('d/m/Y H:i') : date('d/m/Y H:i')) }} WIB | DICETAK OTOMATIS SISTEM {{ $shop['app_name'] ?? 'SIKANDA' }}
         </div>
 
     </div>

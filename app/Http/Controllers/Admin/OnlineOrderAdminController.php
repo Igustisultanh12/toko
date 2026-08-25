@@ -1,0 +1,224 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Setting;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+class OnlineOrderAdminController extends Controller
+{
+    /**
+     * DAFTAR PESANAN ONLINE (PANEL ADMIN & KASIR)
+     */
+    public function index(Request $request)
+    {
+        $status = $request->get('status', 'all');
+        $search = $request->get('search');
+
+        $query = Order::with(['items.product', 'confirmedByUser']);
+
+        if ($status !== 'all') {
+            if ($status === 'unconfirmed') {
+                $query->where('status', 'paid');
+            } else {
+                $query->where('status', $status);
+            }
+        }
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('order_number', 'LIKE', "%{$search}%")
+                  ->orWhere('customer_name', 'LIKE', "%{$search}%")
+                  ->orWhere('customer_phone', 'LIKE', "%{$search}%")
+                  ->orWhere('tracking_number', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $orders = $query->orderBy('created_at', 'desc')->paginate(15)->withQueryString();
+
+        // Hitung statistik tab
+        $counts = [
+            'all'         => Order::count(),
+            'unconfirmed' => Order::where('status', 'paid')->count(),
+            'processing'  => Order::where('status', 'processing')->count(),
+            'shipped'     => Order::where('status', 'shipped')->count(),
+            'completed'   => Order::where('status', 'completed')->count(),
+            'pending'     => Order::where('status', 'pending_payment')->count(),
+        ];
+
+        $shop = Setting::pluck('value', 'key')->all();
+
+        return view('admin.orders.index', compact('orders', 'counts', 'status', 'search', 'shop'));
+    }
+
+    /**
+     * DETAIL PESANAN ONLINE (JSON)
+     */
+    public function show($id)
+    {
+        $order = Order::with(['items.product', 'confirmedByUser'])->findOrFail($id);
+        return response()->json($order);
+    }
+
+    /**
+     * KONFIRMASI PESANAN (paid -> processing)
+     */
+    public function confirmOrder($id)
+    {
+        $order = Order::findOrFail($id);
+
+        if ($order->payment_status !== 'paid' && $order->status !== 'paid') {
+            return back()->with('error', 'Pesanan belum dibayar atau status tidak valid.');
+        }
+
+        $order->update([
+            'status'       => 'processing',
+            'confirmed_by' => Auth::id(),
+            'confirmed_at' => now(),
+        ]);
+
+        return back()->with('success', "Pesanan {$order->order_number} berhasil dikonfirmasi dan siap diproses!");
+    }
+
+    /**
+     * KIRIM PESANAN & INPUT RESI (processing -> shipped)
+     */
+    public function shipOrder(Request $request, $id)
+    {
+        $request->validate([
+            'tracking_number' => 'required|string|max:100',
+            'courier'         => 'nullable|string|max:50',
+        ]);
+
+        $order = Order::findOrFail($id);
+
+        $order->update([
+            'tracking_number' => strtoupper(trim($request->tracking_number)),
+            'courier'         => $request->courier ?: $order->courier,
+            'status'          => 'shipped',
+            'shipped_at'      => now(),
+        ]);
+
+        return back()->with('success', "Pesanan {$order->order_number} berhasil dikirim dengan Nomor Resi: {$order->tracking_number}!");
+    }
+
+    /**
+     * SELESAIKAN PESANAN (shipped -> completed)
+     */
+    public function completeOrder($id)
+    {
+        $order = Order::findOrFail($id);
+
+        $order->update([
+            'status'       => 'completed',
+            'completed_at' => now(),
+        ]);
+
+        return back()->with('success', "Pesanan {$order->order_number} telah ditandai selesai.");
+    }
+
+    /**
+     * BATALKAN PESANAN & KEMBALIKAN STOK
+     */
+    public function cancelOrder(Request $request, $id)
+    {
+        $order = Order::with('items.product')->findOrFail($id);
+
+        if ($order->status === 'cancelled') {
+            return back()->with('error', 'Pesanan sudah dibatalkan sebelumnya.');
+        }
+
+        DB::beginTransaction();
+        try {
+            $order->update([
+                'status' => 'cancelled',
+            ]);
+
+            // Kembalikan stok fisik jika pesanan belum selesai
+            foreach ($order->items as $item) {
+                if ($item->product) {
+                    $item->product->increment('stock', $item->quantity);
+                }
+            }
+
+            DB::commit();
+            return back()->with('success', "Pesanan {$order->order_number} telah dibatalkan dan stok produk telah dikembalikan.");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Gagal membatalkan pesanan: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * REALTIME POLLING NOTIFIKASI PESANAN BARU (KASIR & ADMIN)
+     */
+    public function checkNewOrders()
+    {
+        // Ambil pesanan yang berstatus 'paid' (Sudah bayar tapi belum dikonfirmasi)
+        $unconfirmedOrders = Order::with('items')
+            ->where('status', 'paid')
+            ->orderBy('paid_at', 'desc')
+            ->get();
+
+        $latestOrder = $unconfirmedOrders->first();
+
+        return response()->json([
+            'count'        => $unconfirmedOrders->count(),
+            'has_new'      => ($unconfirmedOrders->count() > 0),
+            'latest_order' => $latestOrder ? [
+                'id'            => $latestOrder->id,
+                'order_number'  => $latestOrder->order_number,
+                'customer_name' => $latestOrder->customer_name,
+                'total_amount'  => $latestOrder->total_amount,
+                'formatted_total' => $latestOrder->formatted_total,
+                'courier'       => $latestOrder->courier,
+                'items_count'   => $latestOrder->items->sum('quantity'),
+                'paid_at_human' => $latestOrder->paid_at ? $latestOrder->paid_at->diffForHumans() : 'Baru saja',
+            ] : null,
+        ]);
+    }
+
+    /**
+     * CETAK LABEL RESI PENGIRIMAN A6 DARI PESANAN ONLINE
+     */
+    public function printShippingLabel($id)
+    {
+        $order = Order::with('items')->findOrFail($id);
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $recipient = [
+            'name'    => $order->customer_name,
+            'phone'   => $order->customer_phone,
+            'address' => $order->customer_address,
+        ];
+
+        $sender = [
+            'name'    => $shop['shop_name'] ?? 'TOKO BERKAH',
+            'phone'   => $shop['shop_phone'] ?? '081234567890',
+            'address' => $shop['shop_address'] ?? 'Jember, Jawa Timur',
+        ];
+
+        $courier = $order->courier ?: 'J&T Express';
+        $trackingNumber = $order->tracking_number ?: $order->order_number;
+        $notes = $order->customer_notes ?: 'FRAGILE - JANGAN DIBANTING';
+
+        $pdf = Pdf::loadView('shipping.label_pdf', [
+            'order'          => $order,
+            'recipient'      => $recipient,
+            'sender'         => $sender,
+            'courier'        => $courier,
+            'trackingNumber' => $trackingNumber,
+            'notes'          => $notes,
+            'shop'           => $shop,
+            'items'          => $order->items,
+        ])->setPaper('a6', 'portrait');
+
+        return $pdf->stream("Label-Resi-{$order->order_number}.pdf");
+    }
+}

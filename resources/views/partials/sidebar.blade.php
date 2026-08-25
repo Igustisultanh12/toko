@@ -32,6 +32,18 @@
         <span>Dashboard</span>
     </a>
 
+    {{-- PESANAN ONLINE (NOTIFIKASI REALTIME) --}}
+    <a href="{{ route('admin.orders.index') }}" 
+       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.orders.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+        </div>
+        <span class="flex-1">Pesanan Online</span>
+        <span id="sidebarOrderBadge" class="bg-rose-500 text-white px-2 py-0.5 rounded-full text-[9px] font-black hidden animate-pulse">0</span>
+    </a>
+
     {{-- MANAJEMEN PRODUK --}}
     <a href="{{ route('admin.products.index') }}" 
        class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">

@@ -113,6 +113,12 @@
                             <span>Dashboard Admin</span>
                         </a>
                     @endif
+
+                    <a href="{{ route('admin.orders.index') }}" 
+                       class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-emerald-50 text-[#00880F] hover:bg-emerald-100 text-[11px] font-black uppercase tracking-wider rounded-xl transition border border-emerald-200/60 relative">
+                        <span>🛒 Pesanan Online</span>
+                        <span id="posOrderBadge" class="bg-rose-500 text-white px-2 py-0.5 rounded-full text-[9px] font-black hidden animate-pulse">0</span>
+                    </a>
                 </div>
             </div>
 
@@ -630,6 +636,57 @@
                             window.speechSynthesis.getVoices();
                         };
                     }
+
+                    // Polling notifikasi pesanan online masuk di layar kasir
+                    this.startOnlineOrderPolling();
+                },
+
+                startOnlineOrderPolling() {
+                    let lastNotified = 0;
+                    const checkOrders = async () => {
+                        try {
+                            const res = await fetch("{{ route('orders.realtime-check') }}");
+                            if (res.ok) {
+                                const data = await res.json();
+                                const badge = document.getElementById('posOrderBadge');
+                                if (data.count > 0) {
+                                    if (badge) {
+                                        badge.innerText = data.count;
+                                        badge.classList.remove('hidden');
+                                    }
+                                    if (data.count > lastNotified) {
+                                        lastNotified = data.count;
+                                        if (data.latest_order) {
+                                            Swal.fire({
+                                                title: '🚨 PESANAN ONLINE BARU!',
+                                                html: `<div style="text-align:left; font-size:12px; line-height:1.6; margin-top:6px;">
+                                                            <p><b>No Pesanan:</b> <code style="color:#00AA13; font-weight:bold;">${data.latest_order.order_number}</code></p>
+                                                            <p><b>Nama:</b> ${data.latest_order.customer_name}</p>
+                                                            <p><b>Total:</b> <b style="color:#00AA13;">${data.latest_order.formatted_total}</b> (QRIS)</p>
+                                                            <p><b>Ekspedisi:</b> ${data.latest_order.courier}</p>
+                                                       </div>`,
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#00AA13',
+                                                cancelButtonColor: '#6B7280',
+                                                confirmButtonText: 'Buka Pesanan',
+                                                cancelButtonText: 'Tutup'
+                                            }).then((res) => {
+                                                if (res.isConfirmed) {
+                                                    window.location.href = "{{ route('admin.orders.index') }}?status=unconfirmed";
+                                                }
+                                            });
+                                        }
+                                    }
+                                } else {
+                                    if (badge) badge.classList.add('hidden');
+                                    lastNotified = 0;
+                                }
+                            }
+                        } catch(e) {}
+                    };
+                    checkOrders();
+                    setInterval(checkOrders, 6000);
                 },
 
                 updateTime() { 

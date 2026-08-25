@@ -61,6 +61,42 @@ class DokuService
     }
 
     /**
+     * GENERATE QRIS UNTUK PESANAN ONLINE PUBLIK
+     */
+    public function generateOrderQris($order)
+    {
+        $config = $this->getConfig();
+        $targetPath = '/checkout/v1/payment'; 
+        
+        $body = [
+            'order' => [
+                'amount' => (int) $order->total_amount,
+                'invoice_number' => $order->order_number,
+                'callback_url' => route('order.receipt', $order->order_number),
+            ],
+            'payment' => [
+                'payment_due_date' => 60, // 60 menit untuk pesanan online
+                'payment_method_types' => ['QRIS'], 
+            ],
+            'customer' => [
+                'id'    => 'ONLINE-' . substr(preg_replace('/[^0-9]/', '', $order->customer_phone), -8),
+                'name'  => $order->customer_name,
+                'email' => 'customer@sultanweb.id',
+                'phone' => $order->customer_phone,
+            ]
+        ];
+
+        $response = $this->executeRequest($targetPath, $body, $config);
+
+        if (isset($response['response']['payment']['url'])) {
+            return $response['response']['payment']['url'];
+        }
+
+        Log::error('DOKU Order API Error: ' . json_encode($response));
+        return null;
+    }
+
+    /**
      * EKSEKUSI REQUEST (Protokol Legacy HMAC)
      */
     private function executeRequest($targetPath, $body, $config)

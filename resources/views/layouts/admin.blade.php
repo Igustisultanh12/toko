@@ -180,6 +180,67 @@
                     confirmButtonColor: '#EE2737'
                 });
             @endif
+
+            // REALTIME POLLING NOTIFIKASI PESANAN ONLINE BARU (SETIAP 6 DETIK)
+            let lastNotifiedOrderCount = 0;
+            const audioChime = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+
+            async function checkNewOnlineOrders() {
+                try {
+                    const res = await fetch("{{ route('orders.realtime-check') }}");
+                    if (res.ok) {
+                        const data = await res.json();
+                        const badge = document.getElementById('sidebarOrderBadge');
+                        
+                        if (data.count > 0) {
+                            if (badge) {
+                                badge.innerText = data.count;
+                                badge.classList.remove('hidden');
+                            }
+
+                            // Jika ada pesanan baru yang belum pernah diberitahukan
+                            if (data.count > lastNotifiedOrderCount) {
+                                lastNotifiedOrderCount = data.count;
+                                try { audioChime.play(); } catch(e){}
+
+                                if (data.latest_order) {
+                                    Swal.fire({
+                                        title: '🛒 PESANAN ONLINE MASUK!',
+                                        html: `<div style="text-align:left; font-size:12px; line-height:1.6; margin-top:6px;">
+                                                    <p><b>No Pesanan:</b> <code style="color:#00AA13; font-weight:bold;">${data.latest_order.order_number}</code></p>
+                                                    <p><b>Nama Pembeli:</b> ${data.latest_order.customer_name}</p>
+                                                    <p><b>Total:</b> <b style="color:#00AA13;">${data.latest_order.formatted_total}</b> (QRIS LUNAS)</p>
+                                                    <p><b>Kurir:</b> ${data.latest_order.courier}</p>
+                                                    <p style="color:#718096; font-size:11px;">Status: Menunggu Konfirmasi Toko</p>
+                                               </div>`,
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#00AA13',
+                                        cancelButtonColor: '#6B7280',
+                                        confirmButtonText: 'Buka & Konfirmasi',
+                                        cancelButtonText: 'Nanti'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = "{{ route('admin.orders.index') }}?status=unconfirmed";
+                                        }
+                                    });
+                                }
+                            }
+                        } else {
+                            if (badge) {
+                                badge.classList.add('hidden');
+                            }
+                            lastNotifiedOrderCount = 0;
+                        }
+                    }
+                } catch (err) {
+                    console.log('Error checking online orders:', err);
+                }
+            }
+
+            // Jalankan pertama kali dan polling berkala
+            checkNewOnlineOrders();
+            setInterval(checkNewOnlineOrders, 6000);
         });
     </script>
 </body>
