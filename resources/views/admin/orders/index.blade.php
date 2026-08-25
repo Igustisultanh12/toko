@@ -231,11 +231,15 @@
     {{-- ======================================================== --}}
     {{-- MODAL DETAIL & KELOLA PROSES PESANAN LENGKAP --}}
     {{-- ======================================================== --}}
-    <div x-show="isDetailModalOpen" class="fixed inset-0 bg-indigo-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto" x-cloak x-transition>
-        <div class="bg-white rounded-[3rem] p-6 sm:p-8 max-w-3xl w-full shadow-2xl space-y-6 my-8 border border-gray-100 relative">
+    <div x-show="isDetailModalOpen" 
+         class="fixed inset-0 z-50 overflow-y-auto bg-indigo-950/80 backdrop-blur-md p-4 sm:p-6" 
+         x-cloak x-transition>
+        <div class="min-h-full flex items-start sm:items-center justify-center py-6">
+            <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 max-w-3xl w-full shadow-2xl space-y-6 border border-gray-100 relative"
+                 @click.outside="isDetailModalOpen = false">
             
-            {{-- HEADER MODAL --}}
-            <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                {{-- HEADER MODAL --}}
+                <div class="flex justify-between items-start border-b border-gray-100 pb-4">
                 <div>
                     <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-[10px] font-black uppercase tracking-wider border border-indigo-200 inline-block mb-1">
                         Detail & Kelola Proses Pesanan
@@ -477,6 +481,7 @@
                 </button>
             </div>
 
+            </div>
         </div>
     </div>
 
