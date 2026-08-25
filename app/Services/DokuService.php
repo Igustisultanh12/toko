@@ -141,29 +141,32 @@ class DokuService
             return null;
         }
 
+        $clientId  = trim($config['client_id']);
+        $secretKey = trim($config['secret_key']);
+
         $requestId = (string) Str::uuid();
         $timestamp = gmdate("Y-m-d\TH:i:s\Z");
 
         $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
         $digest = base64_encode(hash('sha256', $jsonBody, true));
 
-        $signatureString = "Client-Id:" . $config['client_id'] . "\n" .
+        $signatureString = "Client-Id:" . $clientId . "\n" .
                            "Request-Id:" . $requestId . "\n" .
                            "Request-Timestamp:" . $timestamp . "\n" .
                            "Request-Target:" . $targetPath . "\n" .
                            "Digest:" . $digest;
 
-        $signature = base64_encode(hash_hmac('sha256', $signatureString, $config['secret_key'], true));
+        $signature = base64_encode(hash_hmac('sha256', $signatureString, $secretKey, true));
 
         try {
             $fullUrl = $config['base_url'] . $targetPath;
             $response = Http::timeout(20)->withHeaders([
-                'Client-Id'         => $config['client_id'],
+                'Client-Id'         => $clientId,
                 'Request-Id'        => $requestId,
                 'Request-Timestamp' => $timestamp,
                 'Signature'         => "HMACSHA256=" . $signature,
                 'Content-Type'      => 'application/json'
-            ])->post($fullUrl, $body);
+            ])->withBody($jsonBody, 'application/json')->post($fullUrl);
 
             $result = $response->json();
             Log::info("DOKU Request to {$fullUrl} (HTTP {$response->status()}):", [
