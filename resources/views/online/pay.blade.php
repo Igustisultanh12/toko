@@ -3,7 +3,7 @@
 @section('title', 'Pembayaran QRIS Pesanan ' . $order->order_number)
 
 @section('content')
-<div x-data="qrisPayment('{{ $order->order_number }}')" class="max-w-xl mx-auto px-4 py-8 space-y-6">
+<div x-data="qrisPayment('{{ $order->order_number }}', @json($order->qris_url))" class="max-w-xl mx-auto px-4 py-8 space-y-6">
 
     {{-- KARTU PEMBAYARAN QRIS RESMI (PERSIS KASIR POS) --}}
     <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 border border-gray-100 shadow-xl text-center space-y-6">
@@ -26,14 +26,27 @@
 
         {{-- FRAME QRIS DINAMIS DOKU (PERSIS FRAME DI POS KASIR) --}}
         <div class="bg-gray-50 rounded-[2rem] overflow-hidden border-2 border-gray-100 shadow-inner w-full min-h-[500px] flex items-center justify-center relative">
-            @if(!empty($order->qris_url))
-                <iframe src="{{ $order->qris_url }}" class="w-full h-[520px] border-0 rounded-[2rem]"></iframe>
-            @else
+            <template x-if="qrisUrl">
+                <iframe :src="qrisUrl" class="w-full h-[520px] border-0 rounded-[2rem]"></iframe>
+            </template>
+            
+            <template x-if="!qrisUrl && !loadError">
                 <div class="p-8 text-center space-y-3">
                     <div class="animate-spin h-10 w-10 border-4 border-[#00AA13] border-t-transparent rounded-full mx-auto"></div>
                     <p class="font-black text-gray-500 text-xs uppercase tracking-wider">Menyiapkan QRIS Resmi DOKU...</p>
                 </div>
-            @endif
+            </template>
+
+            <template x-if="!qrisUrl && loadError">
+                <div class="p-8 text-center space-y-4 max-w-sm">
+                    <div class="text-3xl">⚠️</div>
+                    <p class="font-black text-gray-800 text-sm">Gagal Menghubungi Server QRIS</p>
+                    <p class="text-xs text-gray-500 font-medium" x-text="errorMessage"></p>
+                    <button @click="fetchQris()" class="px-6 py-2.5 bg-[#00AA13] hover:bg-[#00880F] text-white rounded-xl font-black text-xs uppercase tracking-wider shadow">
+                        🔄 Coba Lagi
+                    </button>
+                </div>
+            </template>
         </div>
 
         {{-- COUNTDOWN TIMER --}}
@@ -72,14 +85,22 @@
 </div>
 
 <script>
-function qrisPayment(orderNumber) {
+function qrisPayment(orderNumber, initialQrisUrl) {
     return {
+        qrisUrl: initialQrisUrl || null,
+        loadError: false,
+        errorMessage: '',
         timeLeft: 900, // 15 menit
         countdownText: '15:00',
         checkInterval: null,
         timerInterval: null,
 
         init() {
+            // Jika QRIS URL belum tersedia, segera ambil dari backend
+            if (!this.qrisUrl) {
+                this.fetchQris();
+            }
+
             // Jalankan hitung mundur 15 menit
             this.timerInterval = setInterval(() => {
                 this.timeLeft--;
@@ -122,6 +143,24 @@ function qrisPayment(orderNumber) {
                     console.log('Error checking payment status:', e);
                 }
             }, 3000);
+        },
+
+        async fetchQris() {
+            this.loadError = false;
+            this.errorMessage = '';
+            try {
+                const res = await fetch(`/order/get-qris/${orderNumber}`);
+                const data = await res.json();
+                if (res.ok && data.success && data.qris_url) {
+                    this.qrisUrl = data.qris_url;
+                } else {
+                    this.loadError = true;
+                    this.errorMessage = data.message || 'Gagal memuat QRIS DOKU.';
+                }
+            } catch (e) {
+                this.loadError = true;
+                this.errorMessage = 'Koneksi ke gateway DOKU terputus. Silakan coba lagi.';
+            }
         }
     }
 }

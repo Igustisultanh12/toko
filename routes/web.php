@@ -28,6 +28,7 @@ Route::get('/toko', [OnlineOrderController::class, 'index'])->name('order.storef
 Route::get('/pesan-online', [OnlineOrderController::class, 'index'])->name('order.online');
 Route::post('/order/checkout', [OnlineOrderController::class, 'store'])->name('order.checkout');
 Route::get('/order/pay/{order_number}', [OnlineOrderController::class, 'pay'])->name('order.pay');
+Route::get('/order/get-qris/{order_number}', [OnlineOrderController::class, 'getQris'])->name('order.getQris');
 Route::get('/order/check-status/{order_number}', [OnlineOrderController::class, 'checkStatus'])->name('order.checkStatus');
 Route::post('/order/simulate-pay/{order_number}', [OnlineOrderController::class, 'simulatePay'])->name('order.simulatePay');
 Route::get('/order/receipt/{order_number}', [OnlineOrderController::class, 'receipt'])->name('order.receipt');

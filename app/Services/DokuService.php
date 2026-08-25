@@ -68,21 +68,25 @@ class DokuService
         $config = $this->getConfig();
         $targetPath = '/checkout/v1/payment'; 
         
+        $customerName = !empty($order->customer_name) ? preg_replace('/[^A-Za-z0-9\s]/', '', $order->customer_name) : 'Pelanggan Online';
+        if (trim($customerName) === '') {
+            $customerName = 'Pelanggan Online';
+        }
+
         $body = [
             'order' => [
-                'amount' => (int) $order->total_amount,
+                'amount' => (int) round($order->total_amount),
                 'invoice_number' => $order->order_number,
                 'callback_url' => route('order.receipt', $order->order_number),
             ],
             'payment' => [
-                'payment_due_date' => 60, // 60 menit untuk pesanan online
+                'payment_due_date' => 60, // 60 menit
                 'payment_method_types' => ['QRIS'], 
             ],
             'customer' => [
-                'id'    => 'ONLINE-' . substr(preg_replace('/[^0-9]/', '', $order->customer_phone), -8),
-                'name'  => $order->customer_name,
-                'email' => 'customer@sultanweb.id',
-                'phone' => $order->customer_phone,
+                'id'    => 'CUST-ONLINE-' . $order->id,
+                'name'  => substr($customerName, 0, 50),
+                'email' => 'admin@sultanweb.id',
             ]
         ];
 

@@ -166,6 +166,33 @@ class OnlineOrderController extends Controller
     }
 
     /**
+     * AMBIL ATAU GENERATE QRIS URL SECARA AJAX
+     */
+    public function getQris($order_number)
+    {
+        $order = Order::where('order_number', $order_number)->first();
+        if (!$order) {
+            return response()->json(['success' => false, 'message' => 'Pesanan tidak ditemukan.'], 404);
+        }
+
+        if (!empty($order->qris_url)) {
+            return response()->json(['success' => true, 'qris_url' => $order->qris_url]);
+        }
+
+        try {
+            $qrisUrl = $this->dokuService->generateOrderQris($order);
+            if ($qrisUrl) {
+                $order->update(['qris_url' => $qrisUrl]);
+                return response()->json(['success' => true, 'qris_url' => $qrisUrl]);
+            }
+        } catch (\Exception $e) {
+            Log::error("DOKU getQris API Error: " . $e->getMessage());
+        }
+
+        return response()->json(['success' => false, 'message' => 'Gagal membuat QRIS DOKU. Silakan coba beberapa saat lagi.'], 500);
+    }
+
+    /**
      * CEK STATUS PEMBAYARAN (AJAX POLLING DARI BROWSER PEMBELI)
      */
     public function checkStatus($order_number)
