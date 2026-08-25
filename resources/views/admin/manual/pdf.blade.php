@@ -10,8 +10,8 @@
 
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 9.5pt;
-            line-height: 1.55;
+            font-size: 9.2pt;
+            line-height: 1.5;
             color: #2D3748;
             margin: 0;
             padding: 0;
@@ -29,7 +29,7 @@
         .cover-container {
             height: 100%;
             text-align: center;
-            padding-top: 40px;
+            padding-top: 25px;
         }
 
         .cover-badge {
@@ -37,31 +37,31 @@
             color: #00880F;
             font-weight: 800;
             font-size: 8.5pt;
-            padding: 6px 18px;
+            padding: 5px 18px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1.5px solid #A8DAB5;
         }
 
         .cover-title {
-            font-size: 24pt;
+            font-size: 23pt;
             font-weight: 900;
             color: #1A202C;
             text-transform: uppercase;
             letter-spacing: -0.5px;
-            line-height: 1.25;
-            margin: 0 0 12px 0;
+            line-height: 1.2;
+            margin: 0 0 10px 0;
         }
 
         .cover-subtitle {
-            font-size: 13pt;
+            font-size: 12.5pt;
             font-weight: 700;
             color: #00AA13;
-            margin: 0 0 25px 0;
-            line-height: 1.4;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -70,16 +70,16 @@
             width: 120px;
             height: 4px;
             background-color: #00AA13;
-            margin: 15px auto 25px auto;
+            margin: 12px auto 20px auto;
             border-radius: 2px;
         }
 
         .cover-desc {
-            font-size: 9.5pt;
+            font-size: 9pt;
             color: #4A5568;
             max-width: 520px;
-            margin: 0 auto 35px auto;
-            line-height: 1.6;
+            margin: 0 auto 25px auto;
+            line-height: 1.5;
             text-align: center;
         }
 
@@ -87,7 +87,7 @@
             background-color: #F7FAFC;
             border: 1.5px solid #E2E8F0;
             border-radius: 12px;
-            padding: 18px;
+            padding: 15px;
             text-align: left;
             margin: 0 auto;
             width: 90%;
@@ -96,11 +96,11 @@
         .cover-meta-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 8.5pt;
+            font-size: 8.2pt;
         }
 
         .cover-meta-table td {
-            padding: 4px 6px;
+            padding: 3.5px 6px;
             vertical-align: top;
         }
 
@@ -116,8 +116,8 @@
         }
 
         .cover-footer {
-            margin-top: 40px;
-            font-size: 8pt;
+            margin-top: 30px;
+            font-size: 7.5pt;
             color: #718096;
             letter-spacing: 1.5px;
             font-weight: bold;
@@ -126,46 +126,46 @@
 
         /* HEADINGS */
         h1.chapter-title {
-            font-size: 15pt;
+            font-size: 14.5pt;
             font-weight: 900;
             color: #00661A;
             border-bottom: 2.5px solid #00AA13;
-            padding-bottom: 6px;
+            padding-bottom: 5px;
             margin-top: 0;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .chapter-num {
-            font-size: 10pt;
+            font-size: 9.5pt;
             font-weight: 800;
             color: #00AA13;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         h2.section-title {
-            font-size: 11.5pt;
+            font-size: 11pt;
             font-weight: 800;
             color: #2D3748;
-            margin-top: 16px;
-            margin-bottom: 8px;
+            margin-top: 14px;
+            margin-bottom: 7px;
             border-left: 4px solid #00AA13;
             padding-left: 8px;
         }
 
         h3.subsection-title {
-            font-size: 10pt;
+            font-size: 9.8pt;
             font-weight: 700;
             color: #4A5568;
-            margin-top: 12px;
-            margin-bottom: 6px;
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
 
         p {
-            margin: 0 0 8px 0;
+            margin: 0 0 7px 0;
             text-align: justify;
         }
 
@@ -173,8 +173,8 @@
         table.doc-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 12px 0 16px 0;
-            font-size: 8pt;
+            margin: 10px 0 14px 0;
+            font-size: 7.8pt;
         }
 
         table.doc-table th {
@@ -182,14 +182,14 @@
             color: #FFFFFF;
             font-weight: bold;
             text-transform: uppercase;
-            padding: 7px 9px;
+            padding: 6px 8px;
             border: 1px solid #004D13;
             text-align: left;
             letter-spacing: 0.5px;
         }
 
         table.doc-table td {
-            padding: 6px 9px;
+            padding: 5px 8px;
             border: 1px solid #CBD5E0;
             vertical-align: top;
         }
@@ -201,9 +201,9 @@
         /* CALLOUT BOXES */
         .callout {
             border-radius: 8px;
-            padding: 10px 14px;
-            margin: 12px 0;
-            font-size: 8.5pt;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 8.2pt;
             page-break-inside: avoid;
         }
 
@@ -234,9 +234,9 @@
         .callout-title {
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 8pt;
+            font-size: 7.8pt;
             letter-spacing: 0.5px;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             display: block;
         }
 
@@ -245,55 +245,47 @@
             background-color: #FFFFFF;
             border: 1px solid #E2E8F0;
             border-radius: 8px;
-            padding: 10px 12px;
-            margin-bottom: 10px;
+            padding: 8px 10px;
+            margin-bottom: 8px;
             page-break-inside: avoid;
         }
 
         .step-header {
             font-weight: bold;
-            font-size: 9pt;
+            font-size: 8.8pt;
             color: #1A202C;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .step-num {
             background-color: #00AA13;
             color: #FFFFFF;
-            font-size: 7.5pt;
+            font-size: 7.2pt;
             font-weight: bold;
-            padding: 2px 6px;
+            padding: 1.5px 5px;
             border-radius: 4px;
-            margin-right: 5px;
+            margin-right: 4px;
             display: inline-block;
         }
 
-        /* UI WIREFRAME SIMULATOR */
-        .wireframe-box {
-            background-color: #F8FAFC;
-            border: 1.5px solid #CBD5E0;
-            border-radius: 8px;
+        /* SVG DIAGRAM CONTAINER */
+        .diagram-container {
+            text-align: center;
+            margin: 12px 0 14px 0;
+            background-color: #FAFAFA;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
             padding: 10px;
-            margin: 12px 0 16px 0;
-            font-family: monospace;
-            font-size: 7.5pt;
             page-break-inside: avoid;
         }
 
-        .wireframe-header {
-            background-color: #EDF2F7;
-            border-bottom: 1px solid #CBD5E0;
-            padding: 4px 8px;
+        .diagram-caption {
+            font-size: 7.5pt;
             font-weight: bold;
             color: #4A5568;
-            margin: -10px -10px 8px -10px;
-            border-top-left-radius: 7px;
-            border-top-right-radius: 7px;
-        }
-
-        .wireframe-content {
-            color: #2D3748;
-            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
         }
 
         /* CODE & SHORTCUT BADGES */
@@ -303,7 +295,7 @@
             color: #C53030;
             padding: 1px 4px;
             border-radius: 3px;
-            font-size: 8pt;
+            font-size: 7.8pt;
             font-weight: bold;
         }
 
@@ -311,8 +303,8 @@
             background-color: #2D3748;
             color: #FFFFFF;
             font-family: monospace;
-            font-size: 7.5pt;
-            padding: 2px 5px;
+            font-size: 7.2pt;
+            padding: 1.5px 4.5px;
             border-radius: 3px;
             font-weight: bold;
             display: inline-block;
@@ -320,8 +312,8 @@
 
         /* TOC */
         .toc-chapter-row {
-            margin-bottom: 6px;
-            font-size: 8.5pt;
+            margin-bottom: 5px;
+            font-size: 8.2pt;
         }
 
         .toc-chapter-title {
@@ -331,19 +323,19 @@
         }
 
         .toc-sub-row {
-            padding-left: 18px;
+            padding-left: 16px;
             color: #4A5568;
-            font-size: 8pt;
-            margin-top: 2px;
+            font-size: 7.8pt;
+            margin-top: 1.5px;
         }
 
         ul, ol {
-            margin: 0 0 10px 0;
-            padding-left: 20px;
+            margin: 0 0 8px 0;
+            padding-left: 18px;
         }
 
         li {
-            margin-bottom: 3px;
+            margin-bottom: 2.5px;
         }
     </style>
 </head>
@@ -379,6 +371,14 @@
         <div class="cover-subtitle">{{ strtoupper($shop['app_name'] ?? 'SIKANDA POS') }} &bull; {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</div>
         
         <div class="cover-divider"></div>
+
+        {{-- VECTOR LOGO / BADGE --}}
+        <div style="margin: 10px auto 15px auto;">
+            <svg width="80" height="80" viewBox="0 0 100 100">
+                <rect x="5" y="5" width="90" height="90" rx="25" fill="#00AA13"/>
+                <path d="M30 50 L45 65 L70 35" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+        </div>
         
         <p class="cover-desc">
             Buku panduan operasional komprehensif yang memuat seluruh tata kelola transaksi kasir Point of Sale (POS), penerimaan pembayaran digital Dynamic QRIS DOKU, pencatatan arus kas otomatis, manajemen pergudangan, sertifikasi Tanda Tangan Elektronik (TTE) berlandaskan UU ITE No. 11/2008, serta arsitektur pemeliharaan server terpusat.
@@ -511,7 +511,7 @@
     <div class="toc-chapter-row" style="margin-top: 10px;">
         <div class="toc-chapter-title">BAB 2: MANAJEMEN OTENTIKASI & KEAMANAN AKUN</div>
         <div class="toc-sub-row">2.1 Akses Masuk Sistem (Halaman Login /login) & Tata Letak Antarmuka ............................ Halaman 11</div>
-        <div class="toc-sub-row">2.2 Simulasi Wireframe Antarmuka Login Blade ................................................................... Halaman 12</div>
+        <div class="toc-sub-row">2.2 Simulasi Gambar Antarmuka Login Blade ................................................................... Halaman 12</div>
         <div class="toc-sub-row">2.3 Proteksi Formulir CSRF, Enkripsi Bcrypt & Proteksi Brute Force ..................................... Halaman 13</div>
         <div class="toc-sub-row">2.4 Manajemen Profil Mandiri & Prosedur Pergantian Kata Sandi ......................................... Halaman 14</div>
         <div class="toc-sub-row">2.5 Prosedur Keluar Aman (Logout) & Keamanan Sesi Kasir .................................................... Halaman 15</div>
@@ -520,7 +520,7 @@
     <div class="toc-chapter-row" style="margin-top: 10px;">
         <div class="toc-chapter-title">BAB 3: PUSAT KOMANDO & DASHBOARD ADMINISTRATOR</div>
         <div class="toc-sub-row">3.1 Antarmuka Panel Kontrol Administrator (/dashboard) .................................................... Halaman 16</div>
-        <div class="toc-sub-row">3.2 Simulasi Wireframe Dashboard & Struktur Banner Utama ................................................ Halaman 17</div>
+        <div class="toc-sub-row">3.2 Simulasi Gambar Dashboard & Struktur Banner Utama ................................................ Halaman 17</div>
         <div class="toc-sub-row">3.3 Analitik Indikator Kinerja Utama (KPI) Finansial Real-Time ............................................. Halaman 18</div>
         <div class="toc-sub-row">3.4 Visualisasi Grafik Tren Arus Kas & Analisis Penjualan 7 Hari ........................................... Halaman 19</div>
         <div class="toc-sub-row">3.5 Struktur Navigasi Sidebar Responsif & Status Operasional Toko ..................................... Halaman 20</div>
@@ -529,7 +529,7 @@
     <div class="toc-chapter-row" style="margin-top: 10px;">
         <div class="toc-chapter-title">BAB 4: MANAJEMEN INVENTARIS PRODUK & PERGUDANGAN</div>
         <div class="toc-sub-row">4.1 Katalog Master Produk (/admin/products) & Indikator Ketersediaan .............................. Halaman 21</div>
-        <div class="toc-sub-row">4.2 Simulasi Wireframe Katalog Produk & Pencarian Cepat ................................................... Halaman 22</div>
+        <div class="toc-sub-row">4.2 Simulasi Gambar Katalog Produk & Pencarian Cepat ................................................... Halaman 22</div>
         <div class="toc-sub-row">4.3 Formulir Tambah Produk Baru (/admin/products/create) & Barcode Generator ................. Halaman 23</div>
         <div class="toc-sub-row">4.4 Struktur Penetapan Harga Jual Kasir, Diskon Promo (%) & Satuan ................................... Halaman 24</div>
         <div class="toc-sub-row">4.5 Ambang Batas Stok Menipis & Peringatan Stok Habis (Out of Stock) ................................ Halaman 25</div>
@@ -548,7 +548,7 @@
     <div class="toc-chapter-row">
         <div class="toc-chapter-title">BAB 5: OPERASIONAL KASIR POINT OF SALE (POS) MODERN</div>
         <div class="toc-sub-row">5.1 Tata Letak Antarmuka Kasir Layar Sentuh & PC (/cashier/pos) ........................................ Halaman 29</div>
-        <div class="toc-sub-row">5.2 Simulasi Wireframe Layar Kasir POS Split-Pane ............................................................. Halaman 30</div>
+        <div class="toc-sub-row">5.2 Simulasi Gambar Layar Kasir POS Split-Pane ............................................................. Halaman 30</div>
         <div class="toc-sub-row">5.3 Navigasi Kasir & Tombol Kembali ke Dashboard Admin ................................................. Halaman 31</div>
         <div class="toc-sub-row">5.4 Metode Input Barang: Scanner Barcode, Pencarian Nama & Grid Cepat ........................... Halaman 32</div>
         <div class="toc-sub-row">5.5 Manajemen Keranjang Belanja, Penyesuaian Qty & Pembatalan Item ............................... Halaman 33</div>
@@ -845,35 +845,44 @@
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 12: BAB 2.2 --}}
+    {{-- HALAMAN 12: BAB 2.2 + GAMBAR BLADE LOGIN --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 02</div>
-    <h1 class="chapter-title">SIMULASI ANTARMUKA BLADE HALAMAN LOGIN</h1>
+    <h1 class="chapter-title">GAMBAR TATA LETAK ANTARMUKA LOGIN BLADE</h1>
 
-    <h2 class="section-title">2.2 Anatomi Antarmuka Login & Simulasi Wireframe Blade</h2>
+    <h2 class="section-title">2.2 Visualisasi Antarmuka Halaman Login (auth/login.blade.php)</h2>
     <p>
-        Halaman login dibangun menggunakan template Blade terisolasi (<code>resources/views/auth/login.blade.php</code>) dengan tata letak minimalis terpusat:
+        Berikut adalah visualisasi antarmuka formulir otentikasi masuk pengguna:
     </p>
 
-    <div class="wireframe-box">
-        <div class="wireframe-header">STRUKTUR WIREFRAME BLADE: resources/views/auth/login.blade.php</div>
-        <div class="wireframe-content">
-            =================================================================================<br>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[ LOGO TOKO RESMI ]<br>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>SISTEM KASIR POINT OF SALE (POS)</b><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</i><br>
-            =================================================================================<br>
-            | &nbsp;EMAIL PENGGUNA : &nbsp;[ kasir1@toko.site &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ] |<br>
-            | &nbsp;KATA SANDI &nbsp; &nbsp; : &nbsp;[ &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ] |<br>
-            | &nbsp;[X] Ingat saya di perangkat ini &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | &nbsp;--------------------------------------------------------------------------- &nbsp;|<br>
-            | &nbsp;[ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>MASUK KE KASIR / DASHBOARD</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;] |<br>
-            =================================================================================<br>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &copy; {{ date('Y') }} I Gusti Sultan. All rights reserved.<br>
-            =================================================================================
-        </div>
+    {{-- SVG VECTOR GAMBAR LOGIN --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <!-- Background Container -->
+            <rect x="10" y="10" width="480" height="230" rx="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+            <!-- Login Card -->
+            <rect x="110" y="25" width="280" height="200" rx="14" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
+            <!-- Logo Toko Icon -->
+            <rect x="225" y="38" width="50" height="50" rx="12" fill="#00AA13"/>
+            <path d="M240 63 L248 71 L262 53" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Header Text -->
+            <text x="250" y="102" font-family="Helvetica" font-size="10" font-weight="bold" fill="#1A202C" text-anchor="middle">MASUK SISTEM KASIR POS</text>
+            <text x="250" y="114" font-family="Helvetica" font-size="7" fill="#718096" text-anchor="middle">Silakan masukkan email & kata sandi terdaftar</text>
+            <!-- Input Email -->
+            <rect x="130" y="123" width="240" height="22" rx="6" fill="#F7FAFC" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="140" y="138" font-family="Helvetica" font-size="7.5" fill="#4A5568">✉ kasir1@toko.site</text>
+            <!-- Input Password -->
+            <rect x="130" y="152" width="240" height="22" rx="6" fill="#F7FAFC" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="140" y="167" font-family="Helvetica" font-size="7.5" fill="#4A5568">🔒 ••••••••••••</text>
+            <!-- Login Button -->
+            <rect x="130" y="182" width="240" height="26" rx="8" fill="#00AA13"/>
+            <text x="250" y="199" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">MASUK KE KASIR / DASHBOARD</text>
+            <!-- Footer -->
+            <text x="250" y="218" font-family="Helvetica" font-size="6.5" fill="#A0AEC0" text-anchor="middle">© I Gusti Sultan. All rights reserved.</text>
+        </svg>
+        <div class="diagram-caption">Gambar 2.1: Antarmuka Formulir Otentikasi Pengguna (resources/views/auth/login.blade.php)</div>
     </div>
 
     <p>
@@ -1015,41 +1024,66 @@
     </ol>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 17: BAB 3.2 --}}
+    {{-- HALAMAN 17: BAB 3.2 + GAMBAR DASHBOARD --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 03</div>
-    <h1 class="chapter-title">SIMULASI WIREFRAME DASHBOARD ADMINISTRATOR</h1>
+    <h1 class="chapter-title">GAMBAR ANTARMUKA DASHBOARD ADMINISTRATOR</h1>
 
-    <h2 class="section-title">3.2 Simulasi Wireframe Dashboard & Struktur Banner Utama</h2>
+    <h2 class="section-title">3.2 Visualisasi Dashboard & Struktur Banner Utama (admin/dashboard.blade.php)</h2>
     <p>
-        Struktur tata letak dashboard dirancang secara proporsional menggunakan grid CSS Tailwind:
+        Berikut adalah visualisasi panel kontrol dashboard utama administrator:
     </p>
 
-    <div class="wireframe-box">
-        <div class="wireframe-header">STRUKTUR WIREFRAME BLADE: resources/views/admin/dashboard.blade.php</div>
-        <div class="wireframe-content">
-            +---------------------------------------------------------------------------------+<br>
-            | <b>HEADER DASHBOARD:</b> [KOTAK HIJAU] Dashboard Ringkasan &bull; {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }} |<br>
-            | [● TOKO AKTIF] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[🛒 KASIR POS] &nbsp; &nbsp;[👤 Admin (ADMIN)] |<br>
-            +---------------------------------------------------------------------------------+<br>
-            | <b>BANNER UTAMA OMSET HARI INI (GRADIENT HIJAU TUA KE MUDA):</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | &nbsp;⚡ Real-time Hari Ini &bull; {{ date('d F Y') }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | &nbsp;TOTAL PENDAPATAN TOKO : <b>Rp 1.450.000</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | &nbsp;● 18 Transaksi Sukses &bull; 42 Item Terjual &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | &nbsp;[KASIR POS] &nbsp; [+ PRODUK] &nbsp; [PENJUALAN] &nbsp; [STOK PDF] &nbsp; [KEUANGAN] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            +---------------------------------------------------------------------------------+<br>
-            | <b>BANNER DOKUMENTASI & PANDUAN PENGGUNA:</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | 📖 Buku Panduan Lengkap Sistem POS &bull; 10 Bab Komprehensif &nbsp;[Baca Online] [Unduh PDF]|<br>
-            +---------------------------------------------------------------------------------+<br>
-            | [KARTU 1: OMSET HARI INI] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| [KARTU 2: TOTAL TRANSAKSI] &nbsp; &nbsp; &nbsp; |<br>
-            | Rp 1.450.000 (Kas Masuk Tercatat) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | 18 Order (Nota Selesai) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            |-----------------------------------------------+---------------------------------|<br>
-            | [KARTU 3: ITEM TERJUAL] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| [KARTU 4: STATUS OPERASIONAL] &nbsp; |<br>
-            | 42 Pcs (Volume Barang Keluar) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | ● TOKO AKTIF & SIAP KASIR &nbsp; &nbsp; &nbsp; |<br>
-            +---------------------------------------------------------------------------------+
-        </div>
+    {{-- SVG VECTOR GAMBAR DASHBOARD --}}
+    <div class="diagram-container">
+        <svg width="460" height="225" viewBox="0 0 500 245">
+            <!-- Background Container -->
+            <rect x="5" y="5" width="490" height="235" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Top App Bar -->
+            <rect x="15" y="15" width="470" height="30" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="25" y="34" font-family="Helvetica" font-size="9" font-weight="bold" fill="#1A202C">📊 DASHBOARD UTAMA • {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
+            <rect x="375" y="20" width="100" height="20" rx="6" fill="#00AA13"/>
+            <text x="425" y="33" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🛒 KASIR POS (B)</text>
+            <!-- Banner Omset Gojek Pocket -->
+            <rect x="15" y="52" width="470" height="65" rx="12" fill="#00661A"/>
+            <text x="30" y="70" font-family="Helvetica" font-size="8" font-weight="bold" fill="#A8DAB5">⚡ REAL-TIME HARI INI • {{ date('d F Y') }}</text>
+            <text x="30" y="92" font-family="Helvetica" font-size="16" font-weight="bold" fill="#FFFFFF">Rp 1.450.000</text>
+            <text x="30" y="107" font-family="Helvetica" font-size="7.5" fill="#E2E8F0">18 Transaksi Sukses • 42 Item Terjual • Status: Normal</text>
+            <!-- Quick Action Buttons on Banner -->
+            <rect x="360" y="65" width="55" height="42" rx="8" fill="#00880F"/>
+            <text x="387" y="90" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+ PRODUK</text>
+            <rect x="422" y="65" width="55" height="42" rx="8" fill="#00880F"/>
+            <text x="449" y="90" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">LAPORAN</text>
+            <!-- 4 KPI Cards -->
+            <rect x="15" y="125" width="112" height="50" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="25" y="140" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">OMSET HARI INI</text>
+            <text x="25" y="158" font-family="Helvetica" font-size="10" font-weight="bold" fill="#00AA13">Rp 1.450.000</text>
+            
+            <rect x="134" y="125" width="112" height="50" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="144" y="140" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">TOTAL TRANSAKSI</text>
+            <text x="144" y="158" font-family="Helvetica" font-size="10" font-weight="bold" fill="#2B6CB0">18 Nota</text>
+
+            <rect x="254" y="125" width="112" height="50" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="264" y="140" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">ITEM TERJUAL</text>
+            <text x="264" y="158" font-family="Helvetica" font-size="10" font-weight="bold" fill="#D69E2E">42 Unit</text>
+
+            <rect x="373" y="125" width="112" height="50" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="383" y="140" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">STATUS TOKO</text>
+            <text x="383" y="158" font-family="Helvetica" font-size="9" font-weight="bold" fill="#38A169">● AKTIF ONLINE</text>
+            <!-- 7-Day Chart Mini Bar -->
+            <rect x="15" y="182" width="470" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="25" y="196" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#4A5568">TREN ARUS KAS 7 HARI TERAKHIR (TUNAI VS DIGITAL QRIS):</text>
+            <rect x="100" y="205" width="30" height="16" fill="#00AA13"/>
+            <rect x="150" y="202" width="30" height="19" fill="#00AA13"/>
+            <rect x="200" y="200" width="30" height="21" fill="#00AA13"/>
+            <rect x="250" y="195" width="30" height="26" fill="#00AA13"/>
+            <rect x="300" y="198" width="30" height="23" fill="#00AA13"/>
+            <rect x="350" y="192" width="30" height="29" fill="#00AA13"/>
+            <rect x="400" y="188" width="30" height="33" fill="#00AA13"/>
+        </svg>
+        <div class="diagram-caption">Gambar 3.1: Antarmuka Dashboard & KPI Analitik Real-Time (resources/views/admin/dashboard.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1231,69 +1265,129 @@
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 22: BAB 4.2 --}}
+    {{-- HALAMAN 22: BAB 4.2 + GAMBAR KATALOG PRODUK --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 04</div>
-    <h1 class="chapter-title">SIMULASI WIREFRAME KATALOG PRODUK</h1>
+    <h1 class="chapter-title">GAMBAR KATALOG PRODUK & UPDATE STOK CEPAT</h1>
 
-    <h2 class="section-title">4.2 Simulasi Wireframe Katalog Produk & Fitur Pencarian Cepat</h2>
+    <h2 class="section-title">4.2 Visualisasi Antarmuka Katalog Master Produk (admin/products/index.blade.php)</h2>
     <p>
-        Tampilan katalog produk menyajikan daftar barang dalam tabel terstruktur dengan paginasi:
+        Berikut adalah visualisasi antarmuka manajemen produk dan kotak scanner update stok cepat:
     </p>
 
-    <div class="wireframe-box">
-        <div class="wireframe-header">STRUKTUR WIREFRAME BLADE: resources/views/admin/products/index.blade.php</div>
-        <div class="wireframe-content">
-            +---------------------------------------------------------------------------------+<br>
-            | <b>KATALOG INVENTARIS PRODUK</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[PDF STOK] [IMPOR] [+ TAMBAH] |<br>
-            |---------------------------------------------------------------------------------|<br>
-            | <b>SCAN / TAMBAH STOK CEPAT:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |<br>
-            | Scan Barcode / SKU: [ 8992753... &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;] &nbsp;Unit: [ 10 ] &nbsp;[+ TAMBAH STOK] &nbsp; &nbsp;|<br>
-            |---------------------------------------------------------------------------------|<br>
-            | [ 🔍 Cari berdasarkan nama atau kode barcode produk... &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;] |<br>
-            |---------------------------------------------------------------------------------|<br>
-            | INFORMASI PRODUK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BARCODE &nbsp; &nbsp; &nbsp; &nbsp; HARGA JUAL &nbsp; &nbsp; SISA STOK &nbsp; AKSI &nbsp; &nbsp; &nbsp;|<br>
-            | 1. Beras Premium 5kg &nbsp; &nbsp; 8991001001 &nbsp; &nbsp; Rp 75.000 &nbsp; &nbsp; &nbsp; 48 Pcs &nbsp; &nbsp; [Edit][Hapus]|<br>
-            | 2. Minyak Bimoli 2L &nbsp; &nbsp; &nbsp;8992753102 &nbsp; &nbsp; Rp 38.000 &nbsp; &nbsp; &nbsp; 12 Pcs &nbsp; &nbsp; [Edit][Hapus]|<br>
-            | 3. Gula Pasir Gulaku 1kg 8993002003 &nbsp; &nbsp; Rp 17.500 &nbsp; &nbsp; &nbsp; 4 Pcs (⚠️) [Edit][Hapus]|<br>
-            +---------------------------------------------------------------------------------+
-        </div>
+    {{-- SVG VECTOR GAMBAR PRODUK INDEX --}}
+    <div class="diagram-container">
+        <svg width="460" height="225" viewBox="0 0 500 245">
+            <!-- Background Container -->
+            <rect x="5" y="5" width="490" height="235" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Header Bar -->
+            <rect x="15" y="15" width="470" height="30" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="25" y="34" font-family="Helvetica" font-size="9" font-weight="bold" fill="#1A202C">📦 KATALOG INVENTARIS PRODUK</text>
+            <rect x="310" y="20" width="75" height="20" rx="6" fill="#EDF2F7"/>
+            <text x="347" y="33" font-family="Helvetica" font-size="7" font-weight="bold" fill="#4A5568" text-anchor="middle">📥 IMPOR EXCEL</text>
+            <rect x="395" y="20" width="80" height="20" rx="6" fill="#00AA13"/>
+            <text x="435" y="33" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+ TAMBAH BARU</text>
+            <!-- Quick Stock Update Box -->
+            <rect x="15" y="52" width="470" height="42" rx="10" fill="#E6F4EA" stroke="#A8DAB5" stroke-width="1"/>
+            <text x="25" y="67" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00661A">⚡ SCAN / TAMBAH STOK CEPAT:</text>
+            <rect x="25" y="72" width="220" height="16" rx="4" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="32" y="83" font-family="Helvetica" font-size="6.5" fill="#718096">Pindai barcode barang...</text>
+            <rect x="255" y="72" width="60" height="16" rx="4" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="285" y="83" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#1A202C" text-anchor="middle">+ 10</text>
+            <rect x="325" y="72" width="90" height="16" rx="4" fill="#00AA13"/>
+            <text x="370" y="83" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+ TAMBAH STOK</text>
+            <!-- Table Header -->
+            <rect x="15" y="102" width="470" height="20" fill="#00661A"/>
+            <text x="25" y="115" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">NAMA BARANG</text>
+            <text x="180" y="115" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">BARCODE / SKU</text>
+            <text x="280" y="115" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">HARGA JUAL</text>
+            <text x="370" y="115" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">SISA STOK</text>
+            <text x="440" y="115" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF">AKSI</text>
+            <!-- Row 1 -->
+            <rect x="15" y="122" width="470" height="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="25" y="137" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Beras Premium 5kg</text>
+            <text x="180" y="137" font-family="Helvetica" font-size="6.5" fill="#4A5568">8991001001</text>
+            <text x="280" y="137" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">Rp 75.000</text>
+            <text x="370" y="137" font-family="Helvetica" font-size="7" font-weight="bold" fill="#38A169">48 Pcs</text>
+            <text x="440" y="137" font-family="Helvetica" font-size="6.5" fill="#3182CE">Edit • Hapus</text>
+            <!-- Row 2 -->
+            <rect x="15" y="146" width="470" height="24" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="25" y="161" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Minyak Bimoli 2L</text>
+            <text x="180" y="161" font-family="Helvetica" font-size="6.5" fill="#4A5568">8992753102</text>
+            <text x="280" y="161" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">Rp 38.000</text>
+            <text x="370" y="161" font-family="Helvetica" font-size="7" font-weight="bold" fill="#38A169">12 Pcs</text>
+            <text x="440" y="161" font-family="Helvetica" font-size="6.5" fill="#3182CE">Edit • Hapus</text>
+            <!-- Row 3 Warning -->
+            <rect x="15" y="170" width="470" height="24" fill="#FFFDF0" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="25" y="185" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Gula Pasir Gulaku 1kg</text>
+            <text x="180" y="185" font-family="Helvetica" font-size="6.5" fill="#4A5568">8993002003</text>
+            <text x="280" y="185" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">Rp 17.500</text>
+            <text x="370" y="185" font-family="Helvetica" font-size="7" font-weight="bold" fill="#DD6B20">4 Pcs ⚠️</text>
+            <text x="440" y="185" font-family="Helvetica" font-size="6.5" fill="#3182CE">Edit • Hapus</text>
+            <!-- Pagination -->
+            <text x="25" y="215" font-family="Helvetica" font-size="6.5" fill="#718096">Menampilkan 1-10 dari 45 Produk</text>
+            <rect x="410" y="202" width="75" height="18" rx="4" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="447" y="214" font-family="Helvetica" font-size="6.5" fill="#4A5568" text-anchor="middle">Halaman 1 2 3 &gt;</text>
+        </svg>
+        <div class="diagram-caption">Gambar 4.1: Antarmuka Katalog Inventaris Produk & Kotak Tambah Stok (resources/views/admin/products/index.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 23: BAB 4.3 --}}
+    {{-- HALAMAN 23: BAB 4.3 + GAMBAR FORM PRODUK --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 04</div>
-    <h1 class="chapter-title">FORMULIR PENAMBAHAN PRODUK BARU</h1>
+    <h1 class="chapter-title">GAMBAR FORMULIR TAMBAH PRODUK BARU</h1>
 
-    <h2 class="section-title">4.3 Formulir Tambah Produk Baru (/admin/products/create) & Barcode Generator</h2>
+    <h2 class="section-title">4.3 Visualisasi Formulir Tambah Produk (admin/products/create.blade.php)</h2>
     <p>
-        Untuk mendaftarkan produk baru, klik tombol hijau <b>+ Tambah</b> pada katalog produk:
+        Berikut adalah tata letak visual formulir penambahan master barang baru:
     </p>
 
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">1</span> Nama Produk / Barang</div>
-        <p>Ketikkan nama resmi produk secara lengkap dan jelas (contoh: <code>Kopi Kapal Api Spesial Mix 10x24g</code>).</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">2</span> Kode Barcode / SKU</div>
-        <p>Arahkan barcode scanner fisik ke kemasan produk, atau klik tombol <b>Auto</b> untuk men-generate kode barcode acak berstandar EAN-13 (awalan <code>899...</code>).</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">3</span> Harga Jual Kasir (Rp)</div>
-        <p>Masukkan nominal harga jual eceran yang akan ditagihkan ke pelanggan di meja kasir.</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">4</span> Stok Fisik Awal & Diskon (%)</div>
-        <p>Masukkan jumlah stok fisik awal di gudang dan persentase diskon promo (jika produk sedang didiskon).</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">5</span> Keterangan / Satuan Barang</div>
-        <p>Tuliskan satuan kemasan barang (contoh: <code>Pcs</code>, <code>Botol</code>, <code>Sachet</code>, <code>Pack</code>, <code>Dus</code>).</p>
+    {{-- SVG VECTOR GAMBAR PRODUK CREATE --}}
+    <div class="diagram-container">
+        <svg width="460" height="225" viewBox="0 0 500 245">
+            <!-- Container -->
+            <rect x="5" y="5" width="490" height="235" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Form Card -->
+            <rect x="25" y="15" width="450" height="215" rx="12" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="40" y="35" font-family="Helvetica" font-size="10" font-weight="bold" fill="#1A202C">FORMULIR PENDAFTARAN PRODUK BARU</text>
+            <!-- Field 1: Nama -->
+            <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA PRODUK / BARANG (*)</text>
+            <rect x="40" y="56" width="420" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="48" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Kopi Susu Aren Botol 250ml</text>
+            <!-- Field 2: Barcode -->
+            <text x="40" y="90" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">KODE BARCODE / SKU</text>
+            <rect x="40" y="94" width="360" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="48" y="108" font-family="Helvetica" font-size="7" font-family="monospace" fill="#1A202C">8992753102941</text>
+            <rect x="405" y="94" width="55" height="20" rx="5" fill="#E6F4EA"/>
+            <text x="432" y="107" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">AUTO</text>
+            <!-- Field 3: Harga Jual -->
+            <text x="40" y="128" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">HARGA JUAL KASIR (RP) (*)</text>
+            <rect x="40" y="132" width="200" height="20" rx="5" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
+            <text x="48" y="146" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">Rp 18.000</text>
+            <!-- Field 4: Stok Awal -->
+            <text x="260" y="128" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">STOK FISIK AWAL (*)</text>
+            <rect x="260" y="132" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="268" y="146" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C">50</text>
+            <!-- Field 5: Diskon -->
+            <text x="40" y="166" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">DISKON PROMO (%)</text>
+            <rect x="40" y="170" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="48" y="184" font-family="Helvetica" font-size="7" fill="#4A5568">0</text>
+            <!-- Field 6: Satuan -->
+            <text x="260" y="166" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">KETERANGAN / SATUAN</text>
+            <rect x="260" y="170" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="268" y="184" font-family="Helvetica" font-size="7" fill="#4A5568">Botol / Pcs</text>
+            <!-- Buttons -->
+            <rect x="300" y="200" width="60" height="22" rx="6" fill="#EDF2F7"/>
+            <text x="330" y="214" font-family="Helvetica" font-size="7" font-weight="bold" fill="#4A5568" text-anchor="middle">BATAL</text>
+            <rect x="370" y="200" width="90" height="22" rx="6" fill="#00AA13"/>
+            <text x="415" y="214" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN PRODUK</text>
+        </svg>
+        <div class="diagram-caption">Gambar 4.2: Formulir Tambah Produk Baru (resources/views/admin/products/create.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1496,35 +1590,71 @@
     </ul>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 30: BAB 5.2 --}}
+    {{-- HALAMAN 30: BAB 5.2 + GAMBAR LAYAR KASIR POS --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 05</div>
-    <h1 class="chapter-title">SIMULASI WIREFRAME LAYAR KASIR POS</h1>
+    <h1 class="chapter-title">GAMBAR LAYAR KASIR POS DUA PANEL</h1>
 
-    <h2 class="section-title">5.2 Simulasi Wireframe Layar Kasir POS Split-Pane</h2>
+    <h2 class="section-title">5.2 Visualisasi Antarmuka Kasir Split-Pane (resources/views/cashier/pos.blade.php)</h2>
     <p>
-        Berikut adalah simulasi visual tata letak antarmuka kasir pada layar monitor:
+        Berikut adalah visualisasi antarmuka utama meja kasir Point of Sale:
     </p>
 
-    <div class="wireframe-box">
-        <div class="wireframe-header">STRUKTUR WIREFRAME BLADE: resources/views/cashier/pos.blade.php</div>
-        <div class="wireframe-content">
-            +---------------------------------------------------------------------------------+<br>
-            | [LOGO] <b>{{ strtoupper($shop['app_name'] ?? 'SIKANDA POS') }}</b> &nbsp; | &nbsp;[ 🔍 Scan Barcode / Cari Barang: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ] | [&larr; Dashboard Admin] |<br>
-            |---------------------------------------------------------------------------------|<br>
-            | <b>AREA KERANJANG BELANJA (KIRI):</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| <b>AREA PEMBAYARAN (KANAN):</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            | Produk &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Qty &nbsp; &nbsp; &nbsp; Subtotal &nbsp; &nbsp; Aksi | Nama Pelanggan: [ Pelanggan Umum ]|<br>
-            | 1. Kopi Susu Aren &nbsp; [-] 2 [+] Rp 36.000 &nbsp; &nbsp; [X] &nbsp;| +-------------------------------+|<br>
-            | 2. Roti Bakar Coklat [-] 1 [+] Rp 15.000 &nbsp; &nbsp; [X] &nbsp;| | TOTAL TAGIHAN BELANJA &nbsp; &nbsp; &nbsp; &nbsp; ||<br>
-            | 3. Air Mineral 600ml [-] 3 [+] Rp 12.000 &nbsp; &nbsp; [X] &nbsp;| | <b>Rp 63.000</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ||<br>
-            | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| | 3 Macam Produk &bull; 6 Item &nbsp; &nbsp; &nbsp; &nbsp; ||<br>
-            | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| +-------------------------------+|<br>
-            | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| [ <b>PROSES BAYAR (B)</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;] |<br>
-            | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &copy; {{ date('Y') }} I Gusti Sultan &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
-            +---------------------------------------------------------------------------------+
-        </div>
+    {{-- SVG VECTOR GAMBAR KASIR POS --}}
+    <div class="diagram-container">
+        <svg width="460" height="225" viewBox="0 0 500 245">
+            <!-- Container -->
+            <rect x="5" y="5" width="490" height="235" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Top POS Header -->
+            <rect x="15" y="15" width="470" height="28" rx="8" fill="#00360D"/>
+            <text x="25" y="33" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#FFFFFF">🛒 {{ strtoupper($shop['app_name'] ?? 'SIKANDA') }} POS • {{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
+            <rect x="365" y="19" width="110" height="20" rx="5" fill="#1A202C"/>
+            <text x="420" y="32" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">← DASHBOARD ADMIN</text>
+            <!-- Left Pane: Cart (Width 290) -->
+            <rect x="15" y="50" width="290" height="180" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+            <!-- Search Bar -->
+            <rect x="25" y="58" width="270" height="22" rx="6" fill="#F7FAFC" stroke="#00AA13" stroke-width="1.5"/>
+            <text x="35" y="72" font-family="Helvetica" font-size="7.5" fill="#2D3748">🔍 Scan Barcode / Ketik Nama Barang...</text>
+            <!-- Cart Item 1 -->
+            <rect x="25" y="86" width="270" height="28" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="32" y="100" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C">Kopi Susu Aren 250ml</text>
+            <text x="32" y="109" font-family="Helvetica" font-size="6.5" fill="#718096">@ Rp 18.000</text>
+            <rect x="185" y="91" width="18" height="18" rx="4" fill="#EDF2F7"/>
+            <text x="194" y="103" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">-</text>
+            <text x="212" y="103" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">2</text>
+            <rect x="222" y="91" width="18" height="18" rx="4" fill="#EDF2F7"/>
+            <text x="231" y="103" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">+</text>
+            <text x="255" y="103" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">36.000</text>
+            <!-- Cart Item 2 -->
+            <rect x="25" y="118" width="270" height="28" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="32" y="132" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C">Roti Bakar Cokelat Keju</text>
+            <text x="32" y="141" font-family="Helvetica" font-size="6.5" fill="#718096">@ Rp 15.000</text>
+            <rect x="185" y="123" width="18" height="18" rx="4" fill="#EDF2F7"/>
+            <text x="194" y="135" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">-</text>
+            <text x="212" y="135" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="middle">1</text>
+            <rect x="222" y="123" width="18" height="18" rx="4" fill="#EDF2F7"/>
+            <text x="231" y="135" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C" text-anchor="middle">+</text>
+            <text x="255" y="135" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#00880F">15.000</text>
+
+            <!-- Right Pane: Pay Pocket (Width 170) -->
+            <rect x="315" y="50" width="170" height="180" rx="10" fill="#00661A"/>
+            <text x="325" y="68" font-family="Helvetica" font-size="7" font-weight="bold" fill="#A8DAB5">NAMA PEMBELI:</text>
+            <rect x="325" y="73" width="150" height="18" rx="4" fill="#FFFFFF"/>
+            <text x="332" y="85" font-family="Helvetica" font-size="7" fill="#4A5568">Pelanggan Umum</text>
+            <!-- Tagihan Box -->
+            <rect x="325" y="98" width="150" height="60" rx="8" fill="#004D13"/>
+            <text x="335" y="112" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#A8DAB5">TOTAL TAGIHAN BELANJA</text>
+            <text x="335" y="134" font-family="Helvetica" font-size="14" font-weight="bold" fill="#FFFFFF">Rp 51.000</text>
+            <text x="335" y="148" font-family="Helvetica" font-size="6.5" fill="#E2E8F0">2 Macam Produk • 3 Item</text>
+            <!-- Pay Button -->
+            <rect x="325" y="166" width="150" height="32" rx="8" fill="#00AA13" stroke="#A8DAB5" stroke-width="1"/>
+            <text x="400" y="186" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PROSES BAYAR (B)</text>
+            <!-- Footer -->
+            <text x="400" y="218" font-family="Helvetica" font-size="6" fill="#A8DAB5" text-anchor="middle">© I Gusti Sultan. All rights reserved.</text>
+        </svg>
+        <div class="diagram-caption">Gambar 5.1: Layar Kasir Point of Sale (POS) Dua Panel (resources/views/cashier/pos.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1683,33 +1813,57 @@
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 36: BAB 5.8 --}}
+    {{-- HALAMAN 36: BAB 5.8 + GAMBAR MODAL BAYAR & QRIS --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 05</div>
-    <h1 class="chapter-title">ALUR TRANSAKSI DYNAMIC QRIS DOKU</h1>
+    <h1 class="chapter-title">GAMBAR MODAL PEMBAYARAN DYNAMIC QRIS</h1>
 
-    <h2 class="section-title">5.8 Alur Pembayaran Digital Dynamic QRIS DOKU & Webhook Real-Time</h2>
+    <h2 class="section-title">5.8 Visualisasi Modal Pembayaran QRIS DOKU Dinamis</h2>
     <p>
-        Untuk transaksi non-tunai, kasir menggunakan integrasi <b>Dynamic QRIS DOKU</b>:
+        Berikut adalah visualisasi dialog modal pembayaran QRIS pada layar kasir:
     </p>
 
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">1</span> Buka Tab QRIS / GOPAY</div>
-        <p>Pada modal bayar, klik tab <b>📱 QRIS / GOPAY</b> lalu klik tombol <b>GENERATE QRIS DINAMIS</b>.</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">2</span> Muncul Kode QRIS Standar Bank Indonesia</div>
-        <p>Sistem meminta QR code unik dari server DOKU sesuai nilai tagihan. Layar menampilkan QRIS beserta hitung mundur masa berlaku (*countdown*).</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">3</span> Pelanggan Memindai Kode QRIS</div>
-        <p>Pembeli memindai kode QRIS menggunakan aplikasi mobile banking (BCA, Mandiri, BRI, BNI) atau e-wallet (GoPay, OVO, DANA, ShopeePay).</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">4</span> Konfirmasi Otomatis via Real-Time Webhook</div>
-        <p>Server DOKU mengirimkan notifikasi ke endpoint <code>/doku/notification</code>. Layar kasir seketika berganti menjadi centang hijau sukses dan memainkan suara notifikasi.</p>
+    {{-- SVG VECTOR GAMBAR MODAL QRIS --}}
+    <div class="diagram-container">
+        <svg width="460" height="225" viewBox="0 0 500 245">
+            <!-- Overlay Backdrop -->
+            <rect x="5" y="5" width="490" height="235" rx="14" fill="#2D3748" opacity="0.85"/>
+            <!-- Modal Window -->
+            <rect x="90" y="15" width="320" height="215" rx="12" fill="#FFFFFF"/>
+            <!-- Modal Header -->
+            <rect x="90" y="15" width="320" height="28" rx="12" fill="#00661A"/>
+            <text x="250" y="33" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PEMBAYARAN DOKU DYNAMIC QRIS</text>
+            <!-- Total Tagihan Bar -->
+            <rect x="105" y="49" width="290" height="26" rx="6" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
+            <text x="115" y="65" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00661A">TOTAL TAGIHAN: </text>
+            <text x="385" y="66" font-family="Helvetica" font-size="11" font-weight="bold" fill="#00880F" text-anchor="end">Rp 51.000</text>
+            <!-- QRIS Code Box -->
+            <rect x="185" y="80" width="130" height="110" rx="8" fill="#F8FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <!-- Simulated QR Pattern -->
+            <rect x="200" y="90" width="30" height="30" fill="#1A202C"/>
+            <rect x="205" y="95" width="20" height="20" fill="#FFFFFF"/>
+            <rect x="210" y="100" width="10" height="10" fill="#1A202C"/>
+
+            <rect x="270" y="90" width="30" height="30" fill="#1A202C"/>
+            <rect x="275" y="95" width="20" height="20" fill="#FFFFFF"/>
+            <rect x="280" y="100" width="10" height="10" fill="#1A202C"/>
+
+            <rect x="200" y="145" width="30" height="30" fill="#1A202C"/>
+            <rect x="205" y="150" width="20" height="20" fill="#FFFFFF"/>
+            <rect x="210" y="155" width="10" height="10" fill="#1A202C"/>
+
+            <!-- Center QRIS badge -->
+            <rect x="240" y="125" width="20" height="20" rx="4" fill="#00AA13"/>
+            <text x="250" y="138" font-family="Helvetica" font-size="6" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Q</text>
+            <!-- Status Text -->
+            <text x="250" y="199" font-family="Helvetica" font-size="7" font-weight="bold" fill="#3182CE" text-anchor="middle">⏳ Menunggu Pembeli Memindai QRIS (DOKU Gateway)...</text>
+            <text x="250" y="210" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">Otomatis Terkonfirmasi Real-Time & Audio Bell Berbunyi</text>
+            <!-- Close Button -->
+            <text x="395" y="32" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✕</text>
+        </svg>
+        <div class="diagram-caption">Gambar 5.2: Modal Pembayaran Dynamic QRIS Real-Time DOKU (resources/views/cashier/pos.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -1789,32 +1943,63 @@
     </ul>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 40: BAB 5.12 --}}
+    {{-- HALAMAN 40: BAB 5.12 + GAMBAR STRUK NOTA PDF --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 05</div>
-    <h1 class="chapter-title">CETAK NOTA STRUK PDF GRAYSCALE MONOKROM</h1>
+    <h1 class="chapter-title">GAMBAR CETAK NOTA STRUK PDF GRAYSCALE</h1>
 
-    <h2 class="section-title">5.12 Cetak Nota PDF Grayscale Monokrom (/receipt/{id}/print)</h2>
+    <h2 class="section-title">5.12 Visualisasi Nota Struk Kasir Thermal (cashier/print-receipt.blade.php)</h2>
     <p>
-        Untuk pencetakan nota berformat dokumen PDF (<code>/receipt/{sale}/print</code>):
+        Berikut adalah visualisasi tata letak nota belanja struk kasir thermal:
     </p>
 
-    <div class="callout callout-info">
-        <span class="callout-title">Teknologi Konversi Logo Grayscale GD Latar Putih Murni</span>
-        Sistem secara otomatis mengonversi logo toko PNG berwarna ke format <b>Base64 Grayscale monokrom berlatar belakang putih murni (#FFFFFF)</b>. Hal ini mencegah logo menjadi kotak hitam pekat akibat transparansi alpha pada mesin DomPDF, menghasilkan cetakan logo yang tajam dan hemat tinta thermal.
+    {{-- SVG VECTOR GAMBAR STRUK --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <!-- Container -->
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Thermal Paper Simulation -->
+            <rect x="160" y="12" width="180" height="225" rx="4" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <!-- Paper Header -->
+            <text x="250" y="28" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1A202C" text-anchor="middle">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
+            <text x="250" y="38" font-family="monospace" font-size="6" fill="#4A5568" text-anchor="middle">{{ $shop['shop_address'] ?? 'Jl. Argopuro No. 77' }}</text>
+            <text x="250" y="47" font-family="monospace" font-size="6" fill="#4A5568" text-anchor="middle">Telp: {{ $shop['shop_phone'] ?? '081234567890' }}</text>
+            <!-- Dashed Line -->
+            <line x1="170" y1="52" x2="330" y2="52" stroke="#A0AEC0" stroke-dasharray="2,2"/>
+            <!-- Meta Data -->
+            <text x="170" y="62" font-family="monospace" font-size="6" fill="#1A202C">No. Trx : SIB-20260825-0012</text>
+            <text x="170" y="71" font-family="monospace" font-size="6" fill="#1A202C">Tgl/Jam : 25/08/2026 14:32</text>
+            <text x="170" y="80" font-family="monospace" font-size="6" fill="#1A202C">Kasir   : Siti Rahma</text>
+            <text x="170" y="89" font-family="monospace" font-size="6" fill="#1A202C">Pelanggan: Budi Santoso</text>
+            <line x1="170" y1="94" x2="330" y2="94" stroke="#A0AEC0" stroke-dasharray="2,2"/>
+            <!-- Items -->
+            <text x="170" y="104" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1A202C">Kopi Susu Aren 250ml</text>
+            <text x="170" y="113" font-family="monospace" font-size="6" fill="#1A202C">2 x 18.000</text>
+            <text x="330" y="113" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1A202C" text-anchor="end">36.000</text>
+
+            <text x="170" y="124" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1A202C">Roti Bakar Cokelat</text>
+            <text x="170" y="133" font-family="monospace" font-size="6" fill="#1A202C">1 x 15.000</text>
+            <text x="330" y="133" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1A202C" text-anchor="end">15.000</text>
+            <line x1="170" y1="138" x2="330" y2="138" stroke="#A0AEC0" stroke-dasharray="2,2"/>
+            <!-- Totals -->
+            <text x="170" y="149" font-family="monospace" font-size="7" font-weight="bold" fill="#1A202C">TOTAL BELANJA :</text>
+            <text x="330" y="149" font-family="monospace" font-size="7.5" font-weight="bold" fill="#1A202C" text-anchor="end">Rp 51.000</text>
+            <text x="170" y="159" font-family="monospace" font-size="6" fill="#1A202C">METODE BAYAR  : TUNAI</text>
+            <text x="170" y="168" font-family="monospace" font-size="6" fill="#1A202C">DITERIMA      : Rp 100.000</text>
+            <text x="170" y="177" font-family="monospace" font-size="6.5" font-weight="bold" fill="#00880F">KEMBALIAN     : Rp 49.000</text>
+            <line x1="170" y1="182" x2="330" y2="182" stroke="#A0AEC0" stroke-dasharray="2,2"/>
+            <!-- QR Struk -->
+            <rect x="235" y="186" width="30" height="30" fill="#1A202C"/>
+            <rect x="240" y="191" width="20" height="20" fill="#FFFFFF"/>
+            <rect x="245" y="196" width="10" height="10" fill="#1A202C"/>
+            <!-- Footer text -->
+            <text x="250" y="224" font-family="monospace" font-size="5.5" fill="#4A5568" text-anchor="middle">Terima Kasih Atas Kunjungan Anda</text>
+            <text x="250" y="231" font-family="monospace" font-size="5" fill="#718096" text-anchor="middle">Simpan struk ini sebagai bukti resmi</text>
+        </svg>
+        <div class="diagram-caption">Gambar 5.3: Format Cetak Struk Kasir Thermal Bluetooth & PDF Grayscale</div>
     </div>
-
-    <p>
-        Nota struk PDF memuat:
-    </p>
-    <ul>
-        <li>Logo Toko Monokrom & Header Nama Toko Resmi.</li>
-        <li>Nomor Transaksi Dinamis sesuai 3 huruf awal Nama Aplikasi Toko (misal: <code>SIB-20260825-XXXXX</code>).</li>
-        <li>Rincian Produk, Kuantitas, Harga Satuan, Diskon Promo, Total Bayar, dan Kembalian Tunai.</li>
-        <li>Footer catatan toko bebas dari teks non-toko yang tidak diinginkan.</li>
-    </ul>
 
     {{-- ========================================================================= --}}
     {{-- HALAMAN 41: BAB 5.13 --}}
@@ -1843,40 +2028,49 @@
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 42: BAB 5.14 --}}
+    {{-- HALAMAN 42: BAB 5.14 + GAMBAR LABEL RESI PAKET A6 --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 05</div>
-    <h1 class="chapter-title">MODUL EKSPEDISI & CETAK RESI PAKET A6</h1>
+    <h1 class="chapter-title">GAMBAR LABEL RESI PENGIRIMAN PAKET A6</h1>
 
-    <h2 class="section-title">5.14 Modul Ekspedisi: Pembuatan & Pencetakan Label Resi Paket A6</h2>
+    <h2 class="section-title">5.14 Visualisasi Label Resi Ekspedisi Pengiriman A6 (shipping/label_pdf.blade.php)</h2>
     <p>
-        Bagi toko yang melayani pemesanan online dan pengiriman paket keluar kota, sistem menyediakan modul pencetakan label resi paket ukuran standar A6 (<code>/shipping-label/{sale}/pdf</code>):
+        Berikut adalah format resmi label pengiriman paket barang pesanan pelanggan:
     </p>
 
-    <table class="doc-table">
-        <tr>
-            <th style="width: 30%;">Bagian Label Paket</th>
-            <th style="width: 30%;">Data yang Dimuat</th>
-            <th>Fungsi Operasional Kurir</th>
-        </tr>
-        <tr>
-            <td><b>Kotak Penerima (TO)</b></td>
-            <td>Nama Pembeli, No. Telp, Alamat Lengkap</td>
-            <td>Dicetak dengan font tebal dan besar agar mudah dibaca kurir di lapangan.</td>
-        </tr>
-        <tr>
-            <td><b>Kotak Pengirim (FROM)</b></td>
-            <td>Nama Toko, No. WhatsApp Toko, Alamat Toko</td>
-            <td>Identitas resmi toko Anda sebagai pengirim paket.</td>
-        </tr>
-        <tr>
-            <td><b>Badge Ekspedisi & Catatan</b></td>
-            <td>JNE / J&T / SiCepat & Stempel FRAGILE</td>
-            <td>Memberikan instruksi penanganan paket barang mudah pecah/rusak.</td>
-        </tr>
-    </table>
+    {{-- SVG VECTOR GAMBAR LABEL RESI --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- A6 Label Box -->
+            <rect x="110" y="15" width="280" height="218" rx="8" fill="#FFFFFF" stroke="#1A202C" stroke-width="2"/>
+            <!-- Top Header -->
+            <rect x="110" y="15" width="280" height="32" fill="#1A202C"/>
+            <text x="120" y="32" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
+            <text x="120" y="42" font-family="Helvetica" font-size="6.5" fill="#CBD5E0">Telp: {{ $shop['shop_phone'] ?? '081234567890' }}</text>
+            <rect x="305" y="21" width="75" height="18" rx="4" fill="#EE2737"/>
+            <text x="342" y="33" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">JNE REGULER</text>
+            <!-- Recipient Box -->
+            <rect x="120" y="55" width="260" height="75" rx="6" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="130" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">KEPADA / PENERIMA (TO):</text>
+            <text x="130" y="85" font-family="Helvetica" font-size="10" font-weight="bold" fill="#1A202C">BAPAK H. AHMAD FAUZI</text>
+            <text x="130" y="97" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#4A5568">📱 0813-9876-5432</text>
+            <text x="130" y="109" font-family="Helvetica" font-size="7" fill="#2D3748">Jl. Diponegoro No. 45, RT 02/05, Kebon Jeruk</text>
+            <text x="130" y="119" font-family="Helvetica" font-size="7" fill="#2D3748">Jakarta Barat, DKI Jakarta (11530)</text>
+            <!-- Sender Box -->
+            <rect x="120" y="136" width="260" height="50" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="130" y="149" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">DARI / PENGIRIM (FROM):</text>
+            <text x="130" y="161" font-family="Helvetica" font-size="8" font-weight="bold" fill="#1A202C">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }} (0812-3456-7890)</text>
+            <text x="130" y="172" font-family="Helvetica" font-size="6.5" fill="#4A5568">{{ $shop['shop_address'] ?? 'Jalan Argopuro No. 77, Jember' }}</text>
+            <!-- Footer Instruction -->
+            <rect x="120" y="192" width="260" height="30" rx="4" fill="#FFF5F5" stroke="#FEB2B2" stroke-width="1"/>
+            <text x="250" y="206" font-family="Helvetica" font-size="7" font-weight="bold" fill="#E53E3E" text-anchor="middle">⚠️ FRAGILE: BARANG PECAH BELAH / JANGAN DIBANTING</text>
+            <text x="250" y="216" font-family="Helvetica" font-size="6" fill="#718096" text-anchor="middle">No. Invoice POS: SIB-20260825-0012</text>
+        </svg>
+        <div class="diagram-caption">Gambar 5.4: Format Cetak Label Resi Pengiriman Standar A6 (resources/views/shipping/label_pdf.blade.php)</div>
+    </div>
 
     {{-- ========================================================================= --}}
     {{-- HALAMAN 43: BAB 6.1 --}}
@@ -1939,50 +2133,72 @@
     </table>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 45: BAB 6.3 --}}
+    {{-- HALAMAN 45: BAB 6.3 + GAMBAR LAPORAN KEUANGAN --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 06</div>
-    <h1 class="chapter-title">LAPORAN KEUANGAN & ARUS KAS</h1>
+    <h1 class="chapter-title">GAMBAR LAPORAN KEUANGAN & REKONSILIASI KAS</h1>
 
-    <h2 class="section-title">6.3 Laporan Keuangan & Arus Kas (Pemisahan Kas Tunai vs Netto QRIS)</h2>
+    <h2 class="section-title">6.3 Visualisasi Laporan Arus Kas & Potongan MDR (reports/finance.blade.php)</h2>
     <p>
-        Laporan Keuangan (<code>/admin/reports/finance</code>) memisahkan secara akurat arus kas masuk berdasarkan saluran penerimaan:
+        Berikut adalah visualisasi laporan keuangan resmi beserta pembagian kas tunai dan netto QRIS:
     </p>
 
-    <table class="doc-table">
-        <tr>
-            <th style="width: 28%;">Komponen Arus Kas</th>
-            <th style="width: 28%;">Rumus Kalkulasi</th>
-            <th>Penjelasan Akuntansi</th>
-        </tr>
-        <tr>
-            <td><b>Pemasukan Tunai (Cash)</b></td>
-            <td><code>&Sigma; Transaksi Tunai Sukses</code></td>
-            <td>Uang fisik di laci kasir yang siap disetorkan ke kas utama toko.</td>
-        </tr>
-        <tr>
-            <td><b>Nominal Bruto QRIS (Gross)</b></td>
-            <td><code>&Sigma; Transaksi QRIS Sukses</code></td>
-            <td>Nilai kotor belanja pelanggan non-tunai via QRIS.</td>
-        </tr>
-        <tr>
-            <td><b>Biaya Layanan DOKU (0.7%)</b></td>
-            <td><code>Round(Bruto QRIS &times; 0.007)</code></td>
-            <td>Potongan MDR resmi pemrosesan transaksi gateway Bank Indonesia.</td>
-        </tr>
-        <tr>
-            <td><b>Penerimaan Bersih QRIS</b></td>
-            <td><code>Bruto QRIS - Biaya MDR</code></td>
-            <td>Uang riil yang ditransfer gateway DOKU ke rekening bank penampung toko.</td>
-        </tr>
-        <tr>
-            <td><b>Total Omset Bersih</b></td>
-            <td><code>Kas Tunai + Netto QRIS</code></td>
-            <td>Total pendapatan bersih hak milik toko pada periode yang dipilih.</td>
-        </tr>
-    </table>
+    {{-- SVG VECTOR GAMBAR LAPORAN KEUANGAN --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Report Document Container -->
+            <rect x="25" y="15" width="450" height="218" rx="8" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <!-- Official Header -->
+            <text x="250" y="32" font-family="Helvetica" font-size="9" font-weight="bold" fill="#1A202C" text-anchor="middle">LAPORAN KEUANGAN & REKONSILIASI ARUS KAS</text>
+            <text x="250" y="43" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F" text-anchor="middle">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
+            <text x="250" y="53" font-family="monospace" font-size="6.5" fill="#4A5568" text-anchor="middle">Nomor Dokumen: LKEU-TUNAI/05/VIII/SIBALOG/2026</text>
+            <line x1="35" y1="58" x2="465" y2="58" stroke="#1A202C" stroke-width="1.5"/>
+            <!-- 3 Summary Cards -->
+            <rect x="35" y="65" width="135" height="42" rx="6" fill="#F0FFF4" stroke="#68D391" stroke-width="1"/>
+            <text x="42" y="78" font-family="Helvetica" font-size="6" font-weight="bold" fill="#276749">KAS TUNAI (CASH)</text>
+            <text x="42" y="96" font-family="Helvetica" font-size="10" font-weight="bold" fill="#00880F">Rp 850.000</text>
+
+            <rect x="182" y="65" width="135" height="42" rx="6" fill="#EBF8FF" stroke="#63B3ED" stroke-width="1"/>
+            <text x="190" y="78" font-family="Helvetica" font-size="6" font-weight="bold" fill="#2B6CB0">NETTO QRIS (DOKU 0.7%)</text>
+            <text x="190" y="96" font-family="Helvetica" font-size="10" font-weight="bold" fill="#3182CE">Rp 595.800</text>
+
+            <rect x="330" y="65" width="135" height="42" rx="6" fill="#FFFAF0" stroke="#FBD38D" stroke-width="1"/>
+            <text x="338" y="78" font-family="Helvetica" font-size="6" font-weight="bold" fill="#C05621">TOTAL OMSET BERSIH</text>
+            <text x="338" y="96" font-family="Helvetica" font-size="10" font-weight="bold" fill="#DD6B20">Rp 1.445.800</text>
+            <!-- Mini Data Table -->
+            <rect x="35" y="114" width="430" height="16" fill="#00661A"/>
+            <text x="42" y="125" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">NO. TRANSAKSI</text>
+            <text x="150" y="125" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">METODE BAYAR</text>
+            <text x="250" y="125" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">NOMINAL BRUTO</text>
+            <text x="350" y="125" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">FEE MDR (0.7%)</text>
+            <text x="425" y="125" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">NETTO</text>
+
+            <rect x="35" y="130" width="430" height="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="42" y="141" font-family="monospace" font-size="6" fill="#1A202C">SIB-20260825-001</text>
+            <text x="150" y="141" font-family="Helvetica" font-size="6" fill="#276749">TUNAI</text>
+            <text x="250" y="141" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C">Rp 50.000</text>
+            <text x="350" y="141" font-family="Helvetica" font-size="6" fill="#718096">Rp 0</text>
+            <text x="425" y="141" font-family="Helvetica" font-size="6" font-weight="bold" fill="#00880F">Rp 50.000</text>
+
+            <rect x="35" y="146" width="430" height="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="42" y="157" font-family="monospace" font-size="6" fill="#1A202C">SIB-20260825-002</text>
+            <text x="150" y="157" font-family="Helvetica" font-size="6" fill="#2B6CB0">QRIS DOKU</text>
+            <text x="250" y="157" font-family="Helvetica" font-size="6" font-weight="bold" fill="#1A202C">Rp 100.000</text>
+            <text x="350" y="157" font-family="Helvetica" font-size="6" fill="#E53E3E">Rp 700</text>
+            <text x="425" y="157" font-family="Helvetica" font-size="6" font-weight="bold" fill="#00880F">Rp 99.300</text>
+            <!-- TTE QR Stamp on Bottom Right -->
+            <rect x="380" y="170" width="85" height="55" rx="4" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="422" y="180" font-family="Helvetica" font-size="5" font-weight="bold" fill="#4A5568" text-anchor="middle">DISAHKAN SECARA TTE</text>
+            <rect x="407" y="184" width="30" height="30" fill="#1A202C"/>
+            <rect x="412" y="189" width="20" height="20" fill="#FFFFFF"/>
+            <rect x="417" y="194" width="10" height="10" fill="#1A202C"/>
+            <text x="422" y="221" font-family="Helvetica" font-size="5" font-weight="bold" fill="#00880F" text-anchor="middle">KEPALA BAGIAN LOGISTIK</text>
+        </svg>
+        <div class="diagram-caption">Gambar 6.1: Antarmuka Laporan Keuangan & Rekonsiliasi Kas (resources/views/reports/finance.blade.php)</div>
+    </div>
 
     {{-- ========================================================================= --}}
     {{-- HALAMAN 46: BAB 6.4 --}}
@@ -2193,22 +2409,56 @@
     </ol>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 55: BAB 7.5 --}}
+    {{-- HALAMAN 55: BAB 7.5 + GAMBAR SERTIFIKAT TTE --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 07</div>
-    <h1 class="chapter-title">PORTAL PUBLIK VERIFIKASI DOKUMEN LAPORAN</h1>
+    <h1 class="chapter-title">GAMBAR PORTAL VERIFIKASI DIGITAL TTE</h1>
 
-    <h2 class="section-title">7.5 Portal Publik Verifikasi Keaslian Dokumen Laporan (/verify/document)</h2>
+    <h2 class="section-title">7.5 Visualisasi Sertifikat Verifikasi Dokumen TTE (reports/verify_report_tte.blade.php)</h2>
     <p>
-        Siapapun yang menerima lembaran laporan PDF dapat memindai QR Code TTE di sudut kanan bawah laporan:
+        Berikut adalah tampilan sertifikat hijau resmi saat QR Code TTE dipindai oleh pihak ketiga:
     </p>
-    <ul>
-        <li>Kamera smartphone memindai QR Code dan membuka URL <code>https://domain-anda.com/verify/document?...</code>.</li>
-        <li>Layar menampilkan sertifikat verifikasi berbingkai hijau dengan logo resmi toko.</li>
-        <li>Sertifikat memvalidasi status dokumen: <b>"DOKUMEN RESMI & TERVERIFIKASI SAH"</b>, memuat nomor dokumen lengkap, nama pejabat penandatangan, gelar jabatan resmi, serta waktu pengesahan.</li>
-    </ul>
+
+    {{-- SVG VECTOR GAMBAR SERTIFIKAT TTE --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Certificate Container Card -->
+            <rect x="70" y="15" width="360" height="218" rx="12" fill="#FFFFFF" stroke="#38A169" stroke-width="2"/>
+            <!-- Top Verified Badge -->
+            <rect x="70" y="15" width="360" height="35" rx="12" fill="#00661A"/>
+            <circle cx="95" cy="32" r="10" fill="#00AA13"/>
+            <path d="M90 32 L94 36 L101 28" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <text x="115" y="36" font-family="Helvetica" font-size="9" font-weight="bold" fill="#FFFFFF">DOKUMEN RESMI & TERVERIFIKASI ASLI</text>
+            <!-- Cert Body -->
+            <text x="250" y="68" font-family="Helvetica" font-size="8.5" font-weight="bold" fill="#1A202C" text-anchor="middle">PORTAL VERIFIKASI KEABSAHAN TTE (UU ITE NO. 11/2008)</text>
+            <text x="250" y="79" font-family="Helvetica" font-size="7" fill="#718096" text-anchor="middle">Sistem Sertifikasi Dokumen Digital {{ strtoupper($shop['app_name'] ?? 'POS') }}</text>
+            
+            <!-- Metadata Box -->
+            <rect x="90" y="90" width="320" height="90" rx="8" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
+            <text x="100" y="105" font-family="Helvetica" font-size="7" font-weight="bold" fill="#276749">Nomor Dokumen :</text>
+            <text x="190" y="105" font-family="monospace" font-size="7" font-weight="bold" fill="#1A202C">LKEU-TUNAI/05/VIII/SIBALOG/2026</text>
+
+            <text x="100" y="120" font-family="Helvetica" font-size="7" font-weight="bold" fill="#276749">Nama Pejabat   :</text>
+            <text x="190" y="120" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">BAMBANG PAMUNGKAS, S.E.</text>
+
+            <text x="100" y="135" font-family="Helvetica" font-size="7" font-weight="bold" fill="#276749">Gelar Jabatan  :</text>
+            <text x="190" y="135" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00880F">Kepala Bagian Logistik & Operasional</text>
+
+            <text x="100" y="150" font-family="Helvetica" font-size="7" font-weight="bold" fill="#276749">Nama Usaha     :</text>
+            <text x="190" y="150" font-family="Helvetica" font-size="7" fill="#1A202C">{{ strtoupper($shop['shop_name'] ?? 'TOKO BERKAH') }}</text>
+
+            <text x="100" y="165" font-family="Helvetica" font-size="7" font-weight="bold" fill="#276749">Status Validasi:</text>
+            <text x="190" y="165" font-family="Helvetica" font-size="7" font-weight="bold" fill="#38A169">✔ SAH SECARA HUKUM & TERDAFTAR</text>
+
+            <!-- Bottom Hash Info -->
+            <text x="250" y="195" font-family="monospace" font-size="5.5" fill="#718096" text-anchor="middle">SHA-256: 8f4b23c91d8e20fa7b63... (Integritas Terkunci)</text>
+            <text x="250" y="215" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F" text-anchor="middle">© {{ date('Y') }} I Gusti Sultan. All rights reserved.</text>
+        </svg>
+        <div class="diagram-caption">Gambar 7.1: Sertifikat Digital Portal Verifikasi Dokumen TTE (resources/views/reports/verify_report_tte.blade.php)</div>
+    </div>
 
     {{-- ========================================================================= --}}
     {{-- HALAMAN 56: BAB 7.6 --}}
@@ -2261,45 +2511,59 @@
     </p>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 59: BAB 8.2 --}}
+    {{-- HALAMAN 59: BAB 8.2 + GAMBAR PENGATURAN TOKO --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 08</div>
-    <h1 class="chapter-title">PERSONALISASI IDENTITAS BISNIS & LOGO</h1>
+    <h1 class="chapter-title">GAMBAR FORMULIR PENGATURAN TOKO & LOGO</h1>
 
-    <h2 class="section-title">8.2 Personalisasi Identitas Bisnis, Nama Usaha, Alamat & Logo Toko</h2>
+    <h2 class="section-title">8.2 Visualisasi Antarmuka Pengaturan Toko (admin/settings/index.blade.php)</h2>
     <p>
-        Parameter identitas toko yang dapat dikonfigurasi:
+        Berikut adalah visualisasi formulir pengaturan identitas toko dan integrasi gateway:
     </p>
 
-    <table class="doc-table">
-        <tr>
-            <th style="width: 25%;">Field Pengaturan</th>
-            <th style="width: 25%;">Contoh Konfigurasi</th>
-            <th>Pengaruh Langsung pada Tampilan Sistem</th>
-        </tr>
-        <tr>
-            <td><b>Nama Toko / Usaha</b></td>
-            <td><code>BAGIAN LOGISTIK</code></td>
-            <td>Kop surat seluruh PDF laporan, struk kasir thermal, faktur pelanggan, dan portal TTE.</td>
-        </tr>
-        <tr>
-            <td><b>Alamat Resmi Usaha</b></td>
-            <td><code>Jl. Argopuro No. 77, Jember</code></td>
-            <td>Dicetak di bawah nama toko pada kop laporan formal dan nota pengiriman paket.</td>
-        </tr>
-        <tr>
-            <td><b>Nomor WhatsApp / Telp</b></td>
-            <td><code>081234567890</code></td>
-            <td>Saluran bantuan pelanggan pada faktur kadaluarsa dan header struk kasir.</td>
-        </tr>
-        <tr>
-            <td><b>Logo Resmi Toko</b></td>
-            <td>File PNG / JPG (Maks. 2MB)</td>
-            <td>Tampil di sidebar admin, login, dan dikonversi otomatis ke monokrom pada struk kasir.</td>
-        </tr>
-    </table>
+    {{-- SVG VECTOR GAMBAR PENGATURAN --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- Settings Card -->
+            <rect x="25" y="15" width="450" height="218" rx="12" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="40" y="34" font-family="Helvetica" font-size="9.5" font-weight="bold" fill="#1A202C">⚙️ PUSAT PENGATURAN IDENTITAS TOKO & GATEWAY</text>
+            <!-- Field 1: Nama Toko -->
+            <text x="40" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA BADAN USAHA / TOKO</text>
+            <rect x="40" y="56" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="48" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">{{ $shop['shop_name'] ?? 'BAGIAN LOGISTIK' }}</text>
+            <!-- Field 2: Nama Aplikasi -->
+            <text x="260" y="52" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">NAMA APLIKASI (BRANDING)</text>
+            <rect x="260" y="56" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="268" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">{{ $shop['app_name'] ?? 'SIBALOG' }}</text>
+            <!-- Field 3: Alamat -->
+            <text x="40" y="90" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">ALAMAT RESMI USAHA</text>
+            <rect x="40" y="94" width="420" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="48" y="108" font-family="Helvetica" font-size="7" fill="#1A202C">{{ $shop['shop_address'] ?? 'Jalan Argopuro No. 77, Jember, Jawa Timur' }}</text>
+            <!-- Field 4: Upload Logo -->
+            <text x="40" y="128" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">UNGGAH LOGO RESMI TOKO (PNG/JPG)</text>
+            <rect x="40" y="132" width="200" height="28" rx="5" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
+            <text x="48" y="149" font-family="Helvetica" font-size="6.5" fill="#00880F">📁 [Pilih Berkas Logo Baru...]</text>
+            <!-- Field 5: Audio Bel -->
+            <text x="260" y="128" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">AUDIO BEL KASIR (.MP3 / .WAV)</text>
+            <rect x="260" y="132" width="200" height="28" rx="5" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
+            <text x="268" y="149" font-family="Helvetica" font-size="6.5" fill="#00880F">🔔 [Pilih Berkas Suara Kasir...]</text>
+            <!-- Field 6: DOKU API -->
+            <text x="40" y="174" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">DOKU CLIENT ID / MALL ID</text>
+            <rect x="40" y="178" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="48" y="192" font-family="Helvetica" font-size="6.5" fill="#4A5568">MALL_ID_123456</text>
+            <!-- Field 7: Telegram -->
+            <text x="260" y="174" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#718096">TELEGRAM BOT TOKEN</text>
+            <rect x="260" y="178" width="200" height="20" rx="5" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="268" y="192" font-family="Helvetica" font-size="6.5" fill="#4A5568">bot71829381:AAF_xxxxx...</text>
+            <!-- Save Button -->
+            <rect x="340" y="204" width="120" height="22" rx="6" fill="#00AA13"/>
+            <text x="400" y="218" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIMPAN PENGATURAN</text>
+        </svg>
+        <div class="diagram-caption">Gambar 8.1: Pusat Pengaturan Toko & Integrasi Gateway (resources/views/admin/settings/index.blade.php)</div>
+    </div>
 
     {{-- ========================================================================= --}}
     {{-- HALAMAN 60: BAB 8.3 --}}
@@ -2432,29 +2696,66 @@
     </p>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 66: BAB 9.2 --}}
+    {{-- HALAMAN 66: BAB 9.2 + GAMBAR PENGGUNA & ALIAS TTE --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 09</div>
-    <h1 class="chapter-title">PENDAFTARAN AKUN KASIR & ADMIN BARU</h1>
+    <h1 class="chapter-title">GAMBAR MANAJEMEN AKUN & GELAR JABATAN TTE</h1>
 
-    <h2 class="section-title">9.2 Pendaftaran Akun Kasir / Admin Baru & Hak Wewenang Role</h2>
+    <h2 class="section-title">9.2 Visualisasi Antarmuka Manajemen Pengguna (admin/users/index.blade.php)</h2>
     <p>
-        Untuk menambahkan staf baru (<code>/admin/users/create</code>):
+        Berikut adalah visualisasi daftar akun pengguna dan pengaturan alias penandatangan dokumen:
     </p>
 
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">1</span> Nama Lengkap & Email Login</div>
-        <p>Ketikkan nama lengkap staf dan email unik yang belum pernah digunakan di sistem.</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">2</span> Pemilihan Role Pengguna</div>
-        <p>Pilih role <b>Petugas Kasir</b> (hanya akses layar kasir POS) atau <b>Administrator Toko</b> (akses penuh ke manajemen dan pengaturan).</p>
-    </div>
-    <div class="step-box">
-        <div class="step-header"><span class="step-num">3</span> Kata Sandi Pengguna</div>
-        <p>Tetapkan kata sandi awal minimal 6 karakter. Pengguna dapat mengubah kata sandi ini secara mandiri di kemudian hari.</p>
+    {{-- SVG VECTOR GAMBAR USERS --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+            <!-- User Table Card -->
+            <rect x="15" y="15" width="470" height="218" rx="10" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1"/>
+            <text x="25" y="34" font-family="Helvetica" font-size="9.5" font-weight="bold" fill="#1A202C">👥 DAFTAR AKUN PENGGUNA & GELAR JABATAN TTE</text>
+            <rect x="375" y="20" width="100" height="20" rx="5" fill="#00AA13"/>
+            <text x="425" y="33" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+ TAMBAH AKUN</text>
+            <!-- Table Header -->
+            <rect x="25" y="48" width="450" height="18" fill="#00661A"/>
+            <text x="32" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">NAMA LENGKAP</text>
+            <text x="140" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">EMAIL LOGIN</text>
+            <text x="240" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">ROLE WEWENANG</text>
+            <text x="320" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">GELAR JABATAN (ALIAS TTD)</text>
+            <text x="440" y="60" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#FFFFFF">AKSI</text>
+            <!-- Row 1 -->
+            <rect x="25" y="68" width="450" height="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="32" y="83" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">I Gusti Sultan</text>
+            <text x="140" y="83" font-family="Helvetica" font-size="6.5" fill="#4A5568">admin@toko.site</text>
+            <rect x="240" y="73" width="60" height="14" rx="4" fill="#00661A"/>
+            <text x="270" y="83" font-family="Helvetica" font-size="6" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ADMIN</text>
+            <text x="320" y="83" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Lead Software Architect</text>
+            <text x="440" y="83" font-family="Helvetica" font-size="6.5" fill="#3182CE">Edit</text>
+            <!-- Row 2 -->
+            <rect x="25" y="94" width="450" height="24" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="32" y="109" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Bambang Pamungkas</text>
+            <text x="140" y="109" font-family="Helvetica" font-size="6.5" fill="#4A5568">bambang@toko.site</text>
+            <rect x="240" y="99" width="60" height="14" rx="4" fill="#00661A"/>
+            <text x="270" y="109" font-family="Helvetica" font-size="6" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ADMIN</text>
+            <text x="320" y="109" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00880F">Kepala Bagian Logistik</text>
+            <text x="440" y="109" font-family="Helvetica" font-size="6.5" fill="#3182CE">Edit</text>
+            <!-- Row 3 -->
+            <rect x="25" y="120" width="450" height="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5"/>
+            <text x="32" y="135" font-family="Helvetica" font-size="7" font-weight="bold" fill="#1A202C">Siti Rahma</text>
+            <text x="140" y="135" font-family="Helvetica" font-size="6.5" fill="#4A5568">kasir1@toko.site</text>
+            <rect x="240" y="125" width="60" height="14" rx="4" fill="#3182CE"/>
+            <text x="270" y="135" font-family="Helvetica" font-size="6" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KASIR</text>
+            <text x="320" y="135" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#4A5568">Kasir Utama Shift Pagi</text>
+            <text x="440" y="135" font-family="Helvetica" font-size="6.5" fill="#3182CE">Edit</text>
+            <!-- Explanatory Box -->
+            <rect x="25" y="152" width="450" height="65" rx="6" fill="#F0FFF4" stroke="#A8DAB5" stroke-width="1"/>
+            <text x="35" y="167" font-family="Helvetica" font-size="7" font-weight="bold" fill="#00661A">💡 PENTING: PENGARUH GELAR JABATAN (ALIAS TTD) PADA DOKUMEN LAPORAN:</text>
+            <text x="35" y="180" font-family="Helvetica" font-size="6.5" fill="#2D3748">• Teks yang diisi pada kolom "Alias TTD" akan dicetak tepat di atas stempel QR Code TTE.</text>
+            <text x="35" y="192" font-family="Helvetica" font-size="6.5" fill="#2D3748">• Jika akun mencetak laporan keuangan, gelar resmi memberikan kekuatan hukum formal saat audit.</text>
+            <text x="35" y="204" font-family="Helvetica" font-size="6.5" fill="#2D3748">• Setiap personil dapat memiliki gelar jabatan spesifik sesuai struktur organisasi toko.</text>
+        </svg>
+        <div class="diagram-caption">Gambar 9.1: Manajemen Akun Pengguna & Kolom Alias Gelar TTE (resources/views/admin/users/index.blade.php)</div>
     </div>
 
     {{-- ========================================================================= --}}
@@ -2540,26 +2841,66 @@
     </div>
 
     {{-- ========================================================================= --}}
-    {{-- HALAMAN 70: BAB 10.2 --}}
+    {{-- HALAMAN 70: BAB 10.2 + GAMBAR ARSITEKTUR SERVER --}}
     {{-- ========================================================================= --}}
     <div class="page-break"></div>
 
     <div class="chapter-num">BAB 10</div>
-    <h1 class="chapter-title">DEDICATED MEDIA STREAMING ENGINE (/media-file)</h1>
+    <h1 class="chapter-title">GAMBAR ARSITEKTUR SERVER DIKELOLA OLEH I GUSTI SULTAN</h1>
 
-    <h2 class="section-title">10.2 Dedicated Media Streaming Engine (/media-file) Anti 404 Nginx</h2>
+    <h2 class="section-title">10.2 Visualisasi Infrastruktur Server & Dedicated Media Engine (I Gusti Sultan)</h2>
     <p>
-        Pada arsitektur server produksi aaPanel/Nginx, web server Nginx secara default mencegat file statis (.png/.jpg/.ico) di tingkat server sebelum diteruskan ke PHP. Jika symlink <code>public/storage</code> mengalami desinkronisasi, Nginx akan membalas dengan <code>404 Not Found nginx</code>.
+        Berikut adalah diagram arsitektur server produksi, engine media anti-404, dan pengelolaan aaPanel:
     </p>
-    <p>
-        Untuk mengatasi hal tersebut secara permanen, <b>I Gusti Sultan</b> telah merancang dan mengimplementasikan <b>Dedicated Media Streaming Engine (<code>/media-file?path=...</code>)</b>:
-    </p>
-    <ul>
-        <li>Rute ini membypass aturan regex statis Nginx karena URI utama tidak berakhiran ekstensi gambar.</li>
-        <li>Membaca langsung dari direktori <code>storage/app/public/</code> dengan proteksi directory traversal.</li>
-        <li>Menyajikan header MIME-Type yang presisi dengan HTTP caching header untuk performa cepat.</li>
-        <li>Memastikan seluruh logo toko, favicon, dan gambar produk 100% selalu tampil normal tanpa bergantung pada symlink.</li>
-    </ul>
+
+    {{-- SVG VECTOR GAMBAR ARSITEKTUR SERVER --}}
+    <div class="diagram-container">
+        <svg width="460" height="230" viewBox="0 0 500 250">
+            <rect x="5" y="5" width="490" height="240" rx="14" fill="#00360D" stroke="#00AA13" stroke-width="2"/>
+            <!-- Header Server Title -->
+            <text x="250" y="28" font-family="Helvetica" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ARSITEKTUR SERVER PRODUKSI & PEMELIHARAAN TERPUSAT</text>
+            <text x="250" y="40" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#A8DAB5" text-anchor="middle">DIKELOLA EKSKLUSIF OLEH: I GUSTI SULTAN (LEAD SYSTEM ARCHITECT)</text>
+
+            <!-- Box 1: aaPanel Linux Host -->
+            <rect x="25" y="55" width="135" height="130" rx="8" fill="#FFFFFF"/>
+            <rect x="25" y="55" width="135" height="22" rx="8" fill="#1A202C"/>
+            <text x="92" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🖥️ aaPanel Linux Host</text>
+            <text x="35" y="90" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00661A">• AlmaLinux / Ubuntu</text>
+            <text x="35" y="103" font-family="Helvetica" font-size="6.5" fill="#4A5568">• SSL Let's Encrypt Auto</text>
+            <text x="35" y="116" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Firewall Port 80/443</text>
+            <text x="35" y="129" font-family="Helvetica" font-size="6.5" fill="#4A5568">• PHP-FPM 8.2 Socket</text>
+            <text x="35" y="142" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Daily Auto Dump Cron</text>
+            <text x="35" y="155" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#38A169">• Path: /www/wwwroot</text>
+
+            <!-- Box 2: Nginx Web Server & Streaming Route -->
+            <rect x="182" y="55" width="135" height="130" rx="8" fill="#FFFFFF"/>
+            <rect x="182" y="55" width="135" height="22" rx="8" fill="#00661A"/>
+            <text x="249" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">⚡ Nginx & Media Engine</text>
+            <text x="190" y="90" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00661A">• Reverse Proxy HTTPS</text>
+            <text x="190" y="103" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Gzip Compression</text>
+            <text x="190" y="116" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#2B6CB0">• /media-file Engine</text>
+            <text x="190" y="129" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Anti 404 Nginx Bypass</text>
+            <text x="190" y="142" font-family="Helvetica" font-size="6.5" fill="#4A5568">• MIME-Type Dispatcher</text>
+            <text x="190" y="155" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#38A169">• Sub-50ms Response</text>
+
+            <!-- Box 3: Laravel 11 Backend & DOKU Gateway -->
+            <rect x="340" y="55" width="135" height="130" rx="8" fill="#FFFFFF"/>
+            <rect x="340" y="55" width="135" height="22" rx="8" fill="#EE2737"/>
+            <text x="407" y="70" font-family="Helvetica" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">⚙️ Laravel 11 & DOKU</text>
+            <text x="348" y="90" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#00661A">• Eloquent ORM MySQL</text>
+            <text x="348" y="103" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Dynamic QRIS Gateway</text>
+            <text x="348" y="116" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Real-time Webhook</text>
+            <text x="348" y="129" font-family="Helvetica" font-size="6.5" fill="#4A5568">• SHA-256 TTE Crypt</text>
+            <text x="348" y="142" font-family="Helvetica" font-size="6.5" fill="#4A5568">• Signed URL 24h Expire</text>
+            <text x="348" y="155" font-family="Helvetica" font-size="6.5" font-weight="bold" fill="#38A169">• Log: storage/logs</text>
+
+            <!-- Bottom Guarantee Bar -->
+            <rect x="25" y="195" width="450" height="35" rx="8" fill="#00880F"/>
+            <text x="250" y="210" font-family="Helvetica" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">GARANSI PERAWATAN & DUKUNGAN SISTEM 24/7 OLEH I GUSTI SULTAN</text>
+            <text x="250" y="222" font-family="Helvetica" font-size="6.5" fill="#E6F4EA" text-anchor="middle">Server Uptime 99.9% • Update Kode GitHub Terjadwal • Pembersihan Cache Otomatis</text>
+        </svg>
+        <div class="diagram-caption">Gambar 10.1: Arsitektur Infrastruktur Server & Pemeliharaan Terpusat oleh I Gusti Sultan</div>
+    </div>
 
     {{-- ========================================================================= --}}
     {{-- HALAMAN 71: BAB 10.3 --}}
