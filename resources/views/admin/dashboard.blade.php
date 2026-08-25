@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Dashboard')
 @section('header_title', 'Dashboard Ringkasan')
@@ -40,41 +40,50 @@
 
             {{-- GOJEK QUICK ACTION SQUIRCLES --}}
             <div class="lg:col-span-6">
-                <div class="grid grid-cols-4 gap-3 bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/15">
+                <div class="grid grid-cols-5 gap-2 bg-white/10 backdrop-blur-md p-3.5 rounded-3xl border border-white/15">
                     {{-- AKSI 1: KASIR POS --}}
                     <a href="{{ route('cashier.pos.index') }}" 
-                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
-                        <div class="w-12 h-12 bg-white text-[#00880F] rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                       class="flex flex-col items-center justify-center p-1.5 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-11 h-11 bg-white text-[#00880F] rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                         </div>
-                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">Kasir POS</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider mt-1.5 text-white">Kasir POS</span>
                     </a>
 
                     {{-- AKSI 2: TAMBAH PRODUK --}}
                     <a href="{{ route('admin.products.create') }}" 
-                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
-                        <div class="w-12 h-12 bg-[#00AED6] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 4v16m8-8H4"/></svg>
+                       class="flex flex-col items-center justify-center p-1.5 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-11 h-11 bg-[#00AED6] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 4v16m8-8H4"/></svg>
                         </div>
-                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">+ Produk</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider mt-1.5 text-white">+ Produk</span>
                     </a>
 
                     {{-- AKSI 3: LAPORAN PENJUALAN --}}
                     <a href="{{ route('admin.reports.index') }}" 
-                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
-                        <div class="w-12 h-12 bg-[#EE2737] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 17v-2m3 2v-4m3 2v-6m-8 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                       class="flex flex-col items-center justify-center p-1.5 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-11 h-11 bg-[#EE2737] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 17v-2m3 2v-4m3 2v-6m-8 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         </div>
-                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">Penjualan</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider mt-1.5 text-white">Penjualan</span>
                     </a>
 
-                    {{-- AKSI 4: KEUANGAN --}}
-                    <a href="{{ route('admin.reports.finance') }}" 
-                       class="flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
-                        <div class="w-12 h-12 bg-[#FFB800] text-gray-900 rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    {{-- AKSI 4: LAPORAN STOK --}}
+                    <a href="{{ route('admin.reports.stock') }}" 
+                       class="flex flex-col items-center justify-center p-1.5 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-11 h-11 bg-[#00AA13] text-white rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300 border border-white/20">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
                         </div>
-                        <span class="text-[10px] font-black uppercase tracking-wider mt-2 text-white">Keuangan</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider mt-1.5 text-white">Stok PDF</span>
+                    </a>
+
+                    {{-- AKSI 5: KEUANGAN --}}
+                    <a href="{{ route('admin.reports.finance') }}" 
+                       class="flex flex-col items-center justify-center p-1.5 rounded-2xl hover:bg-white/20 active:scale-90 transition group text-center">
+                        <div class="w-11 h-11 bg-[#FFB800] text-gray-900 rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <span class="text-[9px] font-black uppercase tracking-wider mt-1.5 text-white">Keuangan</span>
                     </a>
                 </div>
             </div>

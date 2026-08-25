@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Models\Setting;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -494,5 +495,159 @@ class ReportController extends Controller
                   ->setPaper('a4', 'landscape');
 
         return $pdf->stream('Faktur_' . $sale->transaction_number . '.pdf');
+    }
+
+    /**
+     * Helper Query untuk Laporan Stok & Inventaris Produk
+     */
+    private function buildStockReportQuery(Request $request)
+    {
+        $search = $request->input('search');
+        $stockStatus = $request->input('stock_status', 'all');
+        $sortBy = $request->input('sort_by', 'name_asc');
+
+        $query = Product::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('barcode', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        switch ($stockStatus) {
+            case 'low':
+                $query->where('stock', '>', 0)->where('stock', '<=', 10);
+                $statusLabel = 'Stok Menipis (<= 10 pcs)';
+                break;
+            case 'empty':
+                $query->where('stock', '<=', 0);
+                $statusLabel = 'Stok Habis (0 pcs)';
+                break;
+            case 'available':
+                $query->where('stock', '>', 10);
+                $statusLabel = 'Stok Tersedia (> 10 pcs)';
+                break;
+            default:
+                $statusLabel = 'Semua Stok Barang';
+                break;
+        }
+
+        switch ($sortBy) {
+            case 'stock_asc':
+                $query->orderBy('stock', 'asc');
+                break;
+            case 'stock_desc':
+                $query->orderBy('stock', 'desc');
+                break;
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'latest':
+                $query->orderBy('created_at', 'desc');
+                break;
+            default:
+                $query->orderBy('name', 'asc');
+                break;
+        }
+
+        $filters = [
+            'search'       => $search,
+            'stock_status' => $stockStatus,
+            'sort_by'      => $sortBy,
+        ];
+
+        return [$query, $statusLabel, $filters];
+    }
+
+    /**
+     * Halaman Utama Laporan Stok & Inventaris Barang
+     */
+    public function stockReport(Request $request)
+    {
+        [$query, $statusLabel, $filters] = $this->buildStockReportQuery($request);
+
+        $allProducts = Product::all();
+        $stats = [
+            'total_products'    => $allProducts->count(),
+            'total_stock'       => $allProducts->sum('stock'),
+            'total_valuation'   => $allProducts->sum(fn($p) => $p->stock * $p->price),
+            'low_stock_count'   => $allProducts->where('stock', '>', 0)->where('stock', '<=', 10)->count(),
+            'empty_stock_count' => $allProducts->where('stock', '<=', 0)->count(),
+        ];
+
+        $products = (clone $query)->paginate(15)->withQueryString();
+
+        return view('reports.stock', compact('products', 'stats', 'statusLabel', 'filters'));
+    }
+
+    /**
+     * Export Laporan Stok Barang ke PDF (Landscape A4 dengan format kop resmi yang sama)
+     */
+    public function exportStockPdf(Request $request)
+    {
+        [$query, $statusLabel, $filters] = $this->buildStockReportQuery($request);
+
+        $products = $query->get();
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $totalProducts = $products->count();
+        $totalStock = $products->sum('stock');
+        $totalValuation = $products->sum(fn($p) => $p->stock * $p->price);
+
+        $pdf = Pdf::loadView('reports.stock_pdf', compact(
+            'products',
+            'statusLabel',
+            'filters',
+            'shop',
+            'totalProducts',
+            'totalStock',
+            'totalValuation'
+        ))->setPaper('a4', 'landscape');
+
+        return $pdf->download('Laporan_Stok_Barang_' . date('Ymd_His') . '.pdf');
+    }
+
+    /**
+     * Export Laporan Stok Barang ke Excel
+     */
+    public function exportStockExcel(Request $request)
+    {
+        [$query, $statusLabel, $filters] = $this->buildStockReportQuery($request);
+
+        $products = $query->get();
+        $totalProducts = $products->count();
+        $totalStock = $products->sum('stock');
+        $totalValuation = $products->sum(fn($p) => $p->stock * $p->price);
+
+        return Excel::download(new class($products, $statusLabel, $totalProducts, $totalStock, $totalValuation) implements FromView, ShouldAutoSize {
+            private $products;
+            private $statusLabel;
+            private $totalProducts;
+            private $totalStock;
+            private $totalValuation;
+
+            public function __construct($products, $statusLabel, $totalProducts, $totalStock, $totalValuation) {
+                $this->products = $products;
+                $this->statusLabel = $statusLabel;
+                $this->totalProducts = $totalProducts;
+                $this->totalStock = $totalStock;
+                $this->totalValuation = $totalValuation;
+            }
+
+            public function view(): \Illuminate\Contracts\View\View {
+                return view('reports.stock_excel', [
+                    'products'       => $this->products,
+                    'statusLabel'    => $this->statusLabel,
+                    'totalProducts'  => $this->totalProducts,
+                    'totalStock'     => $this->totalStock,
+                    'totalValuation' => $this->totalValuation,
+                ]);
+            }
+        }, 'Laporan_Stok_Barang_' . date('Ymd_His') . '.xlsx');
     }
 }

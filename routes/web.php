@@ -71,6 +71,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/reports/qris/pdf', [ReportController::class, 'exportQrisPdf'])->name('reports.qris.pdf');
         Route::get('/reports/qris/excel', [ReportController::class, 'exportQrisExcel'])->name('reports.qris.excel');
 
+        // 3. LAPORAN STOK BARANG & INVENTARIS
+        Route::get('/reports/stock', [ReportController::class, 'stockReport'])->name('reports.stock');
+        Route::get('/reports/stock/pdf', [ReportController::class, 'exportStockPdf'])->name('reports.stock.pdf');
+        Route::get('/reports/stock/excel', [ReportController::class, 'exportStockExcel'])->name('reports.stock.excel');
+
         Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
     });

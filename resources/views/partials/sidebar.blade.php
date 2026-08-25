@@ -54,6 +54,17 @@
         <span>Laporan Penjualan</span>
     </a>
 
+    {{-- LAPORAN STOK BARANG --}}
+    <a href="{{ route('admin.reports.stock') }}" 
+       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.reports.stock*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.reports.stock*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            </svg>
+        </div>
+        <span>Laporan Stok</span>
+    </a>
+
     {{-- LAPORAN KEUANGAN --}}
     <a href="{{ route('admin.reports.finance') }}" 
        class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ (request()->routeIs('admin.reports.finance*') || request()->routeIs('admin.reports.qris*')) ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">

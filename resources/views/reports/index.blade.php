@@ -14,13 +14,17 @@
         </div>
         <div class="flex items-center gap-2">
             <a href="{{ route('admin.reports.print.daily') }}" target="_blank" 
-               class="inline-flex items-center px-4 py-2.5 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-xl font-bold text-xs transition-all">
+               class="inline-flex items-center px-4 py-2.5 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-2xl font-bold text-xs transition-all">
                 <svg class="w-4 h-4 mr-1.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-width="2"/></svg>
                 Struk Hari Ini
             </a>
+            <a href="{{ route('admin.reports.stock') }}" 
+               class="inline-flex items-center px-4 py-2.5 bg-emerald-50 text-[#00880F] hover:bg-emerald-100 rounded-2xl font-bold text-xs transition-all border border-emerald-200/60">
+                📦 Laporan Stok
+            </a>
             <a href="{{ route('admin.reports.finance') }}" 
-               class="inline-flex items-center px-4 py-2.5 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-xl font-bold text-xs transition-all">
-                Laporan Keuangan →
+               class="inline-flex items-center px-4 py-2.5 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-2xl font-bold text-xs transition-all">
+                Keuangan →
             </a>
         </div>
     </div>

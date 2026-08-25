@@ -1,4 +1,4 @@
-﻿@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title', 'Manajemen Produk')
 @section('header_title', 'Katalog & Stok Produk')
@@ -12,15 +12,24 @@
             <h3 class="text-lg font-black text-gray-900 uppercase tracking-tight">Katalog Inventaris Produk</h3>
             <p class="text-xs text-gray-400 font-medium">Kelola data barang, barcode, harga jual, dan stok realtime.</p>
         </div>
-        <div class="flex items-center space-x-3 w-full sm:w-auto">
+        <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+            <a href="{{ route('admin.reports.stock.pdf') }}" 
+               class="flex-1 sm:flex-none text-center px-4 py-3 bg-[#EE2737] hover:bg-rose-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-200 transition flex items-center justify-center">
+                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2.5"/></svg>
+                PDF Stok
+            </a>
+            <a href="{{ route('admin.reports.stock') }}" 
+               class="flex-1 sm:flex-none text-center px-4 py-3 bg-emerald-50 hover:bg-emerald-100 text-[#00880F] rounded-2xl font-black text-xs uppercase tracking-wider transition border border-emerald-200/60 flex items-center justify-center">
+                📊 Rekap Stok
+            </a>
             <a href="{{ route('admin.products.import.show') }}" 
-               class="flex-1 sm:flex-none text-center px-5 py-3 bg-emerald-50 hover:bg-emerald-100 text-[#00880F] rounded-2xl font-black text-xs uppercase tracking-wider transition border border-emerald-200/60">
-                📥 Impor Excel
+               class="flex-1 sm:flex-none text-center px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-black text-xs uppercase tracking-wider transition">
+                📥 Impor
             </a>
             <a href="{{ route('admin.products.create') }}" 
-               class="flex-1 sm:flex-none text-center px-6 py-3 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition flex items-center justify-center">
+               class="flex-1 sm:flex-none text-center px-5 py-3 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition flex items-center justify-center">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2.5"/></svg>
-                Tambah Produk
+                Tambah
             </a>
         </div>
     </div>
