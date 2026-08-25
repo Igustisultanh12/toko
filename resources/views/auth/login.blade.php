@@ -88,8 +88,9 @@
                 </button>
             </form>
 
-            <div class="mt-8 text-center border-t border-gray-100 pt-4">
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }} POS</p>
+            <div class="mt-8 text-center border-t border-gray-100 pt-4 space-y-1">
+                <p class="text-gray-600 text-[10px] font-black uppercase tracking-wider">{{ $shop['shop_name'] ?? 'SISTEM KASIR' }}</p>
+                <p class="text-gray-400 text-[9px] font-bold">&copy; {{ date('Y') }} <span class="text-gray-600 font-extrabold">I Gusti Sultan</span>. All rights reserved.</p>
             </div>
         </div>
     </div>

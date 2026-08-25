@@ -31,6 +31,10 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <footer class="py-6 text-center text-xs text-gray-500 border-t border-gray-200 dark:border-gray-700">
+                &copy; {{ date('Y') }} <b>I Gusti Sultan</b>. All rights reserved.
+            </footer>
         </div>
          @stack('scripts')
     </body>

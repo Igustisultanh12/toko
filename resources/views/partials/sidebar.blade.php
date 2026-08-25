@@ -101,7 +101,7 @@
 </nav>
 
 {{-- FOOTER PROFILE & LOGOUT --}}
-<div class="p-4 border-t border-white/10 bg-black/10">
+<div class="p-4 border-t border-white/10 bg-black/10 text-center space-y-3">
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" class="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-2xl bg-white/10 hover:bg-rose-600 active:scale-95 text-white font-black text-xs uppercase tracking-wider transition-all">
@@ -111,4 +111,7 @@
             <span>Keluar</span>
         </button>
     </form>
+    <p class="text-[9px] font-bold text-emerald-200/60 uppercase tracking-widest">
+        &copy; {{ date('Y') }} I Gusti Sultan
+    </p>
 </div>

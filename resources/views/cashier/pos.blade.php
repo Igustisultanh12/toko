@@ -240,11 +240,14 @@
                     </div>
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6 space-y-3">
                     <button @click="openPaymentModal()" :disabled="cart.length === 0" 
                             class="w-full bg-[#00AA13] hover:bg-[#00880F] text-white py-5 rounded-[2rem] text-sm font-black shadow-xl shadow-emerald-500/25 active:scale-95 disabled:bg-gray-200 disabled:shadow-none transition-all uppercase tracking-widest">
                         PROSES BAYAR (B)
                     </button>
+                    <p class="text-[9px] font-bold text-gray-400 text-center tracking-widest">
+                        &copy; {{ date('Y') }} I Gusti Sultan. All rights reserved.
+                    </p>
                 </div>
             </div>
         </div>

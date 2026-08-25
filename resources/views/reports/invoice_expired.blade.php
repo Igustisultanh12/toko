@@ -56,9 +56,12 @@
             @endif
         </div>
 
-        <p class="text-[10px] text-gray-400 font-medium">
-            Sistem Kasir {{ $shop['app_name'] ?? 'SIKANDA' }}
-        </p>
+        <div class="border-t border-gray-100 pt-3 space-y-1">
+            <p class="text-[10px] text-gray-400 font-medium">
+                Sistem Kasir {{ $shop['app_name'] ?? '' }}
+            </p>
+            <p class="text-[9px] text-gray-400 font-bold">&copy; {{ date('Y') }} <span class="text-gray-600 font-extrabold">I Gusti Sultan</span>. All rights reserved.</p>
+        </div>
 
     </div>
 </body>

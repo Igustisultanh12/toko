@@ -174,8 +174,9 @@
 
     </div>
 
-    <footer class="text-center text-gray-400 text-xs mt-10">
-        &copy; {{ date('Y') }} {{ $shop['shop_name'] ?? 'TOKO ANANDA' }}. Hak Cipta Dilindungi.
+    <footer class="text-center text-gray-400 text-xs mt-10 space-y-1">
+        <p>&copy; {{ date('Y') }} <span class="text-gray-700 font-black">I Gusti Sultan</span>. All rights reserved.</p>
+        <p class="text-[10px] text-gray-400 font-medium">Sistem Verifikasi Faktur & Tanda Tangan Elektronik (TTE)</p>
     </footer>
 
 </body>

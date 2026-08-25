@@ -136,8 +136,9 @@
     </div>
 
     {{-- FOOTER HAK CIPTA --}}
-    <footer class="text-center py-6 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-        &copy; {{ date('Y') }} {{ $shop['shop_name'] ?? 'TOKO ANANDA' }} &bull; Powered by {{ $shop['app_name'] ?? 'SIKANDA' }}
+    <footer class="text-center py-6 text-[10px] font-bold text-gray-400 uppercase tracking-widest space-y-1">
+        <p>&copy; {{ date('Y') }} <span class="text-gray-700 font-black">I Gusti Sultan</span>. All rights reserved.</p>
+        <p class="text-[9px] text-gray-400 font-medium">Sistem Verifikasi Dokumen & Tanda Tangan Elektronik (TTE)</p>
     </footer>
 
 </body>

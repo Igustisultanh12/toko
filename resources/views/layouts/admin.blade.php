@@ -39,7 +39,7 @@
                 <div class="w-2.5 h-7 bg-emerald-500 rounded-full"></div>
                 <div>
                     <h2 class="text-lg font-black text-gray-900 uppercase tracking-tight">@yield('header_title', 'Dashboard')</h2>
-                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">{{ $shop['shop_name'] ?? 'TOKO ANANDA' }}</p>
+                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">{{ $shop['shop_name'] ?? '' }}</p>
                 </div>
             </div>
 
@@ -71,8 +71,17 @@
         </header>
 
         {{-- PAGE CONTENT CONTAINER --}}
-        <div class="flex-grow overflow-y-auto p-6 sm:p-8 md:p-10">
-            @yield('content')
+        <div class="flex-grow overflow-y-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+            <div class="flex-grow">
+                @yield('content')
+            </div>
+
+            {{-- FOOTER COPYRIGHT --}}
+            <footer class="mt-12 pt-6 pb-4 border-t border-gray-200/60 text-center">
+                <p class="text-[11px] font-bold text-gray-400">
+                    &copy; {{ date('Y') }} <span class="text-gray-700 font-black">I Gusti Sultan</span>. All rights reserved.
+                </p>
+            </footer>
         </div>
     </main>
 </body>

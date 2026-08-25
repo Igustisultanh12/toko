@@ -25,6 +25,10 @@
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
+
+            <footer class="mt-6 text-center text-xs text-gray-500">
+                &copy; {{ date('Y') }} <b>I Gusti Sultan</b>. All rights reserved.
+            </footer>
         </div>
     </body>
 </html>
