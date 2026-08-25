@@ -54,6 +54,9 @@
                 <td class="text-right">{{ $sale->created_at->format('d/m/y H:i') }}</td>
             </tr>
             <tr>
+                <td colspan="2">Pelanggan: {{ $sale->customer_name ?? 'Pelanggan Umum' }}</td>
+            </tr>
+            <tr>
                 <td colspan="2">Kasir: {{ $sale->user->name ?? 'Admin' }}</td>
             </tr>
             <tr>

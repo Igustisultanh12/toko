@@ -53,6 +53,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'customer_name' => 'nullable|string|max:100',
             'items' => 'required|array|min:1',
             'items.*.id' => 'required|exists:products,id',
             'items.*.quantity' => 'required|integer|min:1',
@@ -70,6 +71,7 @@ class SaleController extends Controller
             $sale = Sale::create([
                 'transaction_number' => $transactionNumber,
                 'user_id'            => Auth::id(),
+                'customer_name'      => $request->customer_name ?: 'Pelanggan Umum',
                 'total_amount'       => $request->total,
                 'amount_paid'        => $request->amount_paid,
                 'payment_method'     => $request->payment_method,
@@ -140,11 +142,14 @@ class SaleController extends Controller
             $itemDetails .= ($index + 1) . ". " . $itemName . " (x" . $detail->quantity . ")\n";
         }
 
+        $customerName = $sale->customer_name ?? 'Pelanggan Umum';
+
         $message = "💵 *LAPORAN TUNAI (CASH) BARU* 💵\n\n"
                  . "💰 *TOTAL:* Rp " . number_format($sale->total_amount, 0, ',', '.') . "\n"
                  . "🧾 *INVOICE:* `" . $sale->transaction_number . "`\n"
+                 . "👤 *PELANGGAN:* " . $customerName . "\n"
                  . "⏰ *WAKTU:* " . now()->format('d/m/Y H:i') . " WIB\n"
-                 . "👤 *KASIR:* " . Auth::user()->name . "\n\n"
+                 . "🧑‍💼 *KASIR:* " . Auth::user()->name . "\n\n"
                  . "📦 *RINCIAN BARANG:*\n"
                  . "_" . $itemDetails . "_\n"
                  . "✅ *Status:* Transaksi Selesai & Uang Diterima.\n"

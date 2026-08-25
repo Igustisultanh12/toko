@@ -300,72 +300,56 @@
 
                     <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Ringkasan Tagihan</h2>
 
-                    <div class="bg-indigo-600 p-8 rounded-[2.5rem] shadow-xl shadow-indigo-100 text-white text-center">
-
-                        <p class="text-[10px] font-bold text-indigo-200 uppercase mb-1 tracking-widest leading-none">Total Bayar</p>
-
-                        <div class="text-5xl font-black tracking-tighter leading-none">
-
-                            <span class="text-xl mr-1 opacity-70">Rp</span><span x-text="formatNumber(total)"></span>
-
-                        </div>
-
+                    {{-- INPUT NAMA PELANGGAN --}}
+                    <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 flex justify-between items-center">
+                            <span>Nama Pelanggan</span>
+                            <span class="text-[9px] text-indigo-500 font-normal cursor-pointer hover:underline" @click="customerName = 'Pelanggan Umum'">Set Umum</span>
+                        </label>
+                        <input type="text" x-model="customerName" placeholder="Contoh: Pak Budi / Bu Siti" 
+                               class="w-full bg-white border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-800 outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition-all">
                     </div>
 
+                    <div class="bg-indigo-600 p-8 rounded-[2.5rem] shadow-xl shadow-indigo-100 text-white text-center">
+                        <p class="text-[10px] font-bold text-indigo-200 uppercase mb-1 tracking-widest leading-none">Total Bayar</p>
+                        <div class="text-5xl font-black tracking-tighter leading-none">
+                            <span class="text-xl mr-1 opacity-70">Rp</span><span x-text="formatNumber(total)"></span>
+                        </div>
+                    </div>
                 </div>
-
-                
 
                 <div class="mt-6">
-
                     <button @click="openPaymentModal()" :disabled="cart.length === 0" 
-
                             class="w-full bg-indigo-600 text-white py-6 rounded-[1.5rem] text-xl font-black shadow-lg shadow-indigo-100 hover:bg-indigo-700 active:scale-95 disabled:bg-gray-200 transition-all uppercase tracking-widest text-sm">
-
                         PROSES BAYAR (B)
-
                     </button>
-
                 </div>
-
             </div>
-
         </div>
 
-
-
         {{-- MODAL PEMBAYARAN --}}
-
         <div x-show="isPaymentModalOpen" class="fixed inset-0 bg-indigo-900/90 backdrop-blur-sm flex items-center justify-center z-[100] p-4" x-cloak x-transition>
-
             <div @click.away="!isLoading && (isPaymentModalOpen = false)" class="bg-white rounded-[3rem] p-10 w-full max-w-lg shadow-2xl">
-
-                <div class="text-center mb-8">
-
+                <div class="text-center mb-6">
                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Metode Pembayaran</p>
-
                     <h2 class="text-4xl font-black text-indigo-600 mt-2" x-text="formatCurrency(total)"></h2>
-
                 </div>
 
-                
+                {{-- NAMA PELANGGAN DI DALAM MODAL --}}
+                <div class="mb-5 text-left">
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nama Pelanggan</label>
+                    <input type="text" x-model="customerName" placeholder="Pelanggan Umum"
+                           class="w-full text-sm font-bold px-4 py-3 bg-gray-50 border-2 border-indigo-100 rounded-2xl outline-none focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-50 transition-all">
+                </div>
 
-                <div class="grid grid-cols-2 gap-4 mb-8">
-
+                <div class="grid grid-cols-2 gap-4 mb-6">
                     <button @click="paymentMethod = 'cash'" :class="paymentMethod === 'cash' ? 'bg-indigo-600 text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-400'" class="p-5 rounded-2xl font-black transition-all uppercase tracking-widest">TUNAI</button>
-
                     <button @click="paymentMethod = 'qris'" :class="paymentMethod === 'qris' ? 'bg-indigo-600 text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-400'" class="p-5 rounded-2xl font-black transition-all text-xs tracking-widest uppercase leading-tight">QRIS / DOKU</button>
-
                 </div>
-
-
 
                 <div x-show="paymentMethod === 'cash'" x-transition>
-
                     <label class="block text-[10px] font-black text-gray-400 uppercase mb-2 ml-1 tracking-widest text-left">Uang Diterima</label>
-
                     <input type="number" x-model.number="amountPaid" x-ref="amountPaidInput"
-
                            class="w-full text-4xl font-black p-6 bg-gray-50 border-2 border-indigo-100 rounded-3xl text-center outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all">
 
                     
@@ -528,6 +512,7 @@
 
 
 
+                customerName: 'Pelanggan Umum',
                 cart: [], searchQuery: '', searchResults: [], manualBarcode: '',
 
                 isPaymentModalOpen: false, isQrisModalOpen: false, 
@@ -685,15 +670,12 @@
                     this.isLoading = true;
 
                     const payload = {
-
+                        customer_name: this.customerName || 'Pelanggan Umum',
                         items: this.cart.map(i => ({ id: i.id, quantity: i.quantity })),
-
-                        total: this.total, payment_method: this.paymentMethod,
-
+                        total: this.total, 
+                        payment_method: this.paymentMethod,
                         amount_paid: this.paymentMethod === 'cash' ? this.amountPaid : this.total,
-
                         _token: '{{ csrf_token() }}'
-
                     };
 
 
@@ -867,9 +849,8 @@
 
 
                                 receipt += formatHeader("No. Nota", this.lastTransactionNumber);
-
+                                receipt += formatHeader("Pelanggan", (this.customerName || "Pelanggan Umum").substring(0, 16));
                                 receipt += formatHeader("Tanggal", new Date().toLocaleDateString('id-ID') + " " + new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}));
-
                                 receipt += formatHeader("Kasir", document.getElementById('cashier-name').innerText.trim());
 
                                 receipt += "--------------------------------\n";

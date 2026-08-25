@@ -16,6 +16,7 @@ class Sale extends Model
     protected $fillable = [
         'transaction_number', // Kolom AND-....
         'user_id',
+        'customer_name',     // Nama Pelanggan
         'total_amount',
         'amount_paid',
         'payment_method',

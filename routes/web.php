@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('products', ProductController::class);
         
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::get('/reports/pdf', [ReportController::class, 'exportPdf'])->name('reports.pdf');
+        Route::get('/reports/excel', [ReportController::class, 'exportExcel'])->name('reports.excel');
         Route::get('/reports/print/daily', [ReportController::class, 'printDailyReport'])->name('reports.print.daily');
         
         Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');

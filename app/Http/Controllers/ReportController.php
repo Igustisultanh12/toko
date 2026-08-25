@@ -81,7 +81,7 @@ class ReportController extends Controller
             }
             $salesDataForPdf = $pdfQuery->get();
 
-            $pdf = PDF::loadView('reports.pdf', ['salesData' => $salesDataForPdf, 'reportTitle' => $reportTitle]);
+            $pdf = PDF::loadView('reports.pdf', ['salesData' => $salesDataForPdf, 'reportTitle' => $reportTitle])->setPaper('a4', 'landscape');
             return $pdf->download(strtolower(str_replace(' ', '_', $reportTitle)) . '.pdf');
         }
 
