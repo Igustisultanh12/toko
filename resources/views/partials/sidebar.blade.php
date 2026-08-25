@@ -32,7 +32,18 @@
         <span>Dashboard</span>
     </a>
 
-    {{-- PESANAN ONLINE (NOTIFIKASI REALTIME) --}}
+    {{-- KASIR POS (BISA DIAKSES OLEH KASIR & ADMIN) --}}
+    <a href="{{ route('cashier.pos.index') }}" 
+       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('cashier.pos.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('cashier.pos.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+        </div>
+        <span>Kasir POS</span>
+    </a>
+
+    {{-- PESANAN ONLINE (NOTIFIKASI REALTIME - KASIR & ADMIN) --}}
     <a href="{{ route('admin.orders.index') }}" 
        class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
         <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.orders.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
@@ -44,74 +55,76 @@
         <span id="sidebarOrderBadge" class="bg-rose-500 text-white px-2 py-0.5 rounded-full text-[9px] font-black hidden animate-pulse">0</span>
     </a>
 
-    {{-- MANAJEMEN PRODUK --}}
-    <a href="{{ route('admin.products.index') }}" 
-       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.products.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
-        </div>
-        <span>Produk & Stok</span>
-    </a>
+    @if(Auth::user()->role === 'admin')
+        {{-- MANAJEMEN PRODUK --}}
+        <a href="{{ route('admin.products.index') }}" 
+           class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.products.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+            </div>
+            <span>Produk & Stok</span>
+        </a>
 
-    {{-- LAPORAN PENJUALAN --}}
-    <a href="{{ route('admin.reports.index') }}" 
-       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ (request()->routeIs('admin.reports.index') || request()->routeIs('admin.reports.sales')) ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ (request()->routeIs('admin.reports.index') || request()->routeIs('admin.reports.sales')) ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path d="M9 17v-2m3 2v-4m3 2v-6m-8 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-        </div>
-        <span>Laporan Penjualan</span>
-    </a>
+        {{-- LAPORAN PENJUALAN --}}
+        <a href="{{ route('admin.reports.index') }}" 
+           class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ (request()->routeIs('admin.reports.index') || request()->routeIs('admin.reports.sales')) ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ (request()->routeIs('admin.reports.index') || request()->routeIs('admin.reports.sales')) ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M9 17v-2m3 2v-4m3 2v-6m-8 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+            </div>
+            <span>Laporan Penjualan</span>
+        </a>
 
-    {{-- LAPORAN STOK BARANG --}}
-    <a href="{{ route('admin.reports.stock') }}" 
-       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.reports.stock*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.reports.stock*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-            </svg>
-        </div>
-        <span>Laporan Stok</span>
-    </a>
+        {{-- LAPORAN STOK BARANG --}}
+        <a href="{{ route('admin.reports.stock') }}" 
+           class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.reports.stock*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.reports.stock*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                </svg>
+            </div>
+            <span>Laporan Stok</span>
+        </a>
 
-    {{-- LAPORAN KEUANGAN --}}
-    <a href="{{ route('admin.reports.finance') }}" 
-       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ (request()->routeIs('admin.reports.finance*') || request()->routeIs('admin.reports.qris*')) ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ (request()->routeIs('admin.reports.finance*') || request()->routeIs('admin.reports.qris*')) ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        </div>
-        <span>Laporan Keuangan</span>
-    </a>
+        {{-- LAPORAN KEUANGAN --}}
+        <a href="{{ route('admin.reports.finance') }}" 
+           class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ (request()->routeIs('admin.reports.finance*') || request()->routeIs('admin.reports.qris*')) ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ (request()->routeIs('admin.reports.finance*') || request()->routeIs('admin.reports.qris*')) ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <span>Laporan Keuangan</span>
+        </a>
 
-    {{-- MANAJEMEN AKUN --}}
-    <a href="{{ route('admin.users.index') }}" 
-       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.users.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.users.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-        </div>
-        <span>Manajemen Akun</span>
-    </a>
+        {{-- MANAJEMEN AKUN --}}
+        <a href="{{ route('admin.users.index') }}" 
+           class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.users.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.users.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </div>
+            <span>Manajemen Akun</span>
+        </a>
 
-    {{-- IDENTITAS & PENGATURAN TOKO --}}
-    <a href="{{ route('admin.settings.index') }}" 
-       class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.settings.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <circle cx="12" cy="12" r="3" />
-            </svg>
-        </div>
-        <span>Pengaturan Toko</span>
-    </a>
+        {{-- IDENTITAS & PENGATURAN TOKO --}}
+        <a href="{{ route('admin.settings.index') }}" 
+           class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.settings.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.settings.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+            </div>
+            <span>Pengaturan Toko</span>
+        </a>
+    @endif
 
-    {{-- BUKU PANDUAN PENGGUNA --}}
+    {{-- BUKU PANDUAN PENGGUNA (KASIR & ADMIN) --}}
     <a href="{{ route('admin.manual.index') }}" 
        class="flex items-center space-x-3 px-4 py-3 rounded-2xl transition font-black text-xs uppercase tracking-wider {{ request()->routeIs('admin.manual.*') ? 'bg-white text-[#00661A] shadow-lg shadow-black/10' : 'text-emerald-100 hover:bg-white/10' }}">
         <div class="w-8 h-8 rounded-xl flex items-center justify-center {{ request()->routeIs('admin.manual.*') ? 'bg-emerald-100 text-[#00880F]' : 'bg-white/10 text-white' }}">

@@ -132,9 +132,9 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // --- GRUP ADMIN ---
-    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
-        // MANAJEMEN PESANAN ONLINE (KONFIRMASI, INPUT RESI, LACAK)
+    // --- MANAJEMEN PESANAN ONLINE & PANDUAN (Bisa diakses oleh Admin & Kasir) ---
+    Route::middleware('role:admin,cashier')->prefix('admin')->name('admin.')->group(function () {
+        // MANAJEMEN PESANAN ONLINE (KONFIRMASI, PROSES, INPUT RESI, SELESAIKAN, CETAK LABEL)
         Route::get('/orders', [OnlineOrderAdminController::class, 'index'])->name('orders.index');
         Route::get('/orders/{id}', [OnlineOrderAdminController::class, 'show'])->name('orders.show');
         Route::post('/orders/{id}/confirm', [OnlineOrderAdminController::class, 'confirmOrder'])->name('orders.confirm');
@@ -143,6 +143,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/orders/{id}/cancel', [OnlineOrderAdminController::class, 'cancelOrder'])->name('orders.cancel');
         Route::get('/orders/{id}/shipping-label', [OnlineOrderAdminController::class, 'printShippingLabel'])->name('orders.shipping-label');
 
+        // BUKU PANDUAN PENGGUNA (Bisa dibaca oleh Kasir & Admin)
+        Route::get('/manual-guide', [ManualGuideController::class, 'index'])->name('manual.index');
+        Route::get('/manual-guide/pdf', [ManualGuideController::class, 'exportPdf'])->name('manual.pdf');
+    });
+
+    // --- GRUP KHUSUS ADMINISTRATOR (Produk, Pengguna, Laporan, Pengaturan Toko) ---
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/products/quick-stock', [ProductController::class, 'quickStockUpdate'])->name('products.quick-stock');
         Route::get('/products/import', [ProductController::class, 'showImportForm'])->name('products.import.show');
         Route::post('/products/import', [ProductController::class, 'import'])->name('products.import.store');
@@ -174,10 +181,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
-
-        // 4. BUKU PANDUAN PENGGUNA (WEB VIEW & PDF LENGKAP)
-        Route::get('/manual-guide', [ManualGuideController::class, 'index'])->name('manual.index');
-        Route::get('/manual-guide/pdf', [ManualGuideController::class, 'exportPdf'])->name('manual.pdf');
     });
 
     // --- GRUP KASIR (Bisa diakses oleh Kasir dan Administrator) ---
