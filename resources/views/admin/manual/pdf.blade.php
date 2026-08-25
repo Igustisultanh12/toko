@@ -538,8 +538,7 @@
         <div class="toc-sub-row">8.3 Kustomisasi Branding Aplikasi, Prefix Invoice & Favicon Browser</div>
         <div class="toc-sub-row">8.4 Pengaturan & Pengunggahan Suara Bel Kasir (Audio Chime MP3/WAV)</div>
         <div class="toc-sub-row">8.5 Konfigurasi Gateway DOKU Merchant (Sandbox & Production)</div>
-        <div class="toc-sub-row">8.6 Konfigurasi Integrasi Bot Notifikasi Telegram Toko</div>
-        <div class="toc-sub-row">8.7 Pengaturan Footer Struk Kasir & Kebijakan Toko</div>
+        <div class="toc-sub-row">8.6 Pengaturan Footer Struk Kasir & Kebijakan Toko</div>
     </div>
 
     <div class="toc-chapter-row">
@@ -1127,7 +1126,7 @@
 
     <h2 class="section-title">8.1 Pusat Pengaturan Sistem Terpadu (/admin/settings)</h2>
     <p>
-        Menu Pengaturan Sistem (<code>/admin/settings</code>) merupakan pusat kendali untuk mengonfigurasi seluruh aspek identitas bisnis toko, branding aplikasi, parameter printer struk, pengunggahan audio bel, integrasi gateway DOKU, dan notifikasi bot Telegram.
+        Menu Pengaturan Sistem (<code>/admin/settings</code>) merupakan pusat kendali untuk mengonfigurasi seluruh aspek identitas bisnis toko, branding aplikasi, parameter printer struk, pengunggahan audio bel, dan integrasi gateway DOKU.
     </p>
 
     <h2 class="section-title">8.2 Personalisasi Identitas Bisnis, Nama Usaha, Alamat & Logo Toko</h2>
@@ -1178,12 +1177,7 @@
         </tr>
     </table>
 
-    <h2 class="section-title">8.6 Konfigurasi Integrasi Bot Notifikasi Telegram Toko</h2>
-    <p>
-        Sistem dapat mengirimkan ringkasan omset harian otomatis ke grup Telegram pemilik usaha. Administrator cukup memasukkan **Telegram Bot Token** dari BotFather dan **Chat ID / Group ID** tujuan, lalu menekan tombol **Tes Notifikasi Telegram**.
-    </p>
-
-    <h2 class="section-title">8.7 Pengaturan Footer Struk Kasir & Kebijakan Toko</h2>
+    <h2 class="section-title">8.6 Pengaturan Footer Struk Kasir & Kebijakan Toko</h2>
     <p>
         Administrator dapat menyesuaikan 2 baris pesan catatan kaki (*footer*) pada struk belanja thermal, seperti ucapan terima kasih (*"Terima Kasih Atas Kunjungan Anda"*) dan kebijakan penukaran barang (*"Barang yang sudah dibeli tidak dapat ditukar/dikembalikan"*).
     </p>

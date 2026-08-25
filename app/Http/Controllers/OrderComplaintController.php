@@ -8,9 +8,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class OrderComplaintController extends Controller
@@ -73,7 +71,7 @@ class OrderComplaintController extends Controller
             }
 
             // 3. Simpan ke Database
-            $complaint = OrderComplaint::create([
+            OrderComplaint::create([
                 'order_id'          => $order->id,
                 'order_number'      => $order->order_number,
                 'customer_name'     => $order->customer_name,
@@ -87,9 +85,6 @@ class OrderComplaintController extends Controller
             ]);
 
             DB::commit();
-
-            // 4. Kirim Radar Notifikasi Telegram ke Pemilik Toko / Kasir
-            $this->sendTelegramComplaintNotification($order, $complaint);
 
             return redirect()->route('order.complaint.show', $order->order_number)
                              ->with('success', 'Komplain Anda berhasil dikirim! Tim kasir/admin toko kami akan segera meninjau dan menghubungi Anda.');
@@ -121,47 +116,5 @@ class OrderComplaintController extends Controller
         ]);
 
         return back()->with('success', "Status komplain pesanan {$complaint->order_number} berhasil diperbarui menjadi {$complaint->status_label}.");
-    }
-
-    /**
-     * KIRIM RADAR NOTIFIKASI KOMPLAIN KE TELEGRAM ADMIN
-     */
-    private function sendTelegramComplaintNotification($order, $complaint)
-    {
-        $token = env('TELEGRAM_BOT_TOKEN');
-        $chatId = env('TELEGRAM_CHAT_ID');
-
-        if (!$token || !$chatId) return;
-
-        $shopName = Setting::where('key', 'shop_name')->value('value') ?: 'TOKO ONLINE';
-        $appName = Setting::where('key', 'app_name')->value('value') ?: 'SIKANDA';
-
-        $photoCount = is_array($complaint->photos) ? count($complaint->photos) : 0;
-        $hasVideoText = $complaint->video ? "✅ Ada Video Unboxing (Max 15MB)" : "❌ Tidak Ada Video";
-
-        $message = "⚠️ *KOMPLAIN PESANAN PELANGGAN BARU!* 🚨\n"
-                 . "🏪 *Toko:* {$shopName}\n"
-                 . "==============================\n"
-                 . "🧾 *NO PESANAN:* `{$order->order_number}`\n"
-                 . "👤 *PEMBELI:* {$order->customer_name}\n"
-                 . "📞 *WHATSAPP:* {$order->customer_phone}\n"
-                 . "⚠️ *ALASAN:* {$complaint->reason}\n"
-                 . "💡 *SOLUSI DIHARAPKAN:* {$complaint->expected_solution}\n"
-                 . "📝 *KETERANGAN:* _{$complaint->description}_\n"
-                 . "==============================\n"
-                 . "📸 *BUKTI FOTO:* {$photoCount} Foto terlampir\n"
-                 . "🎥 *BUKTI VIDEO:* {$hasVideoText}\n"
-                 . "🔗 *Tinjau di Admin:* " . route('admin.orders.index', ['search' => $order->order_number]) . "\n"
-                 . "💻 *SISTEM:* {$appName}";
-
-        try {
-            Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id'    => $chatId,
-                'text'       => $message,
-                'parse_mode' => 'Markdown',
-            ]);
-        } catch (\Exception $e) {
-            Log::warning("Gagal kirim notif telegram komplain: " . $e->getMessage());
-        }
     }
 }

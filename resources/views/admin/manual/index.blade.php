@@ -136,7 +136,7 @@
                 <h3 class="font-black text-gray-900 text-base uppercase">BAB 8: Pengaturan Toko & Integrasi</h3>
             </div>
             <p class="text-xs text-gray-500 leading-relaxed">
-                Identitas toko (Nama Usaha, Alamat, Kontak WA, Logo Toko), Branding Aplikasi (Nama Sistem, Favicon), Pengaturan Suara Bel Kasir, Konfigurasi Gateway DOKU Merchant, dan Notifikasi Telegram Bot Toko.
+                Identitas toko (Nama Usaha, Alamat, Kontak WA, Logo Toko), Branding Aplikasi (Nama Sistem, Favicon), Pengaturan Suara Bel Kasir, dan Konfigurasi Gateway DOKU Merchant.
             </p>
         </div>
 

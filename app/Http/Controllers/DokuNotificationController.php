@@ -8,7 +8,6 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
 class DokuNotificationController extends Controller
 {
@@ -51,7 +50,7 @@ class DokuNotificationController extends Controller
 
         // 1. CARI PESANAN ONLINE (ORDER)
         if (str_starts_with($invoiceNumber, 'ORD-')) {
-            $order = \App\Models\Order::with('items.product')->where('order_number', $invoiceNumber)->first();
+            $order = Order::with('items.product')->where('order_number', $invoiceNumber)->first();
             if ($order) {
                 if ($order->payment_status === 'paid') {
                     return response()->json(['message' => 'Order Already Paid'], 200);
@@ -65,12 +64,6 @@ class DokuNotificationController extends Controller
                             'status'         => 'paid',
                             'paid_at'        => now(),
                         ]);
-
-                        try {
-                            $this->sendTelegramOrderNotification($order);
-                        } catch (\Throwable $te) {
-                            Log::warning("Telegram Notification Order failed: " . $te->getMessage());
-                        }
                         Log::info("Pesanan Online {$invoiceNumber} LUNAS via QRIS DOKU.");
                     } elseif ($isFailed) {
                         $order->update([
@@ -124,12 +117,6 @@ class DokuNotificationController extends Controller
                     'payment_status'   => 'success',
                     'reference_number' => $data['transaction']['id'] ?? $data['transaction']['original_request_id'] ?? null
                 ]);
-
-                try {
-                    $this->sendTelegramNotification($sale);
-                } catch (\Throwable $te) {
-                    Log::warning("Telegram Notification POS failed: " . $te->getMessage());
-                }
                 Log::info("Misi Sukses: Transaksi Kasir {$invoiceNumber} LUNAS.");
 
             } elseif ($isFailed) {
@@ -153,96 +140,6 @@ class DokuNotificationController extends Controller
             DB::rollBack();
             Log::error("Gagal memproses webhook POS: " . $e->getMessage());
             return response()->json(['message' => 'Error'], 500);
-        }
-    }
-
-    /**
-     * FUNGSI KIRIM RADAR KE TELEGRAM
-     */
-    private function sendTelegramNotification($sale)
-    {
-        $token = env('TELEGRAM_BOT_TOKEN');
-        $chatId = env('TELEGRAM_CHAT_ID');
-
-        if (!$token || !$chatId) {
-            Log::warning("Notifikasi Telegram batal: Token atau Chat ID belum disetel di .env");
-            return;
-        }
-
-        // Susun daftar item yang dibeli
-        $itemDetails = "";
-        foreach ($sale->details as $index => $detail) {
-            $itemName = $detail->product->name ?? 'Produk Tidak Diketahui';
-            $itemDetails .= ($index + 1) . ". " . $itemName . " (x" . $detail->quantity . ")\n";
-        }
-
-        $shopName = Setting::where('key', 'shop_name')->value('value') ?: 'KASIR';
-        $appName = Setting::where('key', 'app_name')->value('value') ?: 'POS';
-
-        // Format Pesan ala Laporan Situasi Harian (LSH)
-        $message = "🚨 *DANA QRIS MASUK: {$shopName}* 🚨\n\n"
-                 . "💰 *TOTAL:* Rp " . number_format($sale->total_amount, 0, ',', '.') . "\n"
-                 . "🧾 *INVOICE:* `" . $sale->transaction_number . "`\n"
-                 . "⏰ *WAKTU:* " . now()->format('d/m/Y H:i') . " WIB\n\n"
-                 . "📦 *RINCIAN BARANG:*\n"
-                 . "_" . $itemDetails . "_\n"
-                 . "✅ *STATUS:* Pembayaran Sah & Lunas.\n"
-                 . "💻 *SISTEM:* {$appName}";
-
-        try {
-            Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id'    => $chatId,
-                'text'       => $message,
-                'parse_mode' => 'Markdown',
-            ]);
-        } catch (\Exception $e) {
-            Log::error("Gagal mengirim pesan Telegram: " . $e->getMessage());
-        }
-    }
-
-    /**
-     * NOTIFIKASI TELEGRAM PESANAN ONLINE MASUK
-     */
-    private function sendTelegramOrderNotification($order)
-    {
-        $token = env('TELEGRAM_BOT_TOKEN');
-        $chatId = env('TELEGRAM_CHAT_ID');
-
-        if (!$token || !$chatId) {
-            return;
-        }
-
-        $itemDetails = "";
-        foreach ($order->items as $index => $item) {
-            $itemDetails .= ($index + 1) . ". " . $item->product_name . " (" . $item->quantity . "x)\n";
-        }
-
-        $shopName = \App\Models\Setting::where('key', 'shop_name')->value('value') ?: 'TOKO ONLINE';
-        $appName = \App\Models\Setting::where('key', 'app_name')->value('value') ?: 'SIKANDA';
-
-        $message = "🛒 *PESANAN ONLINE BARU MASUK!* 🚨\n"
-                 . "🏪 *Toko:* {$shopName}\n"
-                 . "==============================\n"
-                 . "🧾 *NO PESANAN:* `{$order->order_number}`\n"
-                 . "👤 *PEMBELI:* {$order->customer_name}\n"
-                 . "📞 *WHATSAPP:* {$order->customer_phone}\n"
-                 . "📍 *ALAMAT:* {$order->customer_address}\n"
-                 . "🚚 *EKSPEDISI:* {$order->courier}\n"
-                 . "💰 *TOTAL DIBAYAR:* Rp " . number_format($order->total_amount, 0, ',', '.') . " (QRIS LUNAS)\n"
-                 . "==============================\n"
-                 . "📦 *DAFTAR ITEM:*\n"
-                 . "_{$itemDetails}_\n"
-                 . "⚡ *STATUS:* Menunggu Konfirmasi Toko!\n"
-                 . "🔗 *Lacak Pesanan:* " . url('/lacak/' . $order->order_number);
-
-        try {
-            Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id'    => $chatId,
-                'text'       => $message,
-                'parse_mode' => 'Markdown',
-            ]);
-        } catch (\Exception $e) {
-            Log::error("Gagal kirim notif telegram order: " . $e->getMessage());
         }
     }
 }
