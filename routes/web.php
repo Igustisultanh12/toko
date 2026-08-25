@@ -40,19 +40,25 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/products/import', [ProductController::class, 'import'])->name('products.import.store');
         Route::resource('products', ProductController::class);
         
+        // 1. LAPORAN PENJUALAN (INVOICE, PELANGGAN & BARANG)
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
         Route::get('/reports/pdf', [ReportController::class, 'exportPdf'])->name('reports.pdf');
         Route::get('/reports/excel', [ReportController::class, 'exportExcel'])->name('reports.excel');
         Route::get('/reports/print/daily', [ReportController::class, 'printDailyReport'])->name('reports.print.daily');
         
-        Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-        Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
-        
+        // 2. LAPORAN KEUANGAN (ARUS KAS, OMSET, TUNAI & QRIS)
+        Route::get('/reports/finance', [ReportController::class, 'financialReport'])->name('reports.finance');
+        Route::get('/reports/finance/pdf', [ReportController::class, 'exportFinancePdf'])->name('reports.finance.pdf');
+        Route::get('/reports/finance/excel', [ReportController::class, 'exportFinanceExcel'])->name('reports.finance.excel');
+
         //route laporan qris
         Route::get('/reports/qris', [ReportController::class, 'qrisReport'])->name('reports.qris');
         // route export excel and pdf qris
         Route::get('/reports/qris/pdf', [ReportController::class, 'exportQrisPdf'])->name('reports.qris.pdf');
         Route::get('/reports/qris/excel', [ReportController::class, 'exportQrisExcel'])->name('reports.qris.excel');
+
+        Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
     });
 
     // --- GRUP KASIR ---

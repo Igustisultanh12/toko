@@ -319,6 +319,98 @@ class ReportController extends Controller
                     'totalNominal' => $this->totalNominal
                 ]);
             }
-        }, 'LPK_QRIS_'.date('Ymd').'.xlsx');
+    /**
+     * Halaman Laporan Keuangan (Arus Kas, Omset, Pemasukan Tunai & QRIS)
+     */
+    public function financialReport(Request $request)
+    {
+        [$query, $periodLabel, $filters] = $this->buildSalesReportQuery($request);
+
+        $allMatchingSales = (clone $query)->get();
+
+        $stats = [
+            'total_income'       => $allMatchingSales->where('payment_status', 'success')->sum('total_amount'),
+            'cash_income'        => $allMatchingSales->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount'),
+            'qris_income'        => $allMatchingSales->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount'),
+            'pending_income'     => $allMatchingSales->where('payment_status', 'pending')->sum('total_amount'),
+            'total_transactions' => $allMatchingSales->where('payment_status', 'success')->count(),
+            'pending_count'      => $allMatchingSales->where('payment_status', 'pending')->count(),
+        ];
+
+        // Chart tren arus kas 7 hari terakhir
+        $chartData = Sale::where('payment_status', 'success')
+            ->where('created_at', '>=', Carbon::now()->subDays(6))
+            ->select(
+                DB::raw('DATE(created_at) as date'),
+                DB::raw("SUM(CASE WHEN payment_method = 'cash' THEN total_amount ELSE 0 END) as cash_total"),
+                DB::raw("SUM(CASE WHEN payment_method = 'qris' THEN total_amount ELSE 0 END) as qris_total"),
+                DB::raw('SUM(total_amount) as total')
+            )
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get();
+
+        $transactions = $query->orderBy('created_at', 'desc')->paginate(15)->withQueryString();
+
+        return view('reports.finance', compact('transactions', 'stats', 'chartData', 'periodLabel', 'filters'));
+    }
+
+    /**
+     * Export PDF Laporan Keuangan (Landscape Surat Resmi)
+     */
+    public function exportFinancePdf(Request $request)
+    {
+        [$query, $periodLabel, $filters] = $this->buildSalesReportQuery($request);
+
+        $transactions = $query->orderBy('created_at', 'desc')->get();
+        $shop = Setting::pluck('value', 'key')->all();
+
+        $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
+        $totalCash = $transactions->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount');
+        $totalQris = $transactions->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+
+        $pdf = Pdf::loadView('reports.finance_pdf', compact('transactions', 'periodLabel', 'filters', 'shop', 'totalNominal', 'totalCash', 'totalQris'))
+                  ->setPaper('a4', 'landscape');
+
+        return $pdf->download('Laporan_Keuangan_'.date('Ymd_His').'.pdf');
+    }
+
+    /**
+     * Export Excel Laporan Keuangan
+     */
+    public function exportFinanceExcel(Request $request)
+    {
+        [$query, $periodLabel, $filters] = $this->buildSalesReportQuery($request);
+
+        $transactions = $query->orderBy('created_at', 'desc')->get();
+        $totalNominal = $transactions->where('payment_status', 'success')->sum('total_amount');
+        $totalCash = $transactions->where('payment_method', 'cash')->where('payment_status', 'success')->sum('total_amount');
+        $totalQris = $transactions->where('payment_method', 'qris')->where('payment_status', 'success')->sum('total_amount');
+
+        return Excel::download(new class($transactions, $periodLabel, $totalNominal, $totalCash, $totalQris) implements FromView, ShouldAutoSize {
+            private $transactions;
+            private $periodLabel;
+            private $totalNominal;
+            private $totalCash;
+            private $totalQris;
+
+            public function __construct($transactions, $periodLabel, $totalNominal, $totalCash, $totalQris) {
+                $this->transactions = $transactions;
+                $this->periodLabel = $periodLabel;
+                $this->totalNominal = $totalNominal;
+                $this->totalCash = $totalCash;
+                $this->totalQris = $totalQris;
+            }
+
+            public function view(): \Illuminate\Contracts\View\View {
+                return view('reports.finance_excel', [
+                    'transactions' => $this->transactions,
+                    'periodLabel'  => $this->periodLabel,
+                    'totalNominal' => $this->totalNominal,
+                    'totalCash'    => $this->totalCash,
+                    'totalQris'    => $this->totalQris,
+                ]);
+            }
+        }, 'Laporan_Keuangan_'.date('Ymd').'.xlsx');
     }
 }
