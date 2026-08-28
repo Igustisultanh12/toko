@@ -32,14 +32,14 @@ class BackupController extends Controller
 
         // Hitung total data
         $stats = [
-            'total_products'    => Product::count(),
-            'total_sales'       => Sale::count(),
-            'total_sale_items'  => SaleDetail::count(),
-            'total_orders'      => Order::count(),
-            'total_order_items' => OrderItem::count(),
+            'total_products'    => Schema::hasTable('products') ? Product::count() : 0,
+            'total_sales'       => Schema::hasTable('sales') ? Sale::count() : 0,
+            'total_sale_items'  => Schema::hasTable('sale_details') ? SaleDetail::count() : 0,
+            'total_orders'      => Schema::hasTable('orders') ? Order::count() : 0,
+            'total_order_items' => Schema::hasTable('order_items') ? OrderItem::count() : 0,
             'total_complaints'  => Schema::hasTable('order_complaints') ? OrderComplaint::count() : 0,
-            'total_users'       => User::count(),
-            'total_settings'    => Setting::count(),
+            'total_users'       => Schema::hasTable('users') ? User::count() : 0,
+            'total_settings'    => Schema::hasTable('settings') ? Setting::count() : 0,
             'storage_size'      => $this->getStorageSizeReadable(),
         ];
 
@@ -66,18 +66,18 @@ class BackupController extends Controller
         }
 
         try {
-            // 1. Ekspor Data JSON
+            // 1. Ekspor Seluruh Data Database Dinamis ke JSON
             $jsonData = $this->collectAllData();
             $jsonFilePath = "{$tempDir}/backup_data.json";
             File::put($jsonFilePath, json_encode($jsonData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 
-            // 2. Ekspor SQL Dump
+            // 2. Ekspor SQL Dump Lengkap
             $sqlContent = $this->generateSqlDump($jsonData);
             $sqlFilePath = "{$tempDir}/database.sql";
             File::put($sqlFilePath, $sqlContent);
 
             // 3. Buat File Petunjuk Migrasi
-            $readmeContent = $this->generateReadme($cleanAppName, $timestamp, $jsonData['metadata']['counts']);
+            $readmeContent = $this->generateReadme($cleanAppName, $timestamp, $jsonData['metadata']['counts'] ?? []);
             File::put("{$tempDir}/README_MIGRASI.txt", $readmeContent);
 
             // 4. Buat File ZIP
@@ -86,7 +86,7 @@ class BackupController extends Controller
             if (class_exists('ZipArchive')) {
                 $zip = new ZipArchive();
                 if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
-                    // Tambahkan file utama
+                    // Tambahkan file data utama
                     $zip->addFile($jsonFilePath, 'backup_data.json');
                     $zip->addFile($sqlFilePath, 'database.sql');
                     $zip->addFile("{$tempDir}/README_MIGRASI.txt", 'README_MIGRASI.txt');
@@ -132,7 +132,9 @@ class BackupController extends Controller
             return response()->download($zipPath, $zipFileName)->deleteFileAfterSend(true);
 
         } catch (\Exception $e) {
-            File::deleteDirectory($tempDir);
+            if (File::exists($tempDir)) {
+                File::deleteDirectory($tempDir);
+            }
             Log::error("Gagal mengekspor data backup: " . $e->getMessage());
             return back()->with('error', 'Gagal membuat file backup: ' . $e->getMessage());
         }
@@ -268,21 +270,62 @@ class BackupController extends Controller
     }
 
     /**
-     * Helper: Kumpulkan Semua Data Database ke dalam Array
+     * Helper: Kumpulkan Semua Data Database Secara Dinamis dan Lengkap
      */
     private function collectAllData(): array
     {
-        $tables = [
-            'settings'         => DB::table('settings')->get()->map(fn($r) => (array) $r)->toArray(),
-            'users'            => DB::table('users')->get()->map(fn($r) => (array) $r)->toArray(),
-            'products'         => DB::table('products')->get()->map(fn($r) => (array) $r)->toArray(),
-            'sales'            => DB::table('sales')->get()->map(fn($r) => (array) $r)->toArray(),
-            'sale_details'     => DB::table('sale_details')->get()->map(fn($r) => (array) $r)->toArray(),
-            'orders'           => Schema::hasTable('orders') ? DB::table('orders')->get()->map(fn($r) => (array) $r)->toArray() : [],
-            'order_items'      => Schema::hasTable('order_items') ? DB::table('order_items')->get()->map(fn($r) => (array) $r)->toArray() : [],
-            'order_complaints' => Schema::hasTable('order_complaints') ? DB::table('order_complaints')->get()->map(fn($r) => (array) $r)->toArray() : [],
-            'customers'        => Schema::hasTable('customers') ? DB::table('customers')->get()->map(fn($r) => (array) $r)->toArray() : [],
+        $tables = [];
+        $driver = DB::getDriverName();
+        $allTableNames = [];
+
+        // 1. Ambil daftar semua tabel dari database secara dinamis
+        try {
+            if ($driver === 'mysql') {
+                $tablesResult = DB::select('SHOW TABLES');
+                foreach ($tablesResult as $tblObj) {
+                    $tblArr = (array) $tblObj;
+                    $allTableNames[] = reset($tblArr);
+                }
+            } elseif ($driver === 'sqlite') {
+                $tablesResult = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+                foreach ($tablesResult as $tblObj) {
+                    $allTableNames[] = $tblObj->name;
+                }
+            }
+        } catch (\Exception $e) {
+            Log::warning("Gagal mengambil nama tabel dinamis: " . $e->getMessage());
+        }
+
+        // Jika gagal query dinamis, fallback ke daftar tabel lengkap
+        if (empty($allTableNames)) {
+            $allTableNames = [
+                'settings', 'users', 'products', 'customers', 'sales', 'sale_details', 
+                'orders', 'order_items', 'order_complaints', 'sessions'
+            ];
+        }
+
+        // Tabel sistem yang tidak perlu di-ekspor
+        $excludeTables = ['cache', 'cache_locks', 'jobs', 'job_batches', 'failed_jobs', 'migrations'];
+
+        // Urutan prioritas tabel
+        $priorityOrder = [
+            'settings', 'users', 'products', 'customers', 'sales', 'sale_details', 
+            'orders', 'order_items', 'order_complaints'
         ];
+
+        // Urutkan tabel: prioritas dulu, lalu sisanya
+        $sortedTableNames = array_unique(array_merge($priorityOrder, $allTableNames));
+
+        foreach ($sortedTableNames as $tblName) {
+            if (in_array($tblName, $excludeTables)) continue;
+            if (Schema::hasTable($tblName)) {
+                try {
+                    $tables[$tblName] = DB::table($tblName)->get()->map(fn($r) => (array) $r)->toArray();
+                } catch (\Exception $e) {
+                    Log::warning("Gagal membaca tabel {$tblName}: " . $e->getMessage());
+                }
+            }
+        }
 
         $counts = array_map('count', $tables);
 
@@ -340,7 +383,7 @@ class BackupController extends Controller
     }
 
     /**
-     * Helper: Jalankan Restore Database
+     * Helper: Jalankan Restore Database (Bebas dari Error 'No Active Transaction')
      */
     private function restoreDatabase(array $tables, string $mode): array
     {
@@ -359,6 +402,13 @@ class BackupController extends Controller
             'order_complaints',
         ];
 
+        // Tambahkan tabel lain yang ada di data backup ke urutan
+        foreach (array_keys($tables) as $tName) {
+            if (!in_array($tName, $tableOrder)) {
+                $tableOrder[] = $tName;
+            }
+        }
+
         // Matikan Foreign Key Checks sementara
         $driver = DB::getDriverName();
         if ($driver === 'mysql') {
@@ -367,49 +417,61 @@ class BackupController extends Controller
             DB::statement('PRAGMA foreign_keys = OFF;');
         }
 
-        DB::beginTransaction();
-
         try {
-            // Jika mode = replace, bersihkan tabel terlebih dahulu secara terbalik
+            // Jika mode = replace: gunakan DELETE FROM (bukan TRUNCATE) agar tidak terjadi implicit commit
             if ($mode === 'replace') {
                 $reverseOrder = array_reverse($tableOrder);
                 foreach ($reverseOrder as $tbl) {
                     if (Schema::hasTable($tbl)) {
-                        DB::table($tbl)->truncate();
+                        DB::table($tbl)->delete(); // DELETE aman di dalam transaksi
                     }
                 }
             }
 
-            // Masukkan data per tabel
+            // Masukkan data per tabel dengan chunk batch
             foreach ($tableOrder as $tbl) {
                 if (!isset($tables[$tbl]) || !is_array($tables[$tbl])) continue;
                 if (!Schema::hasTable($tbl)) continue;
 
                 $rows = $tables[$tbl];
                 $count = 0;
+                $validColumns = Schema::getColumnListing($tbl);
+                $validFlip = array_flip($validColumns);
 
-                foreach ($rows as $row) {
-                    // Filter kolom yang valid sesuai tabel saat ini
-                    $validColumns = Schema::getColumnListing($tbl);
-                    $filteredRow = array_intersect_key($row, array_flip($validColumns));
+                // Masukkan data
+                if ($mode === 'replace') {
+                    $batch = [];
+                    foreach ($rows as $row) {
+                        $filtered = array_intersect_key($row, $validFlip);
+                        if (!empty($filtered)) {
+                            $batch[] = $filtered;
+                            $count++;
+                        }
 
-                    if (empty($filteredRow)) continue;
+                        if (count($batch) >= 100) {
+                            DB::table($tbl)->insert($batch);
+                            $batch = [];
+                        }
+                    }
+                    if (!empty($batch)) {
+                        DB::table($tbl)->insert($batch);
+                    }
+                } else {
+                    // Mode merge: insert or update berdasarkan ID
+                    foreach ($rows as $row) {
+                        $filtered = array_intersect_key($row, $validFlip);
+                        if (empty($filtered)) continue;
 
-                    if ($mode === 'replace') {
-                        DB::table($tbl)->insert($filteredRow);
-                        $count++;
-                    } else {
-                        // Mode merge: insert or update berdasarkan primary key / unique
-                        if (isset($filteredRow['id'])) {
-                            $id = $filteredRow['id'];
+                        if (isset($filtered['id'])) {
+                            $id = $filtered['id'];
                             $existing = DB::table($tbl)->where('id', $id)->first();
                             if ($existing) {
-                                DB::table($tbl)->where('id', $id)->update($filteredRow);
+                                DB::table($tbl)->where('id', $id)->update($filtered);
                             } else {
-                                DB::table($tbl)->insert($filteredRow);
+                                DB::table($tbl)->insert($filtered);
                             }
                         } else {
-                            DB::table($tbl)->insert($filteredRow);
+                            DB::table($tbl)->insert($filtered);
                         }
                         $count++;
                     }
@@ -418,12 +480,8 @@ class BackupController extends Controller
                 $restoredCounts[$tbl] = $count;
             }
 
-            DB::commit();
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
         } finally {
+            // Aktifkan kembali Foreign Key Checks
             if ($driver === 'mysql') {
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             } elseif ($driver === 'sqlite') {
