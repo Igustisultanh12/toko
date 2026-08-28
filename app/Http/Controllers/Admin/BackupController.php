@@ -235,7 +235,8 @@ class BackupController extends Controller
             // Jalankan pembersihan cache Laravel
             Artisan::call('optimize:clear');
 
-            $summary = "Pemulihan data selesai ({$mode === 'replace' ? 'Mode Timpa Bersih' : 'Mode Gabungkan'}). ";
+            $modeLabel = ($mode === 'replace') ? 'Mode Timpa Bersih' : 'Mode Gabungkan';
+            $summary = "Pemulihan data selesai ({$modeLabel}). ";
             $summary .= "Berhasil memulihkan: " . implode(', ', array_map(
                 fn($k, $v) => "{$v} {$k}",
                 array_keys($restoredCounts),
@@ -425,6 +426,15 @@ class BackupController extends Controller
      */
     private function generateReadme(string $appName, string $timestamp, array $counts): string
     {
+        $cSettings   = $counts['settings'] ?? 0;
+        $cUsers      = $counts['users'] ?? 0;
+        $cProducts   = $counts['products'] ?? 0;
+        $cSales      = $counts['sales'] ?? 0;
+        $cSaleItems  = $counts['sale_details'] ?? 0;
+        $cOrders     = $counts['orders'] ?? 0;
+        $cOrderItems = $counts['order_items'] ?? 0;
+        $cComplaints = $counts['order_complaints'] ?? 0;
+
         return <<<TXT
 ================================================================================
 PAKET LENGKAP BACKUP & MIGRASI SISTEM
@@ -444,14 +454,14 @@ ISI PAKET INI:
    - audio/          : Suara lonceng kasir transaksi lunas
 
 RINGKASAN JUMLAH DATA:
-- Pengaturan Sistem : {$counts['settings']} data
-- Akun Pengguna     : {$counts['users']} akun
-- Produk & Stok     : {$counts['products']} produk
-- Transaksi Kasir   : {$counts['sales']} transaksi
-- Detail Penjualan  : {$counts['sale_details']} item
-- Pesanan Online    : {$counts['orders']} pesanan
-- Item Pesanan      : {$counts['order_items']} item
-- Komplain Masuk    : {$counts['order_complaints']} data
+- Pengaturan Sistem : {$cSettings} data
+- Akun Pengguna     : {$cUsers} akun
+- Produk & Stok     : {$cProducts} produk
+- Transaksi Kasir   : {$cSales} transaksi
+- Detail Penjualan  : {$cSaleItems} item
+- Pesanan Online    : {$cOrders} pesanan
+- Item Pesanan      : {$cOrderItems} item
+- Komplain Masuk    : {$cComplaints} data
 
 ================================================================================
 CARA MEMINDAHKAN KE SERVER / APLIKASI BARU:
