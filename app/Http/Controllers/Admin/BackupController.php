@@ -91,13 +91,26 @@ class BackupController extends Controller
                     $zip->addFile($sqlFilePath, 'database.sql');
                     $zip->addFile("{$tempDir}/README_MIGRASI.txt", 'README_MIGRASI.txt');
 
-                    // Tambahkan seluruh file storage publik (foto produk, galeri, komplain, logo, audio)
+                    // Tambahkan seluruh file storage publik (foto produk, galeri, komplain, logo, favicon, audio)
                     $publicStoragePath = storage_path('app/public');
                     if (File::exists($publicStoragePath)) {
                         $files = File::allFiles($publicStoragePath);
                         foreach ($files as $file) {
-                            $relativePath = 'storage/' . $file->getRelativePathname();
+                            $relativePath = 'storage/' . str_replace('\\', '/', $file->getRelativePathname());
                             $zip->addFile($file->getRealPath(), $relativePath);
+                        }
+                    }
+
+                    // Pengecekan ekstra: Folder upload langsung di storage/app jika ada
+                    $extraFolders = ['products', 'favicons', 'logos', 'audio', 'complaints'];
+                    foreach ($extraFolders as $folder) {
+                        $extraPath = storage_path("app/{$folder}");
+                        if (File::exists($extraPath)) {
+                            $files = File::allFiles($extraPath);
+                            foreach ($files as $file) {
+                                $relativePath = 'storage/' . $folder . '/' . str_replace('\\', '/', $file->getRelativePathname());
+                                $zip->addFile($file->getRealPath(), $relativePath);
+                            }
                         }
                     }
 
