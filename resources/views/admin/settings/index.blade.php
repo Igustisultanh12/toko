@@ -14,6 +14,20 @@
         </div>
     @endif
 
+    {{-- BANNER AKSES CEPAT BACKUP & MIGRASI DATA --}}
+    <div class="p-6 bg-gradient-to-r from-emerald-900 to-[#00360D] text-white rounded-[2rem] shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-emerald-700/50">
+        <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+                <span class="text-lg">📦</span>
+                <h4 class="font-black text-sm uppercase tracking-wide">Pusat Backup & Migrasi Data</h4>
+            </div>
+            <p class="text-xs text-emerald-200/80 font-medium">Ingin memindahkan seluruh barang, foto galeri, omset penjualan, dan konfigurasi toko ke server baru?</p>
+        </div>
+        <a href="{{ route('admin.backup.index') }}" class="px-5 py-3 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white rounded-xl font-black text-xs uppercase tracking-wider shadow-md transition shrink-0 flex items-center space-x-2">
+            <span>Buka Menu Backup &rarr;</span>
+        </a>
+    </div>
+
     {{-- NOTIFIKASI ERROR --}}
     @if($errors->any())
         <div class="p-4 bg-rose-50 border border-rose-200 text-rose-800 font-bold rounded-2xl shadow-sm">
