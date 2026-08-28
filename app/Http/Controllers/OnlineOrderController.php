@@ -53,7 +53,15 @@ class OnlineOrderController extends Controller
         if (TurnstileService::isEnabled()) {
             $turnstileToken = $request->input('cf-turnstile-response');
             if (!TurnstileService::verify($turnstileToken, $request->ip())) {
-                return back()->withInput()->with('error', 'Verifikasi keamanan Cloudflare Turnstile gagal atau kadaluarsa. Silakan refresh dan coba lagi.');
+                return redirect()->route('order.index')->with('error', 'Verifikasi keamanan Cloudflare Turnstile gagal atau kadaluarsa. Silakan refresh dan coba lagi.');
+            }
+        }
+
+        // Dukung items baik dari array input maupun items_json
+        if ($request->filled('items_json') && is_string($request->input('items_json'))) {
+            $decoded = json_decode($request->input('items_json'), true);
+            if (is_array($decoded) && count($decoded) > 0) {
+                $request->merge(['items' => $decoded]);
             }
         }
 

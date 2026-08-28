@@ -15,7 +15,7 @@
                 {{ $shop['shop_name'] ?? 'Selamat Datang di Toko Kami' }}
             </h2>
             <p class="text-xs sm:text-sm text-emerald-100/90 font-medium leading-relaxed">
-                Pilih barang kebutuhan Anda, bayar instan dengan QRIS (GoPay, OVO, Dana, ShopeePay, BCA), dan lacak pengiriman pesanan Anda secara realtime hingga sampai di rumah.
+                Klik produk untuk melihat foto galeri, membaca deskripsi lengkap, mengecek sisa stok, dan bayar instan via QRIS DOKU.
             </p>
         </div>
         <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none transform translate-x-10 translate-y-10">
@@ -50,24 +50,56 @@
                 if (!empty($product->discount_percent) && $product->discount_percent > 0) {
                     $finalPrice = $product->price - ($product->price * ($product->discount_percent / 100));
                 }
+
+                $galleryUrls = $product->gallery_urls;
+                if (empty($galleryUrls) && !empty($product->image_url)) {
+                    $galleryUrls = [$product->image_url];
+                }
+
+                $productJson = [
+                    'id'               => $product->id,
+                    'name'             => $product->name,
+                    'barcode'          => $product->barcode,
+                    'description'      => $product->description,
+                    'price'            => (float) $finalPrice,
+                    'original_price'   => (float) $product->price,
+                    'discount_percent' => (float) ($product->discount_percent ?? 0),
+                    'max_stock'        => (int) $product->stock,
+                    'image_url'        => $product->image_url,
+                    'gallery_urls'     => $galleryUrls,
+                ];
             @endphp
-            <div class="bg-white rounded-[2rem] border border-gray-100 p-4 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+            
+            {{-- KARTU PRODUK (KLIK UNTUK MEMBUKA DETAIL PRODUK & FOTO) --}}
+            <div @click="openProductModal({{ json_encode($productJson) }})"
+                 class="bg-white rounded-[2rem] border border-gray-100 p-4 sm:p-5 shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all duration-300 flex flex-col justify-between group cursor-pointer relative">
+                
                 <div class="space-y-2.5">
                     {{-- FOTO PRODUK --}}
-                    <div class="relative w-full h-36 bg-gray-50 rounded-2xl overflow-hidden mb-3 flex items-center justify-center border border-gray-100 group-hover:border-emerald-200 transition">
+                    <div class="relative w-full h-40 bg-gray-50 rounded-2xl overflow-hidden mb-3 flex items-center justify-center border border-gray-100 group-hover:border-emerald-300 transition">
                         @if($product->image_url)
-                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         @else
                             <div class="text-4xl text-gray-300">🛍️</div>
                         @endif
 
+                        {{-- BADGE DISKON --}}
                         @if(!empty($product->discount_percent) && $product->discount_percent > 0)
                             <span class="absolute top-2 right-2 text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-md">
                                 -{{ $product->discount_percent }}%
                             </span>
                         @endif
 
-                        <span class="absolute bottom-2 left-2 text-[9px] font-black uppercase px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm text-white">
+                        {{-- BADGE MULTI FOTO JIKA FOTO > 1 --}}
+                        @if(count($galleryUrls) > 1)
+                            <span class="absolute top-2 left-2 text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center space-x-1 shadow-sm">
+                                <span>📸</span>
+                                <span>{{ count($galleryUrls) }} Foto</span>
+                            </span>
+                        @endif
+
+                        {{-- BADGE STOK --}}
+                        <span class="absolute bottom-2 left-2 text-[9px] font-black uppercase px-2 py-0.5 rounded-md {{ $product->stock > 5 ? 'bg-black/60 text-white' : 'bg-amber-600 text-white' }} backdrop-blur-sm shadow-sm">
                             Stok: {{ $product->stock }}
                         </span>
                     </div>
@@ -84,7 +116,7 @@
                 </div>
 
                 {{-- HARGA & TOMBOL TAMBAH --}}
-                <div class="mt-4 pt-3 border-t border-gray-50 space-y-2">
+                <div class="mt-4 pt-3 border-t border-gray-50 space-y-2.5">
                     <div>
                         @if(!empty($product->discount_percent) && $product->discount_percent > 0)
                             <span class="text-[10px] text-gray-400 line-through font-bold block">
@@ -96,18 +128,18 @@
                         </span>
                     </div>
 
-                    <button @click="addToCart({{ json_encode([
-                        'id'               => $product->id,
-                        'name'             => $product->name,
-                        'price'            => $finalPrice,
-                        'original_price'   => $product->price,
-                        'discount_percent' => $product->discount_percent ?? 0,
-                        'max_stock'        => $product->stock,
-                        'image_url'        => $product->image_url,
-                    ]) }})"
-                            class="w-full py-2.5 bg-emerald-50 hover:bg-[#00AA13] text-[#00880F] hover:text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-1">
-                        <span>+ Keranjang</span>
-                    </button>
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button type="button" 
+                                @click.stop="openProductModal({{ json_encode($productJson) }})"
+                                class="w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-black text-[10px] uppercase tracking-wider transition text-center">
+                            Detail
+                        </button>
+                        <button type="button" 
+                                @click.stop="addToCart({{ json_encode($productJson) }})"
+                                class="w-full py-2 bg-emerald-50 hover:bg-[#00AA13] text-[#00880F] hover:text-white rounded-xl font-black text-[10px] uppercase tracking-wider transition-all text-center">
+                            + Keranjang
+                        </button>
+                    </div>
                 </div>
             </div>
         @empty
@@ -124,7 +156,185 @@
         </div>
     @endif
 
+
+    {{-- ========================================================================= --}}
+    {{-- MODAL DETAIL PRODUK & GALERI MULTI-FOTO (INTERACTIVE POPUP) --}}
+    {{-- ========================================================================= --}}
+    <div x-show="isDetailModalOpen" 
+         class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+         x-cloak x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+        
+        {{-- Backdrop klik luar untuk menutup --}}
+        <div class="fixed inset-0" @click="closeProductModal()"></div>
+
+        <div class="relative bg-white w-full max-w-3xl rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border border-gray-100 overflow-hidden z-10 my-auto max-h-[92vh] flex flex-col"
+             @click.away="closeProductModal()">
+            
+            {{-- HEADER MODAL --}}
+            <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white shrink-0">
+                <div class="flex items-center space-x-2">
+                    <span class="px-3 py-1 bg-emerald-50 text-[#00661A] text-[10px] font-black uppercase rounded-full tracking-wider border border-emerald-200">
+                        🛍️ Rincian Produk
+                    </span>
+                    <span class="text-xs text-gray-400 font-bold">• Toko Online Resmi</span>
+                </div>
+                <button type="button" @click="closeProductModal()" class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100 text-sm font-black transition">
+                    ✕
+                </button>
+            </div>
+
+            {{-- BODY MODAL (2 KOLOM: GALERI FOTO & DETAIL PRODUK) --}}
+            <div class="flex-1 overflow-y-auto p-6 sm:p-8" x-show="selectedProduct">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
+                    
+                    {{-- KOLOM KIRI: GALERI MULTI-FOTO (5 SPAN) --}}
+                    <div class="md:col-span-5 space-y-3">
+                        {{-- FOTO UTAMA BESAR --}}
+                        <div class="relative aspect-square w-full bg-gray-50 rounded-3xl overflow-hidden border-2 border-gray-100 shadow-inner flex items-center justify-center group">
+                            <template x-if="selectedProduct && selectedProduct.gallery_urls && selectedProduct.gallery_urls.length > 0">
+                                <img :src="selectedProduct.gallery_urls[selectedImageIndex] || selectedProduct.image_url" 
+                                     :alt="selectedProduct.name" 
+                                     class="w-full h-full object-contain p-2 bg-white transition-all duration-300">
+                            </template>
+                            <template x-if="!selectedProduct || !selectedProduct.gallery_urls || selectedProduct.gallery_urls.length === 0">
+                                <div class="text-6xl text-gray-300">🛍️</div>
+                            </template>
+
+                            {{-- BADGE DISKON --}}
+                            <template x-if="selectedProduct && selectedProduct.discount_percent > 0">
+                                <span class="absolute top-3 right-3 text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-rose-500 text-white shadow-lg">
+                                    -<span x-text="selectedProduct.discount_percent"></span>%
+                                </span>
+                            </template>
+
+                            {{-- TOMBOL NEXT & PREV (HANYA MUNCUL JIKA FOTO LEBIH DARI 1) --}}
+                            <template x-if="selectedProduct && selectedProduct.gallery_urls && selectedProduct.gallery_urls.length > 1">
+                                <div>
+                                    <button type="button" @click="prevImage()" 
+                                            class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-gray-800 font-black shadow-md flex items-center justify-center transition border border-gray-200">
+                                        ‹
+                                    </button>
+                                    <button type="button" @click="nextImage()" 
+                                            class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-gray-800 font-black shadow-md flex items-center justify-center transition border border-gray-200">
+                                        ›
+                                    </button>
+                                    <span class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/60 backdrop-blur-sm text-white text-[9px] font-mono font-black rounded-lg"
+                                          x-text="(selectedImageIndex + 1) + ' / ' + selectedProduct.gallery_urls.length + ' Foto'"></span>
+                                </div>
+                            </template>
+                        </div>
+
+                        {{-- THUMBNAIL STRIP (BISA DIKLIK UNTUK MENGGANTI FOTO) --}}
+                        <template x-if="selectedProduct && selectedProduct.gallery_urls && selectedProduct.gallery_urls.length > 1">
+                            <div class="flex items-center gap-2 overflow-x-auto pb-1 custom-scroll">
+                                <template x-for="(imgUrl, idx) in selectedProduct.gallery_urls" :key="idx">
+                                    <button type="button" @click="selectedImageIndex = idx"
+                                            :class="selectedImageIndex === idx ? 'border-2 border-[#00AA13] shadow-md ring-2 ring-emerald-300' : 'border border-gray-200 opacity-60 hover:opacity-100'"
+                                            class="w-14 h-14 rounded-xl overflow-hidden shrink-0 transition-all bg-white">
+                                        <img :src="imgUrl" class="w-full h-full object-cover">
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+
+                    {{-- KOLOM KANAN: DETAIL INFORMASI, STOK & DESKRIPSI (7 SPAN) --}}
+                    <div class="md:col-span-7 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            {{-- BARCODE & STATUS STOK --}}
+                            <div class="flex flex-wrap items-center gap-2">
+                                <template x-if="selectedProduct && selectedProduct.barcode">
+                                    <span class="font-mono text-[10px] font-black text-gray-500 bg-gray-100 px-2.5 py-1 rounded-lg border border-gray-200"
+                                          x-text="'SKU: ' + selectedProduct.barcode"></span>
+                                </template>
+
+                                <template x-if="selectedProduct">
+                                    <span :class="selectedProduct.max_stock > 5 ? 'bg-emerald-50 text-[#00661A] border-emerald-200' : (selectedProduct.max_stock > 0 ? 'bg-amber-50 text-amber-800 border-amber-200' : 'bg-rose-50 text-rose-800 border-rose-200')"
+                                          class="text-[10px] font-black uppercase px-2.5 py-1 rounded-lg border inline-flex items-center space-x-1">
+                                        <span x-text="selectedProduct.max_stock > 5 ? '🟢 Stok Tersedia (' + selectedProduct.max_stock + ' pcs)' : (selectedProduct.max_stock > 0 ? '🟠 Sisa Sedikit (' + selectedProduct.max_stock + ' pcs)' : '🔴 Stok Habis')"></span>
+                                    </span>
+                                </template>
+                            </div>
+
+                            {{-- NAMA BARANG --}}
+                            <h2 class="font-black text-gray-900 text-lg sm:text-2xl uppercase tracking-tight leading-snug"
+                                x-text="selectedProduct ? selectedProduct.name : ''"></h2>
+
+                            {{-- HARGA PRODUK --}}
+                            <div class="bg-emerald-50/50 p-3.5 rounded-2xl border border-emerald-100 space-y-0.5">
+                                <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block">Harga Satuan</span>
+                                <div class="flex items-baseline space-x-2">
+                                    <template x-if="selectedProduct && selectedProduct.discount_percent > 0">
+                                        <span class="text-xs text-gray-400 line-through font-bold"
+                                              x-text="formatRupiah(selectedProduct.original_price)"></span>
+                                    </template>
+                                    <span class="text-2xl font-black text-[#00880F]"
+                                          x-text="selectedProduct ? formatRupiah(selectedProduct.price) : ''"></span>
+                                </div>
+                            </div>
+
+                            {{-- DESKRIPSI LENGKAP PRODUK --}}
+                            <div class="space-y-1.5 pt-1">
+                                <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Deskripsi & Keterangan Barang:</h4>
+                                <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 max-h-44 overflow-y-auto text-xs font-medium text-gray-700 leading-relaxed whitespace-pre-line">
+                                    <template x-if="selectedProduct && selectedProduct.description && selectedProduct.description.trim() !== ''">
+                                        <div x-text="selectedProduct.description"></div>
+                                    </template>
+                                    <template x-if="!selectedProduct || !selectedProduct.description || selectedProduct.description.trim() === ''">
+                                        <p class="text-gray-400 italic font-bold">Produk original berkualitas tinggi dari toko kami. Barang dicek dan dikemas rapi sebelum dikirimkan ke alamat Anda.</p>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- KONTROL KUANTITAS & TOMBOL BELI --}}
+                        <div class="pt-4 border-t border-gray-100 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-600">Jumlah Beli:</span>
+                                
+                                <div class="flex items-center space-x-2 bg-gray-100 p-1 rounded-2xl">
+                                    <button type="button" @click="if (detailQuantity > 1) detailQuantity--" 
+                                            class="w-8 h-8 rounded-xl bg-white hover:bg-gray-200 text-gray-900 font-black text-sm shadow-sm transition">
+                                        -
+                                    </button>
+                                    <span class="w-8 text-center font-black text-sm text-gray-900" x-text="detailQuantity"></span>
+                                    <button type="button" @click="if (selectedProduct && detailQuantity < selectedProduct.max_stock) detailQuantity++" 
+                                            class="w-8 h-8 rounded-xl bg-white hover:bg-gray-200 text-gray-900 font-black text-sm shadow-sm transition">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2.5">
+                                <button type="button" @click="addDetailToCart(false)"
+                                        class="py-3.5 bg-emerald-50 hover:bg-emerald-100 text-[#00661A] font-black text-xs uppercase tracking-wider rounded-2xl border border-emerald-200 transition shadow-sm flex items-center justify-center space-x-1.5">
+                                    <span>+ Keranjang</span>
+                                </button>
+                                
+                                <button type="button" @click="addDetailToCart(true)"
+                                        class="py-3.5 bg-[#00AA13] hover:bg-[#00880F] active:scale-95 text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg shadow-emerald-500/25 transition flex items-center justify-center space-x-1.5">
+                                    <span>⚡ Beli Sekarang</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    {{-- ========================================================================= --}}
     {{-- FLOATING CART & CHECKOUT DRAWER (MODAL) --}}
+    {{-- ========================================================================= --}}
     <div x-show="isCartOpen" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-end" x-cloak x-transition>
         {{-- Backdrop klik luar --}}
         <div class="fixed inset-0" @click="isCartOpen = false"></div>
@@ -171,7 +381,7 @@
                     </template>
 
                     <div x-show="cart.length === 0" class="text-center py-12 text-gray-400 font-bold text-xs italic">
-                        Keranjang masih kosong. Pilih produk di katalog.
+                        Keranjang masih kosong. Silakan klik produk di katalog untuk memilih barang.
                     </div>
                 </div>
 
@@ -180,7 +390,8 @@
                     <form id="checkoutForm" method="POST" action="{{ route('order.checkout') }}" @submit="prepareCheckout($event)">
                         @csrf
                         
-                        {{-- Hidden items input --}}
+                        {{-- Hidden items input (Dual Format: JSON string & Array) --}}
+                        <input type="hidden" name="items_json" :value="JSON.stringify(cart)">
                         <template x-for="(item, idx) in cart" :key="idx">
                             <div>
                                 <input type="hidden" :name="'items[' + idx + '][id]'" :value="item.id">
@@ -262,6 +473,10 @@ function onlineStore() {
     return {
         cart: [],
         isCartOpen: false,
+        isDetailModalOpen: false,
+        selectedProduct: null,
+        selectedImageIndex: 0,
+        detailQuantity: 1,
 
         get totalItems() {
             return this.cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -269,6 +484,30 @@ function onlineStore() {
 
         get totalPrice() {
             return this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        },
+
+        openProductModal(product) {
+            this.selectedProduct = product;
+            this.selectedImageIndex = 0;
+            this.detailQuantity = 1;
+            this.isDetailModalOpen = true;
+        },
+
+        closeProductModal() {
+            this.isDetailModalOpen = false;
+            this.selectedProduct = null;
+        },
+
+        prevImage() {
+            if (!this.selectedProduct || !this.selectedProduct.gallery_urls) return;
+            const total = this.selectedProduct.gallery_urls.length;
+            this.selectedImageIndex = (this.selectedImageIndex - 1 + total) % total;
+        },
+
+        nextImage() {
+            if (!this.selectedProduct || !this.selectedProduct.gallery_urls) return;
+            const total = this.selectedProduct.gallery_urls.length;
+            this.selectedImageIndex = (this.selectedImageIndex + 1) % total;
         },
 
         addToCart(product) {
@@ -290,7 +529,8 @@ function onlineStore() {
                     name: product.name,
                     price: product.price,
                     max_stock: product.max_stock,
-                    quantity: 1
+                    quantity: 1,
+                    image_url: product.image_url
                 });
             }
 
@@ -303,6 +543,52 @@ function onlineStore() {
                 timer: 1800,
                 showConfirmButton: false
             });
+        },
+
+        addDetailToCart(andCheckout = false) {
+            if (!this.selectedProduct) return;
+            const qty = parseInt(this.detailQuantity) || 1;
+            const existing = this.cart.find(item => item.id === this.selectedProduct.id);
+            const currentQty = existing ? existing.quantity : 0;
+            
+            if (currentQty + qty > this.selectedProduct.max_stock) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Stok Terbatas',
+                    text: `Maksimal pembelian adalah ${this.selectedProduct.max_stock} pcs (di keranjang sudah ada ${currentQty} pcs).`,
+                    confirmButtonColor: '#00AA13'
+                });
+                return;
+            }
+
+            if (existing) {
+                existing.quantity += qty;
+            } else {
+                this.cart.push({
+                    id: this.selectedProduct.id,
+                    name: this.selectedProduct.name,
+                    price: this.selectedProduct.price,
+                    max_stock: this.selectedProduct.max_stock,
+                    quantity: qty,
+                    image_url: this.selectedProduct.image_url
+                });
+            }
+
+            this.isDetailModalOpen = false;
+
+            if (andCheckout) {
+                this.isCartOpen = true;
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Masuk Keranjang',
+                    text: `${qty}x ${this.selectedProduct.name} berhasil ditambahkan!`,
+                    toast: true,
+                    position: 'top-end',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
         },
 
         increaseQty(idx) {

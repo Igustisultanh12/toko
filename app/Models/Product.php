@@ -19,12 +19,20 @@ class Product extends Model
         'barcode',
         'description',
         'image',
+        'gallery',
         'stock',
         'price',
         'discount_percent',
     ];
 
-    protected $appends = ['image_url'];
+    protected $casts = [
+        'gallery'          => 'array',
+        'price'            => 'double',
+        'stock'            => 'integer',
+        'discount_percent' => 'double',
+    ];
+
+    protected $appends = ['image_url', 'gallery_urls'];
 
     public function getImageUrlAttribute()
     {
@@ -32,5 +40,23 @@ class Product extends Model
             return route('media.file', ['path' => $this->image]);
         }
         return null;
+    }
+
+    public function getGalleryUrlsAttribute()
+    {
+        $urls = [];
+        if (!empty($this->image)) {
+            $urls[] = route('media.file', ['path' => $this->image]);
+        }
+
+        if (!empty($this->gallery) && is_array($this->gallery)) {
+            foreach ($this->gallery as $imgPath) {
+                if (!empty($imgPath)) {
+                    $urls[] = route('media.file', ['path' => $imgPath]);
+                }
+            }
+        }
+
+        return array_values(array_unique($urls));
     }
 }

@@ -59,17 +59,29 @@ class ProductController extends Controller
             'price'            => 'required|numeric|min:0',
             'stock'            => 'required|integer|min:0',
             'discount_percent' => 'nullable|numeric|min:0|max:100',
-            'description'      => 'nullable|string|max:255',
+            'description'      => 'nullable|string|max:5000',
             'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:4096', // Max 4MB
+            'gallery'          => 'nullable|array',
+            'gallery.*'        => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:4096',
         ]);
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('products', 'public');
         }
 
+        if ($request->hasFile('gallery')) {
+            $galleryPaths = [];
+            foreach ($request->file('gallery') as $gFile) {
+                if ($gFile->isValid()) {
+                    $galleryPaths[] = $gFile->store('products/gallery', 'public');
+                }
+            }
+            $validated['gallery'] = $galleryPaths;
+        }
+
         Product::create($validated);
 
-        return redirect()->route('admin.products.index')->with('success', 'Produk dan gambar berhasil ditambahkan.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk dan foto galeri berhasil ditambahkan.');
     }
 
     /**
@@ -99,10 +111,13 @@ class ProductController extends Controller
             'price'            => 'required|numeric|min:0',
             'stock'            => 'required|integer|min:0',
             'discount_percent' => 'nullable|numeric|min:0|max:100',
-            'description'      => 'nullable|string|max:255',
+            'description'      => 'nullable|string|max:5000',
             'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:4096', // Max 4MB
+            'gallery'          => 'nullable|array',
+            'gallery.*'        => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:4096',
         ]);
 
+        // 1. Update Foto Utama
         if ($request->hasFile('image')) {
             if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image)) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image);
@@ -110,9 +125,39 @@ class ProductController extends Controller
             $validated['image'] = $request->file('image')->store('products', 'public');
         }
 
+        // 2. Kelola Foto Galeri Tambahan
+        $currentGallery = is_array($product->gallery) ? $product->gallery : [];
+
+        // Hapus foto galeri yang ditandai untuk dihapus
+        if ($request->has('deleted_gallery_images')) {
+            $toDelete = (array) $request->input('deleted_gallery_images');
+            $updatedGallery = [];
+            foreach ($currentGallery as $path) {
+                if (in_array($path, $toDelete)) {
+                    if (\Illuminate\Support\Facades\Storage::disk('public')->exists($path)) {
+                        \Illuminate\Support\Facades\Storage::disk('public')->delete($path);
+                    }
+                } else {
+                    $updatedGallery[] = $path;
+                }
+            }
+            $currentGallery = $updatedGallery;
+        }
+
+        // Tambahkan foto galeri baru yang diunggah
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $gFile) {
+                if ($gFile->isValid()) {
+                    $currentGallery[] = $gFile->store('products/gallery', 'public');
+                }
+            }
+        }
+
+        $validated['gallery'] = array_values($currentGallery);
+
         $product->update($validated);
 
-        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk dan galeri foto berhasil diperbarui.');
     }
 
     /**
@@ -122,6 +167,14 @@ class ProductController extends Controller
     {
         if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image)) {
             \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image);
+        }
+
+        if (!empty($product->gallery) && is_array($product->gallery)) {
+            foreach ($product->gallery as $gPath) {
+                if (\Illuminate\Support\Facades\Storage::disk('public')->exists($gPath)) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($gPath);
+                }
+            }
         }
 
         $product->delete();
